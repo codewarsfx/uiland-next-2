@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-
+import Image from "next/image"
 import { Button, Harmburger } from "../uiElements";
 import { buttonTypes } from "../uiElements/button";
 import {
@@ -34,7 +34,8 @@ const Header = () => {
 	return (
 		<HeaderContainer initial={initialState} animate={animateTo}>
 			<div>
-				<img src='/assets/img/UL.png' alt='' />
+				<Image src='/assets/img/UL.png'  layout='fill'
+    objectFit='contain' alt='' />
 			</div>
 			<HeaderCTA>
 				{!user ? (

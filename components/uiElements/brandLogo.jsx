@@ -1,9 +1,9 @@
 import styled from "styled-components";
-
+import Image from "next/image"
 const BrandLogo = ({ imageUrl }) => {
 	return (
 		<BrandLogoCotainer>
-			<img src={imageUrl} alt='brandlogo' />
+			<Image src={imageUrl} alt='brandlogo' />
 		</BrandLogoCotainer>
 	);
 };
