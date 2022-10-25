@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import Image from "next/image"
+import Image from "next/image";
+
 import { Button, Harmburger } from "../uiElements";
 import { buttonTypes } from "../uiElements/button";
 import {
@@ -34,14 +35,17 @@ const Header = () => {
 	return (
 		<HeaderContainer initial={initialState} animate={animateTo}>
 			<div>
-				<Image src='/assets/img/UL.png'  layout='fill'
-    objectFit='contain' alt='' />
+				<img src='/assets/img/UL.png' alt='my next image' />
 			</div>
 			<HeaderCTA>
 				{!user ? (
 					<div onClick={() => toggleModal()}>
 						<Button type={buttonTypes.login}> Login</Button>
-						<Harmburger onClick={() => toggleModal()} />
+						<HarmburgerContainer>
+			<HarmburgerSticks />
+			<HarmburgerSticks />
+			<HarmburgerSticks />
+		</HarmburgerContainer>
 					</div>
 				) : (
 					<h4>
@@ -80,6 +84,24 @@ const HeaderCTA = styled.div`
 			margin-left: 1em;
 			cursor: pointer;
 		}
+	}
+`;
+
+const HarmburgerContainer = styled.div`
+cursor: pointer;
+	@media (min-width: 768px) {
+		display: none;
+	}
+`;
+
+const HarmburgerSticks = styled.span`
+	width: 21px;
+	height: 3px;
+	background-color: var(--text-color-light);
+	display: block;
+
+	:not(:first-child) {
+		margin-top: 0.2em;
 	}
 `;
 

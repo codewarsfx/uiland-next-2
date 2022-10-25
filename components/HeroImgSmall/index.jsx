@@ -9,8 +9,8 @@ const HeroImgSmall = () => {
             y: 0, opacity: 1, transition: { delay: BASE_DELAY_DURATION + 1.2
             
         }}}>
-			<Image src='/assets/img/small.svg'  layout='fill'
-    objectFit='contain' alt='hero-img' />
+			<img src='/assets/img/small.svg' 
+ alt='hero-imgn' />
 		</HeroImgSmallContainer>
 	);
 };
