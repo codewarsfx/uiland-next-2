@@ -9,30 +9,13 @@ const Tab = () => {
 		<TabSectionContainer>
 			<TabSectionWrapper>
 				<Pill type={pillsTypes.base}>
-					<Link
-						href="/"
-						className='pills'
-						style={({ isActive }) => {
-							return {
-								backgroundColor: isActive ? "var(--accent-color)" : "",
-							};
-						}}
-						end
-					>
-						Screens
+					<Link href='/screens'>
+						<a className='pills'>Screens</a>
 					</Link>
 				</Pill>
 				<Pill type={pillsTypes.base}>
-					<Link
-						href="/"
-						className='pills'
-						style={({ isActive }) => {
-							return {
-								backgroundColor: isActive ? "var(--accent-color)" : "",
-							};
-						}}
-					>
-						Elements
+					<Link href='/elements'>
+						<a className='pills'>Elements</a>
 					</Link>
 				</Pill>
 			</TabSectionWrapper>
