@@ -6,14 +6,14 @@ import { BrandDescription, BrandLogo, Pill, Screenshot } from "../uiElements";
 import { pillsTypes } from "../uiElements/pills";
 
 const ScreensInCategory = ({screens}) => {
-
-	return (
+	return (<>
 		<CategorySectionContainer>
 			<CategorySectionWrapper>
 				{screens.map(({ startScreens, Name, Category, logo, id }) => (
+					
 					<ScreenShotContainer key={id}>
-							<Link  href={`/single/${id}`}><>
-						<ScreenshotContainerTop>
+							<Link  href={`/screens/${id}`}>
+						<div><ScreenshotContainerTop>
 							<BrandLogo imageUrl={logo} />
 							<BrandDescription name={Name} category={Category} />
 							<Pill type={pillsTypes.screenshot}>view</Pill>
@@ -22,11 +22,11 @@ const ScreensInCategory = ({screens}) => {
 							{startScreens.map((screenshot) => (
 								<Screenshot key={screenshot} imgLink={screenshot} alt={Name} />
 							))}
-						</ScreenshotContainerBottom></>
+						</ScreenshotContainerBottom></div>
 					</Link></ScreenShotContainer>
 				))}
 			</CategorySectionWrapper>
-		</CategorySectionContainer>
+		</CategorySectionContainer></>
 	);
 };
 

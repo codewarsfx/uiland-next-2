@@ -1,15 +1,31 @@
+import Image from "next/image"
 import styled from "styled-components";
-import { getScreensData } from "../../../firebase";
-import { Screenshot } from "../../../components/uiElements/screenshot";
-import { getindividualScreenData } from "../../../firebase";
+import { Screenshot } from "../../components/uiElements/screenshot";
+import { getindividualScreenData,getScreensData  } from "../../firebase";
 
 export default function SinglePage({ screens }) {
   console.log(screens)
+  console.log(typeof screens.startScreens[0])
 	return (
 		<ElementsInCategoryContainer>
-		{screens?.screens.map((cde) => {
-				return <Screenshot key={cde.url} imgLink={cde.url} />;
-			})}
+		{/* {screens.startScreens.map((url) => {
+				return <Screenshot key={url} imgLink={url} />;
+			})} */}
+			
+			{/* <Screenshot  imgLink={screens?.startScreens[0]} />;
+				{screens.startScreens.map((url) => {
+				return (
+					<div key={parseInt(url,10)}>
+						<h1>{parseInt(url,10)}</h1>
+					</div>
+				);
+			})} */}
+			{/* <Screenshot  imgLink={screens.screens[0].url} />; */}
+			{screens.websiteLink}
+			{screens.Name}<h1>{screens.startScreens[0]}</h1><h1>{screens.screens[1].url}</h1>
+			<Image src={screens.screens[1].url} alt="hj" width="720" height="1440"/>
+			<img src={screens.logo} alt="frtgf"/>
+			
 		</ElementsInCategoryContainer>
 
 	);
@@ -29,7 +45,7 @@ const ElementsInCategoryContainer = styled.div`
 	}
 `;
 
-async function getStaticPaths() {
+export const getStaticPaths = async () => {
 	// When this is true (in preview environments) don't
 	// prerender any static pages
 	// (faster builds, but slower initial page load)
@@ -41,13 +57,13 @@ async function getStaticPaths() {
 	}
 
 	// Call an external API endpoint to get posts
-  const screens = await getScreensData();
-  console.log(screens)
+  const screen = await getScreensData();
+  console.log(screen)
 
 	// Get the paths we want to prerender based on posts
 	// In production environments, prerender all pages
 	// (slower builds, but faster initial page load)
-	const paths = screens.map((post) => ({
+	const paths = screen.map((post) => ({
 		params: { id: post.id },
 	}));
 
@@ -55,7 +71,7 @@ async function getStaticPaths() {
 	return { paths, fallback: false };
 }
 
-const getStaticProps = async (context) => {
+export const getStaticProps = async (context) => {
   const id = context.params.id;
   console.log(id)
   const data = await getindividualScreenData(id);
