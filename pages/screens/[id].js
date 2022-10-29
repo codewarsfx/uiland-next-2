@@ -18,8 +18,8 @@ export default function SinglePage({ screens }) {
 		<ElementsInCategoryContainer>
 		{screens?.screens?.map((vf) => (
 			<ScreenshotContainer key={vf.url}>
-				<AbsoluteBox className="target"> <Title>hhhh</Title> <Title>hhh</Title></AbsoluteBox>
-			<Image src={vf.url} alt="lk" width={720} height={1440}/>
+		<AbsoluteBox className="target"> <TitleBox><Image src='/assets/img/save.svg' width={30} height={30} alt='save' /><Title>Save</Title></TitleBox> <Title>hhh</Title></AbsoluteBox>
+       <Image src={vf.url} alt="lk" width={720} height={1440}/>
 			</ScreenshotContainer>
 			
 			))}
@@ -34,10 +34,12 @@ const AbsoluteBox = styled.div`
   height:100%;
   width:100%;
   block:"";
+  z-index: 99;
   display:flex;
   flex-direction:row;
   padding: 7px 16px;
   justify-content:space-between;
+  align-items: flex-start;
   top:0;
   left:0;
   border-radius:2em;
@@ -60,11 +62,33 @@ const ImageWrapper = styled.div`
 	position:relative;
   overflow:hidden;
 `;
+const TitleBox = styled.div`
+z-index:99;
+border-radius:25px;
+	 display:flex;
+	 flex-direction:row;
+	 gap:8px;
+	 justify-content:space-between;
+	 align-items:center
+	background: rgba(25,25,25,.8);
+    border-color: transparent;
+	backdrop-filter: blur(65px);
+	color:white;
+	// padding:10px 12px;
+}
+img{
+	height:15px !important;
+	fill: #fff;
+  }
 
+`;
 
 const Title = styled.h1`
 	z-index:99;
-
+	font-size:12px;
+	font-weight:300;
+	margin:0;
+	padding:0;
 `;
 const SingleHeader = styled.div`
 	display:flex;
