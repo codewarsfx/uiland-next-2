@@ -1,9 +1,19 @@
 import Image from "next/image"
+import Link from 'next/link'
 import styled from "styled-components";
 import { getindividualScreenData,getScreensData  } from "../../firebase";
 import {BrandLogoBig} from '../../components/uiElements';
 import Header from '../../components/Header';
 export default function SinglePage({ screens }) {
+
+const  downloadImage = async ()=>{
+	const download =await fetch("/api/hello",
+	{method:"GET"}
+	);
+    const data = await download.json()
+   console.log(data)
+}
+
 	return (
 		<>
 		   <Wrapper>
@@ -18,7 +28,10 @@ export default function SinglePage({ screens }) {
 		<ElementsInCategoryContainer>
 		{screens?.screens?.map((vf) => (
 			<ScreenshotContainer key={vf.url}>
-		<AbsoluteBox className="target"> <TitleBox><Image src='/assets/img/save.svg' width={30} height={30} alt='save' /><Title>Save</Title></TitleBox> <Title>hhh</Title></AbsoluteBox>
+		<AbsoluteBox className="target"> 
+		<TitleBox onClick={downloadImage}>
+			<Image src='/assets/img/save.svg' width={30} height={30} alt='save' /><Title>Save</Title></TitleBox>
+			 <Title>hhh</Title></AbsoluteBox>
        <Image src={vf.url} alt="lk" width={720} height={1440}/>
 			</ScreenshotContainer>
 			
