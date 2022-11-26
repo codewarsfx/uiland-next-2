@@ -5,13 +5,20 @@ import { getindividualScreenData,getScreensData  } from "../../firebase";
 import {BrandLogoBig} from '../../components/uiElements';
 import Header from '../../components/Header';
 export default function SinglePage({ screens }) {
-
+console.log(screens)
 const  downloadImage = async ()=>{
+	// console.log(red)
+	// const download =await fetch("/api/hello",
+	// {method:"POST",headers:{
+	// 	"Content-Type":"application/json"
+	// },body:JSON.stringify(red)}
+	// );
 	const download =await fetch("/api/hello",
 	{method:"GET"}
 	);
-    const data = await download.json()
-   console.log(data)
+    // const data = await download.json();
+//  console.log(data)
+   console.log(download)
 }
 
 	return (
@@ -29,7 +36,7 @@ const  downloadImage = async ()=>{
 		{screens?.screens?.map((vf) => (
 			<ScreenshotContainer key={vf.url}>
 		<AbsoluteBox className="target"> 
-		<TitleBox onClick={downloadImage}>
+		<TitleBox onClick={()=>downloadImage(vf.url)}>
 			<Image src='/assets/img/save.svg' width={30} height={30} alt='save' /><Title>Save</Title></TitleBox>
 			 <Title>hhh</Title></AbsoluteBox>
        <Image src={vf.url} alt="lk" width={720} height={1440}/>
