@@ -24,6 +24,7 @@ export default function handler(req, res) {
   const streamPipeline = promisify(pipeline);
   
   const der=async()=>{
+    
   const response = await fetch('https://github.githubassets.com/images/modules/logos_page/Octocat.png');
   console.log(response)
   if (!response.ok) throw new Error(`unexpected response ${response.statusText}`);
