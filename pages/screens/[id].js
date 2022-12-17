@@ -27,6 +27,7 @@ const  downloadImage = async ()=>{
     <Header />
     </Wrapper>
     <SingleHeader>
+		
      <BrandLogoBig imageUrl={screens.logo}/>
      <Title>{screens.Name}</Title>
      <WebLink href={screens.websiteLink}>{screens.websiteLink}</WebLink>
