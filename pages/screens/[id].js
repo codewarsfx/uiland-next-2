@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { getindividualScreenData,addBookMark,getScreensData,deleteBookMark,
 	queryBookMarkIndividual,bookmarkSelected,deleteBookmarkSelected,queryBookMarkAlbum } from "../../firebase";
 
-import { BrandLogobig } from "../../components/uiElements";
+import { BrandLogo } from "../../components/uiElements";
 import Header from '../../components/Header';
 
 import { UserContext } from "../../context/authContext";
@@ -178,7 +178,7 @@ function handleAddToBookMark(){
                 </div>}
     <SingleHeader>
 		
-     <BrandLogobig imageUrl={screens.logo}/>
+     <BrandLogo imageUrl={screens.logo}/>
      <Title>{screens.Name}</Title>
      <WebLink href={screens.websiteLink}>{screens.websiteLink}</WebLink>
      {getAlbumId.includes(router.query.id) ?(
