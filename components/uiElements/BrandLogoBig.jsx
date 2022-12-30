@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image"
-const BrandLogoBig = ({ imageUrl }) => {
+const BrandLogobig = ({ imageUrl }) => {
 	return (
 		<BrandLogoContainer>
 			<Image src={imageUrl} width={90} height={90} alt='brandlogo'  />
@@ -13,4 +13,4 @@ border-radius: 1em;
 overflow:hidden;
 `;
 
-export default BrandLogoBig;
+export default BrandLogobig;
