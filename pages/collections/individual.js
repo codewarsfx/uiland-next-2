@@ -82,7 +82,9 @@ const  downloadImage =  async(e)=>{
 	
 		<AbsoluteBox className="target"  onClick={(e)=>downloadImage(e)}>
 			<Image src='/assets/img/save.svg' width={30} height={30} alt='download' /><Title className="target" >Download</Title></AbsoluteBox>
-			{getId.includes(data.id)?
+			
+            {/* Todo: break into components */}
+            {getId.includes(data.id)?
 			<DownloadWrapper className="target"  onClick={()=>bookmark(data)}>
 			<Image src='/assets/img/save.svg' width={30} height={30} alt='delete' /><Title className="target" >Delete</Title>
 			</DownloadWrapper>:
