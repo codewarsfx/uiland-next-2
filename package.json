@@ -19,6 +19,8 @@
     "next": "12.3.1",
     "node-fetch": "^2.6.7",
     "normalize-css": "^2.3.1",
+    "primeicons": "^6.0.1",
+    "primereact": "^8.7.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.6.0",

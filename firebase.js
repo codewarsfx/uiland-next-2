@@ -5,9 +5,9 @@ import {
 	signInWithPopup,
 	signOut,
 } from "firebase/auth";
-import { getFirestore, collection, getDocs,getDoc,doc } from "firebase/firestore";
+import { getFirestore, collection, getDocs,getDoc,setDoc,doc } from "firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
 import { prepareData } from "./utils/FirebaseUtilities";
-// import { getAnalytics } from "firebase/analytics";
 
 // firebase config object
 const firebaseConfig = {
@@ -22,10 +22,15 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
+
 
 // intialize auth
 export const auth = getAuth(app);
+
+if (typeof window !== 'undefined') {
+	 const analytics = getAnalytics(app);
+  }
+
 
 // initialize cloud firestore
 
@@ -39,17 +44,81 @@ export const signout = () => signOut(auth);
 
 // --------------------------FIRESTORE QUERIES----------------------------------
 
-const db = getFirestore(app);
+export const db = getFirestore(app);
 
 // read screens data
 export const getScreensData = async () => {
+
+	//get all screens
 	const querySnapshot = await getDocs(collection(db, "Screens"));
      return prepareData(querySnapshot.docs)
 };
 
+export const queryBookMarkAlbum = async (user)=>{
+
+	//read a user's bookmark (album)
+	const querySnapshot = await getDocs(collection(db, "Users", user, "Bookmark"));
+     return prepareData(querySnapshot.docs)
+
+   }
+
+
+
+
+   export const queryBookMarkIndividual = async (user)=>{
+
+	//read a user's bookmark (individual images)
+	const querySnapshot = await getDocs(collection(db, "Users", user, "BookmarkImage"));
+     return prepareData(querySnapshot.docs)
+
+   }
+   
+
+   export const addBookMark=async(user,id,contents)=>{
+
+	//add album collection to bookmark
+    await setDoc(doc(db, "Users",user,id), {
+		id:id, 
+		...contents
+	  });
+
+   }
+
+
+   export const deleteBookMark=async(user,  id)=>{
+
+		//delete album collection to bookmark
+	await deleteDoc(doc(db, "Users",user,"Bookmark",id), {
+		  id: id
+		});
+	   
+	 }
 
 export const getindividualScreenData=async (id)=>{
+
+	//get screens by id
 	const querySnapshot=  await getDoc(doc(db,"Screens",id))
-	const der = querySnapshot.data()
-	return der
+	const data = querySnapshot.data()
+	return data
    }
+
+   export const bookmarkSelected=async(user,contents,newField)=>{
+
+	//create new collection and add content
+	const newBookmark = newField
+    await setDoc(doc(db, "Users",user.uid,newBookmark,contents.id), {
+		date: serverTimestamp(),
+		bookmarkName:newBookmark,
+		id:id, 
+		...contents
+	  });
+   }
+
+   export const deleteBookmarkSelected=async(user,  content)=>{
+
+	//delete item from individual collection
+await deleteDoc(doc(db, "Users",user,content.bookmarkName,content.id), {
+	  id: id
+	});
+   
+ }

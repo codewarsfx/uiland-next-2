@@ -1,7 +1,7 @@
+
+import { useContext } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import Image from "next/image";
-
 import { Button, Harmburger } from "../uiElements";
 import { buttonTypes } from "../uiElements/button";
 import {
@@ -11,15 +11,15 @@ import {
 import useModal from "../../hooks/useModal";
 import Login from "../Login/login";
 import Modal from "../modal";
-import { useContext } from "react";
 import { UserContext } from "../../context/authContext";
-import { signout } from "../../firebase";
+import { signout,auth } from "../../firebase";
+import Link from "next/link";
 
 const Header = () => {
 	const { isModalopen, toggleModal } = useModal();
 	const user = useContext(UserContext);
 
-	
+
 	//animations states
 	const initialState = { y: -100 };
 	const animateTo = {
@@ -48,9 +48,18 @@ const Header = () => {
 		</HarmburgerContainer>
 					</div>
 				) : (
-					<h4>
+					<div>
+						<h4>
 						Hi {user?.displayName}, <span onClick={signout}>LOG OUT</span>
 					</h4>
+					<Link href='/collections'>
+						<a >Collections</a>
+					</Link>
+					<Link href='/profile'>
+						<a >Profile</a>
+					</Link>
+					</div>
+					
 				)}
 			</HeaderCTA>
 			{isModalopen && (

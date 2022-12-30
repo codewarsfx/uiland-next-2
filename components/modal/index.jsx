@@ -1,18 +1,22 @@
-import { createPortal } from "react-dom";
+import React, { useRef,useState } from "react"
+import reactDOM from "react-dom";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useEffect } from "react";
 
 const Modal = ({ children, toggleModal }) => {
-	useEffect(() => {
-		document.querySelector("body").classList.add("remove-scroll");
+	const [isBrowser, setIsBrowser] = useState(false);
+	const ref=React.useRef()
+	
+    useEffect(() => {
+		//get the portal 
+    ref.current = document.querySelector("#portal");
+	  setIsBrowser(true);
+    }, []);
 
-		return () => {
-			document.querySelector("body").classList.remove("remove-scroll");
-		};
-	}, []);
 
-	return createPortal(
+	if (isBrowser && ref.current) {
+	return reactDOM.createPortal(
 		<ModalContainer>
 			<ModalOverlay
 				onClick={toggleModal}
@@ -32,8 +36,11 @@ const Modal = ({ children, toggleModal }) => {
 				{children}
 			</ModalOverlay>
 		</ModalContainer>,
-		document.getElementById("modal")
+		document.getElementById("portal")
 	);
+	}
+
+	
 };
 
 const ModalContainer = styled.div`

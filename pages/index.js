@@ -1,12 +1,8 @@
 import Hero from "../components/Hero";
-
-import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Tab from "../components/TabSection";
 import ScreensTab from "../components/ScreensTab";
-import ElementsTab from "../components/ElementsTab";
-import { useRouter } from "next/router";
 import { getScreensData } from "../firebase";
 
 
