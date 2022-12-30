@@ -6,7 +6,8 @@ import styled from "styled-components";
 
 import { getindividualScreenData,addBookMark,getScreensData,deleteBookMark,
 	queryBookMarkIndividual,bookmarkSelected,deleteBookmarkSelected,queryBookMarkAlbum } from "../../firebase";
-import {BrandLogoBig} from '../../components/uiElements';
+
+import { BrandLogoBig } from "../../components/uiElements";
 import Header from '../../components/Header';
 
 import { UserContext } from "../../context/authContext";

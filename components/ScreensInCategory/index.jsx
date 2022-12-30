@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import Link from 'next/link'
-import { ScreensContext } from "../../context/screensContex";
 import { BrandDescription, BrandLogo, Pill, Screenshot } from "../uiElements";
 import { pillsTypes } from "../uiElements/pills";
 

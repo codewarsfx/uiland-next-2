@@ -2,13 +2,13 @@ import styled from "styled-components";
 import Image from "next/image"
 const BrandLogoBig = ({ imageUrl }) => {
 	return (
-		<BrandLogoCotainer>
+		<BrandLogoContainer>
 			<Image src={imageUrl} width={90} height={90} alt='brandlogo'  />
-		</BrandLogoCotainer>
+		</BrandLogoContainer>
 	);
 };
 
-const BrandLogoCotainer = styled.div`
+const BrandLogoContainer = styled.div`
 border-radius: 1em;
 overflow:hidden;
 `;

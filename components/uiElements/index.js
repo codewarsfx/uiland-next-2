@@ -3,7 +3,7 @@ import Pill from "./pills";
 import Screenshot from "./screenshot";
 import BrandLogo from './brandLogo'
 import BrandLogoBig from './brandLogoBig'
-import Harmburger from "./harmburger";
+import Hamburger from "./Hamburger";
 import BrandDescription from "./brandDescription";
 
-export { Button, Screenshot, Harmburger, Pill, BrandLogo,BrandLogoBig, BrandDescription};
+export { Button, Screenshot, Hamburger, Pill, BrandLogo,BrandLogoBig, BrandDescription};

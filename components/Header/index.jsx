@@ -2,7 +2,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { Button, Harmburger } from "../uiElements";
+import { Button, Hamburger } from "../uiElements";
 import { buttonTypes } from "../uiElements/button";
 import {
 	BASE_DELAY_DURATION,
@@ -41,11 +41,11 @@ const Header = () => {
 				{!user ? (
 					<div onClick={() => toggleModal()}>
 						<Button type={buttonTypes.login}> Login</Button>
-						<HarmburgerContainer>
-			<HarmburgerSticks />
-			<HarmburgerSticks />
-			<HarmburgerSticks />
-		</HarmburgerContainer>
+						<HamburgerContainer>
+			<HamburgerSticks />
+			<HamburgerSticks />
+			<HamburgerSticks />
+		</HamburgerContainer>
 					</div>
 				) : (
 					<div>
@@ -96,14 +96,14 @@ const HeaderCTA = styled.div`
 	}
 `;
 
-const HarmburgerContainer = styled.div`
+const HamburgerContainer = styled.div`
 cursor: pointer;
 	@media (min-width: 768px) {
 		display: none;
 	}
 `;
 
-const HarmburgerSticks = styled.span`
+const HamburgerSticks = styled.span`
 	width: 21px;
 	height: 3px;
 	background-color: var(--text-color-light);

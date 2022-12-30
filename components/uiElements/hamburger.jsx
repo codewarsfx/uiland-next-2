@@ -1,23 +1,23 @@
 import styled from "styled-components";
 
-const Harmburger = () => {
+const Hamburger = () => {
 	return (
-		<HarmburgerContainer>
-			<HarmburgerSticks />
-			<HarmburgerSticks />
-			<HarmburgerSticks />
-		</HarmburgerContainer>
+		<HamburgerContainer>
+			<HamburgerSticks />
+			<HamburgerSticks />
+			<HamburgerSticks />
+		</HamburgerContainer>
 	);
 };
 
-const HarmburgerContainer = styled.div`
+const HamburgerContainer = styled.div`
 cursor: pointer;
 	@media (min-width: 768px) {
 		display: none;
 	}
 `;
 
-const HarmburgerSticks = styled.span`
+const HamburgerSticks = styled.span`
 	width: 21px;
 	height: 3px;
 	background-color: var(--text-color-light);
@@ -28,4 +28,4 @@ const HarmburgerSticks = styled.span`
 	}
 `;
 
-export default Harmburger;
+export default Hamburger;
