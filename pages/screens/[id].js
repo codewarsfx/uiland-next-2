@@ -292,6 +292,7 @@ href={`https://www.facebook.com/sharer/sharer.php?quote=http://localhost:3000/si
 			<Image src='/assets/img/save.svg' width={30} height={30} alt='download' /><Title className="target" >Download</Title></AbsoluteBox>
 			
 			{/* Todo: break into components */}
+			
 			{getId.includes(data.id)?
 			<DownloadWrapper className="target"  onClick={()=>bookmark(data)}>
 			<Image src='/assets/img/save.svg' width={30} height={30} alt='delete' /><Title className="target" >Delete</Title>
