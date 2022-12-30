@@ -22,7 +22,7 @@ const Login = ({ toggleModal }) => {
 				<span>UL</span>
 				Welcome to UILand
 			</h1>
-			<p>Don't have an account?</p>
+			<p>Dont have an account?</p>
 			<div onClick={() => handleSignupWithGoogle()}>
 				<Button type={buttonTypes.google}>
 					<span className='google-logo'>G</span>Continue with Google
