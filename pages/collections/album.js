@@ -19,7 +19,7 @@ async function getAlbums(){
 }
 getAlbums()
 
-},[])
+},[user])
 
   return (
     <>

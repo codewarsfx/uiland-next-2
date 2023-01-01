@@ -5,7 +5,7 @@ import {
 	signInWithPopup,
 	signOut,
 } from "firebase/auth";
-import { getFirestore, collection, getDocs,getDoc,setDoc,doc } from "firebase/firestore";
+import { getFirestore, collection, getDocs,getDoc,setDoc,doc,deleteDoc,serverTimestamp,query,where } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 import { prepareData } from "./utils/FirebaseUtilities";
 
@@ -77,7 +77,8 @@ export const queryBookMarkAlbum = async (user)=>{
    export const addBookMark=async(user,id,contents)=>{
 
 	//add album collection to bookmark
-    await setDoc(doc(db, "Users",user,id), {
+    await setDoc(doc(db, "Users",user,"Bookmark",id), {
+		date:serverTimestamp,
 		id:id, 
 		...contents
 	  });
@@ -106,19 +107,41 @@ export const getindividualScreenData=async (id)=>{
 
 	//create new collection and add content
 	const newBookmark = newField
-    await setDoc(doc(db, "Users",user.uid,newBookmark,contents.id), {
-		date: serverTimestamp(),
+	console.log(user.uid,newBookmark,contents.id)
+	
+	await setDoc(doc(db, "Users",user.uid,newBookmark,contents.id), {
+		date:serverTimestamp,
+		id:contents.id, 
 		bookmarkName:newBookmark,
-		id:id, 
 		...contents
 	  });
    }
 
-   export const deleteBookmarkSelected=async(user,  content)=>{
-
+   export const deleteBookmarkSelected=async(user,  contents)=>{
+console.log(user,contents.id)
 	//delete item from individual collection
-await deleteDoc(doc(db, "Users",user,content.bookmarkName,content.id), {
-	  id: id
+await deleteDoc(doc(db, "Users",user,"BookmarkImage",contents.id), {
+	  id: contents.id
 	});
    
  }
+
+ export const getItemsCategoryByQuery = async (filterby) => {
+
+	//filter by category
+	const citiesRef = collection(db, "Screens");
+    const q = query(citiesRef, where("Category", "==", filterby));
+
+	const querySnapshot = await getDocs(q);
+    return prepareData(querySnapshot.docs)
+}
+
+export const getItemsNameByQuery = async (filterby) => {
+
+	//filter by name
+	const citiesRef = collection(db, "Screens");
+    const q = query(citiesRef, where("Name", "==", filterby));
+
+	const querySnapshot = await getDocs(q);
+    return prepareData(querySnapshot.docs);
+}

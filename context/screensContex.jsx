@@ -1,28 +1,39 @@
-
 import { createContext, useEffect, useState } from "react";
 
-import { getScreensData } from "../firebase";
-
+import { getItemsCategoryByQuery, getScreensData } from "../firebase";
 
 export const ScreensContext = createContext(null);
 
 export const ScreensContextProvider = ({ children }) => {
+	const [screens, setScreens] = useState(null);
+	const [filterTerm, setFilterTerm] = useState("");
 
-    const [screens, setScreens] = useState(null);
+	const setFilterItem = (term) => {
+		setFilterTerm(term);
+	};
 
 	useEffect(() => {
 		const getScreens = async () => {
-			const screens = await getScreensData();
+			let screens;
+			if (!filterTerm) {
+				screens = await getScreensData();
+			} else {
+				screens = await getItemsCategoryByQuery(filterTerm);
+			}
 
 			if (screens) {
 				setScreens(screens);
 			}
+		
 		};
-
 		getScreens();
-	}, []);
 
-	
+	}, [filterTerm]);
 
-	return <ScreensContext.Provider value={screens}>{children}</ScreensContext.Provider>;
+	return (
+		<ScreensContext.Provider value={{
+			screens, setFilterItem}}>
+			{children}
+		</ScreensContext.Provider>
+	);
 };

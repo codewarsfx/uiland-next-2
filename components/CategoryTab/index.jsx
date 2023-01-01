@@ -1,22 +1,50 @@
-import Link from "next/link";
+import { useContext } from "react";
 import styled from "styled-components";
+import { ScreensContext } from "../../context/screensContex";
 
 import { Pill } from "../uiElements";
 import { pillsTypes } from "../uiElements/pills";
 
+
+
 const CategoryTabBar = () => {
-	// const categories = [];
+	const  {setFilterItem}  = useContext(ScreensContext);
+
+const removeAllActiveClasses = () => {
+	const nodes = document.querySelectorAll('.pills')
+		Array.from(nodes).forEach( node=> node.classList.remove('active'))
+	
+}
+	const onClickPill = (e) => {
+		removeAllActiveClasses();
+		e.target.classList.add('active');
+		const filterby = e.target.name
+		setFilterItem(filterby)
+	};
+
+	const data= [
+		{category:"All",categoryStatus:"",status:"active",id:1},
+		{category:"FINTECH",categoryStatus:"FINTECH",status:"",id:2},
+		{category:"EDTECH",categoryStatus:"FINTECH",status:"",id:3}
+	]
 
 	return (
 		<CategoryTabContainer>
-			<CategoryTabWrapper>
-				<Pill type={pillsTypes.category}>
-					<Link href='/'>
-						<a className='pills'>FINTECH</a>
-					</Link>
-				</Pill>
-			</CategoryTabWrapper>
-		</CategoryTabContainer>
+		<CategoryTabWrapper>
+			{<>
+			{data.map((result)=>{
+return (
+	<Pill key={result.id} type={pillsTypes.category}>
+	<button className={`pills ${result.status}`} onClick={onClickPill} name={result.categoryStatus}>
+	{result.category}
+	</button>
+</Pill>
+)
+			})}
+				</>
+			}
+		</CategoryTabWrapper>
+	</CategoryTabContainer>
 	);
 };
 

@@ -11,7 +11,6 @@ const [screens,setScreens]=useState([])
 const [displayBasic, setDisplayBasic] = useState(false);
 const[imageContent,setImageContent] = useState({})
 const[getId,setGetId]= useState([])
-const[getAlbumId,setGetAlbumId]= useState([])
 useEffect(()=>{
 async function getAlbums(){
     if(user){
@@ -21,7 +20,7 @@ async function getAlbums(){
 }
 getAlbums()
 
-},[])
+},[user])
 
 async function deleteIndividualBookmark(data){
 	await deleteBookmarkSelected(user,  data)

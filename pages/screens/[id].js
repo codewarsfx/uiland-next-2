@@ -79,12 +79,17 @@ setInput(e.target.value)
 
 //shows the modal and populates the imageContent state
 async function bookmark(data){
-	setDisplayBasic(true);
+  if(user){
+    setDisplayBasic(true);
 	setImageContent(data)
+  }else{
+    console.log("please login")
+  }
+	
 }
 
 //function to delete individual screens
-async function deleteIndividualBookmark(data){
+async function deleteIndividualBookmark(user,data){
 	await deleteBookmarkSelected(user,  data)
 }
 
@@ -92,8 +97,13 @@ async function deleteIndividualBookmark(data){
 function submit(e){
 	//prevents default refresh
 	e.preventDefault()
-	console.log(user,imageContent,input)
+  if(user){
+    console.log(user,imageContent,input)
 	 bookmarkSelected(user,imageContent,input)
+  }else{
+    console.log("pls login")
+  }
+	
 }
 
 //function to download the individual images 
@@ -149,12 +159,18 @@ async function copyImage(e){
 
 //adds image album to bookmark
 function handleAddToBookMark(){
-	addBookMark(user.uid,id,screens)
+  if (user){
+    addBookMark(user.uid,router.query.id,screens)
+  }
+	else{
+    //add modal later
+    console.log("please login")
+  }
    }
  
    //deletes image album to bookmark
    function handleDeleteFromBookMark(){
-	 deleteBookMark(user.uid,id)
+	 deleteBookMark(user.uid,router.query.id)
    }
 	return (
 		<>
@@ -294,10 +310,10 @@ href={`https://www.facebook.com/sharer/sharer.php?quote=http://localhost:3000/si
 			{/* Todo: break into components */}
 			
 			{getId.includes(data.id)?
-			<DownloadWrapper className="target"  onClick={()=>bookmark(data)}>
+			<DownloadWrapper className="target" onClick={()=>deleteIndividualBookmark(user.uid,data)} >
 			<Image src='/assets/img/save.svg' width={30} height={30} alt='delete' /><Title className="target" >Delete</Title>
 			</DownloadWrapper>:
-			<DownloadWrapper className="target"  onClick={()=>deleteIndividualBookmark(data)}>
+			<DownloadWrapper className="target"  onClick={()=>bookmark(data)}>
 			<Image src='/assets/img/save.svg' width={30} height={30} alt='save' /><Title className="target" >Save</Title>
 			</DownloadWrapper>
 		}

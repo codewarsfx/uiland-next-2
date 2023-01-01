@@ -33,6 +33,7 @@ const BasePill = styled.span`
 	color: var(--text-color-light);
 	border-radius: 5em;
 	font-size: 15px;
+	cursor:pointer;
 	&:focus {
 		background-color: ${({ activeState }) => activeState};
 	}
@@ -48,7 +49,7 @@ const CategoryPill = styled(BasePill)`
 	color: var(---text-color-dark);
 	font-size: 14px;
 	transition: background-color 0.2s ease;
-
+    cursor: pointer;
 	:first-child {
 		margin-left: 0.8em;
 	}

@@ -1,7 +1,6 @@
 
 import CategoryTabBar from "../CategoryTab";
 import ElementsInCategory from "../ElementsInCategory";
-
 const ElementsTab = () => {
 	return (
 		<>
