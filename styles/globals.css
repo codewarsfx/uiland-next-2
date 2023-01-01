@@ -39,8 +39,12 @@ a{
 .pills{
 padding:0.4em 0.9em;
 border-radius: 5em;
+cursor: pointer;
 }
-
+.pills.active{
+ background-color: black;
+ color: white;
+}
 img{
   display: inline-block;
 }
