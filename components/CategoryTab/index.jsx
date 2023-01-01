@@ -15,11 +15,10 @@ const removeAllActiveClasses = () => {
 		Array.from(nodes).forEach( node=> node.classList.remove('active'))
 	
 }
-	const onClickPill = (e) => {
+	const onClickPill = (e,result) => {
 		removeAllActiveClasses();
 		e.target.classList.add('active');
-		const filterby = e.target.name
-		setFilterItem(filterby)
+		setFilterItem(result.categoryStatus)
 	};
 
 	const data= [
@@ -35,7 +34,7 @@ const removeAllActiveClasses = () => {
 			{data.map((result)=>{
 return (
 	<Pill key={result.id} type={pillsTypes.category}>
-	<button className={`pills ${result.status}`} onClick={onClickPill} name={result.categoryStatus}>
+	<button className={`pills ${result.status}`} onClick={(e)=>onClickPill(e,result)} name={result.categoryStatus}>
 	{result.category}
 	</button>
 </Pill>
