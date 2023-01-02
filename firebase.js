@@ -155,52 +155,7 @@ export const getItemsNameByQuery = async (filterby) => {
     return prepareData(querySnapshot.docs);
 }
 
-// export const getIndividualCategory= async ()=>{
-// 	const citiesRef = collection(db, 'screenImages');
 
-// await Promise.all([
-//     addDoc(collection(citiesRef, 'SF', 'screens'), {
-//         name: 'Golden Gate Bridge',
-//         type: 'bridge'
-//     }),
-//     addDoc(collection(citiesRef, 'SF', 'screens'), {
-//         name: 'Legion of Honor',
-//         type: 'museum'
-//     }),
-//     addDoc(collection(citiesRef, 'LA', 'screens'), {
-//         name: 'Griffith Park',
-//         type: 'park'
-//     }),
-//     addDoc(collection(citiesRef, 'LA', 'screens'), {
-//         name: 'The Getty',
-//         type: 'museum'
-//     }),
-//     addDoc(collection(citiesRef, 'DC', 'screens'), {
-//         name: 'Lincoln Memorial',
-//         type: 'memorial'
-//     }),
-//     addDoc(collection(citiesRef, 'DC', 'screens'), {
-//         name: 'National Air and Space Museum',
-//         type: 'museum'
-//     }),
-//     addDoc(collection(citiesRef, 'TOK', 'screens'), {
-//         name: 'Ueno Park',
-//         type: 'park'
-//     }),
-//     addDoc(collection(citiesRef, 'TOK', 'screens'), {
-//         name: 'National Museum of Nature and Science',
-//         type: 'museum'
-//     }),
-//     addDoc(collection(citiesRef, 'BJ', 'screens'), {
-//         name: 'Jingshan Park',
-//         type: 'park'
-//     }),
-//     addDoc(collection(citiesRef, 'BJ', 'screens'), {
-//         name: 'Beijing Ancient Observatory',
-//         type: 'museum'
-//     })
-// ]);
-// }
 
 
 //filter individual screens by screencategory
