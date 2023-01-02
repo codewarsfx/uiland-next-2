@@ -5,7 +5,7 @@ import Image from "next/image"
 import styled from "styled-components";
 
 import { getindividualScreenData,addBookMark,getScreensData,deleteBookMark,
-	queryBookMarkIndividual,bookmarkSelected,deleteBookmarkSelected,queryBookMarkAlbum } from "../../firebase";
+	queryBookMarkIndividual,bookmarkSelected,deleteBookmarkSelected,queryBookMarkAlbum,getIndividualCategory } from "../../firebase";
 
 import { BrandLogo } from "../../components/uiElements";
 import Header from '../../components/Header';
@@ -15,7 +15,10 @@ export default function SinglePage({ screens }) {
 
 const [displayBasic, setDisplayBasic] = useState(false);
 const[imageContent,setImageContent] = useState({})
+const [inputFilter,setInputFilter]=useState("")
 const[getId,setGetId]= useState([])
+const[hideAllUnfilteredImages,setHideAllUnfilteredImages]= useState([])
+
 const[getAlbumId,setGetAlbumId]= useState([])
 
 const[input,setInput] = useState('BookmarkImage')
@@ -25,6 +28,12 @@ const dialogFuncMap = {
 	'displayBasic': setDisplayBasic
 }
 const router = useRouter()
+
+function handleInputFilter(e){
+  //convert the e.target.value to lowercase and add to the inputfilter state
+  setInputFilter(e.target.value.toLowerCase())
+ 
+}
 
 //copies the url
 const copy = async () => {
@@ -104,6 +113,14 @@ function submit(e){
     console.log("pls login")
   }
 	
+}
+//function to filter individual screen
+async function submitFilter(e){
+	//prevents default refresh
+	e.preventDefault()
+    const data= await getIndividualCategory(inputFilter,router.query.id)
+    console.log(data)
+    setHideAllUnfilteredImages(data)
 }
 
 //function to download the individual images 
@@ -300,8 +317,16 @@ href={`https://www.facebook.com/sharer/sharer.php?quote=http://localhost:3000/si
                   </span>
                 </div>
 	  </SingleHeader>
+     <FilterBox> <form onSubmit={submitFilter}>
+        <input type="text" value={inputFilter} onChange={handleInputFilter}/>
+        <button type="submit">Submit</button>
+        </form></FilterBox>
+       
+      
 		<ElementsInCategoryContainer>
-		{screens?.screens?.map((data) => (
+     
+     {/* todo:populate with filtered data */}
+		{!hideAllUnfilteredImages.length ? screens?.screens?.map((data) => (
 			<ScreenshotContainer key={data.url}>
 	
 		<AbsoluteBox className="target"  onClick={(e)=>downloadImage(e)}>
@@ -322,7 +347,7 @@ href={`https://www.facebook.com/sharer/sharer.php?quote=http://localhost:3000/si
        <Image src={data.url} alt="imageSelected" width={1080} height={2240} />
 			</ScreenshotContainer>
 			
-			))}
+			)):<div>g</div>}
 		
 			
 		</ElementsInCategoryContainer>
@@ -330,6 +355,8 @@ href={`https://www.facebook.com/sharer/sharer.php?quote=http://localhost:3000/si
 	);
 }
 
+
+const FilterBox=styled.div``
 const DownloadWrapper = styled.div`
 position:absolute;
   block:"";

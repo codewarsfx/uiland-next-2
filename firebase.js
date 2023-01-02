@@ -5,7 +5,7 @@ import {
 	signInWithPopup,
 	signOut,
 } from "firebase/auth";
-import { getFirestore, collection, getDocs,getDoc,setDoc,doc,deleteDoc,serverTimestamp,query,where } from "firebase/firestore";
+import { getFirestore, collection, getDocs,getDoc,setDoc,doc,deleteDoc,serverTimestamp,query,where,addDoc,collectionGroup } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 import { prepareData } from "./utils/FirebaseUtilities";
 
@@ -63,6 +63,14 @@ export const queryBookMarkAlbum = async (user)=>{
    }
 
 
+   export const queryScreenImage = async (id)=>{
+
+	//get all id screen images from an id
+	const querySnapshot = await getDocs(collection(db, "screenImages", id, id));
+     return prepareData(querySnapshot.docs)
+
+   }
+
 
 
    export const queryBookMarkIndividual = async (user)=>{
@@ -72,6 +80,7 @@ export const queryBookMarkAlbum = async (user)=>{
      return prepareData(querySnapshot.docs)
 
    }
+   
    
 
    export const addBookMark=async(user,id,contents)=>{
@@ -144,4 +153,60 @@ export const getItemsNameByQuery = async (filterby) => {
 
 	const querySnapshot = await getDocs(q);
     return prepareData(querySnapshot.docs);
+}
+
+// export const getIndividualCategory= async ()=>{
+// 	const citiesRef = collection(db, 'screenImages');
+
+// await Promise.all([
+//     addDoc(collection(citiesRef, 'SF', 'screens'), {
+//         name: 'Golden Gate Bridge',
+//         type: 'bridge'
+//     }),
+//     addDoc(collection(citiesRef, 'SF', 'screens'), {
+//         name: 'Legion of Honor',
+//         type: 'museum'
+//     }),
+//     addDoc(collection(citiesRef, 'LA', 'screens'), {
+//         name: 'Griffith Park',
+//         type: 'park'
+//     }),
+//     addDoc(collection(citiesRef, 'LA', 'screens'), {
+//         name: 'The Getty',
+//         type: 'museum'
+//     }),
+//     addDoc(collection(citiesRef, 'DC', 'screens'), {
+//         name: 'Lincoln Memorial',
+//         type: 'memorial'
+//     }),
+//     addDoc(collection(citiesRef, 'DC', 'screens'), {
+//         name: 'National Air and Space Museum',
+//         type: 'museum'
+//     }),
+//     addDoc(collection(citiesRef, 'TOK', 'screens'), {
+//         name: 'Ueno Park',
+//         type: 'park'
+//     }),
+//     addDoc(collection(citiesRef, 'TOK', 'screens'), {
+//         name: 'National Museum of Nature and Science',
+//         type: 'museum'
+//     }),
+//     addDoc(collection(citiesRef, 'BJ', 'screens'), {
+//         name: 'Jingshan Park',
+//         type: 'park'
+//     }),
+//     addDoc(collection(citiesRef, 'BJ', 'screens'), {
+//         name: 'Beijing Ancient Observatory',
+//         type: 'museum'
+//     })
+// ]);
+// }
+
+
+//filter individual screens by screencategory
+export const getIndividualCategory=async(result,id)=>{
+	const properties = query(collectionGroup(db, id), where('screenCategory', '==', result));
+const querySnapshot = await getDocs(properties);
+console.log(querySnapshot.docs)
+return prepareData(querySnapshot.docs);
 }
