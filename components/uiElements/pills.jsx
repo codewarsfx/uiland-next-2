@@ -32,7 +32,7 @@ const BasePill = styled.span`
 	justify-content: center;
 	color: var(--text-color-light);
 	border-radius: 5em;
-	font-size: 15px;
+	font-size: 16px;
 	cursor:pointer;
 	&:focus {
 		background-color: ${({ activeState }) => activeState};
@@ -45,11 +45,11 @@ const BasePill = styled.span`
 
 // pill styles for the category scroll
 const CategoryPill = styled(BasePill)`
-	border: 1px solid var(--light-grey-color);
-	color: var(---text-color-dark);
-	font-size: 14px;
-	transition: background-color 0.2s ease;
-    cursor: pointer;
+	// border: 1px solid var(--light-grey-color);
+	// color: var(---text-color-dark);
+	// font-size: 14px;
+	// transition: background-color 0.2s ease;
+    // cursor: pointer;
 	:first-child {
 		margin-left: 0.8em;
 	}

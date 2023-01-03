@@ -24,7 +24,7 @@ import ImageCardInfo from "../../components/ImageCardInfo";
 import Modal from "../../components/modal";
 import SocialsCard from "../../components/SocialsCard";
 export default function SinglePage({ screens }) {
-  const { isModalopen, toggleModal } = useModal();
+  const { modalSaveImage, isModalopen, toggleModal,newtoggleModal } = useModal();
 
   const [displayBasic, setDisplayBasic] = useState(false);
   const [imageContent, setImageContent] = useState({});
@@ -148,7 +148,7 @@ export default function SinglePage({ screens }) {
   //shows the modal and populates the imageContent state
   async function bookmark(data) {
     if (user) {
-      setDisplayBasic(true);
+      newtoggleModal()
       setImageContent(data);
     } else {
       console.log("please login");
@@ -253,19 +253,24 @@ export default function SinglePage({ screens }) {
       <Wrapper>
         <Header />
       </Wrapper>
-      {displayBasic && (
-        <div style={{ width: "50vw" }} onHide={() => onHide("displayBasic")}>
+      {modalSaveImage && (
+        <Modal toggleModal={newtoggleModal}>
+           <div style={{ width: "50vw" }} onHide={() => onHide("displayBasic")}>
           <div>
             <form onSubmit={submit}>
               <label for="items">Choose a Bookmark:</label>
-              <select id="items" name="items" onChange={handleChange}>
+              <div class="select">
+              <select id="standard-select" name="items" onChange={handleChange}>
                 <option value="BookmarkImage">Bookmark Image</option>
               </select>
+              </div>
               {/* <input type="text" name="contentForm" value={input} onChange={handleChange}/> */}
               <button type="submit">Submit</button>
             </form>
           </div>
         </div>
+        </Modal>
+       
       )}
 {isModalopen && (
 				<Modal toggleModal={toggleModal}>
@@ -282,7 +287,8 @@ export default function SinglePage({ screens }) {
       <FilterBox>
         {" "}
         <form onSubmit={submitFilter}>
-          <select value={inputFilter} onChange={handleInputFilter}>
+        <div class="select">
+          <select id="standard-select" value={inputFilter} onChange={handleInputFilter}>
             {elementsCategoryData.map((item, i) => {
               return (
                 <option value={item} key={i}>
@@ -291,6 +297,7 @@ export default function SinglePage({ screens }) {
               );
             })}
           </select>
+          </div>
           <button type="submit">Submit</button>
         </form>
       </FilterBox>

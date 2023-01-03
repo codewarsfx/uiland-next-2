@@ -2,14 +2,18 @@ import {  useState } from "react"
 
 const useModal = ()=>{
     const [isModalopen,setShowModal] = useState(false)
-
+    const [modalSaveImage,setModalSaveImage] = useState(false)
     const toggleModal = () => {
        setShowModal(showModal => !showModal)
-      
+     
     }
+    const newtoggleModal = () => {
+        setShowModal(showModal => !showModal)
+      
+     }
 
 
-    return  {isModalopen,toggleModal}
+    return  {modalSaveImage,isModalopen,toggleModal,newtoggleModal}
 
 }
 

@@ -67,7 +67,7 @@ const CategoryTabWrapper = styled.div`
 	}
 
 	@media (min-width: 768px) {
-		gap: 2.8em;
+		gap: 1.5em;
 	}
 `;
 

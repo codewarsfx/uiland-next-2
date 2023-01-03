@@ -19,7 +19,6 @@ const Header = () => {
 	const { isModalopen, toggleModal } = useModal();
 	const user = useContext(UserContext);
 
-
 	//animations states
 	const initialState = { y: -100 };
 	const animateTo = {
@@ -48,17 +47,20 @@ const Header = () => {
 		</HamburgerContainer>
 					</div>
 				) : (
-					<div>
+					<HeaderInfo>
 						<h4>
-						Hi {user?.displayName}, <span onClick={signout}>LOG OUT</span>
+						Hi, {user?.displayName} 
 					</h4>
+					{/* uncomment when the firebase's quota restarts */}
+					{/* <img src={user?.photoURL} alt="profile picture"/> */}
 					<Link href='/collections'>
 						<a >Collections</a>
 					</Link>
 					<Link href='/profile'>
 						<a >Profile</a>
 					</Link>
-					</div>
+					<span onClick={signout}>LOG OUT</span>
+					</HeaderInfo>
 					
 				)}
 			</HeaderCTA>
@@ -70,7 +72,10 @@ const Header = () => {
 		</HeaderContainer>
 	);
 };
-
+const HeaderInfo=styled.div`
+display:flex;
+gap:12px;
+`
 const HeaderContainer = styled(motion.header)`
 	width: 90%;
 	margin: auto;
@@ -88,12 +93,15 @@ const HeaderCTA = styled.div`
 	margin-left: auto;
 	h4 {
 		color: white;
-		span {
+	}
+	span {
 			text-decoration: underline;
 			margin-left: 1em;
 			cursor: pointer;
 		}
-	}
+		a{
+			color: white;
+		}
 `;
 
 const HamburgerContainer = styled.div`

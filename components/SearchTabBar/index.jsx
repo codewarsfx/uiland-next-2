@@ -1,28 +1,63 @@
-import React, { useState } from 'react'
-import {getItemsNameByQuery} from "../../firebase"
+import React, { useState } from "react";
+import styled from "styled-components";
+import { getItemsNameByQuery } from "../../firebase";
+import { Input } from "../uiElements";
 const SearchTabBar = () => {
-    const [input,setInput]=useState("")
+  const [input, setInput] = useState("");
 
-   function handleChange(e){
-
-    //have to change the value in the DB to lowercase 
-    setInput(e.target.value.toLowerCase())
-    }
-function submit(e){
+  function handleChange(e) {
+    //have to change the value in the DB to lowercase
+    setInput(e.target.value.toLowerCase());
+  }
+  function submit(e) {
     e.preventDefault();
-    console.log(input)
-    getItemsNameByQuery(input)
-
-}
+    getItemsNameByQuery(input);
+  }
 
   return (
-    <div>
-        <form onSubmit={submit}>
-        <input type="text" value={input} onChange={handleChange}/>
-        <button type="submit">Submit</button>
-        </form>
-    </div>
-  )
-}
+    <FormWrapper>
+      <FormBackground>
+        <Input
+          input={input}
+          handleChange={handleChange}
+          submit={submit}
+          placeholder="search company's name"
+          autocomplete="off"
+        />
+      </FormBackground>
+    </FormWrapper>
+  );
+};
 
-export default SearchTabBar
+const FormWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const FormBackground = styled.div`
+  padding: 12px;
+  background: #fff;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  input {
+    border: 0;
+    font-size: 16px;
+    overflow: hidden;
+    padding: 10px 12px;
+    transition-duration: 0.3s;
+    transition-property: color;
+    text-overflow: ellipsis;
+    z-index: 1;
+    margin: auto;
+    width: 100%;
+    border-radius: 8px;
+
+    &:focus {
+      box-shadow: none;
+      border: none;
+      outline: none;
+    }
+  }
+`;
+
+export default SearchTabBar;

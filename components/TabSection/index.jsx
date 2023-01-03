@@ -7,7 +7,7 @@ import { pillsTypes } from "../uiElements/pills";
 const Tab = () => {
 	return (
 		<TabSectionContainer>
-			<TabSectionWrapper>
+			{/* <TabSectionWrapper>
 				<Pill type={pillsTypes.base}>
 					<Link href='/screens'>
 						<a className='pills'>Screens</a>
@@ -18,7 +18,7 @@ const Tab = () => {
 						<a className='pills'>Elements</a>
 					</Link>
 				</Pill>
-			</TabSectionWrapper>
+			</TabSectionWrapper> */}
 		</TabSectionContainer>
 	);
 };

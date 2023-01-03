@@ -1,6 +1,6 @@
 import React from 'react'
 
-function ImageCardInfo({headerInfo,id,getAlbumId,handleAddToBookMark,handleDeleteFromBookMark,copy,toggleModal,isModalopen}) {
+function ImageCardInfo({headerInfo,id,getAlbumId,handleAddToBookMark,handleDeleteFromBookMark,toggleModal}) {
   return (
  <>
       <div className="album-card__dope">
