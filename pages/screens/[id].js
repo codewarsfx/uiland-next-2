@@ -391,13 +391,9 @@ export default function SinglePage({ screens }) {
         {filtered?.map((data) => (
           <ScreenshotContainer key={data.id}>
             <AbsoluteBox className="target" onClick={(e) => downloadImage(e)}>
-              <Image
-                src="/assets/img/save.svg"
-                width={30}
-                height={30}
-                alt="download"
-              />
-              <Title className="target">Download</Title>
+              <Title className="target" title="download to device">
+              <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" role="img" class="icon "><path d="m22 5h-11l-2-3h-7c-1.104 0-2 .896-2 2v16c0 1.104.896 2 2 2h20c1.104 0 2-.896 2-2v-13c0-1.104-.896-2-2-2zm-6 10h-3v3c0 .55-.45 1-1 1s-1-.45-1-1v-3h-3c-.55 0-1-.45-1-1s.45-1 1-1h3v-3c0-.55.45-1 1-1s1 .45 1 1v3h3c.55 0 1 .45 1 1s-.45 1-1 1z"></path></svg>
+              </Title>
             </AbsoluteBox>
 
             {/* Todo: break into components */}
@@ -407,32 +403,25 @@ export default function SinglePage({ screens }) {
                 className="target"
                 onClick={() => deleteIndividualBookmark(user.uid, data)}
               >
-                <Image
-                  src="/assets/img/save.svg"
-                  width={30}
-                  height={30}
-                  alt="delete"
-                />
-                <Title className="target">Delete</Title>
+                <Title className="target" title="delete from collection">
+                <img src="/assets/img/heart-filled.png" alt="delete icon"/>
+                </Title>
               </DownloadWrapper>
             ) : (
               <DownloadWrapper
                 className="target"
                 onClick={() => bookmark(data)}
               >
-                <Image
-                  src="/assets/img/save.svg"
-                  width={30}
-                  height={30}
-                  alt="save"
-                />
-                <Title className="target">Save</Title>
+                <Title className="target" title="save to collection">
+                  <img src="/assets/img/heart-empty.png" alt="like icon"/>
+               </Title>
               </DownloadWrapper>
             )}
-            <Title className="target" onClick={(e) => copyImage(e)}>
-              Copy Image
+            <CopyWrapper>
+            <Title className="target" title="copy to clipboard" onClick={(e) => copyImage(e)}>
+            <img src="/assets/img/copy-icon.svg" alt="copy icon"/>
             </Title>
-
+</CopyWrapper>
             <Image
               src={data.url}
               alt="imageSelected"
@@ -455,13 +444,25 @@ const DownloadWrapper = styled.div`
   flex-direction: column;
   padding: 7px 16px;
   align-items: flex-start;
-  top: 0;
-  left: 50%;
-  right: 50%;
+  top: 10px;
+  right: 94px;
   border-radius: 2em;
-  background: rgba(0, 0, 0, 0.17);
   visibility: hidden;
 `;
+const CopyWrapper = styled.div`
+  position: absolute;
+  block: "";
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  padding: 7px 16px;
+  align-items: flex-start;
+  top: 10px;
+  right: 18px;
+  border-radius: 2em;
+  visibility: hidden;
+`;
+
 const AbsoluteBox = styled.div`
   position: absolute;
   block: "";
@@ -470,15 +471,17 @@ const AbsoluteBox = styled.div`
   flex-direction: column;
   padding: 7px 16px;
   align-items: flex-start;
-  top: 0;
-  left: 0;
+  top: 10px;
+  right: 54px;
   border-radius: 2em;
-  background: rgba(0, 0, 0, 0.17);
   visibility: hidden;
 `;
 const ScreenshotContainer = styled.div`
   border-radius: 0.8em;
-  background-color: var(--light-grey-color);
+  background: linear-gradient(to bottom,white 99%,black 1%);
+  overflow: auto;
+  border: 1px solid #dce0f1;
+    border-radius: 20px;
   position: relative;
   cursor: pointer;
   user-select: none;
@@ -523,13 +526,25 @@ const Title = styled.h1`
   font-size: 12px;
   font-weight: 300;
   margin: 0;
-  padding: 0;
+  padding: 5px;
   position: absolute;
   block: "";
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.17);
   z-index: 99;
   top: 0;
   right: 0;
   visibility: hidden;
+  svg{
+    width: 23px;
+    height: 23px;
+    vertical-align: middle;
+  }
+  img{
+    height: 20px;
+    width: 20px;
+    transition: all .5s ease-out;
+  }
 `;
 const SingleHeader = styled.div`
   display: flex;
