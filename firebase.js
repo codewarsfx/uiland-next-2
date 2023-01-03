@@ -72,7 +72,6 @@ export const queryBookMarkAlbum = async (user)=>{
    }
 
 
-
    export const queryBookMarkIndividual = async (user)=>{
 
 	//read a user's bookmark (individual images)
@@ -136,12 +135,13 @@ await deleteDoc(doc(db, "Users",user,"BookmarkImage",contents.id), {
  }
 
  export const getItemsCategoryByQuery = async (filterby) => {
-
+console.log(filterby)
 	//filter by category
 	const citiesRef = collection(db, "Screens");
     const q = query(citiesRef, where("Category", "==", filterby));
 
 	const querySnapshot = await getDocs(q);
+	console.log(querySnapshot.docs)
     return prepareData(querySnapshot.docs)
 }
 
@@ -152,15 +152,27 @@ export const getItemsNameByQuery = async (filterby) => {
     const q = query(citiesRef, where("Name", "==", filterby));
 
 	const querySnapshot = await getDocs(q);
+
     return prepareData(querySnapshot.docs);
 }
 
 
+export const updateBookMark=async(elementCategory,screenCategory,url,bookmarkName,order)=>{
+	const citiesRef = collection(db, 'screenImages');
+console.log(elementCategory,screenCategory,url,bookmarkName,order)
+await addDoc(collection(citiesRef, bookmarkName, bookmarkName), {
+	"order":order,
+	"elementCategory":elementCategory,
+	"screenCategory":screenCategory,
+	 "url":url
+    })
 
+
+}
 
 //filter individual screens by screencategory
 export const getIndividualCategory=async(result,id)=>{
-	const properties = query(collectionGroup(db, id), where('screenCategory', '==', result));
+	const properties = query(collectionGroup(db, id), where('elementCategory', '==', result));
 const querySnapshot = await getDocs(properties);
 console.log(querySnapshot.docs)
 return prepareData(querySnapshot.docs);

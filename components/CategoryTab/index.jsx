@@ -24,7 +24,7 @@ const removeAllActiveClasses = () => {
 	const data= [
 		{category:"All",categoryStatus:"",status:"active",id:1},
 		{category:"FINTECH",categoryStatus:"FINTECH",status:"",id:2},
-		{category:"EDTECH",categoryStatus:"FINTECH",status:"",id:3}
+		{category:"EDTECH",categoryStatus:"EDTECH",status:"",id:3}
 	]
 
 	return (
