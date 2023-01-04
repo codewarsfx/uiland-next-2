@@ -256,6 +256,7 @@ export default function SinglePage({ screens }) {
     // This prevents cors error while getting the images
     console.log(e);
     setProgress(2);
+    setToastPendingText("Saving");
     const response = await fetch(
       e.target.parentElement.parentElement.children[3].children[1].currentSrc
     );
@@ -266,6 +267,7 @@ export default function SinglePage({ screens }) {
         [blob.type]: blob,
       }),
     ]);
+    setToastPendingText("Copied Image");
     setProgress(3);
     toastNotification(1);
 
