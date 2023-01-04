@@ -151,7 +151,7 @@ export const getItemsNameByQuery = async (filterby) => {
     const q = query(citiesRef, where("Name", "==", filterby));
 
 	const querySnapshot = await getDocs(q);
-
+console.log(querySnapshot.docs.map((j)=>console.log(j.data())))
     return prepareData(querySnapshot.docs);
 }
 

@@ -1,5 +1,5 @@
 import Hero from "../components/Hero";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Tab from "../components/TabSection";
@@ -8,22 +8,41 @@ import { getScreensData } from "../firebase";
 import { ScreensContext } from "../context/screensContex";
 
 const Home = ({ screens }) => {
-	const {filterTerm} = useContext(ScreensContext);
+	const {filterTerm,filterName} = useContext(ScreensContext);
+	const [result,setResult]=useState([])
+
+
 
 	const searchFilter=(array,data)=>{
 		console.log(array,data)
 		if(data === "") return array
 		return array.filter((el)=> el.Category.toUpperCase() === data)
 	  }
-	  
-	  const filtered= searchFilter(screens,filterTerm)
 
+	  const searchNameFilter=(array,data)=>{
+		console.log(array,data)
+		
+		if(data === "") return array
+		return array.filter((el)=> el.Name === data)
+	  }
+
+  useEffect(()=>{
+setResult(searchNameFilter(screens,filterName))
+
+  },[filterName, screens])
+
+  useEffect(()=>{
+
+setResult(searchFilter(screens,filterTerm))
+  },[filterTerm, screens])
+	
+  console.log(result)
 	return (
 		<>
 			<ToastContainer autoClose={2000} position='top-center' />
 			<Hero />
 			<Tab />
-			<ScreensTab screens={filtered} />
+			<ScreensTab screens={result} />
 		</>
 	);
 };

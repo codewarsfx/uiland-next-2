@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import styled from "styled-components";
 import { getItemsNameByQuery } from "../../firebase";
 import { Input } from "../uiElements";
+import { ScreensContext } from "../../context/screensContex";
+
 const SearchTabBar = () => {
-  const [input, setInput] = useState("");
+ const  {setFilterItemName}  = useContext(ScreensContext); 
+ const [input, setInput] = useState("");
 
   /**
    * @description returns the data to input state
@@ -12,12 +15,12 @@ const SearchTabBar = () => {
    * @returns {None}
    */
   function handleChange(e) {
-    setInput(e.target.value.toLowerCase());
+    setInput(e.target.value);
   }
 
   function submit(e) {
     e.preventDefault();
-    getItemsNameByQuery(input);
+    setFilterItemName(input);
   }
 
   return (
