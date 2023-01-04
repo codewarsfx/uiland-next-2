@@ -1,12 +1,13 @@
 import React from 'react'
 
 function ImageCardInfo({headerInfo,id,getAlbumId,handleAddToBookMark,handleDeleteFromBookMark,toggleModal}) {
+    
   return (
  <>
       <div className="album-card__dope">
               <h1>{headerInfo.Name}</h1>
               <div className="album-card__doper">
-                {getAlbumId?.includes(id) ? (
+                {!getAlbumId?.includes(id) ? (
                   <button
                     className="btn btn-border btn-border--album "
                     onClick={handleAddToBookMark}
@@ -14,9 +15,7 @@ function ImageCardInfo({headerInfo,id,getAlbumId,handleAddToBookMark,handleDelet
                     <img
                           src="/assets/img/bookmark-dark.svg"
                           alt="bookmark icon"
-                      className={`album-card__imgj ${
-                        transition && "album-card__dopi"
-                      }`}
+                      className={`album-card__imgj album-card__dopi`}
                     />
                   </button>
                 ) : (

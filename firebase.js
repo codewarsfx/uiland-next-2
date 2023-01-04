@@ -83,12 +83,11 @@ export const queryBookMarkAlbum = async (user)=>{
    
 
    export const addBookMark=async(user,id,contents)=>{
-
 	//add album collection to bookmark
     await setDoc(doc(db, "Users",user,"Bookmark",id), {
-		date:serverTimestamp,
+		date:serverTimestamp(),
 		id:id, 
-		...contents
+		contents
 	  });
 
    }

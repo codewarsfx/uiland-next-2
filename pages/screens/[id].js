@@ -170,7 +170,12 @@ export default function SinglePage({ screens }) {
 
   //function to delete individual screens
   async function deleteIndividualBookmark(user, data) {
+    setProgress(2);
+    setToastPendingText("Saving");
     await deleteBookmarkSelected(user, data);
+    setToastSuccessText("Saved 🎉");
+    setProgress(3);
+    toastNotification(1);
   }
 
   //function to bookmark individual screen
@@ -217,7 +222,8 @@ export default function SinglePage({ screens }) {
     console.log(
       e.target.parentElement.parentElement.parentElement.parentElement
     );
-    setProgress(2);
+    setToastPendingText("Downloading...");
+   
     //fetches the image
     const image = await fetch(
       e.target.parentElement.parentElement.parentElement.parentElement
@@ -238,6 +244,7 @@ export default function SinglePage({ screens }) {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    setToastSuccessText("Downloaded 🎉");
     setProgress(3);
     toastNotification(1);
   };
@@ -275,7 +282,12 @@ export default function SinglePage({ screens }) {
   //adds image album to bookmark
   function handleAddToBookMark() {
     if (user) {
+      setToastPendingText("Saving to collections 🎉");
+      setProgress(2);
       addBookMark(user.uid, router.query.id, screens);
+      setToastSuccessText("Saved to collections 🎉");
+      setProgress(3);
+      toastNotification(1);
     } else {
       //add modal later
       loginToggleModal()
@@ -284,7 +296,12 @@ export default function SinglePage({ screens }) {
 
   //deletes image album to bookmark
   function handleDeleteFromBookMark() {
+    setToastPendingText("Deleting from collections");
+    setProgress(2);
     deleteBookMark(user.uid, router.query.id);
+    setToastSuccessText("Deleted from collections :(");
+    setProgress(3);
+    toastNotification(1);
   }
   return (
     <>
