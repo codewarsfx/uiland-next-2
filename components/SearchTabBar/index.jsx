@@ -5,10 +5,16 @@ import { Input } from "../uiElements";
 const SearchTabBar = () => {
   const [input, setInput] = useState("");
 
+  /**
+   * @description returns the data to input state
+   * @param {Object}
+   * @param {String}
+   * @returns {None}
+   */
   function handleChange(e) {
-    //have to change the value in the DB to lowercase
     setInput(e.target.value.toLowerCase());
   }
+
   function submit(e) {
     e.preventDefault();
     getItemsNameByQuery(input);
