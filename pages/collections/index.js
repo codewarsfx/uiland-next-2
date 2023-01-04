@@ -10,17 +10,16 @@ export default function Collection() {
     <>
     
              <SingleHeader>
-
-    <>
+  <TitleBackground>
+	   <Title>Collections</Title>
+  </TitleBackground>
   
-     <Title>Collections</Title>
      <Link href='/collections/album'>
 						<a >Albums</a>
 					</Link>
           <Link href='/collections/individual'>
 						<a >Individual screens</a>
 					</Link>
-     </>
 
 	  </SingleHeader>
     <ElementsInCategoryContainer> 
@@ -30,6 +29,17 @@ export default function Collection() {
   );
    
 };
+const TitleBackground=styled.div`
+align-items: flex-end;
+padding:12px;
+display:flex;
+ width:100%;
+ background-image:linear-gradient(to bottom,#1e1f2100,#0e0f0f),url("/assets/img/collection-background.jpg") ;
+ height: 60vh;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+`
 const ElementsInCategoryContainer = styled.div`
 	display: grid;
     grid-template-columns: repeat(auto-fit,minmax(239px,1fr));
@@ -47,8 +57,9 @@ const ElementsInCategoryContainer = styled.div`
 
 const Title = styled.h1`
 	z-index:99;
-	font-size:12px;
-	font-weight:300;
+	font-size:36px;
+	color:white;
+	font-weight:600;
 	margin:0;
 	padding:0;
 `;

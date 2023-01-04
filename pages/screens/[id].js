@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState} from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import styled from "styled-components";
@@ -14,6 +14,7 @@ import {
   queryBookMarkAlbum,
   getIndividualCategory,
   queryScreenImage,
+  getIndividualLimit 
 } from "../../firebase";
 
 import { BrandLogo, Toast } from "../../components/uiElements";

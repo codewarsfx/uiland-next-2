@@ -5,7 +5,7 @@ import {
 	signInWithPopup,
 	signOut,
 } from "firebase/auth";
-import { getFirestore, collection, getDocs,getDoc,setDoc,doc,deleteDoc,serverTimestamp,query,where,addDoc,collectionGroup } from "firebase/firestore";
+import { getFirestore, collection, getDocs,getDoc,setDoc,doc,deleteDoc,limit,serverTimestamp,query,where,addDoc,collectionGroup,onSnapshot } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 import { prepareData } from "./utils/FirebaseUtilities";
 
@@ -57,7 +57,7 @@ export const getScreensData = async () => {
 export const queryBookMarkAlbum = async (user)=>{
 
 	//read a user's bookmark (album)
-	const querySnapshot = await getDocs(collection(db, "Users", user, "Bookmark"));
+	const querySnapshot = getDocs(collection(db, "Users", user, "Bookmark"));
      return prepareData(querySnapshot.docs)
 
    }
@@ -75,7 +75,7 @@ export const queryBookMarkAlbum = async (user)=>{
    export const queryBookMarkIndividual = async (user)=>{
 
 	//read a user's bookmark (individual images)
-	const querySnapshot = await getDocs(collection(db, "Users", user, "BookmarkImage"));
+	const querySnapshot =  getDocs(collection(db, "Users", user, "BookmarkImage"));
      return prepareData(querySnapshot.docs)
 
    }
@@ -151,7 +151,7 @@ export const getItemsNameByQuery = async (filterby) => {
     const q = query(citiesRef, where("Name", "==", filterby));
 
 	const querySnapshot = await getDocs(q);
-console.log(querySnapshot.docs.map((j)=>console.log(j.data())))
+// console.log(querySnapshot.docs.map((j)=>console.log(j.data())))
     return prepareData(querySnapshot.docs);
 }
 
@@ -176,3 +176,12 @@ const querySnapshot = await getDocs(properties);
 console.log(querySnapshot.docs)
 return prepareData(querySnapshot.docs);
 }
+
+//limit individual screens
+export const getIndividualLimit=async(id)=>{
+	const properties = query(collectionGroup(db, "r48LXqoJjgd6dvB2sg7E"), limit(3));
+const querySnapshot = await getDocs(properties);
+console.log(querySnapshot.docs)
+return prepareData(querySnapshot.docs);
+}
+
