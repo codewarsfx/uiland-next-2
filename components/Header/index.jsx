@@ -48,11 +48,11 @@ const Header = () => {
 					</div>
 				) : (
 					<HeaderInfo>
-						<h4>
-						Hi, {user?.displayName} 
-					</h4>
-					{/* uncomment when the firebase's quota restarts */}
-					{/* <img src={user?.photoURL} alt="profile picture"/> */}
+					
+					<PhotoWrapper>
+						<img src={user?.photoURL} alt="profile picture" referrerpolicy="no-referrer"/>
+					</PhotoWrapper>
+					
 					<Link href='/collections'>
 						<a >Collections</a>
 					</Link>
@@ -72,9 +72,18 @@ const Header = () => {
 		</HeaderContainer>
 	);
 };
+const PhotoWrapper=styled.div`
+overflow:hidden;
+img{
+	border-radius: 100%;
+	height: 32px;
+}
+`
 const HeaderInfo=styled.div`
 display:flex;
 gap:12px;
+align-items:center;
+
 `
 const HeaderContainer = styled(motion.header)`
 	width: 90%;
