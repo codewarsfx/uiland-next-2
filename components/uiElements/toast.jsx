@@ -29,6 +29,7 @@ const ToastWrapper = styled.div`
   border-radius: 12px;
   font-weight: 600;
   border: 1px solid #dddddd;
+  z-index:999;
 `;
 const ToastTitle = styled.div`
   font-size: 24px;

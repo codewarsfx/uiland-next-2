@@ -118,7 +118,7 @@ export const getindividualScreenData=async (id)=>{
 	console.log(user.uid,newBookmark,contents.id)
 	
 	await setDoc(doc(db, "Users",user.uid,newBookmark,contents.id), {
-		date:serverTimestamp,
+		date:serverTimestamp(),
 		id:contents.id, 
 		bookmarkName:newBookmark,
 		...contents

@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import styled from "styled-components";
 
-
 import {
   getindividualScreenData,
   addBookMark,
@@ -25,17 +24,23 @@ import ImageCardInfo from "../../components/ImageCardInfo";
 import Modal from "../../components/modal";
 import SocialsCard from "../../components/SocialsCard";
 import Select from "../../components/uiElements/select";
+import Login from "../../components/Login/login";
 export default function SinglePage({ screens }) {
-  const { modalSaveImage, isModalopen, toggleModal,newtoggleModal } = useModal();
+  const { modalSaveImage, isModalopen, toggleModal, newtoggleModal ,loginToggleModal,isModalLogin} =
+    useModal();
 
   const [displayBasic, setDisplayBasic] = useState(false);
   const [imageContent, setImageContent] = useState({});
   const [inputFilter, setInputFilter] = useState("");
   const [getId, setGetId] = useState([]);
   const [hideAllUnfilteredImages, setHideAllUnfilteredImages] = useState([]);
-const [Progress,setProgress]=useState(1)
+  const [Progress, setProgress] = useState(1);
   const [headerInfo, setHeaderInfo] = useState({});
   const [getAlbumId, setGetAlbumId] = useState([]);
+
+  // toast state
+  const [toastPendingText, setToastPendingText] = useState("Saving");
+  const [toastSuccessText, setToastSuccessText] = useState("Saved 🎉");
 
   const [input, setInput] = useState("BookmarkImage");
   const user = useContext(UserContext);
@@ -100,9 +105,15 @@ const [Progress,setProgress]=useState(1)
 
   //copies the url
   const copy = async () => {
+    // copies the link and shows the toast
+    setProgress(2);
+    setToastPendingText("Copying");
     await navigator.clipboard.writeText(
       `http://localhost:3000/screens/${router.query.id}`
     );
+    setToastSuccessText("Copied 🎉");
+    setProgress(3);
+    toastNotification(1);
   };
 
   //finds the ids of individual screens that have been bookmarked and stores in an array
@@ -150,10 +161,10 @@ const [Progress,setProgress]=useState(1)
   //shows the modal and populates the imageContent state
   async function bookmark(data) {
     if (user) {
-      newtoggleModal()
+      newtoggleModal();
       setImageContent(data);
     } else {
-      console.log("please login");
+      loginToggleModal()
     }
   }
 
@@ -168,7 +179,16 @@ const [Progress,setProgress]=useState(1)
     e.preventDefault();
     if (user) {
       console.log(user, imageContent, input);
+      setProgress(2);
+      setToastPendingText("Saving");
       bookmarkSelected(user, imageContent, input);
+
+      // saves the image and shows the toast
+
+      setToastSuccessText("Saved 🎉");
+      setProgress(3);
+      toastNotification(1);
+      newtoggleModal();
     } else {
       console.log("pls login");
     }
@@ -193,14 +213,15 @@ const [Progress,setProgress]=useState(1)
     // 	const download = await fetch("/api/hello");
     // 		const data = await download.json();
     //  console.log(data)
-  
+
     console.log(
       e.target.parentElement.parentElement.parentElement.parentElement
     );
-    setProgress(2)
+    setProgress(2);
     //fetches the image
     const image = await fetch(
-      e.target.parentElement.parentElement.parentElement.parentElement.children[3].children[1].currentSrc
+      e.target.parentElement.parentElement.parentElement.parentElement
+        .children[3].children[1].currentSrc
     );
     console.log(image);
 
@@ -217,8 +238,8 @@ const [Progress,setProgress]=useState(1)
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    setProgress(3)
-    toastNotification(1)
+    setProgress(3);
+    toastNotification(1);
   };
 
   async function copyImage(e) {
@@ -226,31 +247,30 @@ const [Progress,setProgress]=useState(1)
     // "http://localhost:3000/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fuiland.appspot.com%2Fo%2FCowrywise%252FCowrywise-screens%252FScreenshot_2022-10-13-14-46-21-882_com.cowrywise.android-min.jpg%3Falt%3Dmedia%26token%3D3efdba80-8ec5-463a-9466-317f9247a6c3&w=1080&q=75"
     //which contains the prefetched images
     // This prevents cors error while getting the images
-    console.log(e)
-    setProgress(2)
+    console.log(e);
+    setProgress(2);
     const response = await fetch(
       e.target.parentElement.parentElement.children[3].children[1].currentSrc
     );
     const blob = await response.blob();
-   
+
     navigator.clipboard.write([
       new window.ClipboardItem({
         [blob.type]: blob,
       }),
     ]);
-    setProgress(3)
-    toastNotification(1)
-    
+    setProgress(3);
+    toastNotification(1);
+
     console.log("Image copied.");
   }
 
-
   //util for toast notification
-  const toastNotification =(state)=>{
-    setTimeout(()=>{
-     setProgress(state)
-    },3000)
-  }
+  const toastNotification = (state) => {
+    setTimeout(() => {
+      setProgress(state);
+    }, 3000);
+  };
 
   //adds image album to bookmark
   function handleAddToBookMark() {
@@ -258,7 +278,7 @@ const [Progress,setProgress]=useState(1)
       addBookMark(user.uid, router.query.id, screens);
     } else {
       //add modal later
-      console.log("please login");
+      loginToggleModal()
     }
   }
 
@@ -273,46 +293,71 @@ const [Progress,setProgress]=useState(1)
       </Wrapper>
       {modalSaveImage && (
         <Modal toggleModal={newtoggleModal}>
-           <div style={{ width: "50vw" }} onHide={() => onHide("displayBasic")}>
-          <div>
+          <ModalBox>
             <form onSubmit={submit}>
               <label for="items">Choose a Bookmark:</label>
               <div class="select">
-              <select id="standard-select" name="items" onChange={handleChange}>
-                <option value="BookmarkImage">Bookmark Image</option>
-              </select>
+                <select
+                  id="standard-select"
+                  name="items"
+                  onChange={handleChange}
+                >
+                  <option value="BookmarkImage">Bookmark Image</option>
+                </select>
               </div>
               {/* <input type="text" name="contentForm" value={input} onChange={handleChange}/> */}
-              <button type="submit">Submit</button>
+              <button className="album-card__buttoncopy" type="submit">
+                Submit
+              </button>
             </form>
-          </div>
-        </div>
+          </ModalBox>
         </Modal>
-       
       )}
-{isModalopen && (
-				<Modal toggleModal={toggleModal}>
-				<ModalBox>
-        <SocialsCard id={router.query.id} copy={copy}/>
-        </ModalBox>
+      {isModalopen && (
+        <Modal toggleModal={toggleModal}>
+          <ModalBox>
+            <SocialsCard id={router.query.id} copy={copy} />
+          </ModalBox>
+        </Modal>
+      )}
+      {isModalLogin && (
+				<Modal toggleModal={loginToggleModal}>
+					<Login toggleModal={loginToggleModal} />
 				</Modal>
 			)}
       <SingleHeader>
-        <ImageCardInfo copy={copy} headerInfo={headerInfo} id={router.query.id} 
-        getAlbumId={getAlbumId} handleAddToBookMark={handleAddToBookMark} 
-        handleDeleteFromBookMark={handleDeleteFromBookMark} toggleModal={toggleModal}/>
+        <ImageCardInfo
+          copy={copy}
+          headerInfo={headerInfo}
+          id={router.query.id}
+          getAlbumId={getAlbumId}
+          handleAddToBookMark={handleAddToBookMark}
+          handleDeleteFromBookMark={handleDeleteFromBookMark}
+          toggleModal={toggleModal}
+        />
       </SingleHeader>
-    
-      <Select submitFilter={submitFilter} elementsCategoryData={elementsCategoryData} 
-      inputFilter={inputFilter} handleInputFilter={handleInputFilter}/>
-      <ElementsInCategoryContainer>
 
+      <Select
+        submitFilter={submitFilter}
+        elementsCategoryData={elementsCategoryData}
+        inputFilter={inputFilter}
+        handleInputFilter={handleInputFilter}
+      />
+      <ElementsInCategoryContainer>
         {/* todo:populate with filtered data */}
         {filtered?.map((data) => (
           <ScreenshotContainer key={data.id}>
             <AbsoluteBox className="target" onClick={(e) => downloadImage(e)}>
               <Title className="target" title="download to device">
-              <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" role="img" class="icon "><path d="m22 5h-11l-2-3h-7c-1.104 0-2 .896-2 2v16c0 1.104.896 2 2 2h20c1.104 0 2-.896 2-2v-13c0-1.104-.896-2-2-2zm-6 10h-3v3c0 .55-.45 1-1 1s-1-.45-1-1v-3h-3c-.55 0-1-.45-1-1s.45-1 1-1h3v-3c0-.55.45-1 1-1s1 .45 1 1v3h3c.55 0 1 .45 1 1s-.45 1-1 1z"></path></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  enable-background="new 0 0 24 24"
+                  viewBox="0 0 24 24"
+                  role="img"
+                  class="icon "
+                >
+                  <path d="m22 5h-11l-2-3h-7c-1.104 0-2 .896-2 2v16c0 1.104.896 2 2 2h20c1.104 0 2-.896 2-2v-13c0-1.104-.896-2-2-2zm-6 10h-3v3c0 .55-.45 1-1 1s-1-.45-1-1v-3h-3c-.55 0-1-.45-1-1s.45-1 1-1h3v-3c0-.55.45-1 1-1s1 .45 1 1v3h3c.55 0 1 .45 1 1s-.45 1-1 1z"></path>
+                </svg>
               </Title>
             </AbsoluteBox>
 
@@ -324,7 +369,7 @@ const [Progress,setProgress]=useState(1)
                 onClick={() => deleteIndividualBookmark(user.uid, data)}
               >
                 <Title className="target" title="delete from collection">
-                <img src="/assets/img/heart-filled.png" alt="delete icon"/>
+                  <img src="/assets/img/heart-filled.png" alt="delete icon" />
                 </Title>
               </DownloadWrapper>
             ) : (
@@ -333,15 +378,19 @@ const [Progress,setProgress]=useState(1)
                 onClick={() => bookmark(data)}
               >
                 <Title className="target" title="save to collection">
-                  <img src="/assets/img/heart-empty.png" alt="like icon"/>
-               </Title>
+                  <img src="/assets/img/heart-empty.png" alt="like icon" />
+                </Title>
               </DownloadWrapper>
             )}
             <CopyWrapper>
-            <Title className="target" title="copy to clipboard" onClick={(e) => copyImage(e)}>
-            <img src="/assets/img/copy-icon.svg" alt="copy icon"/>
-            </Title>
-</CopyWrapper>
+              <Title
+                className="target"
+                title="copy to clipboard"
+                onClick={(e) => copyImage(e)}
+              >
+                <img src="/assets/img/copy-icon.svg" alt="copy icon" />
+              </Title>
+            </CopyWrapper>
             <Image
               src={data.url}
               alt="imageSelected"
@@ -351,17 +400,21 @@ const [Progress,setProgress]=useState(1)
           </ScreenshotContainer>
         ))}
       </ElementsInCategoryContainer>
-      <Toast Progress={Progress} pendingText="Saving" successText="Saved 🎉"/>
+      <Toast
+        Progress={Progress}
+        pendingText={toastPendingText}
+        successText={toastSuccessText}
+      />
     </>
   );
 }
 
 const ModalBox = styled.div`
-background-color: #fff;
-max-width: 37.5rem;
-padding: 1.6rem;
-border-radius: 0.5rem;
-`
+  background-color: #fff;
+  max-width: 37.5rem;
+  padding: 1.6rem;
+  border-radius: 0.5rem;
+`;
 
 const DownloadWrapper = styled.div`
   position: absolute;
@@ -405,10 +458,10 @@ const AbsoluteBox = styled.div`
 `;
 const ScreenshotContainer = styled.div`
   border-radius: 0.8em;
-  background: linear-gradient(to bottom,white 99%,black 1%);
+  background: linear-gradient(to bottom, white 99%, black 1%);
   overflow: auto;
   border: 1px solid #dce0f1;
-    border-radius: 20px;
+  border-radius: 20px;
   position: relative;
   cursor: pointer;
   user-select: none;
@@ -462,15 +515,15 @@ const Title = styled.h1`
   top: 0;
   right: 0;
   visibility: hidden;
-  svg{
+  svg {
     width: 23px;
     height: 23px;
     vertical-align: middle;
   }
-  img{
+  img {
     height: 20px;
     width: 20px;
-    transition: all .5s ease-out;
+    transition: all 0.5s ease-out;
   }
 `;
 const SingleHeader = styled.div`
@@ -489,20 +542,20 @@ const WebLink = styled.a`
   color: var(--primary-color);
 `;
 const ElementsInCategoryContainer = styled.div`
-  position:relative;
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(1,1fr);
+  grid-template-columns: repeat(1, 1fr);
   margin: 1.5em auto;
   gap: 10px;
   width: 90%;
   @media (min-width: 540px) {
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
   @media (min-width: 768px) {
     width: 95%;
     margin: 3em auto;
     gap: 20px;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 `;
 

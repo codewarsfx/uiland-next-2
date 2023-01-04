@@ -15,11 +15,18 @@ const Modal = ({ children, toggleModal }) => {
     }, []);
 
 
+	  window.onclick = function (event) {
+		if (event.target.className === "modal__ModalOverlay-sc-uncl45-1 inkMAH") {
+			toggleModal()
+		}
+	  }
+
+	  
+
 	if (isBrowser && ref.current) {
 	return reactDOM.createPortal(
 		<ModalContainer>
 			<ModalOverlay
-				onClick={toggleModal}
 				initial={{
 					opacity:0,
 					transition: {
@@ -50,6 +57,7 @@ const ModalContainer = styled.div`
 	height: 100%;
 	width: 100%;
 	z-index: 100;
+
 `;
 
 const ModalOverlay = styled(motion.div)`
@@ -63,6 +71,10 @@ const ModalOverlay = styled(motion.div)`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	
+	& > *{
+		z-index:999;
+	}
 `;
 
 export default Modal;

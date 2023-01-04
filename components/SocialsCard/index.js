@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react'
 import styled from "styled-components";
 function SocialsCard({id,copy}) {
@@ -15,17 +16,17 @@ function SocialsCard({id,copy}) {
     rel="noopener noreferrer"
     href={`https://twitter.com/intent/tweet?text=${id}`}
   >
-    <img src="/assets/img/twitter.svg" alt="Share on twitter" />
+    <Image width="52" height="52" src="/assets/img/twitter.svg" alt="Share on twitter" />
   </a>
   {" "}
   {/* <a
     className="album-card__link"
     target="_blank"
     rel="noopener noreferrer"
-    href={`https://www.linkedin.com/sharing/share-offsite/?url=http://localhost:3000/screens/${id}`}
+    href={`https://www.linkedin.com/sharing/share-offsite/?url=https://uiland.design/screens/${id}`}
   >
     <svg
-      xmlns="http://www.w3.org/2000/svg"
+      xmlns="https://www.w3.org/2000/svg"
       x="0px"
       y="0px"
       width="48"
@@ -51,32 +52,32 @@ function SocialsCard({id,copy}) {
     </svg>
   </a> */}
   <a
-    href={`https://wa.me/?text=http://localhost:3000/screens/${id}`}
+    href={`https://wa.me/?text=https://uiland.design/screens/${id}`}
     target="_blank"
     rel="noreferrer"
   >
-    <img src="/assets/img/whatsapp.svg" alt="Share on WhatsApp" />
+    <Image src="/assets/img/whatsapp.svg" width="52" height="52" alt="Share on WhatsApp" />
   </a>
   <a
-    href={`https://telegram.me/share/url?url=http://localhost:3000/screens/${id}`}
+    href={`https://telegram.me/share/url?url=https://uiland.design/screens/${id}`}
     target="_blank"
     rel="noreferrer"
   >
-    <img src="/assets/img/telegram.svg" alt="Share on Telegram" />
+    <Image width="52" height="52" src="/assets/img/telegram.svg" alt="Share on Telegram" />
   </a>
   <a
-    href={`https://www.facebook.com/sharer/sharer.php?quote=http://localhost:3000/single/${id}`}
+    href={`https://www.facebook.com/sharer/sharer.php?quote=https://uiland.design/screens/${id}`}
     target="_blank"
     rel="noreferrer"
   >
-    <img src="/assets/img/facebook.svg" alt="Share on Facebook" />
+    <Image width="52" height="52" src="/assets/img/facebook.svg" alt="Share on Facebook" />
   </a>
 </SocialBox>
 
 </div>
 <CopyContainer>
 <CopyText>
-    {id}
+{`https://uiland.design/screens/${id}`}
 </CopyText>
 <CopyButton onClick={copy}>
     Copy
@@ -94,6 +95,7 @@ gap:8px;
 `
 const CopyContainer=styled.div`
 border-radius:12px;
+gap: 16px;
 margin-top:20px;
 padding:6px;
 width:100%;
