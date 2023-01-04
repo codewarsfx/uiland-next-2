@@ -14,12 +14,27 @@ export default function Collection() {
 	   <Title>Collections</Title>
   </TitleBackground>
   
-     <Link href='/collections/album'>
+  <Content>
+	<AlbumTag>
+		<ImageHolder>
+			<img src="/assets/img/image-collections2.jpg"/>
+		</ImageHolder>
+		<Link href='/collections/album'>
 						<a >Albums</a>
 					</Link>
-          <Link href='/collections/individual'>
+	</AlbumTag>
+	 
+	 <IndividualTag>
+	 <ImageHolder>
+			<img src="/assets/img/image-collection.jpg"/>
+		</ImageHolder>
+		<Link href='/collections/individual'>
 						<a >Individual screens</a>
 					</Link>
+	 </IndividualTag>
+          
+  </Content>
+    
 
 	  </SingleHeader>
     <ElementsInCategoryContainer> 
@@ -29,6 +44,71 @@ export default function Collection() {
   );
    
 };
+const ImageHolder=styled.div`
+
+img{
+	width: 100%;
+    object-fit: cover;
+    height: 400px;
+}
+`
+const AlbumTag=styled.div`
+
+max-width:50%;
+flex:0 0 50%;
+display:flex;
+overflow:hidden;
+flex-direction:column;
+position:relative;
+a{
+	font-size:20px;
+	font-weight:600;
+	color:white;
+	z-index:99999999;
+	padding-left:12px;
+}
+&::before{
+	position:absolute;
+	display:block;
+	content:"";
+	width:100%;
+	height:100%;
+	z-index:99;
+	background-image: linear-gradient(to bottom,#1e1f2100,#0e0f0fcc);
+}
+
+`
+const IndividualTag=styled.div`
+
+max-width:50%;
+flex:0 0 50%;
+overflow:hidden;
+display:flex;
+position:relative;
+flex-direction:column;
+a{
+	font-size:20px;
+	font-weight:600;
+	color:white;
+	z-index:99999999;
+	padding-left:12px;
+}
+&::before{
+	position:absolute;
+	display:block;
+	content:"";
+	width:100%;
+	height:100%;
+	z-index:99;
+	background-image: linear-gradient(to bottom,#1e1f2100,#0e0f0fcc);
+}
+`
+const Content=styled.div`
+display:flex;
+align-items:center;
+justify-content:center;
+gap:30px;
+`
 const TitleBackground=styled.div`
 align-items: flex-end;
 padding:12px;
