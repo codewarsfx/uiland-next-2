@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import styled from "styled-components";
 
+
 import {
   getindividualScreenData,
   addBookMark,
@@ -16,13 +17,14 @@ import {
   queryScreenImage,
 } from "../../firebase";
 
-import { BrandLogo } from "../../components/uiElements";
+import { BrandLogo, Toast } from "../../components/uiElements";
 import Header from "../../components/Header";
 import useModal from "../../hooks/useModal";
 import { UserContext } from "../../context/authContext";
 import ImageCardInfo from "../../components/ImageCardInfo";
 import Modal from "../../components/modal";
 import SocialsCard from "../../components/SocialsCard";
+import Select from "../../components/uiElements/select";
 export default function SinglePage({ screens }) {
   const { modalSaveImage, isModalopen, toggleModal,newtoggleModal } = useModal();
 
@@ -31,7 +33,7 @@ export default function SinglePage({ screens }) {
   const [inputFilter, setInputFilter] = useState("");
   const [getId, setGetId] = useState([]);
   const [hideAllUnfilteredImages, setHideAllUnfilteredImages] = useState([]);
-
+const [Progress,setProgress]=useState(1)
   const [headerInfo, setHeaderInfo] = useState({});
   const [getAlbumId, setGetAlbumId] = useState([]);
 
@@ -191,13 +193,14 @@ export default function SinglePage({ screens }) {
     // 	const download = await fetch("/api/hello");
     // 		const data = await download.json();
     //  console.log(data)
+  
     console.log(
-      e.target.parentElement.parentElement.children[3].children[1].currentSrc
+      e.target.parentElement.parentElement.parentElement.parentElement
     );
-
+    setProgress(2)
     //fetches the image
     const image = await fetch(
-      e.target.parentElement.parentElement.children[3].children[1].currentSrc
+      e.target.parentElement.parentElement.parentElement.parentElement.children[3].children[1].currentSrc
     );
     console.log(image);
 
@@ -214,6 +217,8 @@ export default function SinglePage({ screens }) {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    setProgress(3)
+    toastNotification(1)
   };
 
   async function copyImage(e) {
@@ -221,17 +226,30 @@ export default function SinglePage({ screens }) {
     // "http://localhost:3000/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fuiland.appspot.com%2Fo%2FCowrywise%252FCowrywise-screens%252FScreenshot_2022-10-13-14-46-21-882_com.cowrywise.android-min.jpg%3Falt%3Dmedia%26token%3D3efdba80-8ec5-463a-9466-317f9247a6c3&w=1080&q=75"
     //which contains the prefetched images
     // This prevents cors error while getting the images
-
+    console.log(e)
+    setProgress(2)
     const response = await fetch(
-      e.target.parentElement.children[3].children[1].currentSrc
+      e.target.parentElement.parentElement.children[3].children[1].currentSrc
     );
     const blob = await response.blob();
+   
     navigator.clipboard.write([
       new window.ClipboardItem({
         [blob.type]: blob,
       }),
     ]);
+    setProgress(3)
+    toastNotification(1)
+    
     console.log("Image copied.");
+  }
+
+
+  //util for toast notification
+  const toastNotification =(state)=>{
+    setTimeout(()=>{
+     setProgress(state)
+    },3000)
   }
 
   //adds image album to bookmark
@@ -284,24 +302,11 @@ export default function SinglePage({ screens }) {
         getAlbumId={getAlbumId} handleAddToBookMark={handleAddToBookMark} 
         handleDeleteFromBookMark={handleDeleteFromBookMark} toggleModal={toggleModal}/>
       </SingleHeader>
-      <FilterBox>
-        {" "}
-        <form onSubmit={submitFilter}>
-        <div class="select">
-          <select id="standard-select" value={inputFilter} onChange={handleInputFilter}>
-            {elementsCategoryData.map((item, i) => {
-              return (
-                <option value={item} key={i}>
-                  {item}
-                </option>
-              );
-            })}
-          </select>
-          </div>
-          <button type="submit">Submit</button>
-        </form>
-      </FilterBox>
+    
+      <Select submitFilter={submitFilter} elementsCategoryData={elementsCategoryData} 
+      inputFilter={inputFilter} handleInputFilter={handleInputFilter}/>
       <ElementsInCategoryContainer>
+
         {/* todo:populate with filtered data */}
         {filtered?.map((data) => (
           <ScreenshotContainer key={data.id}>
@@ -346,6 +351,7 @@ export default function SinglePage({ screens }) {
           </ScreenshotContainer>
         ))}
       </ElementsInCategoryContainer>
+      <Toast Progress={Progress} pendingText="Saving" successText="Saved 🎉"/>
     </>
   );
 }
@@ -356,7 +362,7 @@ max-width: 37.5rem;
 padding: 1.6rem;
 border-radius: 0.5rem;
 `
-const FilterBox = styled.div``;
+
 const DownloadWrapper = styled.div`
   position: absolute;
   block: "";
@@ -483,6 +489,7 @@ const WebLink = styled.a`
   color: var(--primary-color);
 `;
 const ElementsInCategoryContainer = styled.div`
+  position:relative;
   display: grid;
   grid-template-columns: repeat(1,1fr);
   margin: 1.5em auto;

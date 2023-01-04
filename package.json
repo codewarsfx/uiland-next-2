@@ -16,7 +16,6 @@
     "got": "^12.5.2",
     "http": "^0.0.1-security",
     "https": "^1.0.0",
-    "image-downloader": "^4.3.0",
     "next": "12.3.1",
     "node-fetch": "^2.6.7",
     "normalize-css": "^2.3.1",

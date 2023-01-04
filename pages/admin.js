@@ -115,6 +115,7 @@ export default function Admin() {
           value={inputUrl}
           onChange={handleChangeUrl}
         />
+        <label for="order">Order:</label>
         <input
           name="inputOrder"
           type="text"
