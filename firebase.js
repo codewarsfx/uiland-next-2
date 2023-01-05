@@ -184,4 +184,8 @@ const querySnapshot = await getDocs(properties);
 console.log(querySnapshot.docs)
 return prepareData(querySnapshot.docs);
 }
-
+export const deleteAccount =async (id)=>{
+	//delete user from db
+		  await deleteDoc(doc(db, "Users",id));
+}
+		

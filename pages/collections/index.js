@@ -2,13 +2,16 @@ import React, { useContext} from 'react';
 import styled from "styled-components";
 import Link from 'next/link'
 import { UserContext } from "../../context/authContext";
+import Header from '../../components/Header';
 
 
 export default function Collection() {
   const user = useContext(UserContext);
   return (
     <>
-    
+        <Wrapper>
+        <Header />
+      </Wrapper>
              <SingleHeader>
   <TitleBackground>
 	   <Title>Collections</Title>
@@ -44,6 +47,10 @@ export default function Collection() {
   );
    
 };
+
+const Wrapper = styled.div`
+	background:var(--primary-color)
+`;
 const ImageHolder=styled.div`
 
 img{

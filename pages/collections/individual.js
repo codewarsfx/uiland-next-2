@@ -62,7 +62,9 @@ const  downloadImage =  async(e)=>{
     }
   return (
     <>
-    
+        <Wrapper>
+        <Header />
+      </Wrapper>
              <SingleHeader>
 
     <>
@@ -195,14 +197,10 @@ const ImageWrapper = styled.div`
 `;
 
 
-
-const WebLink = styled.a`
-	font-weight:200;
-  font-size:1.3rem;
-  text-decoration:none;
-  color:var(--primary-color);
-
+const Wrapper = styled.div`
+  background: var(--primary-color);
 `;
+
 const ElementsInCategoryContainer = styled.div`
   position: relative;
   display: grid;
