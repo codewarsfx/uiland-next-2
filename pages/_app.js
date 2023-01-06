@@ -40,8 +40,74 @@ function MyApp({ Component, pageProps }) {
                 `}
         </Script>
         <Head>
+          <meta charSet="utf-8" />
           <title>Welcome to Uiland</title>
-          <meta name="viewport" content="initial-scale=1, width=device-width" />
+          <meta
+            name="description"
+            content="Browse and search across hundreds of Andriod apps for UI &amp; UX research."
+          />
+          <meta
+            property="og:title"
+            content="Browse Andriod Apps | Uiland - The world’s largest mobile &amp; web app design reference library"
+          />
+          <meta
+            property="og:description"
+            content="Browse and search across hundreds of iOS apps for UI &amp; UX research."
+          />
+          <meta
+            property="og:image"
+            content=""
+          />
+          <meta property="og:url" content="cannot_get_url_for_ssr" />
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="Uiland" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta
+            name="twitter:title"
+            content="Browse Andriod Apps | Mobbin - The world’s largest mobile &amp; web app design reference library"
+          />
+          <meta
+            name="twitter:description"
+            content="Browse and search across hundreds of Andriod apps for UI &amp; UX research."
+          />
+          <meta
+            name="twitter:image"
+            content=""
+          />
+          <meta name="twitter:site" content="@UilLandDedign" />
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png?v=2.1"
+          />
+          <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2.1" />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            // href="/favicon-32x32.png?v=2.1"
+            href=""
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href=""
+          />
+          <link rel="manifest" href="/site.webmanifest?v=2.1" />
+          <link
+            rel="mask-icon"
+            // href="/safari-pinned-tab.svg?v=2.1"
+            href=""
+            color="#000000"
+          />
+          <meta name="msapplication-TileColor" content="#000000" />
+          <meta name="theme-color" content="#ffffff" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1"
+          />
+          <meta name="next-head-count" content="23" />
         </Head>
         <Component {...pageProps} />
         <Analytics />
