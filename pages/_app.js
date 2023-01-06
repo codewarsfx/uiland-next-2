@@ -108,6 +108,7 @@ function MyApp({ Component, pageProps }) {
             content="width=device-width, initial-scale=1, maximum-scale=1"
           />
           <meta name="next-head-count" content="23" />
+          <meta name="google-site-verification" content="ODqtX_v3ldmmo5AB7fzcCJtP6IXdY_RDDeCK29OG6qs" />
         </Head>
         <Component {...pageProps} />
         <Analytics />
