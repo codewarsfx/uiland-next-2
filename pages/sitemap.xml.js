@@ -1,44 +1,68 @@
-import {getScreensData} from "../firebase"
+import React from "react";
+import fs from "fs";
+import { getScreensData } from "../firebase";
+const Sitemap = () => {};
 
+export const getServerSideProps = async ({ res }) => {
+  const baseUrl = {
+    development: "http://localhost:3000",
+    production: "https://uiland.design",
+  }[process.env.NODE_ENV];
 
-const EXTERNAL_DATA_URL = "https://uiland.design";
+  const staticPages = fs
+  .readdirSync({
+    development: 'pages',
+    production: './',
+  }[process.env.NODE_ENV])
+  .filter((staticPage) => {
+    return ![
+      "_app.js",
+      "_document.js",
+      "sitemap.xml.js",
+    ].includes(staticPage);
+  })
+    .map((staticPagePath) => {
+      return `${baseUrl}/${staticPagePath}`;
+    });
 
-function generateSiteMap(screens) {
-  return `<?xml version="1.0" encoding="UTF-8"?>
-   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    
-     ${screens
-       .map(({ id }) => {
-         return `
-       <url>
-           <loc>${`${EXTERNAL_DATA_URL}/screens/${id}`}</loc>
-       </url>
-     `;
-       })
-       .join("")}
-   </urlset>
- `;
-}
+  const documents = await getScreensData();
 
-function SiteMap() {
-  // getServerSideProps will do the heavy lifting
-}
-
-export async function getServerSideProps({ res }) {
-  // We make an API call to gather the URLs for our site
-  const screens = await getScreensData()
-
-  // We generate the XML sitemap with the posts data
-  const sitemap = generateSiteMap(posts);
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      ${staticPages
+        .map((url) => {
+          return `
+            <url>
+              <loc>${url}</loc>
+              <lastmod>${new Date().toISOString()}</lastmod>
+              <changefreq>monthly</changefreq>
+              <priority>1.0</priority>
+            </url>
+          `;
+        })
+        .join("")}
+      ${documents
+        .map(({ id }) => {
+          return `
+              <url>
+                <loc>${baseUrl}/screens/${id}</loc>
+                
+                <changefreq>monthly</changefreq>
+                <priority>1.0</priority>
+              </url>
+            `;
+        })
+        .join("")}
+    </urlset>
+  `;
 
   res.setHeader("Content-Type", "text/xml");
-  // we send the XML to the browser
   res.write(sitemap);
   res.end();
 
   return {
     props: {},
   };
-}
+};
 
-export default SiteMap;
+export default Sitemap;
