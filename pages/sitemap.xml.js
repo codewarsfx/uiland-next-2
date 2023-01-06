@@ -12,7 +12,7 @@ export const getServerSideProps = async ({ res }) => {
   const staticPages = fs
   .readdirSync({
     development: 'pages',
-    production: './.next',
+    production: './___vc',
   }[process.env.NODE_ENV])
   .filter((staticPage) => {
     return ![
