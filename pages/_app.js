@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import '../styles/globals.css'
 import Script from 'next/script'
 import { useRouter } from 'next/router'
@@ -9,7 +10,7 @@ function MyApp({ Component, pageProps }) {
 
  
   const router = useRouter()
-  React.useEffect(() => {
+useEffect(() => {
     const handleRouteChange = (url) => {
       gtag.pageview(url)
     }
