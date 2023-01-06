@@ -64,7 +64,7 @@ function MyApp({ Component, pageProps }) {
           <meta name="twitter:card" content="summary_large_image" />
           <meta
             name="twitter:title"
-            content="Browse Andriod Apps | Mobbin - The world’s largest mobile &amp; web app design reference library"
+            content="Browse Andriod Apps | Uiland - The world’s largest mobile &amp; web app design reference library"
           />
           <meta
             name="twitter:description"
@@ -72,9 +72,9 @@ function MyApp({ Component, pageProps }) {
           />
           <meta
             name="twitter:image"
-            content=""
+            content="/assets/img/homepage-snap.png"
           />
-          <meta name="twitter:site" content="@UilLandDedign" />
+          <meta name="twitter:site" content="@UiLandDesign" />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
