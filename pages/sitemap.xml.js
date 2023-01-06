@@ -20,7 +20,7 @@ export const getServerSideProps = async ({ res }) => {
       "_document.js",
       "profile.js",
       "admin.js",
-      "error.js",
+      "_error.js",
       "sitemap.xml.js",
     ].includes(staticPage);
   })
