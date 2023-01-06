@@ -31,7 +31,6 @@ const SearchTabBar = () => {
           handleChange={handleChange}
           submit={submit}
           placeholder="search company's name"
-          autocomplete="off"
         />
       </FormBackground>
     </FormWrapper>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-const Input = ({ input, handleChange, placeholder, autocomplete,submit }) => {
+const Input = ({ input, handleChange, placeholder, submit }) => {
   return (
     <>
       <Form onSubmit={submit}>
@@ -8,7 +8,6 @@ const Input = ({ input, handleChange, placeholder, autocomplete,submit }) => {
           value={input}
           onChange={handleChange}
           placeholder={placeholder}
-          autocomplete={autocomplete}
         />
         <Button type="submit">Submit</Button>
       </Form>
