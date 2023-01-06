@@ -138,8 +138,7 @@ export default function SinglePage({ screens }) {
   //I used it to indicate on the frontend what image have been saved
   useEffect(() => {
     async function getAlbums() {
-    const t=  await queryBookMarkAlbumm()
-    console.log(t)
+  
       if (user) {
         const data = await queryBookMarkAlbum(user.uid);
         data.forEach((item) => {

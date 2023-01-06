@@ -56,12 +56,12 @@ export const queryBookMarkAlbum = async (user)=>{
      return prepareData(querySnapshot.docs)
 
    }
-   export const queryBookMarkAlbumm=async()=>{
-	const properties =query(collectionGroup(db, "Bookmark")) ;
-const querySnapshot = getDocs(properties);
-console.log(querySnapshot.docs)
-return prepareData(querySnapshot.docs);
-}
+//    export const queryBookMarkAlbumm=async()=>{
+// 	const properties =query(collectionGroup(db, "Bookmark")) ;
+// const querySnapshot = getDocs(properties);
+// console.log(querySnapshot.docs)
+// return prepareData(querySnapshot.docs);
+// }
 
    export const queryScreenImage = async (id)=>{
 
