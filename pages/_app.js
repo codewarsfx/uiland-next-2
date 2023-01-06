@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import * as gtag from "../lib/gtag";
 import { UserContextProvider } from "../context/authContext";
 import { ScreensContextProvider } from "../context/screensContex";
-import { Analytics } from "@vercel/analytics/react";
 import Head from "next/head";
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -52,7 +51,7 @@ function MyApp({ Component, pageProps }) {
           />
           <meta
             property="og:description"
-            content="Browse and search across hundreds of iOS apps for UI &amp; UX research."
+            content="Browse and search across hundreds of Andriod apps for UI &amp; UX research."
           />
           <meta
             property="og:image"
@@ -111,7 +110,6 @@ function MyApp({ Component, pageProps }) {
           <meta name="google-site-verification" content="ODqtX_v3ldmmo5AB7fzcCJtP6IXdY_RDDeCK29OG6qs" />
         </Head>
         <Component {...pageProps} />
-        <Analytics />
       </ScreensContextProvider>
     </UserContextProvider>
   );
