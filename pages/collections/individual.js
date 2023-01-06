@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from "next/image"
 import { UserContext } from "../../context/authContext";
 import {queryBookMarkIndividual} from "../../firebase"
+import Header from '../../components/Header';
 
 export default function IndividualCollections() {
   const user = useContext(UserContext);
@@ -187,9 +188,7 @@ img{
   }
 
 `;
-const Wrapper = styled.div`
-	background:var(--primary-color)
-`;
+
 
 const ImageWrapper = styled.div`
 	position:relative;

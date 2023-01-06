@@ -33,9 +33,13 @@ const Header = () => {
 
 	return (
 		<HeaderContainer initial={initialState} animate={animateTo}>
-			<div>
+			<HeaderLogo>
+			<Link href="/">
+		
 				<img src='/assets/img/UL.png' alt='my next image' />
-			</div>
+			
+			</Link>
+			</HeaderLogo>
 			<HeaderCTA>
 				{!user ? (
 					<div onClick={() => toggleModal()}>
@@ -72,6 +76,9 @@ const Header = () => {
 		</HeaderContainer>
 	);
 };
+const HeaderLogo=styled.div`
+cursor:pointer;
+`
 const PhotoWrapper=styled.div`
 overflow:hidden;
 img{

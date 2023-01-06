@@ -6,7 +6,6 @@ import {
 	signOut,
 } from "firebase/auth";
 import { getFirestore, collection, getDocs,getDoc,setDoc,doc,deleteDoc,limit,serverTimestamp,query,where,addDoc,collectionGroup,onSnapshot } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
 import { prepareData } from "./utils/FirebaseUtilities";
 
 // firebase config object
@@ -26,10 +25,6 @@ const app = initializeApp(firebaseConfig);
 
 // intialize auth
 export const auth = getAuth(app);
-
-if (typeof window !== 'undefined') {
-	 const analytics = getAnalytics(app);
-  }
 
 
 // initialize cloud firestore
@@ -61,7 +56,12 @@ export const queryBookMarkAlbum = async (user)=>{
      return prepareData(querySnapshot.docs)
 
    }
-
+   export const queryBookMarkAlbumm=async()=>{
+	const properties =query(collectionGroup(db, "Bookmark")) ;
+const querySnapshot = getDocs(properties);
+console.log(querySnapshot.docs)
+return prepareData(querySnapshot.docs);
+}
 
    export const queryScreenImage = async (id)=>{
 
