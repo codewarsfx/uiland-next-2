@@ -6,6 +6,7 @@ import * as gtag from '../lib/gtag'
 import { UserContextProvider } from "../context/authContext";
 import { ScreensContextProvider } from "../context/screensContex";
 import { Analytics } from '@vercel/analytics/react';
+import Head from 'next/head'
 function MyApp({ Component, pageProps }) {
 
  
@@ -26,12 +27,12 @@ useEffect(() => {
     <UserContextProvider>
       <ScreensContextProvider>
       <Script
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
       />
       <Script
         id="gtag-init"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
@@ -43,7 +44,10 @@ useEffect(() => {
           `,
         }}
       />
-
+  <Head>
+                <title>Welcome to Uiland</title>
+                <meta name="viewport" content="initial-scale=1, width=device-width" />
+            </Head>
       <Component {...pageProps} />
       <Analytics />
       </ScreensContextProvider>
