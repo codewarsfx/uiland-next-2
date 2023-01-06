@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps }) {
           />
           <meta
             property="og:image"
-            content=""
+            content="/assets/img/Uiland-logo.png"
           />
           <meta property="og:url" content="cannot_get_url_for_ssr" />
           <meta property="og:type" content="website" />
@@ -93,7 +93,7 @@ function MyApp({ Component, pageProps }) {
             sizes="16x16"
             href=""
           />
-          <link rel="manifest" href="/site.webmanifest?v=2.1" />
+          {/* <link rel="manifest" href="/site.webmanifest?v=2.1" /> */}
           <link
             rel="mask-icon"
             // href="/safari-pinned-tab.svg?v=2.1"

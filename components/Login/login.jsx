@@ -3,11 +3,12 @@ import { toast } from "react-toastify";
 
 import { Button } from "../uiElements";
 import { buttonTypes } from "../uiElements/button";
-import { signInWithGoogle } from "../../firebase";
+import { signInWithGoogle } from "../../supabase";
 const Login = ({ toggleModal }) => {
 	//handler function for signin with Google
 	const handleSignupWithGoogle = async () => {
 		try {
+
 			await signInWithGoogle();
 			toggleModal();
 			toast.success("Sign In Successfull");

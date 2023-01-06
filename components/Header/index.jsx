@@ -12,7 +12,8 @@ import useModal from "../../hooks/useModal";
 import Login from "../Login/login";
 import Modal from "../modal";
 import { UserContext } from "../../context/authContext";
-import { signout,auth } from "../../firebase";
+// import { signout,auth } from "../../firebase";
+import { signout,auth } from "../../supabase";
 import Link from "next/link";
 
 const Header = () => {
@@ -54,7 +55,8 @@ const Header = () => {
 					<HeaderInfo>
 					
 					<PhotoWrapper>
-						<img src={user?.photoURL} alt="profile picture" referrerpolicy="no-referrer"/>
+					
+						<img src={user?.user_metadata.avatar_url} alt="profile picture" referrerpolicy="no-referrer"/>
 					</PhotoWrapper>
 					
 					<Link href='/collections'>
