@@ -1,15 +1,24 @@
-import React, { useContext} from 'react';
+import React, { useContext, useEffect} from 'react';
 import styled from "styled-components";
+import Router from 'next/router';
 import { UserContext } from "../context/authContext";
 import {deleteAccount} from "../firebase"
 import { supabase } from '../supabase';
 export default function Profile() {
+  const router = Router()
   const user = useContext(UserContext);
 console.log(user)
 
+useEffect(()=>{
+  if(!user){
+    router.push("/")
+  }
+},[router, user])
 function handleDelete(){
   deleteAccount(user.id)
 }
+
+
   return (
     <>
     
@@ -22,7 +31,7 @@ function handleDelete(){
    <ProfileContainer>
     {/* gets the displayname */}
     <PhotoWrapper>
-      <img src={user?.user_metadata.avatar_url} referrerPolicy="no-referrer"/>
+      <img src={user?.user_metadata.avatar_url}  referrerPolicy="no-referrer"/>
     </PhotoWrapper>
 <h1>{ user?.user_metadata.full_name}</h1>
 <h3>{user?.user_metadata.email}</h3>

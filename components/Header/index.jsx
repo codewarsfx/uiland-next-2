@@ -58,7 +58,7 @@ const Header = () => {
 					
 					<PhotoWrapper>
 					
-						<img src={user?.user_metadata.avatar_url} alt="profile picture" referrerpolicy="no-referrer"/>
+						<img src={user?.user_metadata.avatar_url} alt="profile picture"  referrerPolicy="no-referrer"/>
 					</PhotoWrapper>
 					
 					<Link href='/collections'>

@@ -1,12 +1,19 @@
-import React, { useContext} from 'react';
+import React, { useContext, useEffect,useState} from 'react';
 import styled from "styled-components";
 import Link from 'next/link'
 import { UserContext } from "../../context/authContext";
-import Header from '../../components/Header';
-
+import {getAllSingleBookmarkNames} from "../../supabase"
 
 export default function Collection() {
   const user = useContext(UserContext);
+  const [bookmark,setBookmark]=useState([])
+  useEffect(() => {
+    const allBookmarkNames = async () => {
+      const data = await getAllSingleBookmarkNames();
+      setBookmark(data);
+    };
+    allBookmarkNames();
+  }, []);
   return (
     <>
        
@@ -25,21 +32,27 @@ export default function Collection() {
 					</Link>
 	</AlbumTag>
 	 
+
+       {bookmark.map((name)=>{
+	return(
+		<>
 	 <IndividualTag>
 	 <ImageHolder>
 			<img src="/assets/img/image-collection.jpg"/>
 		</ImageHolder>
-		<Link href='/collections/individual'>
-						<a >Individual screens</a>
-					</Link>
+		<Link href={`/collections/individual/${name}`}>
+				{name}
+			</Link>
 	 </IndividualTag>
-          
+		</>
+	)
+ })}    
   </Content>
     
 
 	  </SingleHeader>
     <ElementsInCategoryContainer> 
- 
+
 
       </ElementsInCategoryContainer ></>
   );
@@ -113,6 +126,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 gap:30px;
+flex-wrap:wrap;
 `
 const TitleBackground=styled.div`
 align-items: flex-end;
