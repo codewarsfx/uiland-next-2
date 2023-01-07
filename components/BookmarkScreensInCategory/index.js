@@ -1,10 +1,10 @@
-import { useContext } from "react";
+
 import styled from "styled-components";
 import Link from 'next/link'
 import { BrandDescription, BrandLogo, Pill, Screenshot } from "../uiElements";
 import { pillsTypes } from "../uiElements/pills";
 
-const BookmarkScreensIncategory = ({screens}) => {
+const BookmarkScreensInCategory = ({screens}) => {
 	return (<>
 		<CategorySectionContainer>
 			<CategorySectionWrapper>
@@ -76,4 +76,4 @@ const ScreenshotContainerBottom = styled.div`
 	justify-content: space-between;
 `;
 
-export default BookmarkScreensIncategory;
+export default BookmarkScreensInCategory;
