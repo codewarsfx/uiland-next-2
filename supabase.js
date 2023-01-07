@@ -49,8 +49,13 @@ export async function getBookmarks(user) {
     .select(
       `
        id,
-       Screens (
-           id
+       album_id (
+           id,
+           startScreens,
+           logo,
+           name,
+           url,
+           category
        )
      `
     )

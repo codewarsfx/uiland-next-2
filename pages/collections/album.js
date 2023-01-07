@@ -2,16 +2,18 @@ import React, { useContext,useEffect,useState} from 'react';
 import styled from "styled-components";
 import Link from 'next/link'
 import { UserContext } from "../../context/authContext";
-import {queryBookMarkAlbum} from "../../firebase"
-import ScreensInCategory from '../../components/ScreensInCategory';
+import {getBookmarks} from "../../supabase"
+import BookmarkScreensIncategory from '../../components/BookmarkScreensIncategory';
 
 export default function AlbumCollections() {
   const user = useContext(UserContext);
 const [screens,setScreens]=useState([])
 useEffect(()=>{
 async function getAlbums(){
+  console.log(user)
     if(user){
-        const data= await queryBookMarkAlbum(user.uid) 
+        const data= await getBookmarks(user) 
+        console.log(data)
   setScreens(data)   
 }
  
@@ -28,7 +30,7 @@ getAlbums()
 
     <>
   
-     <Title>Collections</Title>
+     <Title>Albums</Title>
     
    <div>
 
@@ -37,7 +39,7 @@ getAlbums()
 
 	  </SingleHeader>
       {screens?
-      <ScreensInCategory screens={screens} />:<h1>Empty</h1>
+      <BookmarkScreensIncategory screens={screens} />:<h1>Empty</h1>
       }
       </>
   );
