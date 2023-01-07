@@ -52,16 +52,11 @@ export const getScreensData = async () => {
 export const queryBookMarkAlbum = async (user)=>{
 
 	//read a user's bookmark (album)
-	const querySnapshot = getDocs(collection(db, "Users", user, "Bookmark"));
+	const querySnapshot = getDocs(collection(db, "Users", "nVFBwqe9tXYa2drT1zJniH0eXzw1", "Bookmark"));
      return prepareData(querySnapshot.docs)
 
    }
-//    export const queryBookMarkAlbumm=async()=>{
-// 	const properties =query(collectionGroup(db, "Bookmark")) ;
-// const querySnapshot = getDocs(properties);
-// console.log(querySnapshot.docs)
-// return prepareData(querySnapshot.docs);
-// }
+
 
    export const queryScreenImage = async (id)=>{
 
@@ -72,10 +67,10 @@ export const queryBookMarkAlbum = async (user)=>{
    }
 
 
-   export const queryBookMarkIndividual = async (user)=>{
+   export const queryBookMarkIndividual = async ()=>{
 
 	//read a user's bookmark (individual images)
-	const querySnapshot =  getDocs(collection(db, "Users", user, "BookmarkImage"));
+	const querySnapshot =  getDocs(collection(db, "Users", "nVFBwqe9tXYa2drT1zJniH0eXzw1", "BookmarkImage"));
      return prepareData(querySnapshot.docs)
 
    }

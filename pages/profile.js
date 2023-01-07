@@ -1,20 +1,18 @@
 import React, { useContext} from 'react';
 import styled from "styled-components";
-import Header from '../components/Header';
 import { UserContext } from "../context/authContext";
 import {deleteAccount} from "../firebase"
+import { supabase } from '../supabase';
 export default function Profile() {
   const user = useContext(UserContext);
 console.log(user)
 
 function handleDelete(){
-  deleteAccount(user.uid)
+  deleteAccount(user.id)
 }
   return (
     <>
-     <Wrapper>
-        <Header />
-      </Wrapper>
+    
              <SingleHeader>
 
     <>
@@ -24,12 +22,13 @@ function handleDelete(){
    <ProfileContainer>
     {/* gets the displayname */}
     <PhotoWrapper>
-      <img src={user?.photoURL} referrerPolicy="no-referrer"/>
+      <img src={user?.user_metadata.avatar_url} referrerPolicy="no-referrer"/>
     </PhotoWrapper>
-<h1>{ user?.displayName}</h1>
-<h3>{user?.email}</h3>
+{/* <h1>{ user?.displayName}</h1>
+<h3>{user?.email}</h3> */}
 <button className='album-card__buttoncopy' onClick={handleDelete}>Delete Account</button>
    </ProfileContainer>
+   
      </>
 
 	  </SingleHeader>
@@ -73,9 +72,7 @@ const SingleHeader = styled.div`
 
 `;
 
-const Wrapper = styled.div`
-  background: var(--primary-color);
-`;
+
 
 
 const ElementsInCategoryContainer = styled.div`
@@ -93,3 +90,19 @@ const ElementsInCategoryContainer = styled.div`
 `;
 ;
 
+export const getServerSideProps=async({req})=>{
+  const {user} = await supabase.auth.api.getUserByCookie(req)
+
+  if(!user){
+    return{
+      redirect:{
+        permanent:false,
+        destination:"/"
+      },
+      props:{},
+    }
+  }
+  return{
+    props:{}
+  }
+}

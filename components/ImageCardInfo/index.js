@@ -5,7 +5,7 @@ function ImageCardInfo({headerInfo,id,getAlbumId,handleAddToBookMark,handleDelet
   return (
  <>
       <div className="album-card__dope">
-              <h1>{headerInfo.Name}</h1>
+              <h1>{headerInfo.name}</h1>
               <div className="album-card__doper">
                 {!getAlbumId?.includes(id) ? (
                   <button

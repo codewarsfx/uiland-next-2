@@ -1,57 +1,85 @@
-import React, { useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
+
+//Next library
 import { useRouter } from "next/router";
 import Image from "next/image";
+
+//Third party libraries
 import styled from "styled-components";
 
+//All Supabase endpoints
 import {
-  getindividualScreenData,
-  addBookMark,
-  getScreensData,
-  deleteBookMark,
-  queryBookMarkIndividual,
-  bookmarkSelected,
-  deleteBookmarkSelected,
-  queryBookMarkAlbum,
-  getIndividualCategory,
-  queryScreenImage,
-  getIndividualLimit ,
-  queryBookMarkAlbumm
-} from "../../firebase";
+  getAllScreens,
+  getScreensById,
+  addSingleScreens,
+  DeleteSingleScreens,
+  getScreensProperties,
+  getAllSingleBookmarkNames,
+  getAllSingleBookmarkId,
+  DeleteScreens,
+  getAlbumBookmarkId,
+  addBookmark,
+  viewSingleBookmark,
+} from "../../supabase";
 
-import { BrandLogo, Toast } from "../../components/uiElements";
-import Header from "../../components/Header";
+//Hooks
 import useModal from "../../hooks/useModal";
+
+//Context
 import { UserContext } from "../../context/authContext";
+
+// Components
+import { Toast } from "../../components/uiElements";
 import ImageCardInfo from "../../components/ImageCardInfo";
 import Modal from "../../components/modal";
 import SocialsCard from "../../components/SocialsCard";
 import Select from "../../components/uiElements/select";
 import Login from "../../components/Login/login";
 export default function SinglePage({ screens }) {
-  const { modalSaveImage, isModalopen, toggleModal, newtoggleModal ,loginToggleModal,isModalLogin} =
-    useModal();
+  const {
+    modalSaveImage,
+    isModalopen,
+    toggleModal,
+    newtoggleModal,
+    loginToggleModal,
+    isModalLogin,
+  } = useModal();
 
   const [displayBasic, setDisplayBasic] = useState(false);
   const [imageContent, setImageContent] = useState({});
+
+  //state for the filter by category
   const [inputFilter, setInputFilter] = useState("");
   const [getId, setGetId] = useState([]);
-  const [hideAllUnfilteredImages, setHideAllUnfilteredImages] = useState([]);
   const [Progress, setProgress] = useState(1);
   const [headerInfo, setHeaderInfo] = useState({});
+
+  //state to manage the bookmark id of the album of images when clicked
   const [getAlbumId, setGetAlbumId] = useState([]);
 
   // toast state
   const [toastPendingText, setToastPendingText] = useState("Saving");
   const [toastSuccessText, setToastSuccessText] = useState("Saved 🎉");
 
-  const [input, setInput] = useState("BookmarkImage");
+  const [bookmarkk, setBookmarkk] = useState("");
+  //state to hold the input state
+  const [input, setInput] = useState("");
+
+  //usecontext
   const user = useContext(UserContext);
+
+//state to hold the names of bookmarks created
+  const [selectBookmark, setSelectBookmark] = useState([""]);
+
+  //state to disable button
+  const [disabled, setDisabled] = useState(false);
 
   const dialogFuncMap = {
     displayBasic: setDisplayBasic,
   };
   const router = useRouter();
 
+  //filter 
   const searchFilter = (array, data) => {
     if (data === "") return array;
     return array.filter((el) => el.elementCategory.toLowerCase() === data);
@@ -59,22 +87,7 @@ export default function SinglePage({ screens }) {
 
   const filtered = searchFilter(screens, inputFilter);
 
-  useEffect(() => {
-    screens.sort(function (a, b) {
-      const nameA = a.screenCategory.toLowerCase(); // ignore upper and lowercase
-      const nameB = b.screenCategory.toLowerCase(); // ignore upper and lowercase
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-
-      // names must be equal
-      return 0;
-    });
-  }, [screens]);
-
+  //the list of properties to filter by
   const elementsCategoryData = [
     "",
     "search",
@@ -97,13 +110,46 @@ export default function SinglePage({ screens }) {
     setInputFilter(e.target.value.toLowerCase());
   }
 
+  //omitting the [  ] here caused a massive render
   useEffect(() => {
     const getHeaderInfo = async () => {
-      const data = await getindividualScreenData(router.query.id);
+      const result = await viewSingleBookmark("fishes");
+      console.log(result);
+      const data = await getScreensProperties(router.query.id);
       setHeaderInfo(data);
     };
     getHeaderInfo();
-  });
+  }, [router.query.id]);
+
+  //checker to empty the bookmark names select field if the user has deleted all his bookmarked images
+  useEffect(() => {
+    if (!getId) {
+      setSelectBookmark([""]);
+    }
+  }, [getId]);
+
+  // useEffect(()=>{
+  //   const uniqueResult=([...new Set(selectBookmark)])
+  //   setSelectBookmark(uniqueResult)
+  //     },[selectBookmark])
+
+  //checker to disable the submit button if the user has not created a new bookmark name or selected a previous bookname
+  useEffect(() => {
+    if (!input) {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+  }, [input]);
+
+  useEffect(() => {
+    const allBookmarkNames = async () => {
+      const data = await getAllSingleBookmarkNames();
+      const result = selectBookmark.concat(data);
+      setSelectBookmark(result);
+    };
+    allBookmarkNames();
+  }, []);
 
   //copies the url
   const copy = async () => {
@@ -123,10 +169,11 @@ export default function SinglePage({ screens }) {
   useEffect(() => {
     async function getIndividualScreens() {
       if (user) {
-        const data = await queryBookMarkIndividual(user.uid);
+        const data = await getAllSingleBookmarkId(user);
+        console.log(data);
         data.forEach((item) => {
           setGetId((prev) => {
-            return [...prev, item.id];
+            return [...prev, item.screen_id];
           });
         });
       }
@@ -134,21 +181,21 @@ export default function SinglePage({ screens }) {
     getIndividualScreens();
   }, [user]);
 
-  //finds the ids of albums of images that have been bookmarked and stores in an array
+  //finds the ids of album screens that have been bookmarked and stores in an array
   //I used it to indicate on the frontend what image have been saved
   useEffect(() => {
-    async function getAlbums() {
-  
+    async function getBookmarkScreens() {
       if (user) {
-        const data = await queryBookMarkAlbum(user.uid);
+        const data = await getAlbumBookmarkId(user);
+        console.log(data);
         data.forEach((item) => {
           setGetAlbumId((prev) => {
-            return [...prev, item.id];
+            return [...prev, item.album_id];
           });
         });
       }
     }
-    getAlbums();
+    getBookmarkScreens();
   }, [user]);
 
   //used to hide hide the modal when clicked
@@ -165,68 +212,71 @@ export default function SinglePage({ screens }) {
   async function bookmark(data) {
     if (user) {
       newtoggleModal();
+      console.log(data);
       setImageContent(data);
     } else {
-      loginToggleModal()
+      loginToggleModal();
     }
   }
 
   //function to delete individual screens
-  async function deleteIndividualBookmark(user, data) {
+  async function deleteIndividualBookmark(data) {
     setProgress(2);
-    setToastPendingText("Saving");
-    await deleteBookmarkSelected(user, data);
-    setToastSuccessText("Saved 🎉");
-    setProgress(3);
-    toastNotification(1);
+    setToastPendingText("Deleting");
+    const deletedItem = await DeleteSingleScreens(data);
+    console.log(deletedItem);
+    if (deletedItem === null) {
+      console.log(data.id);
+      const filteredResult = getId.filter((result) => result !== data.id);
+      console.log(filteredResult);
+      setGetId(filteredResult);
+      setToastSuccessText("Deleted :(");
+      setProgress(3);
+      toastNotification(1);
+    }
   }
 
+  useEffect(() => {
+    console.log(input);
+  }, [input]);
   //function to bookmark individual screen
-  function submit(e) {
+  async function submit(e) {
     //prevents default refresh
+    console.log(e);
     e.preventDefault();
     if (user) {
       console.log(user, imageContent, input);
       setProgress(2);
       setToastPendingText("Saving");
-      bookmarkSelected(user, imageContent, input);
+      const result = await addSingleScreens(imageContent, input, user);
+      console.log(result);
+      if (result) {
+        setInput("");
+        console.log(result[0].screen_id);
+        getId.push(result[0].screen_id);
 
-      // saves the image and shows the toast
+        // saves the image and shows the toast
 
-      setToastSuccessText("Saved 🎉");
-      setProgress(3);
-      toastNotification(1);
-      newtoggleModal();
+        setToastSuccessText("Saved 🎉");
+        setProgress(3);
+        toastNotification(1);
+        selectBookmark.push(input);
+        newtoggleModal();
+      }
     } else {
       console.log("pls login");
     }
   }
-  //function to filter individual screen
-  async function submitFilter(e) {
-    //prevents default refresh
-    e.preventDefault();
-    const data = await getIndividualCategory(inputFilter, router.query.id);
-    console.log(data);
-    setHideAllUnfilteredImages(data);
-  }
+
 
   //function to download the individual images
   const downloadImage = async (e) => {
-    // 	const download =await fetch("/api/hello",
-    // 	{method:"POST",headers:{
-    // 		"Content-Type":"application/json"
-    // 	},body:JSON.stringify(e)}
-    // 	);
-
-    // 	const download = await fetch("/api/hello");
-    // 		const data = await download.json();
-    //  console.log(data)
 
     console.log(
       e.target.parentElement.parentElement.parentElement.parentElement
     );
     setToastPendingText("Downloading...");
-   
+
     //fetches the image
     const image = await fetch(
       e.target.parentElement.parentElement.parentElement.parentElement
@@ -251,13 +301,13 @@ export default function SinglePage({ screens }) {
     setProgress(3);
     toastNotification(1);
   };
+ 
 
   async function copyImage(e) {
     //contains a url in this format
     // "http://localhost:3000/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fuiland.appspot.com%2Fo%2FCowrywise%252FCowrywise-screens%252FScreenshot_2022-10-13-14-46-21-882_com.cowrywise.android-min.jpg%3Falt%3Dmedia%26token%3D3efdba80-8ec5-463a-9466-317f9247a6c3&w=1080&q=75"
     //which contains the prefetched images
     // This prevents cors error while getting the images
-    console.log(e);
     setProgress(2);
     setToastPendingText("Saving");
     const response = await fetch(
@@ -270,11 +320,9 @@ export default function SinglePage({ screens }) {
         [blob.type]: blob,
       }),
     ]);
-    setToastPendingText("Copied Image");
+    setToastSuccessText("Copied Image");
     setProgress(3);
     toastNotification(1);
-
-    console.log("Image copied.");
   }
 
   //util for toast notification
@@ -285,50 +333,70 @@ export default function SinglePage({ screens }) {
   };
 
   //adds image album to bookmark
-  function handleAddToBookMark() {
+  async function handleAddToBookMark() {
     if (user) {
       setToastPendingText("Saving to collections 🎉");
       setProgress(2);
-      addBookMark(user.uid, router.query.id, screens);
-      setToastSuccessText("Saved to collections 🎉");
-      setProgress(3);
-      toastNotification(1);
+      const result = await addBookmark(router.query.id, user);
+      console.log(result);
+      if (result) {
+        getAlbumId.push(router.query.id);
+        console.log(getAlbumId);
+        setToastSuccessText("Saved to collections 🎉");
+        setProgress(3);
+        toastNotification(1);
+      }
     } else {
       //add modal later
-      loginToggleModal()
+      loginToggleModal();
     }
   }
 
   //deletes image album to bookmark
-  function handleDeleteFromBookMark() {
+  async function handleDeleteFromBookMark() {
     setToastPendingText("Deleting from collections");
     setProgress(2);
-    deleteBookMark(user.uid, router.query.id);
-    setToastSuccessText("Deleted from collections :(");
-    setProgress(3);
-    toastNotification(1);
+    const result = await DeleteScreens(router.query.id);
+    console.log(result);
+    if (result === null) {
+      setGetAlbumId([]);
+      setToastSuccessText("Deleted from collections :(");
+      setProgress(3);
+      toastNotification(1);
+    }
   }
   return (
     <>
-      <Wrapper>
-        <Header />
-      </Wrapper>
       {modalSaveImage && (
         <Modal toggleModal={newtoggleModal}>
           <ModalBox>
             <form onSubmit={submit}>
-              <label for="items">Choose a Bookmark:</label>
-              <div class="select">
-                <select
-                  id="standard-select"
-                  name="items"
-                  onChange={handleChange}
-                >
-                  <option value="BookmarkImage">Bookmark Image</option>
+              <label htmlFor="items">Choose a Bookmark:</label>
+              <div className="select">
+
+                <select value={bookmarkk} onChange={handleChange}>
+                  {selectBookmark.map((item, i) => {
+                    return (
+                      <option value={item} key={i}>
+                        {item}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
-              {/* <input type="text" name="contentForm" value={input} onChange={handleChange}/> */}
-              <button className="album-card__buttoncopy" type="submit">
+
+              <input
+                type="text"
+                name="contentForm"
+                placeholder="input bookmark name"
+                value={input}
+                onChange={handleChange}
+              />
+              <button
+                className={`album-card__buttoncopy ${disabled && `bg-grey`}`}
+                type="submit"
+                disabled={disabled}
+              >
                 Submit
               </button>
             </form>
@@ -343,10 +411,10 @@ export default function SinglePage({ screens }) {
         </Modal>
       )}
       {isModalLogin && (
-				<Modal toggleModal={loginToggleModal}>
-					<Login toggleModal={loginToggleModal} />
-				</Modal>
-			)}
+        <Modal toggleModal={loginToggleModal}>
+          <Login toggleModal={loginToggleModal} />
+        </Modal>
+      )}
       <SingleHeader>
         <ImageCardInfo
           copy={copy}
@@ -360,7 +428,6 @@ export default function SinglePage({ screens }) {
       </SingleHeader>
 
       <Select
-        submitFilter={submitFilter}
         elementsCategoryData={elementsCategoryData}
         inputFilter={inputFilter}
         handleInputFilter={handleInputFilter}
@@ -373,7 +440,7 @@ export default function SinglePage({ screens }) {
               <Title className="target" title="download to device">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  enable-background="new 0 0 24 24"
+                  enableBackground="new 0 0 24 24"
                   viewBox="0 0 24 24"
                   role="img"
                   class="icon "
@@ -388,7 +455,7 @@ export default function SinglePage({ screens }) {
             {getId.includes(data.id) ? (
               <DownloadWrapper
                 className="target"
-                onClick={() => deleteIndividualBookmark(user.uid, data)}
+                onClick={() => deleteIndividualBookmark(data)}
               >
                 <Title className="target" title="delete from collection">
                   <img src="/assets/img/heart-filled.png" alt="delete icon" />
@@ -494,34 +561,6 @@ const ScreenshotContainer = styled.div`
     pointer-events: none;
   }
 `;
-const TitleBox = styled.div`
-z-index:99;
-border-radius:25px;
-	 display:flex;
-	 flex-direction:row;
-	 gap:8px;
-	 justify-content:space-between;
-	 align-items:center
-	background: rgba(25,25,25,.8);
-    border-color: transparent;
-	backdrop-filter: blur(65px);
-	color:white;
-	// padding:10px 12px;
-}
-img{
-	height:15px !important;
-	fill: #fff;
-  }
-
-`;
-const Wrapper = styled.div`
-  background: var(--primary-color);
-`;
-
-const ImageWrapper = styled.div`
-  position: relative;
-  overflow: hidden;
-`;
 
 const Title = styled.h1`
   z-index: 99;
@@ -593,7 +632,7 @@ export const getStaticPaths = async () => {
   }
 
   // Call an external API endpoint to get posts
-  const screen = await getScreensData();
+  const screen = await getAllScreens();
 
   // Get the paths we want to prerender based on posts
   // In production environments, prerender all pages
@@ -609,7 +648,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const id = context.params.id;
 
-  const screens = await queryScreenImage(id);
+  const screens = await getScreensById(id);
   return {
     props: { screens },
   };

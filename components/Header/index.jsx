@@ -33,6 +33,8 @@ const Header = () => {
 	};
 
 	return (
+		<>
+		<Wrapper>
 		<HeaderContainer initial={initialState} animate={animateTo}>
 			<HeaderLogo>
 			<Link href="/">
@@ -76,8 +78,13 @@ const Header = () => {
 				</Modal>
 			)}
 		</HeaderContainer>
+		</Wrapper>
+		</>
 	);
 };
+const Wrapper = styled.div`
+  background: var(--primary-color);
+`;
 const HeaderLogo=styled.div`
 cursor:pointer;
 `

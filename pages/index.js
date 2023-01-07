@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Tab from "../components/TabSection";
 import ScreensTab from "../components/ScreensTab";
-import { getScreensData } from "../firebase";
+import {getAllScreens} from "../supabase";
 import { ScreensContext } from "../context/screensContex";
 
 const Home = ({ screens }) => {
@@ -35,8 +35,6 @@ setResult(searchNameFilter(screens,filterName))
 
 setResult(searchFilter(screens,filterTerm))
   },[filterTerm, screens])
-	
-  console.log(result)
 	return (
 		<>
 			<ToastContainer autoClose={2000} position='top-center' />
@@ -51,7 +49,7 @@ setResult(searchFilter(screens,filterTerm))
 
 export async function getServerSideProps(context) {
 	
-	const screens = await getScreensData();
+	const screens = await getAllScreens();
 
 	return {
 		props: {

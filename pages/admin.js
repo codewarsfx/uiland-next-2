@@ -43,6 +43,7 @@ export default function Admin() {
   ];
 
   function handleChangeElement(e) {
+    console.log(e.target.value)
     setInputElement(e.target.value);
   }
   function handleChangeOrder(e) {

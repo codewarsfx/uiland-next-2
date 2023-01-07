@@ -9,9 +9,7 @@ export default function Collection() {
   const user = useContext(UserContext);
   return (
     <>
-        <Wrapper>
-        <Header />
-      </Wrapper>
+       
              <SingleHeader>
   <TitleBackground>
 	   <Title>Collections</Title>

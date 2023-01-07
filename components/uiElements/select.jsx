@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components';
-function Select({submitFilter,inputFilter,handleInputFilter,elementsCategoryData}) {
+function Select({inputFilter,handleInputFilter,elementsCategoryData}) {
   return (
     <>
       <FilterBox>
         {" "}
-        <form onSubmit={submitFilter}>
-        <div class="select">
+        <form >
+        <div className="select">
           <select id="standard-select" value={inputFilter} onChange={handleInputFilter}>
             {elementsCategoryData.map((item, i) => {
               return (

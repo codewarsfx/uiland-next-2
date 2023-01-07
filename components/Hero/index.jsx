@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-
-import Header from "../Header";
 import HeroImgBig from "../HeroImgBig";
 import HeroImgSmall from "../HeroImgSmall";
 import HeroText from "../HeroText";
@@ -9,7 +7,6 @@ import HeroText from "../HeroText";
 const Hero = () => {
 	return (
 		<HeroContainer>
-			<Header />
 			<HeroText />
 			<HeroImgBig />
 			<HeroImgSmall />

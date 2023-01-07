@@ -6,6 +6,7 @@ import * as gtag from "../lib/gtag";
 import { UserContextProvider } from "../context/authContext";
 import { ScreensContextProvider } from "../context/screensContex";
 import Head from "next/head";
+import Header from "../components/Header";
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   useEffect(() => {
@@ -43,19 +44,20 @@ function MyApp({ Component, pageProps }) {
           <title>Welcome to Uiland</title>
           <meta
             name="description"
-            content="Browse and search across hundreds of Andriod apps for UI &amp; UX research."
+            content="Discover hundreds of Mobile apps designs for UI &amp; UX research."
           />
+          <link rel="shortcut icon" href="/favicon.ico"></link>
           <meta
             property="og:title"
-            content="Browse Andriod Apps | Uiland - The world’s largest mobile &amp; web app design reference library"
+            content="Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library"
           />
           <meta
             property="og:description"
-            content="Browse and search across hundreds of Andriod apps for UI &amp; UX research."
+            content="Discover hundreds of Mobile apps designs for UI &amp; UX research."
           />
           <meta
             property="og:image"
-            content="/assets/img/Uiland-logo.png"
+            content="/assets/img/homepage-snap.png"
           />
           <meta property="og:url" content="cannot_get_url_for_ssr" />
           <meta property="og:type" content="website" />
@@ -63,11 +65,15 @@ function MyApp({ Component, pageProps }) {
           <meta name="twitter:card" content="summary_large_image" />
           <meta
             name="twitter:title"
-            content="Browse Andriod Apps | Uiland - The world’s largest mobile &amp; web app design reference library"
+            content="Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library"
+          />
+          <meta
+            name="twitter:url"
+            content="https://uiland.design"
           />
           <meta
             name="twitter:description"
-            content="Browse and search across hundreds of Andriod apps for UI &amp; UX research."
+            content="Discover hundreds of Mobile apps designs for UI &amp; UX research."
           />
           <meta
             name="twitter:image"
@@ -109,6 +115,8 @@ function MyApp({ Component, pageProps }) {
           <meta name="next-head-count" content="23" />
           <meta name="google-site-verification" content="ODqtX_v3ldmmo5AB7fzcCJtP6IXdY_RDDeCK29OG6qs" />
         </Head>
+        
+        <Header />
         <Component {...pageProps} />
       </ScreensContextProvider>
     </UserContextProvider>

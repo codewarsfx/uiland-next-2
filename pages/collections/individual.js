@@ -63,9 +63,7 @@ const  downloadImage =  async(e)=>{
     }
   return (
     <>
-        <Wrapper>
-        <Header />
-      </Wrapper>
+       
              <SingleHeader>
 
     <>

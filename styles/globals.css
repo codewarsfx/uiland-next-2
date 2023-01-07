@@ -193,6 +193,9 @@ overflow: hidden;
     flex-direction: row;
     gap: 8px;
   }
+ .bg-grey{
+  background-color: gray !important;
+ }
   .album-card__copyicon {
     height: 13px;
     width: 13px;
