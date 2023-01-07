@@ -16,14 +16,14 @@ const Home = ({ screens }) => {
 	const searchFilter=(array,data)=>{
 		console.log(array,data)
 		if(data === "") return array
-		return array.filter((el)=> el.Category.toUpperCase() === data)
+		return array.filter((el)=> el.category === data)
 	  }
 
 	  const searchNameFilter=(array,data)=>{
 		console.log(array,data)
 		
 		if(data === "") return array
-		return array.filter((el)=> el.Name === data)
+		return array.filter((el)=> el.name === data)
 	  }
 
   useEffect(()=>{

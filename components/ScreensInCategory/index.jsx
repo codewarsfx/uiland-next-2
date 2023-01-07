@@ -8,18 +8,18 @@ const ScreensInCategory = ({screens}) => {
 	return (<>
 		<CategorySectionContainer>
 			<CategorySectionWrapper>
-				{screens.map(({ startScreens, Name, Category, logo, id }) => (
+				{screens.map(({ startScreens, name, category, logo, id }) => (
 					
 					<ScreenShotContainer key={id}>
 							<Link  href={`/screens/${id}`}>
 						<div><ScreenshotContainerTop>
 							<BrandLogo imageUrl={logo} />
-							<BrandDescription name={Name} category={Category} />
+							<BrandDescription name={name} category={category} />
 							<Pill type={pillsTypes.screenshot}>view</Pill>
 						</ScreenshotContainerTop>
 						<ScreenshotContainerBottom>
 							{startScreens.map((screenshot) => (
-								<Screenshot key={screenshot} imgLink={screenshot} alt={Name} />
+								<Screenshot key={screenshot} imgLink={screenshot} alt={name} />
 							))}
 						</ScreenshotContainerBottom></div>
 					</Link></ScreenShotContainer>

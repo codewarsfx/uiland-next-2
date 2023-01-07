@@ -24,8 +24,8 @@ function handleDelete(){
     <PhotoWrapper>
       <img src={user?.user_metadata.avatar_url} referrerPolicy="no-referrer"/>
     </PhotoWrapper>
-{/* <h1>{ user?.displayName}</h1>
-<h3>{user?.email}</h3> */}
+<h1>{ user?.user_metadata.full_name}</h1>
+<h3>{user?.user_metadata.email}</h3>
 <button className='album-card__buttoncopy' onClick={handleDelete}>Delete Account</button>
    </ProfileContainer>
    
@@ -90,19 +90,19 @@ const ElementsInCategoryContainer = styled.div`
 `;
 ;
 
-export const getServerSideProps=async({req})=>{
-  const {user} = await supabase.auth.api.getUserByCookie(req)
+// export const getServerSideProps=async({req})=>{
+//   const {user} = await supabase.auth.api.getUserByCookie(req)
 
-  if(!user){
-    return{
-      redirect:{
-        permanent:false,
-        destination:"/"
-      },
-      props:{},
-    }
-  }
-  return{
-    props:{}
-  }
-}
+//   if(!user){
+//     return{
+//       redirect:{
+//         permanent:false,
+//         destination:"/"
+//       },
+//       props:{},
+//     }
+//   }
+//   return{
+//     props:{}
+//   }
+// }
