@@ -1,5 +1,5 @@
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Button, Hamburger } from "../uiElements";
@@ -19,6 +19,7 @@ import Link from "next/link";
 const Header = () => {
 	const { isModalopen, toggleModal } = useModal();
 	const user = useContext(UserContext);
+	const[popup,setPopup]=useState(false)
 
 	//animations states
 	const initialState = { y: -100 };
@@ -32,6 +33,9 @@ const Header = () => {
 		},
 	};
 
+	function showPopup(){
+		setPopup(!popup)
+	}
 	return (
 		<>
 		<Wrapper>
@@ -55,19 +59,36 @@ const Header = () => {
 					</div>
 				) : (
 					<HeaderInfo>
+						<CollectionText>
+						<Link href='/collections'>
+						<a >Collections</a>
+					</Link>
+						</CollectionText>
 					
 					<PhotoWrapper>
-					<Link href='/profile'>
-					<img src={user?.user_metadata.avatar_url} alt="profile picture"  referrerPolicy="no-referrer"/>
-					</Link>
+					
+						<RelativeWrapper onClick={showPopup}>
+							<img src={user?.user_metadata.avatar_url} alt="profile picture"  referrerPolicy="no-referrer"/>
+							{popup && <Popup>
+								<ProfileText>
+									<Link href="/profile">
+									Profile
+									</Link>
+								</ProfileText>
+								<LogOutText onClick={signout}>
+								Log Out
+								</LogOutText>
+							</Popup>}
+							
+							
+						
+						</RelativeWrapper>
+					
+					
 						
 					</PhotoWrapper>
 					
-					<Link href='/collections'>
-						<a >Collections</a>
-					</Link>
 					
-					<span onClick={signout}>LOG OUT</span>
 					</HeaderInfo>
 					
 				)}
@@ -82,6 +103,37 @@ const Header = () => {
 		</>
 	);
 };
+const CollectionText=styled.div`
+font-size: 16px;
+font-weight: 600;
+color: white;
+`
+const RelativeWrapper=styled.div`
+
+`
+const LogOutText=styled.div`
+font-weight:600;
+color:red;
+`
+const ProfileText=styled.div`
+font-weight:600;
+a{
+	color:black;
+}
+`
+const Popup=styled.div`
+background:white;
+padding:12px;
+border-radius:12px;
+position:absolute;
+top: 35px;
+left: 14px;
+display:flex;
+flex-direction:column;
+gap:12px;
+box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);
+border:1px solid #e6e4e4;
+`
 const Wrapper = styled.div`
   background: var(--primary-color);
 `;
@@ -92,6 +144,7 @@ const PhotoWrapper=styled.div`
 overflow:hidden;
 cursor:pointer;
 img{
+	border:2px solid white;
 	border-radius: 100%;
 	height: 32px;
 }
@@ -100,6 +153,7 @@ const HeaderInfo=styled.div`
 display:flex;
 gap:12px;
 align-items:center;
+position:relative;
 
 `
 const HeaderContainer = styled(motion.header)`
@@ -125,9 +179,7 @@ const HeaderCTA = styled.div`
 			margin-left: 1em;
 			cursor: pointer;
 		}
-		a{
-			color: white;
-		}
+		
 `;
 
 const HamburgerContainer = styled.div`
