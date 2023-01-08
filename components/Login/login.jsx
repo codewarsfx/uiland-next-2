@@ -19,6 +19,8 @@ const Login = ({ toggleModal }) => {
 
 	return (
 		<LoginContainer onClick={(e) => e.stopPropagation()}>
+				
+			<img src="/assets/img/cancel.svg" onClick={()=>{toggleModal()}} alt="cancel button" /> 
 			<h1>
 				<span>UL</span>
 				Welcome to UILand
@@ -33,6 +35,7 @@ const Login = ({ toggleModal }) => {
 	);
 };
 
+
 const LoginContainer = styled.div`
 	background-color: #fff;
 	border-radius: 20px;
@@ -44,7 +47,16 @@ const LoginContainer = styled.div`
 	flex-direction: column;
 	height: 50%;
 	box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.4);
-
+	position:relative;
+	img{
+		width: 5rem;
+		transform-origin: 100% 0;
+		opacity: 1;
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		transform: scale(.28);
+	}
 	h1 {
 		font-weight: 700;
 		font-size: 24px;

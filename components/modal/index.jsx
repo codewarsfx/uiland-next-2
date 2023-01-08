@@ -3,6 +3,7 @@ import reactDOM from "react-dom";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useEffect } from "react";
+import Image from "next/image";
 
 const Modal = ({ children, toggleModal }) => {
 	const [isBrowser, setIsBrowser] = useState(false);
@@ -16,7 +17,8 @@ const Modal = ({ children, toggleModal }) => {
 
 
 	  window.onclick = function (event) {
-		if (event.target.className === "modal__ModalOverlay-sc-uncl45-1 inkMAH") {
+		console.log(event.target.className)
+		if (event.target.className === "modal__ModalOverlay-sc-uncl45-1 inkMAH" || event.target.className==="modal__ModalOverlay-sc-uncl45-1 jBcoaK") {
 			toggleModal()
 		}
 	  }
@@ -40,7 +42,9 @@ const Modal = ({ children, toggleModal }) => {
 					},
 				}}
 			>
+		
 				{children}
+				
 			</ModalOverlay>
 		</ModalContainer>,
 		document.getElementById("portal")
@@ -49,6 +53,7 @@ const Modal = ({ children, toggleModal }) => {
 
 	
 };
+
 
 const ModalContainer = styled.div`
 	position: fixed;
@@ -72,6 +77,7 @@ const ModalOverlay = styled(motion.div)`
 	align-items: center;
 	justify-content: center;
 	
+	//to target all elements under it
 	& > *{
 		z-index:999;
 	}

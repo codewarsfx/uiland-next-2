@@ -133,6 +133,8 @@ export default function handler(req, res) {
   // the response back to the client
    return response.pipe(res);
   }
+
+
 // export default function handler(req, res) {
 
 //   const download = require ('image-downloader');

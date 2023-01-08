@@ -271,7 +271,9 @@ export default function SinglePage({ screens }) {
 
   //function to download the individual images
   const downloadImage = async (e) => {
-
+	const download = await fetch("/api/screenshot");
+		const data = await download.json();
+ console.log(data)
     console.log(
       e.target.parentElement.parentElement.parentElement.parentElement
     );
