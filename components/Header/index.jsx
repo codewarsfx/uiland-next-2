@@ -12,8 +12,7 @@ import useModal from "../../hooks/useModal";
 import Login from "../Login/login";
 import Modal from "../modal";
 import { UserContext } from "../../context/authContext";
-// import { signout,auth } from "../../firebase";
-import { signout,auth } from "../../supabase";
+import { signout } from "../../supabase";
 import Link from "next/link";
 
 const Header = () => {
