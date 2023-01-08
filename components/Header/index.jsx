@@ -57,16 +57,16 @@ const Header = () => {
 					<HeaderInfo>
 					
 					<PhotoWrapper>
-					
-						<img src={user?.user_metadata.avatar_url} alt="profile picture"  referrerPolicy="no-referrer"/>
+					<Link href='/profile'>
+					<img src={user?.user_metadata.avatar_url} alt="profile picture"  referrerPolicy="no-referrer"/>
+					</Link>
+						
 					</PhotoWrapper>
 					
 					<Link href='/collections'>
 						<a >Collections</a>
 					</Link>
-					<Link href='/profile'>
-						<a >Profile</a>
-					</Link>
+					
 					<span onClick={signout}>LOG OUT</span>
 					</HeaderInfo>
 					

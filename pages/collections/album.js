@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Link from 'next/link'
 import { UserContext } from "../../context/authContext";
 import {getBookmarks} from "../../supabase"
-import BookmarkScreensIncategory from '../../components/BookmarkScreensIncategory';
+import BookmarkScreensInCategory from '../../components/BookmarkScreensInCategory';
 
 export default function AlbumCollections() {
   const user = useContext(UserContext);
