@@ -190,6 +190,16 @@ export async function getAllSingleBookmarkNames() {
   return uniqueResult;
 }
 
+//delete account
+export async function deleteAccount(user){
+    const { data, error } = await supabase
+  .from('profile')
+  .delete()
+  .eq('id', user.id)
+  console.log(data)
+  return data
+}
+
 //supabase signout
 export async function signout() {
   await supabase.auth.signOut();

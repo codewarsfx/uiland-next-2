@@ -67,7 +67,11 @@ const Header = () => {
 					<PhotoWrapper>
 					
 						<RelativeWrapper onClick={showPopup}>
-							<img src={user?.user_metadata.avatar_url} alt="profile picture"  referrerPolicy="no-referrer"/>
+						<img
+                src={user?.user_metadata.avatar_url}
+                referrerPolicy="no-referrer"
+                alt={`Avavtar of ${user?.user_metadata.full_name}`}
+              />
 							{popup && <Popup>
 								<ProfileText>
 									<Link href="/profile">
@@ -146,6 +150,7 @@ img{
 	border:2px solid white;
 	border-radius: 100%;
 	height: 32px;
+	width: 32px;
 }
 `
 const HeaderInfo=styled.div`

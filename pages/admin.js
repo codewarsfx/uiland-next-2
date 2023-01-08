@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PaystackPayment from "../components/PaystackPayment";
 
-import { updateBookMark } from "../firebase";
+// import { updateBookMark } from "../firebase";
 export default function Admin() {
   const [inputElement, setInputElement] = useState("");
   const [inputScreen, setInputScreen] = useState("");
@@ -62,13 +62,13 @@ export default function Admin() {
   function submitForm(e) {
     e.preventDefault();
     console.log(inputElement, inputScreen, inputUrl, bookmarkName, inputOrder);
-    updateBookMark(
-      inputElement,
-      inputScreen,
-      inputUrl,
-      bookmarkName,
-      inputOrder
-    );
+    // updateBookMark(
+    //   inputElement,
+    //   inputScreen,
+    //   inputUrl,
+    //   bookmarkName,
+    //   inputOrder
+    // );
   }
   function handlePaymentName(e) {
     setName(e.target.value);
