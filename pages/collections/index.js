@@ -3,17 +3,26 @@ import styled from "styled-components";
 import Link from 'next/link'
 import { UserContext } from "../../context/authContext";
 import {getAllSingleBookmarkNames} from "../../supabase"
+import { mobileCheck } from '../../utils/isMobile';
+ 
 
 export default function Collection() {
   const user = useContext(UserContext);
   const [bookmark,setBookmark]=useState([])
+
   useEffect(() => {
+	
+	
+	
+	const isMobile= mobileCheck();
+  console.log(isMobile)
     const allBookmarkNames = async () => {
       const data = await getAllSingleBookmarkNames();
       setBookmark(data);
     };
     allBookmarkNames();
   }, []);
+
   return (
     <>
        
@@ -23,6 +32,7 @@ export default function Collection() {
   </TitleBackground>
   
   <Content>
+  <Link href='/collections/album'>
 	<AlbumTag>
 		<ImageHolder>
 					<Link href='/collections/album'>
@@ -31,18 +41,20 @@ export default function Collection() {
 		</ImageHolder>
 
 	</AlbumTag>
-	 
+	 </Link>
 
-       {bookmark.map((name)=>{
+       {bookmark && bookmark.map((name)=>{
 	return(
 		<>
+		
 	 <IndividualTag>
-	 <ImageHolder>
-			<img src="/assets/img/image-collection.jpg"/>
-		</ImageHolder>
+	 <ImagesHolder>
 		<Link href={`/collections/individual/${name}`}>
 				{name}
-			</Link>
+			</Link>		
+			{/* <img src="/assets/img/image-collection.jpg"/> */}
+		</ImagesHolder>
+	
 	 </IndividualTag>
 		</>
 	)
@@ -59,12 +71,21 @@ export default function Collection() {
    
 };
 
-const Wrapper = styled.div`
-	background:var(--primary-color)
-`;
+// function getRandomNumber(maxNum){
+// 	return Math.floor(Math.random() * maxNum);
+//   };
+//  function getRandomColor  ()  {
+// 	let h = getRandomNumber(360);
+// 	return h;
+//   };
+  
+//   let firstColor=getRandomColor();
+//   let secondColor=getRandomColor();
+
 const ImageHolder=styled.div`
   height: 290px;
-  background: linear-gradient(calc(var(--angle)*1deg),var(--col1),var(--col2));
+
+  background: linear-gradient(calc(var(--angle)*1deg),hsl(14deg 73% 62%),hsl(44deg 73% 62%));
   display:flex;
   align-items:flex-end;
   justify-content:end;
@@ -75,16 +96,36 @@ const ImageHolder=styled.div`
 //     object-fit: cover;
   
 // }
+
+`
+
+
+
+const ImagesHolder=styled(ImageHolder)`
+
+
+  background: linear-gradient(calc(var(--angle)*1deg),hsl(14deg 73% 62%),hsl(344deg 73% 62%));
+
+
 `
 const AlbumTag=styled.div`
 
-max-width:20%;
+max-width:100%;
 border-radius:7%;
-flex:0 0 20%;
+flex:0 0 100%;
 display:flex;
 overflow:hidden;
 flex-direction:column;
 position:relative;
+
+@media (min-width: 540px) {
+	max-width:49%;
+flex:0 0 49%;
+}
+@media (min-width: 768px) {
+	max-width:20%;
+flex:0 0 20%;
+}
 a{
 	font-size:20px;
 	font-weight:600;
@@ -92,26 +133,35 @@ a{
 	z-index:99999999;
 	padding-left:12px;
 }
-&::before{
-	position:absolute;
-	display:block;
-	content:"";
-	width:100%;
-	height:100%;
-	z-index:99;
-	background-image: linear-gradient(to bottom,#1e1f2100,#0e0f0fcc);
-}
+// &::before{
+// 	position:absolute;
+// 	display:block;
+// 	content:"";
+// 	width:100%;
+// 	height:100%;
+// 	z-index:99;
+// 	background-image: linear-gradient(to bottom,#1e1f2100,#0e0f0fcc);
+// }
 
 `
 const IndividualTag=styled.div`
 
-max-width:20%;
+max-width:100%;
 border-radius:7%;
-flex:0 0 20%;
+flex:0 0 100%;
 overflow:hidden;
 display:flex;
 position:relative;
 flex-direction:column;
+
+@media (min-width: 540px) {
+	max-width:49%;
+flex:0 0 49%;
+}
+@media (min-width: 768px) {
+	max-width:20%;
+flex:0 0 20%;
+}
 a{
 	font-size:20px;
 	font-weight:600;
@@ -119,21 +169,22 @@ a{
 	z-index:99999999;
 	padding-left:12px;
 }
-&::before{
-	position:absolute;
-	display:block;
-	content:"";
-	width:100%;
-	height:100%;
-	z-index:99;
-	background-image: linear-gradient(to bottom,#1e1f2100,#0e0f0fcc);
-}
+// &::before{
+// 	position:absolute;
+// 	display:block;
+// 	content:"";
+// 	width:100%;
+// 	height:100%;
+// 	z-index:99;
+// 	background-image: linear-gradient(to bottom,#1e1f2100,#0e0f0fcc);
+// }
 `
 const Content=styled.div`
 display:flex;
 align-items:center;
 width:100%;
-gap:30px;
+justify-content:flex-start;
+gap:10px;
 flex-wrap:wrap;
 `
 const TitleBackground=styled.div`

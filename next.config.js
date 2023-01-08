@@ -6,6 +6,7 @@ const nextConfig = {
     domains: ['firebasestorage.googleapis.com','lh3.googleusercontent.com','epcjufipobybxdmcqjgb.supabase.co'],
    
   },
+  
 }
 
 module.exports = nextConfig

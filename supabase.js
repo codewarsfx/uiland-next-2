@@ -184,7 +184,8 @@ export async function getAllSingleBookmarkNames() {
     .select("bookmark_name");
   // .eq('user_id', user.id)
   console.log(data);
-  const result = data.map((object) => object.bookmark_name);
+  //gets unique names in the db
+  const result = data?.map((object) => object.bookmark_name);
   const uniqueResult = [...new Set(result)];
   console.log(uniqueResult);
   return uniqueResult;
