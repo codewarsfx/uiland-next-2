@@ -1,6 +1,5 @@
 import React, { useState,useContext } from "react";
 import styled from "styled-components";
-import { getItemsNameByQuery } from "../../firebase";
 import { Input } from "../uiElements";
 import { ScreensContext } from "../../context/screensContex";
 

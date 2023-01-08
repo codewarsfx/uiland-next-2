@@ -1,6 +1,6 @@
 import React from "react";
 import fs from "fs";
-import { getScreensData } from "../firebase";
+import { getAllScreens } from "../supabase";
 const Sitemap = () => {};
 
 export const getServerSideProps = async ({ res }) => {
@@ -28,7 +28,7 @@ export const getServerSideProps = async ({ res }) => {
       return `${baseUrl}/${staticPagePath}`;
     });
 
-  const documents = await getScreensData();
+  const documents = await getAllScreens();
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

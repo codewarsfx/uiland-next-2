@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 
-import { getItemsCategoryByQuery, getScreensData,getItemsNameByQuery } from "../firebase";
 
 export const ScreensContext = createContext(null);
 
