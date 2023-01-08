@@ -41,6 +41,7 @@ const FormWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 15px;
 `;
 const FormBackground = styled.div`
   padding: 12px;
