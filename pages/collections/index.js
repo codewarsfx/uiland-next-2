@@ -25,11 +25,11 @@ export default function Collection() {
   <Content>
 	<AlbumTag>
 		<ImageHolder>
-			<img src="/assets/img/image-collections2.jpg"/>
-		</ImageHolder>
-		<Link href='/collections/album'>
+					<Link href='/collections/album'>
 						<a >Albums</a>
 					</Link>
+		</ImageHolder>
+
 	</AlbumTag>
 	 
 
@@ -63,17 +63,24 @@ const Wrapper = styled.div`
 	background:var(--primary-color)
 `;
 const ImageHolder=styled.div`
-
-img{
-	width: 100%;
-    object-fit: cover;
-    height: 400px;
-}
+  height: 290px;
+  background: linear-gradient(calc(var(--angle)*1deg),var(--col1),var(--col2));
+  display:flex;
+  align-items:flex-end;
+  justify-content:end;
+  width: 100%;
+    padding: 12px;
+// img{
+// 	width: 100%;
+//     object-fit: cover;
+  
+// }
 `
 const AlbumTag=styled.div`
 
-max-width:50%;
-flex:0 0 50%;
+max-width:20%;
+border-radius:7%;
+flex:0 0 20%;
 display:flex;
 overflow:hidden;
 flex-direction:column;
@@ -98,8 +105,9 @@ a{
 `
 const IndividualTag=styled.div`
 
-max-width:50%;
-flex:0 0 50%;
+max-width:20%;
+border-radius:7%;
+flex:0 0 20%;
 overflow:hidden;
 display:flex;
 position:relative;
@@ -124,7 +132,7 @@ a{
 const Content=styled.div`
 display:flex;
 align-items:center;
-justify-content:center;
+width:100%;
 gap:30px;
 flex-wrap:wrap;
 `

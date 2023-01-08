@@ -38,9 +38,9 @@ getAlbums()
      </>
 
 	  </SingleHeader>
-      {screens?
-      <BookmarkScreensInCategory screens={screens} />:<h1>Empty</h1>
-      }
+      
+      <BookmarkScreensInCategory screens={screens} />
+   
       </>
   );
    
