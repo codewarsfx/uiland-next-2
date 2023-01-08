@@ -1,15 +1,19 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import Link from 'next/link'
 import { BrandDescription, BrandLogo, Pill, Screenshot } from "../uiElements";
 import { pillsTypes } from "../uiElements/pills";
+import EmptyState from "../EmptyState";
 
 const ScreensInCategory = ({screens}) => {
+	
+	
 	return (<>
 		<CategorySectionContainer>
 			<CategorySectionWrapper>
-				{screens.map(({ startScreens, name, category, logo, id }) => (
-					
+				{/* checks for empty array */}
+				{JSON.stringify(screens)!==JSON.stringify([]) ? screens.map(({ startScreens, name, category, logo, id }) => (
+				
 					<ScreenShotContainer key={id}>
 							<Link  href={`/screens/${id}`}>
 						<div><ScreenshotContainerTop>
@@ -23,7 +27,7 @@ const ScreensInCategory = ({screens}) => {
 							))}
 						</ScreenshotContainerBottom></div>
 					</Link></ScreenShotContainer>
-				))}
+				)):<EmptyState/>}
 			</CategorySectionWrapper>
 		</CategorySectionContainer></>
 	);
@@ -45,6 +49,8 @@ const CategorySectionWrapper = styled.div`
 	margin: auto;
 	gap: 2em;
 	width: 90%;
+	align-items: center;
+    justify-content: center;
 
 	:not(:first-child) {
 		margin-top: 4em;

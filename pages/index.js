@@ -38,7 +38,8 @@ const Home = ({ screens }) => {
       <ToastContainer autoClose={2000} position="top-center" />
       {!user && <Hero />}
       <Tab />
-      <ScreensTab screens={result} />
+	<ScreensTab screens={result} />
+      
     </>
   );
 };

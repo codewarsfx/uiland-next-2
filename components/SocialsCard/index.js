@@ -108,7 +108,8 @@ align-items:center;
 `
 
 const CopyText=styled.div`
-
+overflow: hidden;
+text-overflow: ellipsis;
 
 `
 

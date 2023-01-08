@@ -373,7 +373,10 @@ export default function SinglePage({ screens }) {
         <Modal toggleModal={newtoggleModal}>
           <ModalBox>
             <form onSubmit={submit}>
-              <label htmlFor="items">Choose a Bookmark:</label>
+              <div style={{display:"flex",alignItems:"center",justifyContent:"center",marginBottom:"12px"}}>
+                 <b style={{fontSize:"16px"}}>Create a Bookmark</b>
+              </div>
+             
               <div className="select">
 
                 <select value={bookmarkk} onChange={handleChange}>
@@ -386,16 +389,15 @@ export default function SinglePage({ screens }) {
                   })}
                 </select>
               </div>
-
-              <input
-                type="text"
-                name="contentForm"
-                placeholder="input bookmark name"
+<Input  type="text" name="contentForm"
+                placeholder="Input Name"
+                maxlength="50"
+                autocomplete="off"
                 value={input}
-                onChange={handleChange}
-              />
+                onChange={handleChange} />
+            
               <button
-                className={`album-card__buttoncopy ${disabled && `bg-grey`}`}
+                className={`album-card__buttoncopy`}
                 type="submit"
                 disabled={disabled}
               >
@@ -499,8 +501,18 @@ export default function SinglePage({ screens }) {
     </>
   );
 }
-
+const Input = styled.input.attrs()`
+  color: black;
+  font-size: 1em;
+  border: 1px solid grey;
+  border-radius: 6px;
+  margin-top:14px;
+width:100%;
+  padding: 12px;
+`;
 const ModalBox = styled.div`
+width: 80%;
+    
   background-color: #fff;
   max-width: 37.5rem;
   padding: 1.6rem;
