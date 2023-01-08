@@ -90,6 +90,7 @@ cursor:pointer;
 `
 const PhotoWrapper=styled.div`
 overflow:hidden;
+cursor:pointer;
 img{
 	border-radius: 100%;
 	height: 32px;
