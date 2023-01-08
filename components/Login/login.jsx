@@ -23,7 +23,7 @@ const Login = ({ toggleModal }) => {
 			<img src="/assets/img/cancel.svg" onClick={()=>{toggleModal()}} alt="cancel button" /> 
 			<h1>
 				<span>UL</span>
-				Welcome to UILand
+				Welcome to UiLand
 			</h1>
 			<p>Dont have an account?</p>
 			<div onClick={() => handleSignupWithGoogle()}>
