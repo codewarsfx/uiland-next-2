@@ -1,9 +1,8 @@
 import React, { useContext, useEffect} from 'react';
 import styled from "styled-components";
-import useRouter from 'next/router';
+import {useRouter} from 'next/router';
 import { UserContext } from "../context/authContext";
 import {deleteAccount} from "../firebase"
-import { supabase } from '../supabase';
 export default function Profile() {
   const router = useRouter()
   const user = useContext(UserContext);
