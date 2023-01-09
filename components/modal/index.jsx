@@ -15,13 +15,16 @@ const Modal = ({ children, toggleModal }) => {
 	  setIsBrowser(true);
     }, []);
 
-
-	  window.onclick = function (event) {
+useEffect(()=>{
+window.onclick = function (event) {
 		console.log(event.target.className)
-		if (event.target.className === "modal__ModalOverlay-sc-uncl45-1 inkMAH" || event.target.className==="modal__ModalOverlay-sc-uncl45-1 jBcoaK") {
+		if (event.target.className.includes("ModalOverlay")) {
 			toggleModal()
 		}
 	  }
+
+},[])
+	  
 
 	  
 

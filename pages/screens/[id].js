@@ -29,12 +29,14 @@ import useModal from "../../hooks/useModal";
 import { UserContext } from "../../context/authContext";
 
 // Components
-import { Toast } from "../../components/uiElements";
+import { BottomSheet, Toast } from "../../components/uiElements";
 import ImageCardInfo from "../../components/ImageCardInfo";
 import Modal from "../../components/modal";
 import SocialsCard from "../../components/SocialsCard";
 import Select from "../../components/uiElements/select";
 import Login from "../../components/Login/login";
+import ThreeDots from "../../components/ThreeDots";
+import { mobileCheck } from "../../utils/isMobile";
 export default function SinglePage({ screens }) {
   const {
     modalSaveImage,
@@ -43,7 +45,15 @@ export default function SinglePage({ screens }) {
     newtoggleModal,
     loginToggleModal,
     isModalLogin,
+    toggleBottomSheet,
+    modalSheet
   } = useModal();
+
+  // state for the bottomsheet
+  const [openBottomSheet, setOpenBottomSheet] = useState(false);
+
+  //state for the image url
+  const [imageUrl, setImageUrl] = useState("");
 
   const [displayBasic, setDisplayBasic] = useState(false);
   const [imageContent, setImageContent] = useState({});
@@ -65,10 +75,12 @@ export default function SinglePage({ screens }) {
   //state to hold the input state
   const [input, setInput] = useState("");
 
+  //to track if user is on mobile
+  const [mobile, setMobile] = useState();
   //usecontext
   const user = useContext(UserContext);
 
-//state to hold the names of bookmarks created
+  //state to hold the names of bookmarks created
   const [selectBookmark, setSelectBookmark] = useState([""]);
 
   //state to disable button
@@ -79,7 +91,7 @@ export default function SinglePage({ screens }) {
   };
   const router = useRouter();
 
-  //filter 
+  //filter
   const searchFilter = (array, data) => {
     if (data === "") return array;
     return array.filter((el) => el.elementCategory.toLowerCase() === data);
@@ -132,6 +144,11 @@ export default function SinglePage({ screens }) {
   //   const uniqueResult=([...new Set(selectBookmark)])
   //   setSelectBookmark(uniqueResult)
   //     },[selectBookmark])
+
+  useEffect(() => {
+    const isMobile = mobileCheck();
+    setMobile(isMobile);
+  }, []);
 
   //checker to disable the submit button if the user has not created a new bookmark name or selected a previous bookname
   useEffect(() => {
@@ -268,22 +285,16 @@ export default function SinglePage({ screens }) {
     }
   }
 
-
   //function to download the individual images
-  const downloadImage = async (e) => {
-	const download = await fetch("/api/screenshot");
-		const data = await download.json();
- console.log(data)
-    console.log(
-      e.target.parentElement.parentElement.parentElement.parentElement
-    );
+  async function downloadImage () {
+    // const download = await fetch("/api/screenshot");
+    // const data = await download.json();
+    // console.log(data);
+
     setToastPendingText("Downloading...");
 
     //fetches the image
-    const image = await fetch(
-      e.target.parentElement.parentElement.parentElement.parentElement
-        .children[3].children[1].currentSrc
-    );
+    const image = await fetch(imageUrl);
     console.log(image);
 
     //converts it to a blob
@@ -303,18 +314,17 @@ export default function SinglePage({ screens }) {
     setProgress(3);
     toastNotification(1);
   };
- 
 
-  async function copyImage(e) {
+  async function copyImage() {
     //contains a url in this format
     // "http://localhost:3000/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fuiland.appspot.com%2Fo%2FCowrywise%252FCowrywise-screens%252FScreenshot_2022-10-13-14-46-21-882_com.cowrywise.android-min.jpg%3Falt%3Dmedia%26token%3D3efdba80-8ec5-463a-9466-317f9247a6c3&w=1080&q=75"
     //which contains the prefetched images
     // This prevents cors error while getting the images
+    console.log("active")
     setProgress(2);
     setToastPendingText("Saving");
-    const response = await fetch(
-      e.target.parentElement.parentElement.children[3].children[1].currentSrc
-    );
+    const response = await fetch(imageUrl);
+    console.log(response)
     const blob = await response.blob();
 
     navigator.clipboard.write([
@@ -367,18 +377,72 @@ export default function SinglePage({ screens }) {
       toastNotification(1);
     }
   }
+
+  useEffect(() => {
+    window.onresize = function () {
+      const mobile = mobileCheck();
+      setMobile(mobile);
+    };
+  }, []);
+
+  function openBottomSheetModal(e) {
+    console.log(e);
+    setImageUrl(
+      e.target.parentElement.parentElement.parentElement.children[0].children[0].children[1].currentSrc
+    );
+    console.log(
+      e.target.parentElement.parentElement.parentElement.children[0].children[0].children[1].currentSrc
+    );
+    if(mobile){
+      setImageUrl(
+        e.target.parentElement.parentElement.parentElement.children[0].children[0].children[1].currentSrc
+      );
+        setOpenBottomSheet(true);
+    }else{
+      setImageUrl(
+        e.target.parentElement.parentElement.parentElement.children[0].children[0].children[1].currentSrc
+      );
+      toggleBottomSheet();
+      
+    }
+  
+  }
+
+  function closeBottomSheetModal() {
+    setOpenBottomSheet(false);
+  }
+
   return (
     <>
+      {modalSheet && (
+        <Modal toggleModal={toggleBottomSheet}>
+          <ModalBox>
+           <BottomsheetModal>
+                  <div onClick={downloadImage}>Download Image</div>
+<div onClick={copyImage}>Copy Image</div>
+           </BottomsheetModal>
+      
+            
+            
+          </ModalBox>
+        </Modal>
+      )}
       {modalSaveImage && (
         <Modal toggleModal={newtoggleModal}>
           <ModalBox>
             <form onSubmit={submit}>
-              <div style={{display:"flex",alignItems:"center",justifyContent:"center",marginBottom:"12px"}}>
-                 <b style={{fontSize:"16px"}}>Create a Bookmark</b>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: "12px",
+                }}
+              >
+                <b style={{ fontSize: "16px" }}>Create a Bookmark</b>
               </div>
-             
-              <div className="select">
 
+              <div className="select">
                 <select value={bookmarkk} onChange={handleChange}>
                   {selectBookmark.map((item, i) => {
                     return (
@@ -389,13 +453,16 @@ export default function SinglePage({ screens }) {
                   })}
                 </select>
               </div>
-<Input  type="text" name="contentForm"
+              <Input
+                type="text"
+                name="contentForm"
                 placeholder="Input Name"
                 maxlength="50"
                 autocomplete="off"
                 value={input}
-                onChange={handleChange} />
-            
+                onChange={handleChange}
+              />
+
               <button
                 className={`album-card__buttoncopy`}
                 type="submit"
@@ -419,6 +486,14 @@ export default function SinglePage({ screens }) {
           <Login toggleModal={loginToggleModal} />
         </Modal>
       )}
+    
+        <BottomSheet
+        openBottomSheet={openBottomSheet}
+          closeBottomSheetModal={closeBottomSheetModal}
+          downloadImage={downloadImage}
+          copyImage={copyImage}
+        />
+    
       <SingleHeader>
         <ImageCardInfo
           copy={copy}
@@ -439,58 +514,39 @@ export default function SinglePage({ screens }) {
       <ElementsInCategoryContainer>
         {/* todo:populate with filtered data */}
         {filtered?.map((data) => (
-          <ScreenshotContainer key={data.id}>
-            <AbsoluteBox className="target" onClick={(e) => downloadImage(e)}>
-              <Title className="target" title="download to device">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  enableBackground="new 0 0 24 24"
-                  viewBox="0 0 24 24"
-                  role="img"
-                  className="icon "
+          <ScreenShotContent key={data.id}>
+            <ScreenshotContainer onClick={copyImage}>
+              <Image
+                src={data.url}
+                alt="imageSelected"
+                width={1080}
+                height={2240}
+              />
+            </ScreenshotContainer>
+
+            <SecondRow>
+              {getId.includes(data.id) ? (
+                <DownloadWrapper
+                  className="target"
+                  onClick={() => deleteIndividualBookmark(data)}
                 >
-                  <path d="m22 5h-11l-2-3h-7c-1.104 0-2 .896-2 2v16c0 1.104.896 2 2 2h20c1.104 0 2-.896 2-2v-13c0-1.104-.896-2-2-2zm-6 10h-3v3c0 .55-.45 1-1 1s-1-.45-1-1v-3h-3c-.55 0-1-.45-1-1s.45-1 1-1h3v-3c0-.55.45-1 1-1s1 .45 1 1v3h3c.55 0 1 .45 1 1s-.45 1-1 1z"></path>
-                </svg>
-              </Title>
-            </AbsoluteBox>
-
-            {/* Todo: break into components */}
-
-            {getId.includes(data.id) ? (
-              <DownloadWrapper
-                className="target"
-                onClick={() => deleteIndividualBookmark(data)}
-              >
-                <Title className="target" title="delete from collection">
-                  <img src="/assets/img/heart-filled.png" alt="delete icon" />
-                </Title>
-              </DownloadWrapper>
-            ) : (
-              <DownloadWrapper
-                className="target"
-                onClick={() => bookmark(data)}
-              >
-                <Title className="target" title="save to collection">
-                  <img src="/assets/img/heart-empty.png" alt="like icon" />
-                </Title>
-              </DownloadWrapper>
-            )}
-            <CopyWrapper>
-              <Title
-                className="target"
-                title="copy to clipboard"
-                onClick={(e) => copyImage(e)}
-              >
-                <img src="/assets/img/copy-icon.svg" alt="copy icon" />
-              </Title>
-            </CopyWrapper>
-            <Image
-              src={data.url}
-              alt="imageSelected"
-              width={1080}
-              height={2240}
-            />
-          </ScreenshotContainer>
+                  <Title className="target" title="delete from collection">
+                    <img src="/assets/img/heart-filled.png" alt="delete icon" />
+                  </Title>
+                </DownloadWrapper>
+              ) : (
+                <DownloadWrapper
+                  className="target"
+                  onClick={() => bookmark(data)}
+                >
+                  <Title className="target" title="save to collection">
+                    <img src="/assets/img/heart-empty.png" alt="like icon" />
+                  </Title>
+                </DownloadWrapper>
+              )}
+              <ThreeDots openBottomSheet={openBottomSheetModal} />
+            </SecondRow>
+          </ScreenShotContent>
         ))}
       </ElementsInCategoryContainer>
       <Toast
@@ -498,21 +554,43 @@ export default function SinglePage({ screens }) {
         pendingText={toastPendingText}
         successText={toastSuccessText}
       />
+
+     
     </>
   );
 }
+const BottomsheetModal =styled.div`
+display:flex;
+flex-direction:column;
+gap:8px;
+align-items:center;
+justify-content:center;
+color:black;
+font-size:20px;
+`
+const SecondRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
 const Input = styled.input.attrs()`
   color: black;
   font-size: 1em;
   border: 1px solid grey;
   border-radius: 6px;
-  margin-top:14px;
-width:100%;
+  margin-top: 14px;
+  width: 100%;
   padding: 12px;
 `;
+const ScreenShotContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
 const ModalBox = styled.div`
-width: 80%;
-    
+  width: 80%;
+
   background-color: #fff;
   max-width: 37.5rem;
   padding: 1.6rem;
@@ -520,17 +598,9 @@ width: 80%;
 `;
 
 const DownloadWrapper = styled.div`
-  position: absolute;
-  block: "";
-  z-index: 99;
   display: flex;
   flex-direction: column;
   padding: 7px 16px;
-  align-items: flex-start;
-  top: 10px;
-  right: 94px;
-  border-radius: 2em;
-  visibility: hidden;
 `;
 const CopyWrapper = styled.div`
   position: absolute;
@@ -577,27 +647,20 @@ const ScreenshotContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  z-index: 99;
   font-size: 12px;
   font-weight: 300;
   margin: 0;
   padding: 5px;
-  position: absolute;
-  block: "";
   border-radius: 5px;
   background: rgba(0, 0, 0, 0.17);
-  z-index: 99;
-  top: 0;
-  right: 0;
-  visibility: hidden;
   svg {
     width: 23px;
     height: 23px;
     vertical-align: middle;
   }
   img {
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 100%;
     transition: all 0.5s ease-out;
   }
 `;
@@ -621,7 +684,7 @@ const ElementsInCategoryContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   margin: 1.5em auto;
-  gap: 10px;
+  gap: 20px;
   width: 90%;
   @media (min-width: 540px) {
     grid-template-columns: repeat(2, 1fr);
