@@ -1,0 +1,13 @@
+//robots.txt
+
+# Block all crawlers for /profile
+User-agent: *
+Disallow: /profile
+Disallow: /collections/
+Disallow: /admin
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+Sitemap: https://www.uiland.design/sitemap.xml
