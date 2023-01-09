@@ -23,7 +23,7 @@ window.onclick = function (event) {
 		}
 	  }
 
-},[])
+},[toggleModal])
 	  
 
 	  

@@ -52,6 +52,7 @@ function MyApp({ Component, pageProps }) {
             name="description"
             content="Discover hundreds of Mobile apps designs for UI &amp; UX research."
           />
+          {/* <meta name="description" content="Screenshots, interaction patterns, inspiration &amp; UI patterns from Airbnb."> */}
           <link rel="shortcut icon" href="/favicon.ico"></link>
           <meta
             property="og:title"

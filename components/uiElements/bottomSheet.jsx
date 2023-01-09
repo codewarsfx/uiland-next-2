@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 
 const BottomSheet = ({closeBottomSheetModal,downloadImage,copyImage,openBottomSheet}) => {
+
   useEffect(()=>{
     window.onclick = function (event) {
 
@@ -17,10 +18,10 @@ const BottomSheet = ({closeBottomSheetModal,downloadImage,copyImage,openBottomSh
 
             <BottomSheetWrapper>
 		<BottomSheetContainer>
-		<DownloadContent onclick={downloadImage}>
+		<DownloadContent onClick={downloadImage}>
             Download Image
         </DownloadContent>
-        <CopyContent onclick={copyImage}>
+        <CopyContent onClick={copyImage}>
             Copy image
         </CopyContent>
 		</BottomSheetContainer>

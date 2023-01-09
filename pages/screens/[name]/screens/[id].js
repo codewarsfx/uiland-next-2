@@ -46,7 +46,7 @@ export default function SinglePage({ screens }) {
     loginToggleModal,
     isModalLogin,
     toggleBottomSheet,
-    modalSheet
+    modalSheet,
   } = useModal();
 
   // state for the bottomsheet
@@ -284,7 +284,7 @@ export default function SinglePage({ screens }) {
   }
 
   //function to download the individual images
-  async function downloadImage () {
+  async function downloadImage() {
     // const download = await fetch("/api/screenshot");
     // const data = await download.json();
     // console.log(data);
@@ -311,18 +311,18 @@ export default function SinglePage({ screens }) {
     setToastSuccessText("Downloaded 🎉");
     setProgress(3);
     toastNotification(1);
-  };
+  }
 
   async function copyImage() {
     //contains a url in this format
     // "http://localhost:3000/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fuiland.appspot.com%2Fo%2FCowrywise%252FCowrywise-screens%252FScreenshot_2022-10-13-14-46-21-882_com.cowrywise.android-min.jpg%3Falt%3Dmedia%26token%3D3efdba80-8ec5-463a-9466-317f9247a6c3&w=1080&q=75"
     //which contains the prefetched images
     // This prevents cors error while getting the images
-    console.log("active")
+    console.log("active");
     setProgress(2);
     setToastPendingText("Saving");
     const response = await fetch(imageUrl);
-    console.log(response)
+    console.log(response);
     const blob = await response.blob();
 
     navigator.clipboard.write([
@@ -384,26 +384,19 @@ export default function SinglePage({ screens }) {
   }, []);
 
   function openBottomSheetModal(e) {
-    console.log(e);
     setImageUrl(
-      e.target.parentElement.parentElement.parentElement.children[0].children[0].children[1].currentSrc
+      e.target.parentElement.parentElement.parentElement.children[0].children[0]
+        .children[1].currentSrc
     );
     console.log(
-      e.target.parentElement.parentElement.parentElement.children[0].children[0].children[1].currentSrc
+      e.target.parentElement.parentElement.parentElement.children[0].children[0]
+        .children[1].currentSrc
     );
-    if(mobile){
-      setImageUrl(
-        e.target.parentElement.parentElement.parentElement.children[0].children[0].children[1].currentSrc
-      );
-        setOpenBottomSheet(true);
-    }else{
-      setImageUrl(
-        e.target.parentElement.parentElement.parentElement.children[0].children[0].children[1].currentSrc
-      );
+    if (mobile) {
+      setOpenBottomSheet(true);
+    } else {
       toggleBottomSheet();
-      
     }
-  
   }
 
   function closeBottomSheetModal() {
@@ -415,35 +408,36 @@ export default function SinglePage({ screens }) {
       {modalSheet && (
         <Modal toggleModal={toggleBottomSheet}>
           <ModalBox>
-           <BottomsheetModal>
-                  <div onClick={downloadImage}>Download Image</div>
-<div onClick={copyImage}>Copy Image</div>
-           </BottomsheetModal>
-      
-            
-            
+            <CancelButton>
+              <img
+                src="/assets/img/cancel.svg"
+                onClick={() => {
+                  toggleBottomSheet();
+                }}
+                alt="cancel button"
+              />
+            </CancelButton>
+            <BottomsheetModal>
+              <div onClick={downloadImage}>Download Image</div>
+              <div onClick={copyImage}>Copy Image</div>
+            </BottomsheetModal>
           </ModalBox>
         </Modal>
       )}
       {modalSaveImage && (
         <Modal toggleModal={newtoggleModal}>
-
-          <ModalBox>
-          
-		
-            <form onSubmit={submit}>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginBottom: "12px",
-                  position:"relative",
+          <SelectModalBox>
+            <CancelButton>
+              <img
+                src="/assets/img/cancel.svg"
+                onClick={() => {
+                  newtoggleModal();
                 }}
-              >
-                <img src="/assets/img/cancel.svg" onClick={()=>{newtoggleModal()}} alt="cancel button" /> 
-                <b style={{ fontSize: "16px" }}>Create a Bookmark</b>
-              </div>
+                alt="cancel button"
+              />
+            </CancelButton>
+            <form onSubmit={submit}>
+              <b style={{ fontSize: "16px" }}>Create a Bookmark</b>
 
               <div className="select">
                 <select value={bookmarkk} onChange={handleChange}>
@@ -474,13 +468,12 @@ export default function SinglePage({ screens }) {
                 Submit
               </button>
             </form>
-          </ModalBox>
+          </SelectModalBox>
         </Modal>
       )}
       {isModalopen && (
         <Modal toggleModal={toggleModal}>
           <ModalBox>
-       
             <SocialsCard id={router.query.id} copy={copy} />
           </ModalBox>
         </Modal>
@@ -490,14 +483,14 @@ export default function SinglePage({ screens }) {
           <Login toggleModal={loginToggleModal} />
         </Modal>
       )}
-    
-        <BottomSheet
+
+      <BottomSheet
         openBottomSheet={openBottomSheet}
-          closeBottomSheetModal={closeBottomSheetModal}
-          downloadImage={downloadImage}
-          copyImage={copyImage}
-        />
-    
+        closeBottomSheetModal={closeBottomSheetModal}
+        downloadImage={downloadImage}
+        copyImage={copyImage}
+      />
+
       <SingleHeader>
         <ImageCardInfo
           copy={copy}
@@ -558,20 +551,36 @@ export default function SinglePage({ screens }) {
         pendingText={toastPendingText}
         successText={toastSuccessText}
       />
-
-     
     </>
   );
 }
-const BottomsheetModal =styled.div`
-display:flex;
-flex-direction:column;
-gap:8px;
-align-items:center;
-justify-content:center;
-color:black;
-font-size:20px;
-`
+const CancelButton = styled.div`
+
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  marginBottom: "12px",
+  position:"relative",
+
+img{
+  width: 5rem;
+  transform-origin: 100% 0;
+  opacity: 1;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  transform: scale(.28);
+}
+`;
+const BottomsheetModal = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-size: 20px;
+`;
 const SecondRow = styled.div`
   display: flex;
   flex-direction: row;
@@ -592,22 +601,40 @@ const ScreenShotContent = styled.div`
   flex-direction: column;
   gap: 8px;
 `;
-const ModalBox = styled.div`
+const SelectModalBox = styled.div`
   width: 80%;
 
   background-color: #fff;
   max-width: 37.5rem;
   padding: 1.6rem;
   border-radius: 0.5rem;
-  // img{
-	// 	width: 5rem;
-	// 	transform-origin: 100% 0;
-	// 	opacity: 1;
-	// 	position: absolute;
-	// 	top: 0;
-	// 	right: 0;
-	// 	transform: scale(.28);
-	// }
+  position: relative;
+  img {
+    width: 5rem;
+    transform-origin: 100% 0;
+    opacity: 1;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    transform: scale(0.28);
+  }
+`;
+const ModalBox = styled.div`
+  width: 80%;
+  position: relative;
+  background-color: #fff;
+  max-width: 37.5rem;
+  padding: 1.6rem;
+  border-radius: 0.5rem;
+  img {
+    width: 5rem;
+    transform-origin: 100% 0;
+    opacity: 1;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    transform: scale(0.28);
+  }
 `;
 
 const DownloadWrapper = styled.div`
@@ -728,7 +755,7 @@ export const getStaticPaths = async () => {
   // In production environments, prerender all pages
   // (slower builds, but faster initial page load)
   const paths = screen.map((post) => ({
-    params: { id: post.id ,name:post.name},
+    params: { id: post.id, name: post.name },
   }));
 
   // { fallback: false } means other routes should 404

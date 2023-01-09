@@ -113,11 +113,18 @@ const AlbumTag=styled.div`
 max-width:100%;
 border-radius:7%;
 flex:0 0 100%;
-display:flex;
 overflow:hidden;
-flex-direction:column;
+display:flex;
 position:relative;
-
+flex-direction:column;
+cursor:pointer;
+:hover a{
+opacity:1;
+}
+:hover a::before{
+	-webkit-clip-path: polygon(0 0,100% 0,100% 100%,0% 100%);
+    clip-path: polygon(0 0,100% 0,100% 100%,0% 100%);
+}
 @media (min-width: 540px) {
 	max-width:49%;
 flex:0 0 49%;
@@ -129,11 +136,30 @@ flex:0 0 20%;
 a{
 	font-size:20px;
 	font-weight:600;
-	color:white;
+	color:black;
 	z-index:99999999;
-	padding-left:12px;
 	overflow: hidden;
     text-overflow: ellipsis;
+	// padding-left:12px;
+	transition: opacity .2s linear;
+    position: relative;
+	&::before{
+		
+		content: "Albums";
+		z-index: 2;
+		height:100%;
+		width:100%;
+		font-family: inherit;
+		font-size: inherit;
+		font-weight: inherit;
+		color: #fff;
+		-webkit-clip-path: polygon(0 0,0 0,0 100%,0% 100%);
+		clip-path: polygon(0 0,0 0,0 100%,0% 100%);
+		transition: -webkit-clip-path .35s cubic-bezier(.19,1,.22,1),-webkit-clip-path .35s cubic-bezier(.19,1,.22,1),clip-path .35s cubic-bezier(.19,1,.22,1);
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
 }
 // &::before{
 // 	position:absolute;
@@ -155,7 +181,14 @@ overflow:hidden;
 display:flex;
 position:relative;
 flex-direction:column;
-
+cursor:pointer;
+:hover a{
+opacity:1;
+}
+:hover a::before{
+	-webkit-clip-path: polygon(0 0,100% 0,100% 100%,0% 100%);
+    clip-path: polygon(0 0,100% 0,100% 100%,0% 100%);
+}
 @media (min-width: 540px) {
 	max-width:49%;
 flex:0 0 49%;
@@ -167,11 +200,29 @@ flex:0 0 20%;
 a{
 	font-size:20px;
 	font-weight:600;
-	color:white;
+	color:black;
 	z-index:99999999;
 	overflow: hidden;
     text-overflow: ellipsis;
-	padding-left:12px;
+	// padding-left:12px;
+	transition: opacity .2s linear;
+    position: relative;
+	&::before{
+		content: "";
+		z-index: 2;
+		height:100%;
+		width:100%;
+		font-family: inherit;
+		font-size: inherit;
+		font-weight: inherit;
+		color: #fff;
+		-webkit-clip-path: polygon(0 0,0 0,0 100%,0% 100%);
+		clip-path: polygon(0 0,0 0,0 100%,0% 100%);
+		transition: -webkit-clip-path .35s cubic-bezier(.19,1,.22,1),-webkit-clip-path .35s cubic-bezier(.19,1,.22,1),clip-path .35s cubic-bezier(.19,1,.22,1);
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
 }
 // &::before{
 // 	position:absolute;

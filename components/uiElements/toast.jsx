@@ -1,6 +1,7 @@
-import React from "react";
+import React,{useEffect} from "react";
 import styled from "styled-components";
 function Toast({ Progress, pendingText, successText }) {
+
   return (
     <>
     {/* hides the toast if Progress state is 1 */}
