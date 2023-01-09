@@ -20,6 +20,7 @@ export const getServerSideProps = async ({ res }) => {
       "_document.js",
       "profile.js",
       "admin.js",
+      "404.html",
       "_error.js",
       "sitemap.xml.js",
     ].includes(staticPage);
@@ -45,10 +46,10 @@ export const getServerSideProps = async ({ res }) => {
         })
         .join("")}
       ${documents
-        .map(({ id }) => {
+        .map(({ id,name }) => {
           return `
               <url>
-                <loc>${baseUrl}/screens/${id}</loc>
+                <loc>${baseUrl}/screens/${name}/screens/${id}</loc>
                 
                 <changefreq>weekly</changefreq>
                 <priority>1.0</priority>

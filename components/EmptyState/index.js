@@ -3,7 +3,7 @@ import styled from 'styled-components'
 function EmptyState() {
   return (
     <EmptyContainer>
-<h1>So Empty :(</h1>
+<div>So Empty :(</div>
 
     </EmptyContainer>
   )
