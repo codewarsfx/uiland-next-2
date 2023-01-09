@@ -7,7 +7,6 @@ import EmptyState from "../EmptyState";
 
 const ScreensInCategory = ({screens}) => {
 	
-	
 	return (<>
 		<CategorySectionContainer>
 			<CategorySectionWrapper>
@@ -15,7 +14,7 @@ const ScreensInCategory = ({screens}) => {
 				{JSON.stringify(screens)!==JSON.stringify([]) ? screens.map(({ startScreens, name, category, logo, id }) => (
 				
 					<ScreenShotContainer key={id}>
-							<Link  href={`/screens/${id}`} passHref>
+							<Link  href={`/screens/${name}/screens/${id}`} passHref>
 						<div><ScreenshotContainerTop>
 							<BrandLogo imageUrl={logo} />
 							<BrandDescription name={name} category={category} />

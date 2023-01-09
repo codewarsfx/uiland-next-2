@@ -20,23 +20,23 @@ import {
   getAlbumBookmarkId,
   addBookmark,
   viewSingleBookmark,
-} from "../../supabase";
+} from "../../../../supabase";
 
 //Hooks
-import useModal from "../../hooks/useModal";
+import useModal from "../../../../hooks/useModal";
 
 //Context
-import { UserContext } from "../../context/authContext";
+import { UserContext } from "../../../../context/authContext";
 
 // Components
-import { BottomSheet, Toast } from "../../components/uiElements";
-import ImageCardInfo from "../../components/ImageCardInfo";
-import Modal from "../../components/modal";
-import SocialsCard from "../../components/SocialsCard";
-import Select from "../../components/uiElements/select";
-import Login from "../../components/Login/login";
-import ThreeDots from "../../components/ThreeDots";
-import { mobileCheck } from "../../utils/isMobile";
+import { BottomSheet, Toast } from "../../../../components/uiElements";
+import ImageCardInfo from "../../../../components/ImageCardInfo";
+import Modal from "../../../../components/modal";
+import SocialsCard from "../../../../components/SocialsCard";
+import Select from "../../../../components/uiElements/select";
+import Login from "../../../../components/Login/login";
+import ThreeDots from "../../../../components/ThreeDots";
+import { mobileCheck } from "../../../../utils/isMobile";
 export default function SinglePage({ screens }) {
   const {
     modalSaveImage,
@@ -122,11 +122,9 @@ export default function SinglePage({ screens }) {
     setInputFilter(e.target.value.toLowerCase());
   }
 
-  //omitting the [  ] here caused a massive render
+  //omitting the [  ] here caused a massive render :(
   useEffect(() => {
     const getHeaderInfo = async () => {
-      const result = await viewSingleBookmark("fishes");
-      console.log(result);
       const data = await getScreensProperties(router.query.id);
       setHeaderInfo(data);
     };
@@ -730,7 +728,7 @@ export const getStaticPaths = async () => {
   // In production environments, prerender all pages
   // (slower builds, but faster initial page load)
   const paths = screen.map((post) => ({
-    params: { id: post.id },
+    params: { id: post.id ,name:post.name},
   }));
 
   // { fallback: false } means other routes should 404
