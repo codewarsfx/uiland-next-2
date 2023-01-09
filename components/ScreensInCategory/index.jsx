@@ -15,7 +15,7 @@ const ScreensInCategory = ({screens}) => {
 				{JSON.stringify(screens)!==JSON.stringify([]) ? screens.map(({ startScreens, name, category, logo, id }) => (
 				
 					<ScreenShotContainer key={id}>
-							<Link  href={`/screens/${id}`}>
+							<Link  href={`/screens/${id}`} passHref>
 						<div><ScreenshotContainerTop>
 							<BrandLogo imageUrl={logo} />
 							<BrandDescription name={name} category={category} />

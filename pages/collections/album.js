@@ -1,6 +1,5 @@
 import React, { useContext,useEffect,useState} from 'react';
 import styled from "styled-components";
-import Link from 'next/link'
 import { UserContext } from "../../context/authContext";
 import {getBookmarks} from "../../supabase"
 import BookmarkScreensInCategory from '../../components/BookmarkScreensInCategory';

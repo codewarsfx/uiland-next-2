@@ -35,7 +35,7 @@ export default function Collection() {
   <Link href='/collections/album'>
 	<AlbumTag>
 		<ImageHolder>
-					<Link href='/collections/album'>
+					<Link href='/collections/album' passHref>
 						<a >Albums</a>
 					</Link>
 		</ImageHolder>
