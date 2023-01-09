@@ -86,56 +86,13 @@ const  downloadImage =  async(e)=>{
      {screens?
      	screens?.map((data) => (
 			<ScreenshotContainer key={data.url}>
-	  <AbsoluteBox className="target" onClick={(e) => downloadImage(e)}>
-              <Title className="target" title="download to device">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  enableBackground="new 0 0 24 24"
-                  viewBox="0 0 24 24"
-                  role="img"
-                  className="icon "
-                >
-                  <path d="m22 5h-11l-2-3h-7c-1.104 0-2 .896-2 2v16c0 1.104.896 2 2 2h20c1.104 0 2-.896 2-2v-13c0-1.104-.896-2-2-2zm-6 10h-3v3c0 .55-.45 1-1 1s-1-.45-1-1v-3h-3c-.55 0-1-.45-1-1s.45-1 1-1h3v-3c0-.55.45-1 1-1s1 .45 1 1v3h3c.55 0 1 .45 1 1s-.45 1-1 1z"></path>
-                </svg>
-              </Title>
-            </AbsoluteBox>
 
-            {/* Todo: break into components */}
-
-            {getId.includes(data.id) ? (
-              <DownloadWrapper
-                className="target"
-                onClick={() => deleteIndividualBookmark(data)}
-              >
-                <Title className="target" title="delete from collection">
-                  <img src="/assets/img/heart-filled.png" alt="delete icon" />
-                </Title>
-              </DownloadWrapper>
-            ) : (
-              <DownloadWrapper
-                className="target"
-                onClick={() => bookmark(data)}
-              >
-                <Title className="target" title="save to collection">
-                  <img src="/assets/img/heart-empty.png" alt="like icon" />
-                </Title>
-              </DownloadWrapper>
-            )}
-            <CopyWrapper>
-              <Title
-                className="target"
-                title="copy to clipboard"
-                onClick={(e) => copyImage(e)}
-              >
-                <img src="/assets/img/copy-icon.svg" alt="copy icon" />
-              </Title>
-            </CopyWrapper>
 			 
-       <Image src={data.screen_id.url} alt="imageSelected" width={1080} height={2240} />
+       <Image src={data.screen_id.url}     alt={`Screenshots of  App`} width={1080} height={2240} />
 			</ScreenshotContainer>
 			
 			))
-     : <h1>Empty</h1>} 
+     : <p>Empty</p>} 
 	
 		
 			

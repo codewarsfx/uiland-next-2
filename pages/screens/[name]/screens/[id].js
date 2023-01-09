@@ -37,6 +37,8 @@ import Select from "../../../../components/uiElements/select";
 import Login from "../../../../components/Login/login";
 import ThreeDots from "../../../../components/ThreeDots";
 import { mobileCheck } from "../../../../utils/isMobile";
+import DeleteIcon from "../../../../components/DeleteIcon";
+import SaveIcon from "../../../../components/SaveIcon";
 export default function SinglePage({ screens }) {
   const {
     modalSaveImage,
@@ -285,9 +287,7 @@ export default function SinglePage({ screens }) {
 
   //function to download the individual images
   async function downloadImage() {
-    // const download = await fetch("/api/screenshot");
-    // const data = await download.json();
-    // console.log(data);
+   
 
     setToastPendingText("Downloading...");
 
@@ -318,7 +318,9 @@ export default function SinglePage({ screens }) {
     // "http://localhost:3000/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fuiland.appspot.com%2Fo%2FCowrywise%252FCowrywise-screens%252FScreenshot_2022-10-13-14-46-21-882_com.cowrywise.android-min.jpg%3Falt%3Dmedia%26token%3D3efdba80-8ec5-463a-9466-317f9247a6c3&w=1080&q=75"
     //which contains the prefetched images
     // This prevents cors error while getting the images
-    console.log("active");
+    const download = await fetch("/api/paystack");
+    const data = await download.json();
+    console.log(data);
     setProgress(2);
     setToastPendingText("Saving");
     const response = await fetch(imageUrl);
@@ -473,9 +475,9 @@ export default function SinglePage({ screens }) {
       )}
       {isModalopen && (
         <Modal toggleModal={toggleModal}>
-          <ModalBox>
+          <SocialModalBox>
             <SocialsCard id={router.query.id} copy={copy} />
-          </ModalBox>
+          </SocialModalBox>
         </Modal>
       )}
       {isModalLogin && (
@@ -512,35 +514,21 @@ export default function SinglePage({ screens }) {
         {/* todo:populate with filtered data */}
         {filtered?.map((data) => (
           <ScreenShotContent key={data.id}>
-            <ScreenshotContainer onClick={copyImage}>
+            <ScreenshotContainer >
               <Image
                 src={data.url}
-                alt="imageSelected"
+                alt={`Screenshots of ${headerInfo.name} App`}
                 width={1080}
                 height={2240}
               />
             </ScreenshotContainer>
 
             <SecondRow>
-              {getId.includes(data.id) ? (
-                <DownloadWrapper
-                  className="target"
-                  onClick={() => deleteIndividualBookmark(data)}
-                >
-                  <Title className="target" title="delete from collection">
-                    <img src="/assets/img/heart-filled.png" alt="delete icon" />
-                  </Title>
-                </DownloadWrapper>
-              ) : (
-                <DownloadWrapper
-                  className="target"
-                  onClick={() => bookmark(data)}
-                >
-                  <Title className="target" title="save to collection">
-                    <img src="/assets/img/heart-empty.png" alt="like icon" />
-                  </Title>
-                </DownloadWrapper>
-              )}
+              {getId.includes(data.id) ? 
+               <DeleteIcon deleteIndividualBookmark={deleteIndividualBookmark} data={data}/>
+              :   <SaveIcon bookmark={bookmark} data={data}/>
+              
+              }
               <ThreeDots openBottomSheet={openBottomSheetModal} />
             </SecondRow>
           </ScreenShotContent>
@@ -636,7 +624,15 @@ const ModalBox = styled.div`
     transform: scale(0.28);
   }
 `;
-
+const SocialModalBox = styled.div`
+  width: 80%;
+  position: relative;
+  background-color: #fff;
+  max-width: 37.5rem;
+  padding: 1.6rem;
+  border-radius: 0.5rem;
+ 
+`;
 const DownloadWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -686,7 +682,8 @@ const ScreenshotContainer = styled.div`
   }
 `;
 
-const Title = styled.h1`
+const Title = styled.div`
+cursor:pointer;
   font-size: 12px;
   font-weight: 300;
   margin: 0;

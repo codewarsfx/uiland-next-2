@@ -48,9 +48,9 @@ export default function Collection() {
 		<>
 		
 	 <IndividualTag>
-	 <ImagesHolder>
-		<Link href={`/collections/individual/${name}`}>
-				{name}
+	 <ImagesHolder >
+		<Link href={`/collections/individual/${name}`} >
+				<p data-text={name}>{name}</p>
 			</Link>		
 			{/* <img src="/assets/img/image-collection.jpg"/> */}
 		</ImagesHolder>
@@ -182,10 +182,10 @@ display:flex;
 position:relative;
 flex-direction:column;
 cursor:pointer;
-:hover a{
+:hover p{
 opacity:1;
 }
-:hover a::before{
+:hover p::before{
 	-webkit-clip-path: polygon(0 0,100% 0,100% 100%,0% 100%);
     clip-path: polygon(0 0,100% 0,100% 100%,0% 100%);
 }
@@ -197,7 +197,7 @@ flex:0 0 49%;
 	max-width:20%;
 flex:0 0 20%;
 }
-a{
+p{
 	font-size:20px;
 	font-weight:600;
 	color:black;
@@ -208,7 +208,7 @@ a{
 	transition: opacity .2s linear;
     position: relative;
 	&::before{
-		content: "";
+		content:attr(data-text);
 		z-index: 2;
 		height:100%;
 		width:100%;
