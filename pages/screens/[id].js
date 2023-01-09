@@ -429,7 +429,10 @@ export default function SinglePage({ screens }) {
       )}
       {modalSaveImage && (
         <Modal toggleModal={newtoggleModal}>
+
           <ModalBox>
+          
+		
             <form onSubmit={submit}>
               <div
                 style={{
@@ -437,8 +440,10 @@ export default function SinglePage({ screens }) {
                   alignItems: "center",
                   justifyContent: "center",
                   marginBottom: "12px",
+                  position:"relative",
                 }}
               >
+                <img src="/assets/img/cancel.svg" onClick={()=>{newtoggleModal()}} alt="cancel button" /> 
                 <b style={{ fontSize: "16px" }}>Create a Bookmark</b>
               </div>
 
@@ -477,6 +482,7 @@ export default function SinglePage({ screens }) {
       {isModalopen && (
         <Modal toggleModal={toggleModal}>
           <ModalBox>
+       
             <SocialsCard id={router.query.id} copy={copy} />
           </ModalBox>
         </Modal>
@@ -595,6 +601,15 @@ const ModalBox = styled.div`
   max-width: 37.5rem;
   padding: 1.6rem;
   border-radius: 0.5rem;
+  // img{
+	// 	width: 5rem;
+	// 	transform-origin: 100% 0;
+	// 	opacity: 1;
+	// 	position: absolute;
+	// 	top: 0;
+	// 	right: 0;
+	// 	transform: scale(.28);
+	// }
 `;
 
 const DownloadWrapper = styled.div`

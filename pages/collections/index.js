@@ -132,6 +132,8 @@ a{
 	color:white;
 	z-index:99999999;
 	padding-left:12px;
+	overflow: hidden;
+    text-overflow: ellipsis;
 }
 // &::before{
 // 	position:absolute;
@@ -167,6 +169,8 @@ a{
 	font-weight:600;
 	color:white;
 	z-index:99999999;
+	overflow: hidden;
+    text-overflow: ellipsis;
 	padding-left:12px;
 }
 // &::before{
