@@ -43,7 +43,7 @@ export default function Admin() {
   ];
 
   function handleChangeElement(e) {
-    console.log(e.target.value)
+    console.log(e.target.value);
     setInputElement(e.target.value);
   }
   function handleChangeOrder(e) {
@@ -125,6 +125,7 @@ export default function Admin() {
         />
         <button type="submit">Submit</button>
       </form>
+
       <PaystackPayment
         amount={amount}
         email={email}

@@ -1,106 +1,72 @@
-import React, { useContext,useEffect,useState} from 'react';
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import Link from 'next/link'
-import Image from "next/image"
-import {useRouter} from "next/router"
+import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import { UserContext } from "../../../context/authContext";
-import {viewSingleBookmark} from "../../../supabase"
+import { viewSingleBookmark } from "../../../supabase";
 
 export default function IndividualCollections() {
-  const router = useRouter()
+  const router = useRouter();
   const user = useContext(UserContext);
-const [screens,setScreens]=useState([])
-const [displayBasic, setDisplayBasic] = useState(false);
-const[imageContent,setImageContent] = useState({})
-const[getId,setGetId]= useState([])
+  const [screens, setScreens] = useState([]);
+  const [displayBasic, setDisplayBasic] = useState(false);
+  const [imageContent, setImageContent] = useState({});
+  const [getId, setGetId] = useState([]);
 
-
-useEffect(()=>{
-
-async function getAlbums(){
-    
-    if(user){
-        const data= await viewSingleBookmark(router.query.name) 
-        console.log(data)
-  setScreens(data)   
-}
-}
-getAlbums()
-
-},[ router.query.name, user])
-
-async function deleteIndividualBookmark(data){
-	await deleteBookmarkSelected(user,  data)
-}
-
-async function bookmark(data){
-	setDisplayBasic(true);
-	setImageContent(data)
-}
-//download images
-const  downloadImage =  async(e)=>{
-    console.log(e.target.parentElement.parentElement.children[3].children[1].currentSrc)
-    const image = await fetch(e.target.parentElement.parentElement.children[3].children[1].currentSrc)
-    console.log(image)
-    const imageBlog = await image.blob()
-    console.log(imageBlog)
-    const imageURL = URL.createObjectURL(imageBlog)
-    
-    const link = document.createElement('a')
-    link.href = imageURL
-    link.download = 'image file name here'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+  useEffect(() => {
+    async function getAlbums() {
+      if (user) {
+        const data = await viewSingleBookmark(router.query.name);
+        console.log(data);
+        setScreens(data);
+      }
     }
-    
+    getAlbums();
+  }, [router.query.name, user]);
 
-    //copy images
-    async function copyImage(e){
-            const response =  await fetch(e.target.parentElement.children[3].children[1].currentSrc);
-            const blob = await response.blob();
-             navigator.clipboard.write([
-             
-              new window.ClipboardItem({
-                [blob.type]: blob
-              })
-            ]);
-            console.log('Image copied.');
-    }
+  //copy images
+  async function copyImage(e) {
+    const response = await fetch(
+      e.target.parentElement.children[3].children[1].currentSrc
+    );
+    const blob = await response.blob();
+    navigator.clipboard.write([
+      new window.ClipboardItem({
+        [blob.type]: blob,
+      }),
+    ]);
+    console.log("Image copied.");
+  }
   return (
     <>
-       
-             <SingleHeader>
+      <SingleHeader>
+        <>
+          <Title>{router.query.name}</Title>
 
-    <>
-  
-     <Title>{router.query.name}</Title>
-    
-   <div>
-
-   </div>
-     </>
-
-	  </SingleHeader>
+          <div></div>
+        </>
+      </SingleHeader>
       <ElementsInCategoryContainer>
-     {screens?
-     	screens?.map((data) => (
-			<ScreenshotContainer key={data.url}>
-
-			 
-       <Image src={data.screen_id.url}     alt={`Screenshots of  App`} width={1080} height={2240} />
-			</ScreenshotContainer>
-			
-			))
-     : <p>Empty</p>} 
-	
-		
-			
-		</ElementsInCategoryContainer>
-      </>
+        {screens ? (
+          screens?.map((data) => (
+            <ScreenshotContainer key={data.url}>
+              {/* add the name to alt tag */}
+              <Image
+                src={data.screen_id.url}
+                alt={`Screenshots of  App`}
+                width={1080}
+                height={2240}
+              />
+            </ScreenshotContainer>
+          ))
+        ) : (
+          <p>Empty</p>
+        )}
+      </ElementsInCategoryContainer>
+    </>
   );
-   
-};
+}
 const ModalBox = styled.div`
   background-color: #fff;
   max-width: 37.5rem;

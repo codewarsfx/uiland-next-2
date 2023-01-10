@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-
+import Head from "next/head";
 //Next library
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -287,8 +287,6 @@ export default function SinglePage({ screens }) {
 
   //function to download the individual images
   async function downloadImage() {
-   
-
     setToastPendingText("Downloading...");
 
     //fetches the image
@@ -407,6 +405,38 @@ export default function SinglePage({ screens }) {
 
   return (
     <>
+      {/* for SEO */}
+      <Head>
+        <title>{headerInfo.name} app screens</title>
+        <meta
+          name="description"
+          content={`screenshots of ${headerInfo.name} Andriod app`}
+        />
+        <meta
+          name="keywords"
+          content="ui, design, inspiration, ux, mobile, apps, screenshots"
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content={`${headerInfo.name} Andriod app screenshots`}
+        />
+        <meta
+          property="og:description"
+          content={`screenshots of ${headerInfo.name} Andriod app`}
+        />
+        <meta
+          property="og:url"
+          content={`https://uiland.design/screens/${headerInfo.name}/screens/${headerInfo.id}`}
+        />
+        <meta name="twitter:card" content="image" />
+        <meta property="og:image" content={`${headerInfo.logo}`} />
+        <meta name="twitter:image:src" content={`${headerInfo.logo}`} />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        ></meta>
+      </Head>
       {modalSheet && (
         <Modal toggleModal={toggleBottomSheet}>
           <ModalBox>
@@ -514,7 +544,7 @@ export default function SinglePage({ screens }) {
         {/* todo:populate with filtered data */}
         {filtered?.map((data) => (
           <ScreenShotContent key={data.id}>
-            <ScreenshotContainer >
+            <ScreenshotContainer>
               <Image
                 src={data.url}
                 alt={`Screenshots of ${headerInfo.name} App`}
@@ -524,11 +554,14 @@ export default function SinglePage({ screens }) {
             </ScreenshotContainer>
 
             <SecondRow>
-              {getId.includes(data.id) ? 
-               <DeleteIcon deleteIndividualBookmark={deleteIndividualBookmark} data={data}/>
-              :   <SaveIcon bookmark={bookmark} data={data}/>
-              
-              }
+              {getId.includes(data.id) ? (
+                <DeleteIcon
+                  deleteIndividualBookmark={deleteIndividualBookmark}
+                  data={data}
+                />
+              ) : (
+                <SaveIcon bookmark={bookmark} data={data} />
+              )}
               <ThreeDots openBottomSheet={openBottomSheetModal} />
             </SecondRow>
           </ScreenShotContent>
@@ -631,7 +664,6 @@ const SocialModalBox = styled.div`
   max-width: 37.5rem;
   padding: 1.6rem;
   border-radius: 0.5rem;
- 
 `;
 const DownloadWrapper = styled.div`
   display: flex;
@@ -683,7 +715,7 @@ const ScreenshotContainer = styled.div`
 `;
 
 const Title = styled.div`
-cursor:pointer;
+  cursor: pointer;
   font-size: 12px;
   font-weight: 300;
   margin: 0;

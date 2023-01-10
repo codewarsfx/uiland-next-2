@@ -58,7 +58,7 @@ function MyApp({ Component, pageProps }) {
             property="og:title"
             content="Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library"
           />
-          <meta name="keywords" content="africa,nigeria,ui, design, inspiration, ux, mobile, apps, screenshots"></meta>
+          <meta name="keywords" content="africa,nigeria,ui, design, inspiration, ux, mobile, apps, screenshots"/>
           <meta
             property="og:description"
             content="Discover hundreds of Mobile apps designs for UI &amp; UX research."

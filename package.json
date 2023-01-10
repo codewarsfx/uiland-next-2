@@ -13,12 +13,7 @@
     "axios": "^1.2.2",
     "crypto": "^1.0.1",
     "framer-motion": "^7.6.1",
-    "fs": "^0.0.1-security",
-    "got": "^12.5.2",
-    "http": "^0.0.1-security",
-    "https": "^1.0.0",
     "next": "12.3.1",
-    "node-fetch": "^2.6.7",
     "normalize-css": "^2.3.1",
     "paystack-api": "^2.0.6",
     "primeicons": "^6.0.1",
@@ -29,7 +24,6 @@
     "react-icons": "^4.6.0",
     "react-paystack": "^4.0.2",
     "react-toastify": "^9.0.8",
-    "request": "^2.88.2",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {

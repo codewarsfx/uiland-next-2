@@ -1,18 +1,20 @@
-import React, { useEffect ,useState} from "react"
+import React, { useEffect ,useState,useContext} from "react"
 import { PaystackButton } from "react-paystack"
+import { UserContext } from "../../context/authContext";
 
 
-const PaystackPayment = ({amount,email,phone,name,handlePaymentName,handlePaymentEmail,handlePaymentPhone}) => {
+
+const PaystackPayment = () => {
   const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_TEST_KEY
-  
+  const user = useContext(UserContext);
   const[url,setUrl]=useState("")
-   // you can call this function anything
+
 
     /**
  * @description returns the data to input state
  * @param {Object}  returns object after success message
  * @param {String} 
- * @returns {Object}
+ * @returns {None} returns none
  * 
  * {
     "reference": "Q23457987777",
@@ -27,25 +29,14 @@ const PaystackPayment = ({amount,email,phone,name,handlePaymentName,handlePaymen
     "redirecturl": "?trxref=Q23457987777&reference=Q23457987777"
 }
  */
-   const handlePaystackSuccessAction = (response) => {
-    // Implementation for whatever you want to do with response and after success call.
-    console.log(response);
-    setUrl(response.reference)
-    
-  };
 
-  useEffect(()=>{
-    async function getReference(){
-      	const download =await fetch("/api/paystackwebhook");
-        const data = await download.json();
-        console.log(data);
-    }
-    getReference()
-
-  },[])
-
-
-  console.log(url)
+   
+function handlePaystackSuccessAction (response) {
+  // Implementation for whatever you want to do with response and after success call.
+  console.log(response);
+  setUrl(response.reference)
+  
+};
   useEffect(()=>{
     async function getReference(){
       	const download =await fetch("/api/paystack",
@@ -61,12 +52,13 @@ const PaystackPayment = ({amount,email,phone,name,handlePaymentName,handlePaymen
 
   },[url])
 
+  //fix to enable Supabse user
   const componentProps = {
-    email,
-    plan: "PLN_81vp6df7zltstm1" ,
+    email:user?.user_metadata.email,
+    plan: process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_BINUALLY ,//process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_BINUALLY
     metadata: {
-      name,
-      phone,
+      name:user?.user_metadata.full_name,
+      phone:"",
     },
     publicKey,
     text: "Pay Now",
@@ -78,32 +70,9 @@ const PaystackPayment = ({amount,email,phone,name,handlePaymentName,handlePaymen
     <div className="App">
       <div className="container">
         <div className="item">
-          <div className="item-details">
-            <p>Upgrade</p>
-            <p>{amount}</p>
-          </div>
+      
         </div>
         <div className="checkout-form">
-          <form>
-            <label>Name</label>
-            <input
-              type="text"
-              id="name"
-              onChange={handlePaymentName}
-            />
-            <label>Email</label>
-            <input
-              type="text"
-              id="email"
-              onChange={handlePaymentEmail}
-            />
-            <label>Phone</label>
-            <input
-              type="text"
-              id="phone"
-              onChange={handlePaymentPhone}
-            />
-          </form>
           <PaystackButton {...componentProps} />
         </div>
       </div>
