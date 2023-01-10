@@ -8,14 +8,14 @@ const paystack_headers = {
 };
 axios.create({ paystack_api, responseType: "json" });
 export default function handler(req, res) {
-  console.log(req.body);
+//   console.log(req.body);
   axios
     .get(`${paystack_api}transaction/verify/${req.body}`, {
       headers: paystack_headers,
     })
     .then(
       (result) => {
-        console.log(result);
+        // console.log(result);
         res.send(result.data);
       },
       (error) => {
