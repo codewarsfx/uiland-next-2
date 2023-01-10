@@ -6,6 +6,7 @@ const PaystackPayment = ({amount,email,phone,name,handlePaymentName,handlePaymen
   const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_TEST_KEY
   
   const[url,setUrl]=useState("")
+  const[webhook,setWebhook]=useState({})
    // you can call this function anything
 
     /**
@@ -15,16 +16,16 @@ const PaystackPayment = ({amount,email,phone,name,handlePaymentName,handlePaymen
  * @returns {Object}
  * 
  * {
-    "reference": "T163936895272324",
-    "trans": "2420862571",
+    "reference": "Q23457987777",
+    "trans": "5676788899990",
     "status": "success",
     "message": "Approved",
-    "transaction": "2420862571",
-    "trxref": "T163936895272324",
+    "transaction": "5676788899990",
+    "trxref": "Q23457987777",
     "fallback": false,
     "bank": "UNITED BANK FOR AFRICA",
-    "return": "{\"redirecturl\":\"?trxref=T163936895272324&reference=T163936895272324\",\"trans\":\"2420862571\",\"trxref\":\"T163936895272324\",\"reference\":\"T163936895272324\",\"status\":\"success\",\"message\":\"Success\",\"response\":\"Approved\",\"fallback\":false,\"bank\":\"UNITED BANK FOR AFRICA\"}",
-    "redirecturl": "?trxref=T163936895272324&reference=T163936895272324"
+    "return": "{\"redirecturl\":\"?trxref=Q23457987777&reference=Q23457987777\",\"trans\":\"5676788899990\",\"trxref\":\"Q23457987777\",\"reference\":\"Q23457987777\",\"status\":\"success\",\"message\":\"Success\",\"response\":\"Approved\",\"fallback\":false,\"bank\":\"UNITED BANK FOR AFRICA\"}",
+    "redirecturl": "?trxref=Q23457987777&reference=Q23457987777"
 }
  */
    const handlePaystackSuccessAction = (response) => {
@@ -38,11 +39,12 @@ const PaystackPayment = ({amount,email,phone,name,handlePaymentName,handlePaymen
     async function getReference(){
       	const download =await fetch("/api/paystackwebhook");
         const data = await download.json();
+        console.log(webhook)
         console.log(data);
     }
     getReference()
 
-  },[])
+  },[webhook])
 
 
   console.log(url)
@@ -56,6 +58,7 @@ const PaystackPayment = ({amount,email,phone,name,handlePaymentName,handlePaymen
   
       const data = await download.json();
       console.log(data);
+      setWebhook(data)
     }
     getReference()
 
