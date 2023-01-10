@@ -47,6 +47,7 @@ const PaystackPayment = ({amount,email,phone,name,handlePaymentName,handlePaymen
     getReference()
 
   },[webHooks])
+  console.log(url)
   useEffect(()=>{
     async function getReference(){
       	const download =await fetch("/api/paystack",
