@@ -14,6 +14,7 @@ export default function handler(req, res) {
     // Do something with event  
     console.log(req.body)
     res.send(req.body)
+    
     }
     res.send(200);
 }
