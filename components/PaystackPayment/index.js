@@ -6,7 +6,6 @@ const PaystackPayment = ({amount,email,phone,name,handlePaymentName,handlePaymen
   const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_TEST_KEY
   
   const[url,setUrl]=useState("")
-  const[webhook,setWebhook]=useState({})
    // you can call this function anything
 
     /**
@@ -39,12 +38,11 @@ const PaystackPayment = ({amount,email,phone,name,handlePaymentName,handlePaymen
     async function getReference(){
       	const download =await fetch("/api/paystackwebhook");
         const data = await download.json();
-        console.log(webhook)
         console.log(data);
     }
     getReference()
 
-  },[webhook])
+  },[])
 
 
   console.log(url)
@@ -58,7 +56,6 @@ const PaystackPayment = ({amount,email,phone,name,handlePaymentName,handlePaymen
   
       const data = await download.json();
       console.log(data);
-      setWebhook(data)
     }
     getReference()
 

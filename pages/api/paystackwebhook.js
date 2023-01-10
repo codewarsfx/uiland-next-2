@@ -7,12 +7,13 @@ export default function handler(req, res) {
     console.log(req.headers)
     console.log(hash)
     console.log(req.headers['x-paystack-signature'])
-    if (hash == req.headers['x-paystack-signature']) {
+    if (hash == req.headers['x-paystack-signature']) {  
+        res.send(200);
     // Retrieve the request's body
     const event = req.body;
     // Do something with event  
     console.log(req.body)
     res.send(req.body)
     }
-    res.send(200);
+  
 }
