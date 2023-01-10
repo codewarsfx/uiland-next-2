@@ -1,10 +1,12 @@
-import React from "react"
+import React, { useEffect ,useState} from "react"
 import { PaystackButton } from "react-paystack"
 
 
 const PaystackPayment = ({amount,email,phone,name,handlePaymentName,handlePaymentEmail,handlePaymentPhone}) => {
-  const publicKey = process.env.REACT_APP_PAYSTACK__KEY
+  const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_TEST_KEY
   
+  const[url,setUrl]=useState("")
+  const[webHooks,setWebHooks]=useState({})
    // you can call this function anything
 
     /**
@@ -26,14 +28,44 @@ const PaystackPayment = ({amount,email,phone,name,handlePaymentName,handlePaymen
     "redirecturl": "?trxref=T163936895272324&reference=T163936895272324"
 }
  */
-   const handlePaystackSuccessAction = (reference) => {
-    // Implementation for whatever you want to do with reference and after success call.
-    console.log(reference);
+   const handlePaystackSuccessAction = (response) => {
+    // Implementation for whatever you want to do with response and after success call.
+    console.log(response);
+    setUrl(response.reference)
+    
   };
+
+  useEffect(()=>{
+    async function getReference(){
+      	const download =await fetch("/api/paystackwebhook",	{method:"POST",headers:{
+          "Content-Type":"application/json"
+        },body:JSON.stringify(webHooks)});
+
+      const data = await download.json();
+      console.log(data);
+    }
+    getReference()
+
+  },[webHooks])
+  useEffect(()=>{
+    async function getReference(){
+      	const download =await fetch("/api/paystack",
+	{method:"POST",headers:{
+		"Content-Type":"application/json"
+	},body:JSON.stringify(url)}
+	);
+  
+      const data = await download.json();
+      setWebHooks(data)
+      console.log(data);
+    }
+    getReference()
+
+  },[url])
 
   const componentProps = {
     email,
-    amount,
+    plan: "PLN_81vp6df7zltstm1" ,
     metadata: {
       name,
       phone,

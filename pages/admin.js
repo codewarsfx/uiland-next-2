@@ -82,7 +82,7 @@ export default function Admin() {
   return (
     <div>
       <form onSubmit={submitForm}>
-        <label for="bookmarkName">bookmark Name:</label>
+        <label htmlFor="bookmarkName">bookmark Name:</label>
         <select value={selectTag} onChange={handleChangeBookmarkName}>
           {Object.keys(data).map((item, i) => {
             return (
@@ -92,7 +92,7 @@ export default function Admin() {
             );
           })}
         </select>
-        <label for="elementCategory">element category:</label>
+        <label htmlFor="elementCategory">element category:</label>
         <select value={inputElement} onChange={handleChangeElement}>
           {elementsCategoryData.map((item, i) => {
             return (
@@ -102,21 +102,21 @@ export default function Admin() {
             );
           })}
         </select>
-        <label for="screenCategory">screen category:</label>
+        <label htmlFor="screenCategory">screen category:</label>
         <input
           name="inputScreen"
           type="text"
           value={inputScreen}
           onChange={handleChangeScreen}
         />
-        <label for="url">image url:</label>
+        <label htmlFor="url">image url:</label>
         <input
           name="inputUrl"
           type="text"
           value={inputUrl}
           onChange={handleChangeUrl}
         />
-        <label for="order">Order:</label>
+        <label htmlFor="order">Order:</label>
         <input
           name="inputOrder"
           type="text"
