@@ -35,13 +35,11 @@ export default function handler(req, res) {
           .update({
             event: req.body.event,
             status: req.body.data.status,
-
             amount: req.body.data.amount,
             currency: req.body.data.plan.currency,
             authorization_code: req.body.data.authorization.authorization_code,
             next_payment_date: req.body.data.next_payment_date,
             created_date_at: req.body.data.createdAt,
-
             exp_month: req.body.data.authorization.exp_month,
             plan_name: req.body.data.plan.name,
             plan_interval: req.body.data.plan.interval,
@@ -61,5 +59,5 @@ export default function handler(req, res) {
     // Do something with event
     console.log(req.body);
   }
-  res.send(200)
+  res.send(200);
 }
