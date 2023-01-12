@@ -96,6 +96,9 @@ export default function SinglePage({ screens }) {
   //state to disable button
   const [disabled, setDisabled] = useState(false);
 
+  //state to hold the limited screens
+  const [limitedscreens,setLimitedScreens]=useState([])
+
   const dialogFuncMap = {
     displayBasic: setDisplayBasic,
   };
@@ -107,7 +110,32 @@ export default function SinglePage({ screens }) {
     return array.filter((el) => el.elementCategory.toLowerCase() === data);
   };
 
-  const filtered = searchFilter(screens, inputFilter);
+  const filtered = searchFilter(limitedscreens, inputFilter);
+
+  useEffect(()=>{
+     async function getPayingUser(){
+      console.log(user)
+      if(user){
+        console.log(user)
+           let getEvent= await getProfileByEvent();
+           console.log(getEvent)
+           console.log(getEvent[0].event)
+     if (!getEvent[0].event) {
+     
+
+ const result=  screens.slice(0,1)
+console.log(result);
+setLimitedScreens(result)
+      }else{
+        setLimitedScreens(screens) 
+      }
+  
+     }
+
+  }
+getPayingUser()
+  },[screens, user])
+ 
 
   //the list of properties to filter by
   const elementsCategoryData = [
@@ -135,6 +163,7 @@ export default function SinglePage({ screens }) {
   //omitting the [  ] here caused a massive render :(
   useEffect(() => {
     const getHeaderInfo = async () => {
+    
       const data = await getScreensProperties(router.query.id);
       setHeaderInfo(data);
     };
@@ -336,11 +365,9 @@ export default function SinglePage({ screens }) {
     // "http://localhost:3000/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fuiland.appspot.com%2Fo%2FCowrywise%252FCowrywise-screens%252FScreenshot_2022-10-13-14-46-21-882_com.cowrywise.android-min.jpg%3Falt%3Dmedia%26token%3D3efdba80-8ec5-463a-9466-317f9247a6c3&w=1080&q=75"
     //which contains the prefetched images
     // This prevents cors error while getting the images
-    const download = await fetch("/api/paystack");
-    const data = await download.json();
-    console.log(data);
+ 
     setProgress(2);
-    setToastPendingText("Saving");
+    setToastPendingText("Copying");
     const response = await fetch(imageUrl);
     console.log(response);
     const blob = await response.blob();
@@ -814,7 +841,8 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const id = context.params.id;
-  const screens = await getLimitedResult(id);
+  
+  const screens = await getScreensById(id);
   return {
     props: { screens },
   };

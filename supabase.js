@@ -86,43 +86,48 @@ export async function getSession() {
 // }
 
 //get paying user by checking the event key
-
-
-export async function getLimitedResult(id) {
-  const getEvent = await getProfileByEvent();
-  console.log("secondevent", getEvent);
-  let getResult;
-  if (JSON.stringify(getEvent) === JSON.stringify([])) {
-    getResult = await getLimitedScreensById(id);
-    console.log("limit", getResult);
-  } else {
-    getResult = await getScreensById(id);
-    console.log("full", getResult);
-  }
-  return getResult;
-}
 export async function getProfileByEvent() {
-  const { data, error } = await supabase.from("profile").select("event");
+  
+const { data, error } = await supabase
+.from('profile')
+.select('event')
   //   i will use this to limit the result later
   //   .limit(1)
-  // .eq("id", user);
+  // .eq("id", user.id);
   console.log("event", data, error);
   return data;
 }
-export async function addUserId(id, user) {
-  console.log(id, user);
-  const getEvent = await getProfileByEvent(user);
-  console.log("secondevent", getEvent.event);
-  let getResult;
-  if (!getEvent.event) {
-    getResult = await getLimitedScreensById(id);
-    console.log("limit", getResult);
-  } else {
-    d = await getScreensById(id);
-    console.log("full", getResult);
-  }
-  return getResult;
-}
+
+//Experiment to limit content 
+// export async function getLimitedResult(id) {
+//   const getEvent = await getProfileByEvent();
+//   console.log("secondevent", getEvent);
+//   let getResult;
+//          console.log(getEvent[0].event)
+//  if (!getEvent[0].event) {
+//     getResult = await getLimitedScreensById(id);
+//     console.log("limit", getResult);
+//   } else {
+//     getResult = await getScreensById(id);
+//     console.log("full", getResult);
+//   }
+//   return getResult;
+// }
+
+// export async function addUserId(id, user) {
+//   console.log(id, user);
+//   const getEvent = await getProfileByEvent(user);
+//   console.log("secondevent", getEvent.event);
+//   let getResult;
+//   if (!getEvent.event) {
+//     getResult = await getLimitedScreensById(id);
+//     console.log("limit", getResult);
+//   } else {
+//     d = await getScreensById(id);
+//     console.log("full", getResult);
+//   }
+//   return getResult;
+// }
 // export async function getHeaderInfo() {
 //     // const session = await getSession();
 //     // console.log("damn",session)
