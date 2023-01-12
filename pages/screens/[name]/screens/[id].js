@@ -20,6 +20,13 @@ import {
   getAlbumBookmarkId,
   addBookmark,
   viewSingleBookmark,
+  getProfileByEvent,
+  getLimitedScreens,
+  getHeaderInfo,
+  getLimitedResult,
+  getSession,
+  supabase,
+  getUserP,
 } from "../../../../supabase";
 
 //Hooks
@@ -50,7 +57,7 @@ export default function SinglePage({ screens }) {
     toggleBottomSheet,
     modalSheet,
   } = useModal();
-
+  
   // state for the bottomsheet
   const [openBottomSheet, setOpenBottomSheet] = useState(false);
 
@@ -65,6 +72,7 @@ export default function SinglePage({ screens }) {
   const [getId, setGetId] = useState([]);
   const [Progress, setProgress] = useState(1);
   const [headerInfo, setHeaderInfo] = useState({});
+  const [payingUser, setPayingUser] = useState("");
 
   //state to manage the bookmark id of the album of images when clicked
   const [getAlbumId, setGetAlbumId] = useState([]);
@@ -132,6 +140,18 @@ export default function SinglePage({ screens }) {
     };
     getHeaderInfo();
   }, [router.query.id]);
+  
+  // useEffect(() => {
+  //   const getHeaderInfo = async () => {
+  //     const data = await getProfileByEvent();
+  //     console.log(data);
+  //   };
+  //   getHeaderInfo();
+  // }, []);
+  
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
 
   //checker to empty the bookmark names select field if the user has deleted all his bookmarked images
   useEffect(() => {
@@ -777,15 +797,16 @@ export const getStaticPaths = async () => {
     };
   }
 
+
   // Call an external API endpoint to get posts
   const screen = await getAllScreens();
-
   // Get the paths we want to prerender based on posts
   // In production environments, prerender all pages
   // (slower builds, but faster initial page load)
-  const paths = screen.map((post) => ({
-    params: { id: post.id, name: post.name },
+  const paths = screen?.map((post) => ({
+    params: { id: post.id, name: post.name},
   }));
+
 
   // { fallback: false } means other routes should 404
   return { paths, fallback: false };
@@ -793,8 +814,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const id = context.params.id;
-
-  const screens = await getScreensById(id);
+  const screens = await getLimitedResult(id);
   return {
     props: { screens },
   };

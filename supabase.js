@@ -6,24 +6,23 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
 
 //supabase signup with Google Oauth
 const getURL = () => {
-    let url =
-      process?.env?.NEXT_PUBLIC_SITE_URL ?? // Set this to your site URL in production env.
-      process?.env?.NEXT_PUBLIC_VERCEL_URL ?? // Automatically set by Vercel.
-      'http://localhost:3000/';
-    // Make sure to include `https://` when not localhost.
-    url = url.includes('http') ? url : `https://${url}`;
-    // Make sure to including trailing `/`.
-    url = url.charAt(url.length - 1) === '/' ? url : `${url}/`;
-    return url;
-  };
-  
+  let url =
+    process?.env?.NEXT_PUBLIC_SITE_URL ?? // Set this to your site URL in production env.
+    process?.env?.NEXT_PUBLIC_VERCEL_URL ?? // Automatically set by Vercel.
+    "http://localhost:3000/";
+  // Make sure to include `https://` when not localhost.
+  url = url.includes("http") ? url : `https://${url}`;
+  // Make sure to including trailing `/`.
+  url = url.charAt(url.length - 1) === "/" ? url : `${url}/`;
+  return url;
+};
 
 export async function signInWithGoogle() {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-        redirectTo: getURL()
-      }
+      redirectTo: getURL(),
+    },
   });
   return data;
 }
@@ -31,10 +30,21 @@ export async function signInWithGoogle() {
 //    get all screens
 export async function getAllScreens() {
   let { data: Screens, error } = await supabase.from("Screens").select("*");
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  // Screens.forEach((res)=>{
+  //   return res['user'] = "a4f0bf66-2a36-4b4f-bf8b-b082cf9aa5c4"
+  // })
   console.log(Screens);
   return Screens;
 }
-
+//    get all screens
+// export async function getLimitedScreens() {
+//   let { data: Screens, error } = await supabase.from("Screens").select("*").limit(1);
+//   console.log("king",Screens);
+//   return Screens;
+// }
 //get individual screens content
 
 export async function getScreensById(id) {
@@ -46,6 +56,88 @@ export async function getScreensById(id) {
     .eq("screenId", id);
   return data;
 }
+export async function getLimitedScreensById(id) {
+  const { data, error } = await supabase
+    .from("screenImages")
+    .select("*")
+    .limit(1)
+    .eq("screenId", id);
+  return data;
+}
+
+//supabase session
+export async function getSession() {
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  console.log("what", session);
+  return session;
+}
+
+// export const getUserP = (user) => {
+//   console.log(user);
+//   return user;
+// };
+// export async function getUserByLocalStorage() {
+//  const y = typeof window !== 'undefined' ?await JSON.parse(localStorage.getItem("user")) : null
+//  console.log("p",y)
+//  return y
+
+// }
+
+//get paying user by checking the event key
+
+
+export async function getLimitedResult(id) {
+  const getEvent = await getProfileByEvent();
+  console.log("secondevent", getEvent);
+  let getResult;
+  if (JSON.stringify(getEvent) === JSON.stringify([])) {
+    getResult = await getLimitedScreensById(id);
+    console.log("limit", getResult);
+  } else {
+    getResult = await getScreensById(id);
+    console.log("full", getResult);
+  }
+  return getResult;
+}
+export async function getProfileByEvent() {
+  const { data, error } = await supabase.from("profile").select("event");
+  //   i will use this to limit the result later
+  //   .limit(1)
+  // .eq("id", user);
+  console.log("event", data, error);
+  return data;
+}
+export async function addUserId(id, user) {
+  console.log(id, user);
+  const getEvent = await getProfileByEvent(user);
+  console.log("secondevent", getEvent.event);
+  let getResult;
+  if (!getEvent.event) {
+    getResult = await getLimitedScreensById(id);
+    console.log("limit", getResult);
+  } else {
+    d = await getScreensById(id);
+    console.log("full", getResult);
+  }
+  return getResult;
+}
+// export async function getHeaderInfo() {
+//     // const session = await getSession();
+//     // console.log("damn",session)
+//       const red = await getProfileByEvent()
+//     console.log("secondevent",red.event)
+//     let d
+//     if(!red.event){
+//       d= await getLimitedScreens();
+//      console.log("limit",d)
+//     }else{
+//        d= await getAllScreens();
+//       console.log("full",d)
+//     }
+//     return d
+//      };
 
 export async function getScreensProperties(id) {
   const { data, error } = await supabase
@@ -207,25 +299,16 @@ export async function getAllSingleBookmarkNames() {
 }
 
 //delete account
-export async function deleteAccount(user){
-    const { data, error } = await supabase
-  .from('profile')
-  .delete()
-  .eq('id', user.id)
-  console.log(data)
-  return data
+export async function deleteAccount(user) {
+  const { data, error } = await supabase
+    .from("profile")
+    .delete()
+    .eq("id", user.id);
+  console.log(data);
+  return data;
 }
 
 //supabase signout
 export async function signout() {
   await supabase.auth.signOut();
-}
-
-
-//supabase session
-export async function getSession() {
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-  return session;
 }

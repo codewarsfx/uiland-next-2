@@ -1,10 +1,11 @@
-//robots.txt
+
 
 # Block all crawlers for /profile
 User-agent: *
 Disallow: /profile
 Disallow: /collections/
 Disallow: /admin
+Disallow: /404.html
 
 # Allow all crawlers
 User-agent: *
