@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { hotjar } from 'react-hotjar'
 import "../styles/globals.css";
 import Script from "next/script";
 import { useRouter } from "next/router";
@@ -20,6 +21,10 @@ function MyApp({ Component, pageProps }) {
       router.events.off("hashChangeComplete", handleRouteChange);
     };
   }, [router.events]);
+
+  useEffect(() => {
+    hotjar.initialize(3322744, 6)
+  }, [])
 
   return (
     <UserContextProvider>
@@ -45,22 +50,9 @@ function MyApp({ Component, pageProps }) {
   analytics.page();
   }}();`}
         </Script>
-        <Script id="hotjar" strategy="lazyOnload">
-          {`
-          <!-- Hotjar Tracking Code for Uiland -->
-          <script>
-              (function(h,o,t,j,a,r){
-                  h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                  h._hjSettings={hjid:3322744,hjsv:6};
-                  a=o.getElementsByTagName('head')[0];
-                  r=o.createElement('script');r.async=1;
-                  r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-                  a.appendChild(r);
-              })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-          </script>
-          `}
-        </Script>
+       
         <Head>
+          
           <meta charSet="utf-8" />
           <title>Welcome to Uiland</title>
           <meta
