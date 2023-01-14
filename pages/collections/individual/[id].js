@@ -18,13 +18,13 @@ export default function IndividualCollections() {
   useEffect(() => {
     async function getAlbums() {
       if (user) {
-        const data = await viewSingleBookmark(router.query.name);
+        const data = await viewSingleBookmark(router.query.id);
         console.log(data);
         setScreens(data);
       }
     }
     getAlbums();
-  }, [router.query.name, user]);
+  }, [router.query.id, user]);
 
   //copy images
   async function copyImage(e) {
@@ -43,7 +43,7 @@ export default function IndividualCollections() {
     <>
       <SingleHeader>
         <>
-          <Title>{router.query.name}</Title>
+          <Title>{router.query.id}</Title>
 
           <div></div>
         </>

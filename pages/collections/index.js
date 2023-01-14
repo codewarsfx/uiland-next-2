@@ -18,7 +18,7 @@ export default function Collection() {
     };
     allBookmarkNames();
   }, []);
-
+console.log(bookmark)
   return (
     <>
       <SingleHeader>
@@ -37,7 +37,7 @@ export default function Collection() {
             </AlbumTag>
           </Link>
 
-          {bookmark &&
+          {JSON.stringify(bookmark) !== JSON.stringify([])  ?
             bookmark.map((name) => {
               return (
                 <>
@@ -51,7 +51,15 @@ export default function Collection() {
                   </IndividualTag>
                 </>
               );
-            })}
+            }):    <Link href="/">
+            <EmptyTag>
+              <ImagesHolder>
+                <Link href="/" passHref>
+                  <a>Create a Collection</a>
+                </Link>
+              </ImagesHolder>
+            </EmptyTag>
+          </Link>}
         </Content>
       </SingleHeader>
       <ElementsInCategoryContainer></ElementsInCategoryContainer>
@@ -133,6 +141,69 @@ const AlbumTag = styled.div`
     position: relative;
     &::before {
       content: "Albums";
+      z-index: 2;
+      height: 100%;
+      width: 100%;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      color: #fff;
+      -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+      clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+      transition: -webkit-clip-path 0.35s cubic-bezier(0.19, 1, 0.22, 1),
+        -webkit-clip-path 0.35s cubic-bezier(0.19, 1, 0.22, 1),
+        clip-path 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+  // &::before{
+  // 	position:absolute;
+  // 	display:block;
+  // 	content:"";
+  // 	width:100%;
+  // 	height:100%;
+  // 	z-index:99;
+  // 	background-image: linear-gradient(to bottom,#1e1f2100,#0e0f0fcc);
+  // }
+`;
+const EmptyTag = styled.div`
+  max-width: 100%;
+  border-radius: 7%;
+  flex: 0 0 100%;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  cursor: pointer;
+  :hover a {
+    opacity: 1;
+  }
+  :hover a::before {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  @media (min-width: 540px) {
+    max-width: 49%;
+    flex: 0 0 49%;
+  }
+  @media (min-width: 768px) {
+    max-width: 20%;
+    flex: 0 0 20%;
+  }
+  a {
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+    z-index: 99999999;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // padding-left:12px;
+    transition: opacity 0.2s linear;
+    position: relative;
+    &::before {
+      content: "Create a Collection";
       z-index: 2;
       height: 100%;
       width: 100%;

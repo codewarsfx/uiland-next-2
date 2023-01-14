@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { hotjar } from 'react-hotjar'
 import "../styles/globals.css";
 import Script from "next/script";
 import { useRouter } from "next/router";
@@ -20,6 +21,10 @@ function MyApp({ Component, pageProps }) {
       router.events.off("hashChangeComplete", handleRouteChange);
     };
   }, [router.events]);
+
+  useEffect(() => {
+    hotjar.initialize(3322744, 6)
+  }, [])
 
   return (
     <UserContextProvider>
@@ -45,7 +50,9 @@ function MyApp({ Component, pageProps }) {
   analytics.page();
   }}();`}
         </Script>
+       
         <Head>
+          
           <meta charSet="utf-8" />
           <title>Welcome to Uiland</title>
           <meta

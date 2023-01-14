@@ -47,7 +47,6 @@ const CategorySectionWrapper = styled.div`
 	gap: 2em;
 	width: 90%;
     align-items: center;
-    justify-content: center;
 
 	:not(:first-child) {
 		margin-top: 4em;
