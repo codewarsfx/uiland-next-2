@@ -1,5 +1,5 @@
 import React, { useEffect ,useState,useContext} from "react";
-import { useRouter } from "react-router-dom";
+import { useRouter } from "next/router";
 import { PaystackButton } from "react-paystack"
 import { UserContext } from "../../context/authContext";
 
