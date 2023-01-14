@@ -17,7 +17,6 @@ const getButton = (buttonType) => {
     [buttonTypes.login]: LoginButton,
     [buttonTypes.google]: GoogleButton,
     [buttonTypes.error]: ErrorButton,
-    [buttonTypes.bookmark]: BookmarkButton,
     [buttonTypes.modal]: ModalButton,
   }[buttonType];
 };
@@ -76,28 +75,7 @@ const ErrorButton = styled(PrimaryButton)`
   padding-bottom: 1em;
 `;
 
-const BookmarkButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 1rem;
-  cursor: pointer;
-  border: none;
-  border-radius: 9px;
-  outline: none;
-  color: white;
-  font-size: 2rem;
-  font-weight: 500;
-  background-color: #c6c8d1;
 
-  &:hover {
-    background-color: grey;
-  }
-
-  &:focus {
-    outline: none;
-  }
-`;
 
 const ModalButton = styled.button`
   display: flex;

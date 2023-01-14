@@ -17,16 +17,15 @@ function ImageCardInfo({
         <h1>{headerInfo.name}</h1>
         <ImageCardWrapper>
           {!getAlbumId?.includes(id) ? (
-            <Button type={buttonTypes.bookmark} onClick={handleAddToBookMark}>
+            <BookmarkButton  onClick={handleAddToBookMark}>
               <img
                 src="/assets/img/bookmark-dark.svg"
                 alt="bookmark icon"
                 className={`effect scale_transition`}
               />
-            </Button>
+            </BookmarkButton>
           ) : (
-            <Button
-              type={buttonTypes.bookmark}
+            <BookmarkButton
               onClick={handleDeleteFromBookMark}
             >
               <img
@@ -34,7 +33,7 @@ function ImageCardInfo({
                 alt="bookmark icon"
                 className="effect"
               />
-            </Button>
+            </BookmarkButton>
           )}
         </ImageCardWrapper>
         <div className="flex-col">
@@ -58,6 +57,28 @@ function ImageCardInfo({
     </>
   );
 }
+const BookmarkButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 9px;
+  outline: none;
+  color: white;
+  font-size: 2rem;
+  font-weight: 500;
+  background-color: #c6c8d1;
+
+  &:hover {
+    background-color: grey;
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
 const ImageCardInfoWrapper = styled.div`
   display: flex;
   align-items: center;
