@@ -30,21 +30,21 @@ export async function signInWithGoogle() {
 //    get all screens
 export async function getAllScreens() {
   let { data: Screens, error } = await supabase.from("Screens").select("*");
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
   // Screens.forEach((res)=>{
   //   return res['user'] = "a4f0bf66-2a36-4b4f-bf8b-b082cf9aa5c4"
   // })
   console.log(Screens);
   return Screens;
 }
-//    get all screens
+
+//    get all limited screens
 // export async function getLimitedScreens() {
 //   let { data: Screens, error } = await supabase.from("Screens").select("*").limit(1);
 //   console.log("king",Screens);
 //   return Screens;
 // }
+
+
 //get individual screens content
 
 export async function getScreensById(id) {
@@ -56,6 +56,8 @@ export async function getScreensById(id) {
     .eq("screenId", id);
   return data;
 }
+
+//get individual screens content(limited)
 export async function getLimitedScreensById(id) {
   const { data, error } = await supabase
     .from("screenImages")
@@ -74,16 +76,15 @@ export async function getSession() {
   return session;
 }
 
-// export const getUserP = (user) => {
-//   console.log(user);
-//   return user;
-// };
+
 // export async function getUserByLocalStorage() {
 //  const y = typeof window !== 'undefined' ?await JSON.parse(localStorage.getItem("user")) : null
 //  console.log("p",y)
 //  return y
 
 // }
+
+
 
 //get paying user by checking the event key
 export async function getProfileByEvent() {
