@@ -49,9 +49,11 @@ function handlePaystackSuccessAction (response) {
   
       const data = await download.json();
       console.log(data);
-      if(data){
-        router.push("/")
-      }
+
+      //needs fixing
+      // if(data){
+      //   router.push("/")
+      // }
     }
     getReference()
 
