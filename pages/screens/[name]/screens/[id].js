@@ -544,7 +544,7 @@ getPayingUser()
               />
 
               <button
-                className={`album-card__buttoncopy`}
+                className={`button_modal`}
                 type="submit"
                 disabled={disabled}
               >

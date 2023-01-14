@@ -4,14 +4,14 @@ import styled from "styled-components";
 function SocialsCard({id,copy}) {
   return (
     <>
-       <div className="album-card__divc">
+       <div className="flex-row">
 
 
  
 
 <SocialBox>
      <a
-    className="album-card__link"
+    className="font_medium"
     target="_blank"
     rel="noopener noreferrer"
     href={`https://twitter.com/intent/tweet?text=${id}`}
@@ -20,7 +20,7 @@ function SocialsCard({id,copy}) {
   </a>
   {" "}
   {/* <a
-    className="album-card__link"
+    className="font_medium"
     target="_blank"
     rel="noopener noreferrer"
     href={`https://www.linkedin.com/sharing/share-offsite/?url=https://uiland.design/screens/${id}`}

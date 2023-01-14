@@ -5,7 +5,9 @@ export const buttonTypes = {
 	primary: "primary",
 	login: "login",
 	google: "google",
-	error:"error"
+	error:"error",
+	bookmark:"bookmark",
+	modal:"modal",
 };
 
 const getButton = (buttonType) => {
@@ -15,6 +17,8 @@ const getButton = (buttonType) => {
 		[buttonTypes.login]: LoginButton,
 		[buttonTypes.google]: GoogleButton,
 		[buttonTypes.error]: ErrorButton,
+		[buttonTypes.bookmark]: BookmarkButton,
+		[buttonTypes.modal]: ModalButton,
 	}[buttonType];
 };
 
@@ -72,4 +76,60 @@ const ErrorButton = styled(PrimaryButton)`
 	padding-bottom:1em;
 `;
 
+const BookmarkButton=styled.button`
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem 1rem;
+	cursor: pointer;
+	border: none;
+	border-radius: 9px;
+	outline: none;
+	color: white;
+	font-size: 2rem;
+	font-weight: 500;
+	background-color: #c6c8d1;
+  
+   
+  
+   &:hover {
+	  background-color: grey;
+	}
+  
+	&:focus {
+	  outline: none;
+	}
+  
+	
+
+`
+
+const ModalButton=styled.button`
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 14px 0 4px 0;
+    background: var(--primary-color);
+    border-color: var(--primary-color);;
+    padding: 1rem 2.4rem;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 2rem;
+    flex-direction: row;
+    gap: 8px;
+  
+  &:disabled{
+    background-color: #DDDDDD !important;
+    cursor:not-allowed;
+    opacity: 1 !important;
+    border: none !important;
+  }
+  &:hover {
+    background-color: #112158;
+  }
+
+`
 export default Button;

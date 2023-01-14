@@ -49,6 +49,7 @@ const Header = () => {
 			<HeaderCTA>
 				{!user ? (
 					<div onClick={() => toggleModal()}>
+						
 						<Button type={buttonTypes.login}> Login</Button>
 						<HamburgerContainer>
 			<HamburgerSticks />
