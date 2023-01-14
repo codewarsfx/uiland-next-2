@@ -99,6 +99,9 @@ export default function SinglePage({ screens }) {
   //state to hold the limited screens
   const [limitedscreens,setLimitedScreens]=useState([])
 
+  //state to display the  paying banner
+  const[payingbanner,setPayingBanner]=useState('');
+
   const dialogFuncMap = {
     displayBasic: setDisplayBasic,
   };
@@ -119,6 +122,7 @@ export default function SinglePage({ screens }) {
         console.log(user)
            let getEvent= await getProfileByEvent();
            console.log(getEvent)
+           setPayingBanner(getEvent[0].event)
            console.log(getEvent[0].event)
      if (!getEvent[0].event) {
      
@@ -613,7 +617,10 @@ getPayingUser()
             </SecondRow>
           </ScreenShotContent>
         ))}
+      
       </ElementsInCategoryContainer>
+        {!payingbanner&&
+          <div>click to subscribe</div>}
       <Toast
         Progress={Progress}
         pendingText={toastPendingText}

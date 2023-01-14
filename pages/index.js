@@ -43,7 +43,7 @@ const Home = ({ screens }) => {
           const download = await fetch("/api/mailchimp", {
             method: "POST",
             header: { "Content-Type": "application/json" },
-            body: JSON.stringify(user),
+            body: JSON.stringify(session.user),
           });
           const data = await download.json();
           console.log(data);

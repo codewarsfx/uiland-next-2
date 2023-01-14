@@ -44,12 +44,28 @@ async function run() {
       LNAME: subscribingUser.lastName
     }
   });
-
-  console.log(
+  if(response){
+      console.log(
     `Successfully added contact as an audience member. The contact's id is ${
       response.id
     }.`
   );
+  }else{
+
+
+
+    console.log(
+
+      `Failed added contact as an audience member.This is an existing user. The contact's id is ${
+        response
+      }.`
+    )
+ 
+ 
+ 
+  }
+
+
 }
 
 run();

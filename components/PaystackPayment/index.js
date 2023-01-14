@@ -1,13 +1,15 @@
-import React, { useEffect ,useState,useContext} from "react"
+import React, { useEffect ,useState,useContext} from "react";
+import { useRouter } from "react-router-dom";
 import { PaystackButton } from "react-paystack"
 import { UserContext } from "../../context/authContext";
 
 
 
-const PaystackPayment = () => {
+const PaystackPayment = ({plan}) => {
   const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_TEST_KEY
   const user = useContext(UserContext);
   const[url,setUrl]=useState("")
+  const router=useRouter();
 
 
     /**
@@ -47,15 +49,18 @@ function handlePaystackSuccessAction (response) {
   
       const data = await download.json();
       console.log(data);
+      if(data){
+        router.push("/")
+      }
     }
     getReference()
 
-  },[url])
+  },[router, url])
 
-  //fix to enable Supabse user
+  //fix to enable Supabase user
   const componentProps = {
     email:user?.user_metadata.email,
-    plan: process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_BINUALLY ,//process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_BINUALLY
+    plan: plan ,//process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_BINUALLY
     metadata: {
       name:user?.user_metadata.full_name,
       phone:"",
