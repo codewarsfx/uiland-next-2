@@ -619,7 +619,7 @@ export default function SinglePage({ screens }) {
           <ButtonWrapper>
             <Button type={buttonTypes.modal}>
               {" "}
-              <Link href="/pricing"> Click to Subscribe</Link>
+              <Link href="/pricing"> Subscribe to View All Screens</Link>
             </Button>
           </ButtonWrapper>
 
@@ -935,6 +935,12 @@ const GridBackground = styled.div`
 `;
 const SubscribeBanner = styled.div`
   position: relative;
+  margin-top: -223px;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1),
+    rgb(255, 255, 255)
+  );
   height: 200px;
   width: 100%;
   display: flex;
