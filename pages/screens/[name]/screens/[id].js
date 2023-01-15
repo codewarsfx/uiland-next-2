@@ -133,6 +133,10 @@ export default function SinglePage({ screens }) {
         } else {
           setLimitedScreens(screens);
         }
+      } else {
+        const result = screens.slice(0, 1);
+        console.log(result);
+        setLimitedScreens(result);
       }
     }
     getPayingUser();
@@ -178,8 +182,6 @@ export default function SinglePage({ screens }) {
   //   getHeaderInfo();
   // }, []);
 
-
-
   //checker to empty the bookmark names select field if the user has deleted all his bookmarked images
   useEffect(() => {
     if (!getId) {
@@ -215,12 +217,10 @@ export default function SinglePage({ screens }) {
     allBookmarkNames();
   }, []);
 
-
- 
   //copies the url
   const copy = async () => {
     // copies the link and shows the toast
- 
+
     setProgress(2);
     setToastPendingText("Copying");
     await navigator.clipboard.writeText(
@@ -975,16 +975,16 @@ const BottomsheetModal = styled.div`
   justify-content: center;
   color: black;
   font-size: 20px;
-  div{
-  width: 100%;
+  div {
+    width: 100%;
+
     text-align: center;
     padding: 12px;
     font-weight: 500;
- 
-}
-div:first-child{
-  border-bottom: 1px solid #dddddd;
-}
+  }
+  div:first-child {
+    border-bottom: 1px solid #dddddd;
+  }
 `;
 const SecondRow = styled.div`
   display: flex;
