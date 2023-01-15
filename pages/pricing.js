@@ -61,7 +61,7 @@ export default function Pricing() {
 								</span>{" "}
 								No seat Limit
 							</p>
-							<CardCta plan={Plan[0]}>Get Started</CardCta >
+							<PaystackPayment plan={Plan[0]}/>
 						</div>
 					</div>
 					<div className='price-card'>
@@ -90,7 +90,7 @@ export default function Pricing() {
 								</span>{" "}
 								No seat Limit
 							</p>
-							<CardCta plan={Plan[1]} >Get Started</CardCta >
+							<PaystackPayment plan={Plan[1]} />
 						</div>
 					</div>
 				</section>
@@ -125,7 +125,7 @@ export default function Pricing() {
 								</span>{" "}
 								No seat Limit
 							</p>
-							<CardCta plan={Plan[0]} >Get Started</CardCta >
+							<PaystackPayment plan={Plan[0]}/>
 						</div>
 					</div>
 					<div className='price-card'>
@@ -154,7 +154,7 @@ export default function Pricing() {
 								</span>{" "}
 								No seat Limit
 							</p>
-							<CardCta plan={Plan[1]} >Get Started</CardCta >
+							<PaystackPayment plan={Plan[1]}/>
 						</div>
 					</div>
 				</section>
@@ -313,17 +313,11 @@ const PricingWrapper = styled.div`
 	}
 `;
 
-const CardCta = styled(PaystackPayment)`
 
-		width: 100%;
-		font-size: 16px;
-		padding: 0.8em 0;
-		border: 1px solid #aaa;
-		background-color: #fff;
-		border-radius: 0.5em;
-		margin-top: 1em;
-	
-`
+
+
+
+
 
 
 

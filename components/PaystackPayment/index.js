@@ -2,6 +2,7 @@ import React, { useEffect ,useState,useContext} from "react";
 import { useRouter } from "next/router";
 import { PaystackButton } from "react-paystack"
 import { UserContext } from "../../context/authContext";
+import styled from "styled-components";
 
 
 
@@ -68,7 +69,7 @@ function handlePaystackSuccessAction (response) {
       phone:"",
     },
     publicKey,
-    text: "Pay Now",
+    text: "Get Started",
     onSuccess: (reference) => handlePaystackSuccessAction(reference),
     onClose: () => alert("Wait! Don't leave :("),
   }
@@ -80,11 +81,23 @@ function handlePaystackSuccessAction (response) {
       
         </div>
         <div className="checkout-form">
-          <PaystackButton {...componentProps} />
+          <PaymentCta {...componentProps} />
         </div>
       </div>
     </div>
   )
 }
+
+
+const PaymentCta = styled(PaystackButton)`
+		width: 100%;
+		font-size: 16px;
+		padding: 0.8em 0;
+		border: 1px solid #aaa;
+		background-color: #fff;
+		border-radius: 0.5em;
+		margin-top: 1em;
+    cursor: pointer;
+`
 
 export default PaystackPayment;
