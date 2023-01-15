@@ -7,6 +7,7 @@ function Toast({ Progress, pendingText, successText }) {
     {/* hides the toast if Progress state is 1 */}
       {Progress !== 1 && (
         <ToastWrapper>
+          <SmallCircle></SmallCircle>
           {Progress == 2 ? (
             <ToastTitle>{pendingText}</ToastTitle>
           ) : Progress == 3 ? (
@@ -19,7 +20,14 @@ function Toast({ Progress, pendingText, successText }) {
     </>
   );
 }
+const SmallCircle=styled.div`
+height:18px;
+width:18px;
+margin-right:5px;
+background:#dddddd;
+border-radius:50%;
 
+`
 const ToastWrapper = styled.div`
   position: fixed;
   display: block;
@@ -28,12 +36,14 @@ const ToastWrapper = styled.div`
   right: 12px;
   padding: 6px 16px;
   border-radius: 12px;
-  font-weight: 600;
   border: 1px solid #dddddd;
   z-index:999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 `;
 const ToastTitle = styled.div`
-  font-size: 24px;
+  font-size: 20px;
   color: #000;
 `;
 export default Toast;

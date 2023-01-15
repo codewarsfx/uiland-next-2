@@ -55,7 +55,9 @@ a{
 
 }
 
-
+.h-30{
+  height: 30px;
+}
 
 select {
    /* A reset of styles, including removing the default dropdown arrow */

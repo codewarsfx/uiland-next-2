@@ -32,10 +32,16 @@ const BottomSheet = ({closeBottomSheetModal,downloadImage,copyImage,openBottomSh
 }
 
 const DownloadContent=styled.div`
-
+    background: var(--primary-color);
+    padding: 12px 0;
+    border-radius: 12px;
+    color: white;
 `
 const CopyContent=styled.div`
-
+    background: var(--primary-color);
+    padding: 12px 0;
+    border-radius: 12px;
+    color: white;
 `
 const BottomSheetWrapper=styled.div`
 background-color: rgba(0, 0, 0, 0.7);
@@ -48,23 +54,31 @@ left: 0;
 z-index: 100;
 `
 const BottomSheetContainer = styled.div`
-  position: fixed;
-  display: block;
-  background: white;
-  bottom: 0;
-  right: 0;
-  width:100%;
-  padding: 12px;
-  border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-  font-weight: 600;
-  border: 1px solid #dddddd;
-  z-index:9999;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  color:black;
-  font-size:18px;
+position: fixed;
+display: block;
+border-radius: 16px;
+text-align: center;
+background: white;
+bottom: 0;
+right: 50%;
+left: 50%;
+margin: 0 auto;
+transform: translate(-50%, -10px);
+width: 90%;
+padding: 12px;
+font-weight: 600;
+border: 1px solid #dddddd;
+z-index: 9999;
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-flex-direction: column;
+-ms-flex-direction: column;
+flex-direction: column;
+gap: 8px;
+color: white;
+font-size: 18px;
 `;
 
 export default BottomSheet;
