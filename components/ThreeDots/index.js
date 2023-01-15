@@ -14,6 +14,7 @@ display:flex;
 flex-direction:row;
 gap:6px;
 cursor:pointer;
+padding: 7px 12px 7px 0px;
 `
 const Dots=styled.div`
 background:black;

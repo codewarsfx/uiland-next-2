@@ -386,7 +386,7 @@ export default function SinglePage({ screens }) {
   const toastNotification = (state) => {
     setTimeout(() => {
       setProgress(state);
-    }, 30000);
+    }, 3000);
   };
 
   //adds image album to bookmark
@@ -991,6 +991,8 @@ const SecondRow = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  background: rgb(0 0 0 / 17%);
+    border-radius: 28px;
 `;
 const Input = styled.input.attrs()`
   color: black;
@@ -1106,7 +1108,7 @@ const ElementsInCategoryContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   margin: 1.5em auto;
-  gap: 20px;
+  gap: 32px;
   width: 90%;
   @media (min-width: 540px) {
     grid-template-columns: repeat(2, 1fr);

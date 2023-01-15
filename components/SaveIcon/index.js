@@ -15,7 +15,7 @@ function SaveIcon({bookmark,data}) {
 const DownloadWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 7px 0px;
+  padding: 7px 0px 7px 12px;
 `;
 const Title = styled.div`
 cursor:pointer;
@@ -24,7 +24,6 @@ cursor:pointer;
   margin: 0;
   padding: 5px;
   border-radius: 5px;
-  background: rgba(0, 0, 0, 0.17);
   svg {
     width: 23px;
     height: 23px;

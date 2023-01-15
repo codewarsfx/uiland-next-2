@@ -18,7 +18,7 @@ export default function Collection() {
     };
     allBookmarkNames();
   }, []);
-console.log(bookmark)
+  console.log(bookmark);
   return (
     <>
       <SingleHeader>
@@ -37,29 +37,34 @@ console.log(bookmark)
             </AlbumTag>
           </Link>
 
-          {JSON.stringify(bookmark) !== JSON.stringify([])  ?
+          {JSON.stringify(bookmark) !== JSON.stringify([]) ? (
             bookmark.map((name) => {
               return (
                 <>
-                  <IndividualTag>
-                    <ImagesHolder>
-                      <Link href={`/collections/individual/${name}`}>
-                        <p data-text={name}>{name}</p>
-                      </Link>
-                      {/* <img src="/assets/img/image-collection.jpg"/> */}
-                    </ImagesHolder>
-                  </IndividualTag>
+                  <Link href={`/collections/individual/${name}`}>
+                    <IndividualTag>
+                      <ImagesHolder>
+                        <Link href={`/collections/individual/${name}`}>
+                          <p data-text={name}>{name}</p>
+                        </Link>
+                        {/* <img src="/assets/img/image-collection.jpg"/> */}
+                      </ImagesHolder>
+                    </IndividualTag>
+                  </Link>
                 </>
               );
-            }):    <Link href="/">
-            <EmptyTag>
-              <ImagesHolder>
-                <Link href="/" passHref>
-                  <a>Create a Collection</a>
-                </Link>
-              </ImagesHolder>
-            </EmptyTag>
-          </Link>}
+            })
+          ) : (
+            <Link href="/">
+              <EmptyTag>
+                <ImagesHolder>
+                  <Link href="/" passHref>
+                    <a>Create a Collection</a>
+                  </Link>
+                </ImagesHolder>
+              </EmptyTag>
+            </Link>
+          )}
         </Content>
       </SingleHeader>
       <ElementsInCategoryContainer></ElementsInCategoryContainer>
