@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BsCheck } from "react-icons/bs";
 import { motion } from "framer-motion";
 
 import styled from "styled-components";
 import PaystackPayment from "../components/PaystackPayment";
+import { UserContext } from "../context/authContext";
+import Router  from "next/router";
 export default function Pricing() {
+  const user  = useContext(UserContext)
 	const [isActive, setIsActive] = useState(false);
 
 	const Plan = [
@@ -12,155 +15,157 @@ export default function Pricing() {
 		process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_ANNUALY,
 	];
 
-	return (
-		<PricingWrapper>
-			<section className='pricing-text'>
-				<h1 className='pricing-text-primary'>From Zero to Mastery</h1>
-				<p className='pricing-text-sec'>
-					Designed for every stage of your journey <br />
-					Strat today, no credit card required
-				</p>
-			</section>
-			<section className='price-tabs' onClick={() => setIsActive(!isActive)}>
-				<button className={`price-btn price-btn--${!isActive ? "active" : ""}`}>
-					Annual
-				</button>
-				<button className={`price-btn price-btn--${isActive ? "active" : ""}`}>
-					Bi-Annual
-				</button>
-			</section>
-			<section className='price-cards'>
-				<section
-					className={`price-cards-annual price-card-annual--${
-						!isActive ? "active" : ""
-					}`}
-				>
-					<div className='price-card'>
-						<h3 className='price-card-type'>Free</h3>
-						<h1 className='price-card-price'>$0</h1>
-						<p className='price-card-description'>
-							per user/month billed monthly
-						</p>
-						<div className='price-card-points'>
-							<p className='price-point-title'>For small teams</p>
-							<p className='price-card-point'>
-								<span className='price-card-point-icon'>
-									<CheckIcon />
-								</span>
-								Real time Contact Syncing
-							</p>
-							<p className='price-card-point'>
-								<span class='price-card-point-icon'>
-									<CheckIcon />
-								</span>{" "}
-								Enhanced email Sending
-							</p>
-							<p className='price-card-point'>
-								<span class='price-card-point-icon'>
-									<CheckIcon />
-								</span>{" "}
-								No seat Limit
-							</p>
-							<PaystackPayment plan={Plan[0]}/>
-						</div>
-					</div>
-					<div className='price-card'>
-						<h3 className='price-card-type'>Annual</h3>
-						<h1 className='price-card-price'>$100</h1>
-						<p className='price-card-description'>
-							per user/month billed monthly
-						</p>
-						<div className='price-card-points'>
-							<p className='price-point-title'>For small teams</p>
-							<p className='price-card-point'>
-								<span className='price-card-point-icon'>
-									<CheckIcon />
-								</span>
-								Real time Contact Syncing
-							</p>
-							<p className='price-card-point'>
-								<span class='price-card-point-icon'>
-									<CheckIcon />
-								</span>{" "}
-								Enhanced email Sending
-							</p>
-							<p className='price-card-point'>
-								<span class='price-card-point-icon'>
-									<CheckIcon />
-								</span>{" "}
-								No seat Limit
-							</p>
-							<PaystackPayment plan={Plan[1]} />
-						</div>
-					</div>
-				</section>
-				<section
-					className={`price-cards-annual price-card-annual--${
-						isActive ? "active" : ""
-					}`}
-				>
-					<div className='price-card'>
-						<h3 className='price-card-type'>Free</h3>
-						<h1 className='price-card-price'>$0</h1>
-						<p className='price-card-description'>
-							per user/month billed biannually
-						</p>
-						<div className='price-card-points'>
-							<p className='price-point-title'>For Large teams</p>
-							<p className='price-card-point'>
-								<span className='price-card-point-icon'>
-									<CheckIcon />
-								</span>
-								Real time Contact Syncing
-							</p>
-							<p className='price-card-point'>
-								<span class='price-card-point-icon'>
-									<CheckIcon />
-								</span>{" "}
-								Enhanced email Sending
-							</p>
-							<p className='price-card-point'>
-								<span class='price-card-point-icon'>
-									<CheckIcon />
-								</span>{" "}
-								No seat Limit
-							</p>
-							<PaystackPayment plan={Plan[0]}/>
-						</div>
-					</div>
-					<div className='price-card'>
-						<h3 className='price-card-type'>Bi-Annual</h3>
-						<h1 className='price-card-price'>$200</h1>
-						<p className='price-card-description'>
-							per user/year billed biannually
-						</p>
-						<div className='price-card-points'>
-							<p className='price-point-title'>For Large teams</p>
-							<p className='price-card-point'>
-								<span className='price-card-point-icon'>
-									<CheckIcon />
-								</span>
-								Real time Contact Syncing
-							</p>
-							<p className='price-card-point'>
-								<span className='price-card-point-icon'>
-									<CheckIcon />
-								</span>{" "}
-								Enhanced email Sending
-							</p>
-							<p className='price-card-point'>
-								<span className='price-card-point-icon'>
-									<CheckIcon />
-								</span>{" "}
-								No seat Limit
-							</p>
-							<PaystackPayment plan={Plan[1]}/>
-						</div>
-					</div>
-				</section>
-			</section>
-		</PricingWrapper>
-	);
+
+    return (
+      <PricingWrapper>
+        <section className='pricing-text'>
+          <h1 className='pricing-text-primary'>From Zero to Mastery</h1>
+          <p className='pricing-text-sec'>
+            Designed for every stage of your journey <br />
+            Strat today, no credit card required
+          </p>
+        </section>
+        <section className='price-tabs' onClick={() => setIsActive(!isActive)}>
+          <button className={`price-btn price-btn--${!isActive ? "active" : ""}`}>
+            Annual
+          </button>
+          <button className={`price-btn price-btn--${isActive ? "active" : ""}`}>
+            Bi-Annual
+          </button>
+        </section>
+        <section className='price-cards'>
+          <section
+            className={`price-cards-annual price-card-annual--${
+              !isActive ? "active" : ""
+            }`}
+          >
+            <div className='price-card'>
+              <h3 className='price-card-type'>Free</h3>
+              <h1 className='price-card-price'>$0</h1>
+              <p className='price-card-description'>
+                per user/month billed monthly
+              </p>
+              <div className='price-card-points'>
+                <p className='price-point-title'>For small teams</p>
+                <p className='price-card-point'>
+                  <span className='price-card-point-icon'>
+                    <CheckIcon />
+                  </span>
+                  Real time Contact Syncing
+                </p>
+                <p className='price-card-point'>
+                  <span class='price-card-point-icon'>
+                    <CheckIcon />
+                  </span>{" "}
+                  Enhanced email Sending
+                </p>
+                <p className='price-card-point'>
+                  <span class='price-card-point-icon'>
+                    <CheckIcon />
+                  </span>{" "}
+                  No seat Limit
+                </p>
+                <PaystackPayment plan={Plan[0]}/>
+              </div>
+            </div>
+            <div className='price-card'>
+              <h3 className='price-card-type'>Annual</h3>
+              <h1 className='price-card-price'>$100</h1>
+              <p className='price-card-description'>
+                per user/month billed monthly
+              </p>
+              <div className='price-card-points'>
+                <p className='price-point-title'>For small teams</p>
+                <p className='price-card-point'>
+                  <span className='price-card-point-icon'>
+                    <CheckIcon />
+                  </span>
+                  Real time Contact Syncing
+                </p>
+                <p className='price-card-point'>
+                  <span class='price-card-point-icon'>
+                    <CheckIcon />
+                  </span>{" "}
+                  Enhanced email Sending
+                </p>
+                <p className='price-card-point'>
+                  <span class='price-card-point-icon'>
+                    <CheckIcon />
+                  </span>{" "}
+                  No seat Limit
+                </p>
+                <PaystackPayment plan={Plan[1]} />
+              </div>
+            </div>
+          </section>
+          <section
+            className={`price-cards-annual price-card-annual--${
+              isActive ? "active" : ""
+            }`}
+          >
+            <div className='price-card'>
+              <h3 className='price-card-type'>Free</h3>
+              <h1 className='price-card-price'>$0</h1>
+              <p className='price-card-description'>
+                per user/month billed biannually
+              </p>
+              <div className='price-card-points'>
+                <p className='price-point-title'>For Large teams</p>
+                <p className='price-card-point'>
+                  <span className='price-card-point-icon'>
+                    <CheckIcon />
+                  </span>
+                  Real time Contact Syncing
+                </p>
+                <p className='price-card-point'>
+                  <span class='price-card-point-icon'>
+                    <CheckIcon />
+                  </span>{" "}
+                  Enhanced email Sending
+                </p>
+                <p className='price-card-point'>
+                  <span class='price-card-point-icon'>
+                    <CheckIcon />
+                  </span>{" "}
+                  No seat Limit
+                </p>
+                <PaystackPayment plan={Plan[0]}/>
+              </div>
+            </div>
+            <div className='price-card'>
+              <h3 className='price-card-type'>Bi-Annual</h3>
+              <h1 className='price-card-price'>$200</h1>
+              <p className='price-card-description'>
+                per user/year billed biannually
+              </p>
+              <div className='price-card-points'>
+                <p className='price-point-title'>For Large teams</p>
+                <p className='price-card-point'>
+                  <span className='price-card-point-icon'>
+                    <CheckIcon />
+                  </span>
+                  Real time Contact Syncing
+                </p>
+                <p className='price-card-point'>
+                  <span className='price-card-point-icon'>
+                    <CheckIcon />
+                  </span>{" "}
+                  Enhanced email Sending
+                </p>
+                <p className='price-card-point'>
+                  <span className='price-card-point-icon'>
+                    <CheckIcon />
+                  </span>{" "}
+                  No seat Limit
+                </p>
+                <PaystackPayment plan={Plan[1]}/>
+              </div>
+            </div>
+          </section>
+        </section>
+      </PricingWrapper>
+    );
+
 }
 
 const CheckIcon = styled(BsCheck)`
