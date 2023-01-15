@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Head from "next/head";
 //Next library
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import Image from "next/image";
 
 //Third party libraries
@@ -59,6 +59,16 @@ export default function SinglePage({ screens }) {
     toggleBottomSheet,
     modalSheet,
   } = useModal();
+
+  const handleClickSubscribeButton = () => {
+    console.log("handleClickSubscribeButton")
+    if (!user) {
+      loginToggleModal()
+    }
+    else {
+      Router.push('/pricing')
+    }
+  }
 
   // state for the bottomsheet
   const [openBottomSheet, setOpenBottomSheet] = useState(false);
@@ -616,13 +626,11 @@ export default function SinglePage({ screens }) {
       </ElementsInCategoryContainer>
       {!payingbanner && (
         <SubscribeBanner>
-          <ButtonWrapper>
-            <Button type={buttonTypes.modal}>
-              {" "}
-              <Link href="/pricing"> Subscribe to View All Screens</Link>
-            </Button>
+          <ButtonWrapper onClick={handleClickSubscribeButton}>
+             <Button type={buttonTypes.modal} >
+                 Subscribe to View All Screens
+             </Button>
           </ButtonWrapper>
-
           <GridBackground>
             <svg
               width="1440"
@@ -935,7 +943,7 @@ const GridBackground = styled.div`
 `;
 const SubscribeBanner = styled.div`
   position: relative;
-  margin-top: -223px;
+  /* margin-top: -223px; */
   background: linear-gradient(
     rgba(255, 255, 255, 0),
     rgba(255, 255, 255, 1),
@@ -951,12 +959,11 @@ const SubscribeBanner = styled.div`
   border-top-left-radius: 40px;
 `;
 const CancelButton = styled.div`
-
-  display: flex,
-  alignItems: center,
-  justifyContent: center,
-  marginBottom: 12px,
-  position:relative,
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  position:relative;
 
 img{
   width: 5rem;
@@ -968,6 +975,7 @@ img{
   transform: scale(.28);
 }
 `;
+
 const BottomsheetModal = styled.div`
   display: flex;
   flex-direction: column;

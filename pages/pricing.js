@@ -143,13 +143,13 @@ export default function Pricing() {
 								Real time Contact Syncing
 							</p>
 							<p className='price-card-point'>
-								<span class='price-card-point-icon'>
+								<span className='price-card-point-icon'>
 									<CheckIcon />
 								</span>{" "}
 								Enhanced email Sending
 							</p>
 							<p className='price-card-point'>
-								<span class='price-card-point-icon'>
+								<span className='price-card-point-icon'>
 									<CheckIcon />
 								</span>{" "}
 								No seat Limit
