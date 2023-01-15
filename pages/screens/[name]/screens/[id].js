@@ -133,6 +133,10 @@ export default function SinglePage({ screens }) {
         } else {
           setLimitedScreens(screens);
         }
+      } else {
+        const result = screens.slice(0, 1);
+        console.log(result);
+        setLimitedScreens(result);
       }
     }
     getPayingUser();
@@ -178,10 +182,6 @@ export default function SinglePage({ screens }) {
   //   getHeaderInfo();
   // }, []);
 
-  useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(user));
-  }, [user]);
-
   //checker to empty the bookmark names select field if the user has deleted all his bookmarked images
   useEffect(() => {
     if (!getId) {
@@ -220,10 +220,11 @@ export default function SinglePage({ screens }) {
   //copies the url
   const copy = async () => {
     // copies the link and shows the toast
+
     setProgress(2);
     setToastPendingText("Copying");
     await navigator.clipboard.writeText(
-      `http://localhost:3000/screens/${router.query.id}`
+      `https://uiland.design/screens/${router.query.id}`
     );
     setToastSuccessText("Copied 🎉");
     setProgress(3);
@@ -365,7 +366,6 @@ export default function SinglePage({ screens }) {
     // "http://localhost:3000/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fuiland.appspot.com%2Fo%2FCowrywise%252FCowrywise-screens%252FScreenshot_2022-10-13-14-46-21-882_com.cowrywise.android-min.jpg%3Falt%3Dmedia%26token%3D3efdba80-8ec5-463a-9466-317f9247a6c3&w=1080&q=75"
     //which contains the prefetched images
     // This prevents cors error while getting the images
-
     setProgress(2);
     setToastPendingText("Copying");
     const response = await fetch(imageUrl);
@@ -386,7 +386,7 @@ export default function SinglePage({ screens }) {
   const toastNotification = (state) => {
     setTimeout(() => {
       setProgress(state);
-    }, 3000);
+    }, 30000);
   };
 
   //adds image album to bookmark
@@ -971,11 +971,20 @@ img{
 const BottomsheetModal = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
   align-items: center;
   justify-content: center;
   color: black;
   font-size: 20px;
+  div {
+    width: 100%;
+
+    text-align: center;
+    padding: 12px;
+    font-weight: 500;
+  }
+  div:first-child {
+    border-bottom: 1px solid #dddddd;
+  }
 `;
 const SecondRow = styled.div`
   display: flex;

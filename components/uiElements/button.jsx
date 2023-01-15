@@ -63,10 +63,11 @@ const LoginButton = styled(PrimaryButton)`
 `;
 
 const GoogleButton = styled(PrimaryButton)`
-  color: var(--text-color-light);
-  background-color: var(--primary-color);
-  padding-top: 1em;
-  padding-bottom: 1em;
+color: black;
+    background-color: var(--text-color-light);;
+    padding-top: 0.6em;
+    padding-bottom: 0.6em;
+    border: 1px solid #5c727d;
 `;
 const ErrorButton = styled(PrimaryButton)`
   color: var(--text-color-light);

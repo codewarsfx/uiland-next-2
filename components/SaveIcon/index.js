@@ -15,7 +15,7 @@ function SaveIcon({bookmark,data}) {
 const DownloadWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 7px 16px;
+  padding: 7px 0px;
 `;
 const Title = styled.div`
 cursor:pointer;
