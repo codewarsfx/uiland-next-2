@@ -41,6 +41,7 @@ console.log(bookmark)
             bookmark.map((name) => {
               return (
                 <>
+                     <Link href={`/collections/individual/${name}`}>
                   <IndividualTag>
                     <ImagesHolder>
                       <Link href={`/collections/individual/${name}`}>
@@ -48,7 +49,7 @@ console.log(bookmark)
                       </Link>
                       {/* <img src="/assets/img/image-collection.jpg"/> */}
                     </ImagesHolder>
-                  </IndividualTag>
+                  </IndividualTag></Link>
                 </>
               );
             }):    <Link href="/">
