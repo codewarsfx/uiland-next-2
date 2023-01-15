@@ -991,6 +991,8 @@ const SecondRow = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  background: rgb(0 0 0 / 17%);
+    border-radius: 28px;
 `;
 const Input = styled.input.attrs()`
   color: black;
@@ -1114,7 +1116,7 @@ const ElementsInCategoryContainer = styled.div`
   @media (min-width: 768px) {
     width: 95%;
     margin: 3em auto;
-    gap: 20px;
+    gap: 32px;
     grid-template-columns: repeat(4, 1fr);
   }
 `;
