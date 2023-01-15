@@ -1,4 +1,3 @@
-import { sendRenderResult } from "next/dist/server/send-payload";
 import React, { useEffect, useState } from "react";
 import PaystackPayment from "../components/PaystackPayment";
 export default function Pricing() {
@@ -8,12 +7,14 @@ const Plan=[process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_BINUALLY,process.env.NEXT_P
 
 
 useEffect(()=>{
+  
   async function getSubscriptionInfo(){
-    const data=await  fetch("/api/paystackwebhook")
+    const data=await  fetch("/api/paystackwebhook");
     const result= await data.json();
-    console.log(sendRenderResult)
+    console.log(result)
+    console.log("pop")
   }
-  getSubscriptionInfo()
+  getSubscriptionInfo();
 
 },[])
   return (

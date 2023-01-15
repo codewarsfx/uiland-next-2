@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch",
-    "lt": "lt --port 8000"
+    "test": "jest --watch"
   },
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.80",
@@ -16,6 +15,7 @@
     "axios": "^1.2.2",
     "crypto": "^1.0.1",
     "framer-motion": "^7.6.1",
+    "localtunnel": "^2.0.2",
     "next": "12.3.1",
     "normalize-css": "^2.3.1",
     "paystack-api": "^2.0.6",

@@ -15,7 +15,7 @@ export default function handler(req, res) {
     })
     .then(
       (result) => {
-        // console.log(result);
+        // console.log("pay",result);
         res.send(result.data);
       },
       (error) => {

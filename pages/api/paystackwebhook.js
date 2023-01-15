@@ -1,6 +1,7 @@
 var crypto = require("crypto");
 import { supabase } from "../../supabase";
 var secret = process.env.NEXT_PUBLIC_PAYSTACK_SECRET_TEST_KEY;
+
 // Using Express
 export default function handler(req, res) {
   //validate event
@@ -8,8 +9,8 @@ export default function handler(req, res) {
     .createHmac("sha512", secret)
     .update(JSON.stringify(req.body))
     .digest("hex");
-
-
+console.log(hash);
+  console.log(req.headers["x-paystack-signature"]);
   if (hash == req.headers["x-paystack-signature"]) {
     //  if(req.body.event ==='charge.success'){
     //     console.log(req.body.event,req.body.data.reference,req.body.data.amount,
@@ -22,12 +23,12 @@ export default function handler(req, res) {
     //  }
 
     if (req.body.event === "subscription.create") {
-      // console.log(req.body.event,req.body.data.status,req.body.data.amount,
-      //     req.body.data.createdAt,req.body.data.next_payment_date,req.body.data.plan.currency,
-      //     req.body.data.authorization.authorization_code,req.body.data.authorization.exp_month,
-      //     req.body.data.authorization.exp_year,req.body.data.authorization.card_type,req.body.data.authorization.bank,
-      //     req.body.data.authorization.brand,req.body.data.authorization.signature,req.body.data.plan.name,req.body.data.plan.interval,
-      //     )
+      console.log(req.body.event,req.body.data.status,req.body.data.amount,
+          req.body.data.createdAt,req.body.data.next_payment_date,req.body.data.plan.currency,
+          req.body.data.authorization.authorization_code,req.body.data.authorization.exp_month,
+          req.body.data.authorization.exp_year,req.body.data.authorization.card_type,req.body.data.authorization.bank,
+          req.body.data.authorization.brand,req.body.data.authorization.signature,req.body.data.plan.name,req.body.data.plan.interval,
+          )
 
       // update the profile table when a "subscription.create" is available
       async function insertToProfile() {
@@ -56,10 +57,12 @@ export default function handler(req, res) {
         console.log("fish", data);
       }
       insertToProfile();
+      console.log("stack",req.body.event);
+      return res.send(req.body.event);
     }
     // Do something with event
-    res.send(req.body.event)
-    console.log(req.body);
+    res.send(req.body.event);
+    console.log("stack",req.body);
   }
-
+  
 }
