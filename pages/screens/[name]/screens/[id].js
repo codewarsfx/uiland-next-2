@@ -386,7 +386,7 @@ export default function SinglePage({ screens }) {
   const toastNotification = (state) => {
     setTimeout(() => {
       setProgress(state);
-    }, 30000);
+    }, 3000);
   };
 
   //adds image album to bookmark
