@@ -9,7 +9,7 @@ export default function handler(req, res) {
     .update(JSON.stringify(req.body))
     .digest("hex");
 
-    
+
   if (hash == req.headers["x-paystack-signature"]) {
     //  if(req.body.event ==='charge.success'){
     //     console.log(req.body.event,req.body.data.reference,req.body.data.amount,
@@ -58,7 +58,8 @@ export default function handler(req, res) {
       insertToProfile();
     }
     // Do something with event
+    res.send(req.body.event)
     console.log(req.body);
   }
-  res.send(200);
+
 }
