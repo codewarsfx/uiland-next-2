@@ -65,6 +65,7 @@ export default function Pricing() {
       console.log("pop");
     }
     getSubscriptionInfo();
+    
   }, []);
 
   
