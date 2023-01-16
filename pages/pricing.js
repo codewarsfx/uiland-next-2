@@ -67,6 +67,7 @@ export default function Pricing() {
   //   getSubscriptionInfo();
   // }, []);
   
+  
   return (
     <PricingWrapper>
       <section className="pricing-text">
