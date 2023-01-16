@@ -56,16 +56,16 @@ export default function Pricing() {
     },
   ];
 
-  useEffect(() => {
-    async function getSubscriptionInfo() {
-      const data = await fetch("/api/paystackwebhook");
-      console.log(data);
-      const result = await data.json();
-      console.log(result);
-      console.log("pop");
-    }
-    getSubscriptionInfo();
-  }, []);
+  // useEffect(() => {
+  //   async function getSubscriptionInfo() {
+  //     const data = await fetch("/api/paystackwebhook");
+  //     console.log(data);
+  //     const result = await data.json();
+  //     console.log(result);
+  //     console.log("pop");
+  //   }
+  //   getSubscriptionInfo();
+  // }, []);
   
   return (
     <PricingWrapper>

@@ -55,7 +55,7 @@ function handlePaystackSuccessAction (response) {
       if(data.message ==='Verification successful'){
         setTimeout(()=>{
             router.push("/")
-        },1500)
+        },500)
       
       }
     }
