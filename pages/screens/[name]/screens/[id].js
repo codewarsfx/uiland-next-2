@@ -235,7 +235,7 @@ export default function SinglePage({ screens }) {
     setProgress(2);
     setToastPendingText("Copying");
     await navigator.clipboard.writeText(
-      `https://uiland.design/screens/${router.query.id}`
+      `https://uiland.design/screens/${router.query.name}/screens/${router.query.id}`
     );
     setToastSuccessText("Copied 🎉");
     setProgress(3);
