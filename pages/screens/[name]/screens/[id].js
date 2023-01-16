@@ -564,7 +564,7 @@ export default function SinglePage({ screens }) {
       {isModalopen && (
         <Modal toggleModal={toggleModal}>
           <SocialModalBox>
-            <SocialsCard id={router.query.id} copy={copy} />
+            <SocialsCard id={router.query.id} copy={copy} name={router.query.name} />
           </SocialModalBox>
         </Modal>
       )}

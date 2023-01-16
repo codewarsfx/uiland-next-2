@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react'
 import styled from "styled-components";
-function SocialsCard({id,copy}) {
+function SocialsCard({id,copy,name}) {
   return (
     <>
        <div className="flex-row">
@@ -52,21 +52,21 @@ function SocialsCard({id,copy}) {
     </svg>
   </a> */}
   <a
-    href={`https://wa.me/?text=https://uiland.design/screens/${id}`}
+    href={`https://wa.me/?text=https://uiland.design/screens/${name}/screens/${id}`}
     target="_blank"
     rel="noreferrer"
   >
     <Image src="/assets/img/whatsapp.svg" width="52" height="52" alt="Share on WhatsApp" />
   </a>
   <a
-    href={`https://telegram.me/share/url?url=https://uiland.design/screens/${id}`}
+    href={`https://telegram.me/share/url?url=https://uiland.design/screens/${name}/screens/${id}`}
     target="_blank"
     rel="noreferrer"
   >
     <Image width="52" height="52" src="/assets/img/telegram.svg" alt="Share on Telegram" />
   </a>
   <a
-    href={`https://www.facebook.com/sharer/sharer.php?quote=https://uiland.design/screens/${id}`}
+    href={`https://www.facebook.com/sharer/sharer.php?quote=https://uiland.design/screens/${name}/screens/${id}`}
     target="_blank"
     rel="noreferrer"
   >
@@ -77,7 +77,7 @@ function SocialsCard({id,copy}) {
 </div>
 <CopyContainer>
 <CopyText>
-{`https://uiland.design/screens/${id}`}
+{`https://uiland.design/screens/${name}/screens/${id}`}
 </CopyText>
 <CopyButton onClick={copy}>
     Copy
