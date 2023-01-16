@@ -189,7 +189,7 @@ const PricingWrapper = styled.div`
   .price-cards-annual {
     position: absolute;
     display: none;
-    width: 100%;
+    width: 90%;
     @media (min-width: 760px) {
       max-width: 700px;
       left: 50%;
@@ -202,4 +202,5 @@ const PricingWrapper = styled.div`
       display: flex;
     }
   }
+
 `;
