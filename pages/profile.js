@@ -1,11 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { UserContext } from "../context/authContext";
-import { deleteAccount } from "../supabase";
+import { deleteAccount ,getUserProfile} from "../supabase";
 import { buttonTypes } from "../components/uiElements/button";
 import { Button } from "../components/uiElements";
 export default function Profile() {
+  const [userprofile,setUserProfile]=useState([])
   const router = useRouter();
   const user = useContext(UserContext);
   console.log(user);
@@ -17,7 +18,76 @@ export default function Profile() {
   }, [router, user]);
   function handleDelete() {
     deleteAccount(user);
+    router.push("/");
   }
+ useEffect(()=>{
+async function getProfile(){
+  if(user || user?.id){
+    console.log(user)
+    const  userDetails = await getUserProfile(user);
+setUserProfile(userDetails);
+  }
+
+}
+  getProfile()
+ },[user])
+
+//response from the backend
+
+// amount
+// : 
+// 1200000
+// authorization_code
+// : 
+// "AUTH_85ayu9fwd7"
+// bank
+// : 
+// "TEST BANK"
+// brand
+// : 
+// "visa"
+// card_type
+// : 
+// "visa "
+// created_at
+// : 
+// "2023-01-16T00:28:46.462465+00:00"
+// created_date_at
+// : 
+// "2023-01-16"
+// currency
+// : 
+// "NGN"
+// email
+// : 
+// "dikevictoruzoma2005@gmail.com"
+// event
+// : 
+// "subscription.create"
+// exp_month
+// : 
+// 12
+// id
+// : 
+// "d0fbf270-625c-4e7f-9a55-27ace8e09ca8"
+// next_payment_date
+// : 
+// "2023-07-16"
+// plan_interval
+// : 
+// "biannually"
+// plan_name
+// : 
+// "binually"
+// signature
+// : 
+// "SIG_XsXcuuATQXSCeRltxGDx"
+// status
+// : 
+// "active"
+// subscription_code
+// : 
+// "SUB_h25tir565gmin76"
 
   return (
     <>
@@ -41,12 +111,37 @@ export default function Profile() {
               Delete Account
             </Button>
           </ProfileContainer>
+          <UserDetails>
+            {userprofile&&userprofile.map((user)=>{
+return(
+  
+  <div key={user.id}>
+    <p>{user.email}</p>
+    <p>{user.bank}</p>
+    <p>{user.brand}</p>
+    <p>{user.status}</p>
+    <p>{user.plan_name}</p>
+    <p>{user.next_payment_date}</p>
+    <p>{user.plan_interval}</p>
+    <p>{user.amount}</p>
+    <p>{user.exp_month}</p>
+    <p>{user.currency}</p>
+    <p>{user.created_at}</p>
+    <p>{user.created_date_at}</p>
+  </div>
+)
+            })}
+          </UserDetails>
         </>
       </SingleHeader>
     </>
   );
 }
 
+const UserDetails=styled.div`
+
+
+`
 const PhotoWrapper = styled.div`
   overflow: hidden;
   img {

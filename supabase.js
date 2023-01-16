@@ -318,3 +318,20 @@ export async function deleteAccount(user) {
 export async function signout() {
   await supabase.auth.signOut();
 }
+
+
+export async function getUserProfile(user) {
+  console.log("wow",user)
+  if(user){
+    console.log("yes",user)
+     const { data, error } = await supabase
+    .from("profile")
+    .select("*")
+    //   i will use this to limit the result later
+    //   .limit(1)
+    .eq("id", user.id);
+    console.log(data)
+  return data;
+  }
+ 
+}
