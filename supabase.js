@@ -87,14 +87,14 @@ export async function getSession() {
 
 
 //get paying user by checking the event key
-export async function getProfileByEvent() {
+export async function getProfileByEvent(user) {
   
 const { data, error } = await supabase
 .from('profile')
 .select('event')
   //   i will use this to limit the result later
   //   .limit(1)
-  // .eq("id", user.id);
+  .eq("id", user.id);
   console.log("event", data, error);
   return data;
 }

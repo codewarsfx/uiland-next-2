@@ -23,12 +23,21 @@ console.log(hash);
     //  }
 
     if (req.body.event === "subscription.create") {
-      console.log(req.body.event,req.body.data.status,req.body.data.amount,
-          req.body.data.createdAt,req.body.data.next_payment_date,req.body.data.plan.currency,
-          req.body.data.authorization.authorization_code,req.body.data.authorization.exp_month,
-          req.body.data.authorization.exp_year,req.body.data.authorization.card_type,req.body.data.authorization.bank,
-          req.body.data.authorization.brand,req.body.data.authorization.signature,req.body.data.plan.name,req.body.data.plan.interval,
-          )
+      // console.log({      event: req.body.event,
+      //   status: req.body.data.status,
+      //   amount: req.body.data.amount,
+      //   currency: req.body.data.plan.currency,
+      //   authorization_code: req.body.data.authorization.authorization_code,
+      //   next_payment_date: req.body.data.next_payment_date,
+      //   created_date_at: req.body.data.createdAt,
+      //   exp_month: req.body.data.authorization.exp_month,
+      //   plan_name: req.body.data.plan.name,
+      //   plan_interval: req.body.data.plan.interval,
+      //   signature: req.body.data.authorization.signature,
+      //   bank: req.body.data.authorization.bank,
+      //   card_type: req.body.data.authorization.card_type,
+      //   brand: req.body.data.authorization.brand,
+      //   subscription_code: req.body.data.subscription_code})
 
       // update the profile table when a "subscription.create" is available
       async function insertToProfile() {
@@ -55,14 +64,15 @@ console.log(hash);
           .eq("email", req.body.data.customer.email)
           .select();
         console.log("fish", data);
+        // return res.send(data[0]);
       }
       insertToProfile();
-      console.log("stack",req.body.event);
-      return res.send(req.body.event);
+      console.log("stack",req.body);
+    //  return res.send(req.body.data);
     }
     // Do something with event
-    res.send(req.body.event);
-    console.log("stack",req.body);
+res.send(200)
+    // console.log("stack",req.body);
   }
   
 }

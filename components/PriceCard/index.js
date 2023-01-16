@@ -22,13 +22,13 @@ function PriceCard({type, price,description,title,info1,info2,info3,planId}) {
                   {info1}
                 </p>
                 <p className='price-card-point'>
-                  <span class='price-card-point-icon'>
+                  <span className='price-card-point-icon'>
                     <CheckIcon />
                   </span>{" "}
                   {info2}
                 </p>
                 <p className='price-card-point'>
-                  <span class='price-card-point-icon'>
+                  <span className='price-card-point-icon'>
                     <CheckIcon />
                   </span>{" "}
                   {info3}

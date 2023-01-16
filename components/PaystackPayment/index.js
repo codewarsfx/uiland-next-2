@@ -51,10 +51,13 @@ function handlePaystackSuccessAction (response) {
       const data = await download.json();
       console.log(data);
 
-      //needs fixing
-      // if(data){
-      //   router.push("/")
-      // }
+      //prevents it from immediately redirecting back to home
+      if(data.message ==='Verification successful'){
+        setTimeout(()=>{
+            router.push("/")
+        },1500)
+      
+      }
     }
     getReference()
 

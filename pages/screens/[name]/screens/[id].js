@@ -132,15 +132,16 @@ export default function SinglePage({ screens }) {
       console.log(user);
       if (user) {
         console.log(user);
-        let getEvent = await getProfileByEvent();
-        console.log(getEvent);
-        setPayingBanner(getEvent[0].event);
-        console.log(getEvent[0].event);
-        if (!getEvent[0].event) {
+        let getEvent = await getProfileByEvent(user);
+        console.log(JSON.stringify(getEvent)===JSON.stringify([]));
+    console.log(getEvent[0].event === null)
+        if ( JSON.stringify(getEvent)===JSON.stringify([]) || getEvent[0].event === null || getEvent[0].event===undefined|| getEvent[0].event === '') {
           const result = screens.slice(0, 1);
           console.log(result);
           setLimitedScreens(result);
         } else {
+          setPayingBanner(getEvent[0].event);
+          console.log(getEvent[0].event);
           setLimitedScreens(screens);
         }
       } else {
