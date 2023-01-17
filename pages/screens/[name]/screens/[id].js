@@ -199,10 +199,10 @@ export default function SinglePage({ screens }) {
 
 	//checker to empty the bookmark names select field if the user has deleted all his bookmarked images
 	useEffect(() => {
-    if (!getId) {
-      setSelectBookmark(['']);
-    }
-  }, [getId]);
+		if (!getId) {
+			setSelectBookmark(['']);
+		}
+	}, [getId]);
 
 	// useEffect(()=>{
 	//   const uniqueResult=([...new Set(selectBookmark)])

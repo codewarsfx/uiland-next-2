@@ -8,15 +8,13 @@
 		"start": "next start",
 		"lint": "next lint",
 		"test": "jest --watch",
-    "configure-husky": "npx husky install && npx husky add .husky/pre-commit \"npx --no-install lint-staged\""
- , "prettier":"prettier --write ."
+		"configure-husky": "npx husky install && npx husky add .husky/pre-commit \"npx --no-install lint-staged\"",
+		"prettier": "prettier --write ."
 	},
 	"dependencies": {
-
 		"@mailchimp/mailchimp_marketing": "^3.0.80",
 		"@supabase/supabase-js": "^2.2.3",
 		"axios": "^1.2.2",
-
 		"crypto": "^1.0.1",
 		"framer-motion": "^7.6.1",
 		"localtunnel": "^2.0.2",
@@ -46,12 +44,12 @@
 		"jest-environment-jsdom": "^29.3.1",
 		"prettier": "^2.8.3"
 	},
-  "lint-staged": {
-    "**/*.{js,jsx,json}": [ "prettier --write ."]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  }
+	"lint-staged": {
+		"**/*.{js,jsx,json}": ["lint", "prettier --write ."]
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	}
 }
