@@ -14,7 +14,6 @@ const Home = ({ screens }) => {
   const [result, setResult] = useState([]);
 
   const searchFilter = (array, data) => {
-    console.log(array, data);
     if (data === "") return array;
     return array.filter((el) => el.category === data);
   };
@@ -37,7 +36,7 @@ const Home = ({ screens }) => {
   //saves first user in mailchimp database
   useEffect(() => {
     supabase.auth.onAuthStateChange((event, session) => {
-      console.log(session);
+
       async function getEmail() {
         if (event == "SIGNED_IN") {
           const download = await fetch("/api/mailchimp", {

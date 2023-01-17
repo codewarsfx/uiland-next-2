@@ -37,8 +37,8 @@ console.log(filterName)
       value={{
         screens,
         setFilterItem,
-		setFilterItemName,
-		filterName,
+		    setFilterItemName,
+		    filterName,
         filterTerm,
       }}
     >
