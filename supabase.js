@@ -72,7 +72,6 @@ export async function getSession() {
 	const {
 		data: { session },
 	} = await supabase.auth.getSession();
-	console.log('what', session);
 	return session;
 }
 
@@ -146,7 +145,8 @@ export async function getScreensProperties(id) {
 		.from('Screens')
 		.select('*')
 		.eq('id', id);
-	const result = data[0];
+
+	const result = data ? data[0] : [];
 	return result;
 }
 
@@ -276,7 +276,6 @@ export async function getSingleScreens(user) {
 
 //    get bookmark id in single bookmark
 export async function getAllSingleBookmarkId(user) {
-	console.log(user);
 	const { data, error } = await supabase
 		.from('singleImageBookmark')
 		.select('screen_id')
@@ -296,7 +295,6 @@ export async function getAllSingleBookmarkNames() {
 	//gets unique names in the db
 	const result = data?.map((object) => object.bookmark_name);
 	const uniqueResult = [...new Set(result)];
-	console.log(uniqueResult);
 	return uniqueResult;
 }
 
