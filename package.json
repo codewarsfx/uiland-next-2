@@ -12,10 +12,11 @@
   
 	},
 	"dependencies": {
-		
+
 		"@mailchimp/mailchimp_marketing": "^3.0.80",
 		"@supabase/supabase-js": "^2.2.3",
 		"axios": "^1.2.2",
+		
 		"crypto": "^1.0.1",
 		"framer-motion": "^7.6.1",
 		"localtunnel": "^2.0.2",
