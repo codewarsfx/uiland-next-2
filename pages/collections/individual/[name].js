@@ -4,16 +4,22 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { UserContext } from '../../../context/authContext';
-import { viewSingleBookmark } from '../../../supabase';
+import {
+	getAllScreens,
+	getAllSingleBookmarkNames,
+	viewSingleBookmark,
+} from '../../../supabase';
 import EmptyState from '../../../components/EmptyState';
+import useScreenshot from '../../../hooks/useScreenshot';
+import DeleteIcon from '../../../components/DeleteIcon';
+import SaveIcon from '../../../components/SaveIcon';
+import ThreeDots from '../../../components/ThreeDots';
+import Screenshots from '../../../components/Screenshots';
 
 export default function IndividualCollections() {
 	const router = useRouter();
-	const user = useContext(UserContext);
 	const [screens, setScreens] = useState([]);
-	const [displayBasic, setDisplayBasic] = useState(false);
-	const [imageContent, setImageContent] = useState({});
-	const [getId, setGetId] = useState([]);
+	const user = useContext(UserContext);
 
 	useEffect(() => {
 		async function getAlbums() {
@@ -26,41 +32,17 @@ export default function IndividualCollections() {
 		getAlbums();
 	}, [router.query.name, user]);
 
-	//copy images
-	async function copyImage(e) {
-		const response = await fetch(
-			e.target.parentElement.children[3].children[1].currentSrc
-		);
-		const blob = await response.blob();
-		navigator.clipboard.write([
-			new window.ClipboardItem({
-				[blob.type]: blob,
-			}),
-		]);
-		console.log('Image copied.');
-	}
 	return (
 		<>
 			<SingleHeader>
 				<>
 					<Title>{router.query.name}</Title>
-
 					<div></div>
 				</>
 			</SingleHeader>
 			<ElementsInCategoryContainer>
-				{screens ? (
-					screens?.map((data) => (
-						<ScreenshotContainer key={data.url}>
-							{/* add the name to alt tag */}
-							<Image
-								src={data.screen_id.url}
-								alt={`Screenshots of  App`}
-								width={1080}
-								height={2240}
-							/>
-						</ScreenshotContainer>
-					))
+				{screens.length > 0 ? (
+					<Screenshots screens={screens} />
 				) : (
 					<EmptyState />
 				)}
@@ -68,53 +50,7 @@ export default function IndividualCollections() {
 		</>
 	);
 }
-const ModalBox = styled.div`
-	background-color: #fff;
-	max-width: 37.5rem;
-	padding: 1.6rem;
-	border-radius: 0.5rem;
-`;
 
-const DownloadWrapper = styled.div`
-	position: absolute;
-	block: '';
-	z-index: 99;
-	display: flex;
-	flex-direction: column;
-	padding: 7px 16px;
-	align-items: flex-start;
-	top: 10px;
-	right: 94px;
-	border-radius: 2em;
-	visibility: hidden;
-`;
-const CopyWrapper = styled.div`
-	position: absolute;
-	block: '';
-	z-index: 99;
-	display: flex;
-	flex-direction: column;
-	padding: 7px 16px;
-	align-items: flex-start;
-	top: 10px;
-	right: 18px;
-	border-radius: 2em;
-	visibility: hidden;
-`;
-
-const AbsoluteBox = styled.div`
-	position: absolute;
-	block: '';
-	z-index: 99;
-	display: flex;
-	flex-direction: column;
-	padding: 7px 16px;
-	align-items: flex-start;
-	top: 10px;
-	right: 54px;
-	border-radius: 2em;
-	visibility: hidden;
-`;
 const ScreenshotContainer = styled.div`
 	border-radius: 0.8em;
 	background: linear-gradient(to bottom, white 99%, black 1%);
@@ -188,4 +124,13 @@ const ElementsInCategoryContainer = styled.div`
 		gap: 20px;
 		grid-template-columns: repeat(4, 1fr);
 	}
+`;
+
+const SecondRow = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	background: rgb(0 0 0 / 17%);
+	border-radius: 28px;
 `;

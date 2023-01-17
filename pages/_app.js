@@ -8,6 +8,7 @@ import { UserContextProvider } from '../context/authContext';
 import { ScreensContextProvider } from '../context/screensContex';
 import Head from 'next/head';
 import Header from '../components/Header';
+import ScreenContextProvider from '../context/screenContext';
 function MyApp({ Component, pageProps }) {
 	const router = useRouter();
 	useEffect(() => {
@@ -36,19 +37,19 @@ function MyApp({ Component, pageProps }) {
 
 				<Script id='google-analytics' strategy='lazyOnload'>
 					{`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${gtag.GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-                `}
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${gtag.GA_TRACKING_ID}', {
+                page_path: window.location.pathname,
+              });
+                  `}
 				</Script>
 				<Script id='segment' strategy='lazyOnload'>
 					{`  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="CzMF6ZIUJcE8l8lgVpjsbJv1gT5jVvBo";;analytics.SNIPPET_VERSION="4.15.3";
-  analytics.load("CzMF6ZIUJcE8l8lgVpjsbJv1gT5jVvBo");
-  analytics.page();
-  }}();`}
+    analytics.load("CzMF6ZIUJcE8l8lgVpjsbJv1gT5jVvBo");
+    analytics.page();
+    }}();`}
 				</Script>
 
 				<Head>
