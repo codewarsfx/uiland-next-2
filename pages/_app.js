@@ -29,7 +29,6 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <UserContextProvider>
-      <ScreenContextProvider>
           <ScreensContextProvider>
           <Script
             strategy="lazyOnload"
@@ -136,7 +135,6 @@ function MyApp({ Component, pageProps }) {
           <Header />
           <Component {...pageProps} />
           </ScreensContextProvider>
-      </ScreenContextProvider>
     </UserContextProvider>
   );
 }

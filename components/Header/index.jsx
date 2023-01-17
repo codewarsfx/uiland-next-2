@@ -60,7 +60,7 @@ const Header = () => {
 				) : (
 					<HeaderInfo>
 						<CollectionText>
-						<Link href='/collections'>
+						<Link href={`/collections`}>
 						<a >Collections</a>
 					</Link>
 						</CollectionText>

@@ -12,6 +12,7 @@ import {
 	getAlbumBookmarkId,
 	addBookmark,
 	getProfileByEvent,
+	getAllSingleBookmarkId,
 } from "../supabase.js";
 
 //Hooks
@@ -26,7 +27,6 @@ import { buttonTypes } from "../components/uiElements/button";
 import { mobileCheck } from "../utils/isMobile";
 
 const useScreenshot = (screens) => {
-	const { getId, setGetId } = useContext(ScreenContext);
 	const user = useContext(UserContext);
 	const router = useRouter();
 	const {
@@ -81,7 +81,25 @@ const useScreenshot = (screens) => {
 
 	//state to display the  paying banner
 	const [payingbanner, setPayingBanner] = useState("");
+    const [getId, setGetId] = useState([]);
 
+
+
+    useEffect(() => {
+        async function getIndividualScreens() {
+          if (user) {
+            const data = await getAllSingleBookmarkId(user);
+            console.log(data);
+            data?.forEach((item) => {
+              setGetId((prev) => {
+                return [...prev, item.screen_id];
+              });
+            });
+          }
+        }
+        getIndividualScreens();
+    }, [user]);
+    
 	useEffect(() => {
 		async function getPayingUser() {
 			console.log(user);

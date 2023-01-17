@@ -36,7 +36,7 @@ const Home = ({ screens }) => {
   //saves first user in mailchimp database
   useEffect(() => {
     supabase.auth.onAuthStateChange((event, session) => {
-      console.log(session);
+
       async function getEmail() {
         if (event == "SIGNED_IN") {
           const download = await fetch("/api/mailchimp", {
