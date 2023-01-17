@@ -20,6 +20,7 @@ import CloseIcon from "../../../../components/CloseModalIcon";
 //hooks
 
 import useScreenshot from "../../../../hooks/useScreenshot";
+import { getAllScreens, getScreensById } from "../../../../supabase";
 
 export default function SinglePage({ screens }) {
 	const {
@@ -58,7 +59,9 @@ export default function SinglePage({ screens }) {
 		buttonTypes,
 		Progress,
 		toastPendingText,
-		toastSuccessText,
+    toastSuccessText,
+    router,
+    bookmarkk
 	} = useScreenshot(screens);
 
 	return (

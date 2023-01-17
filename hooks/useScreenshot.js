@@ -468,6 +468,8 @@ const useScreenshot = (screens) => {
 		Progress,
 		toastPendingText,
 		toastSuccessText,
+		router,
+		bookmarkk
 	};
 };
 
