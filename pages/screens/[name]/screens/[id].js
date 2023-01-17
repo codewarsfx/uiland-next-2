@@ -722,7 +722,7 @@ export const getStaticPaths = async () => {
 	// In production environments, prerender all pages
 	// (slower builds, but faster initial page load)
 	const paths = screen?.map((post) => ({
-		params: { id: post.id, name: post.name },
+		params: { id: post.id, name: post.name.toLowerCase() },
 	}));
 
 	// { fallback: false } means other routes should 404
