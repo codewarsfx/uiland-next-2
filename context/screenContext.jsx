@@ -1,0 +1,33 @@
+import { createContext, useContext, useEffect, useState } from 'react';
+import { getAllSingleBookmarkId } from '../supabase';
+import { UserContext } from './authContext';
+
+export const ScreenContext = createContext(null);
+
+export const ScreenContextProvider = ({ children }) => {
+	const user = useContext(UserContext);
+	const [getId, setGetId] = useState([]);
+
+	useEffect(() => {
+		async function getIndividualScreens() {
+			if (user) {
+				const data = await getAllSingleBookmarkId(user);
+				console.log(data);
+				data.forEach((item) => {
+					setGetId((prev) => {
+						return [...prev, item.screen_id];
+					});
+				});
+			}
+		}
+		getIndividualScreens();
+	}, [user]);
+
+	return (
+		<ScreenContext.Provider value={{ getId, setGetId }}>
+			{children}
+		</ScreenContext.Provider>
+	);
+};
+
+export default ScreenContextProvider;
