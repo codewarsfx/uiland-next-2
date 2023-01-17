@@ -55,7 +55,7 @@ export default function Pricing() {
 			planId: process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_BINUALLY,
 		},
 	];
-
+	console.log(Plan2);
 	useEffect(() => {
 		async function getSubscriptionInfo() {
 			const data = await fetch('/api/paystackwebhook');
