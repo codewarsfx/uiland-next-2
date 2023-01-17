@@ -12,6 +12,7 @@
   
 	},
 	"dependencies": {
+		
 		"@mailchimp/mailchimp_marketing": "^3.0.80",
 		"@supabase/supabase-js": "^2.2.3",
 		"axios": "^1.2.2",
