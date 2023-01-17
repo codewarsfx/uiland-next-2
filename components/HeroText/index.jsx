@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { motion } from "framer-motion";
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-import { Button } from "../uiElements";
-import { buttonTypes } from "../uiElements/button";
-import { BASE_DELAY_DURATION } from "../../utils/transitionConstants";
+import { Button } from '../uiElements';
+import { buttonTypes } from '../uiElements/button';
+import { BASE_DELAY_DURATION } from '../../utils/transitionConstants';
 
 const HeroText = () => {
 	//animation state
@@ -36,8 +36,9 @@ const HeroText = () => {
 			>
 				Save hours of UI & UX research with our library of mobile screenshots
 			</HeroTextSecondary>
-			<motion.div initial={initialStateSecondary}
-				animate={animateToSecondary}><Button type={buttonTypes.primary}>Try it free</Button></motion.div>
+			<motion.div initial={initialStateSecondary} animate={animateToSecondary}>
+				<Button type={buttonTypes.primary}>Try it free</Button>
+			</motion.div>
 		</HeroTextContainer>
 	);
 };

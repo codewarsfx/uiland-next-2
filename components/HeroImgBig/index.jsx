@@ -1,28 +1,37 @@
-import styled from "styled-components";
-import { motion } from "framer-motion";
-import Image from "next/image"
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 const HeroImgBig = () => {
-    
-
 	return (
 		<HeroImgBigContainer>
-            <HeroImageLeft initial={{ y:20, opacity:0 }} animate={{
-              y:0,  opacity: 1, transition: { delay: 1.7
-            }}}>
-				<img src='/assets/img/batter3.svg'  
-          alt='hero-iphone' />
+			<HeroImageLeft
+				initial={{ y: 20, opacity: 0 }}
+				animate={{
+					y: 0,
+					opacity: 1,
+					transition: { delay: 1.7 },
+				}}
+			>
+				<img src='/assets/img/batter3.svg' alt='hero-iphone' />
 			</HeroImageLeft>
-			<HeroImageCenter initial={{ opacity:0 }} animate={{
-               opacity:1, transition: { delay: 1.5
-            }}}  >
-				<img src='/assets/img/cowrywisesvg.svg' 
-    alt='hero-iphone' />
+			<HeroImageCenter
+				initial={{ opacity: 0 }}
+				animate={{
+					opacity: 1,
+					transition: { delay: 1.5 },
+				}}
+			>
+				<img src='/assets/img/cowrywisesvg.svg' alt='hero-iphone' />
 			</HeroImageCenter>
-			<HeroImageRight  initial={{ y:20,opacity:0 }} animate={{
-               y:0, opacity: 1, transition: { delay: 1.7
-            }}}>
-				<img src='/assets/img/flex.svg'  
- alt='hero-iphone' />
+			<HeroImageRight
+				initial={{ y: 20, opacity: 0 }}
+				animate={{
+					y: 0,
+					opacity: 1,
+					transition: { delay: 1.7 },
+				}}
+			>
+				<img src='/assets/img/flex.svg' alt='hero-iphone' />
 			</HeroImageRight>
 		</HeroImgBigContainer>
 	);

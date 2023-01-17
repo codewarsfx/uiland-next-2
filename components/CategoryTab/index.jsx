@@ -1,49 +1,51 @@
-import { useContext } from "react";
-import styled from "styled-components";
-import { ScreensContext } from "../../context/screensContex";
+import { useContext } from 'react';
+import styled from 'styled-components';
+import { ScreensContext } from '../../context/screensContex';
 
-import { Pill } from "../uiElements";
-import { pillsTypes } from "../uiElements/pills";
-
-
+import { Pill } from '../uiElements';
+import { pillsTypes } from '../uiElements/pills';
 
 const CategoryTabBar = () => {
-	const  {setFilterItem}  = useContext(ScreensContext);
+	const { setFilterItem } = useContext(ScreensContext);
 
-const removeAllActiveClasses = () => {
-	const nodes = document.querySelectorAll('.pills')
-		Array.from(nodes).forEach( node=> node.classList.remove('active'))
-	
-}
-	const onClickPill = (e,result) => {
+	const removeAllActiveClasses = () => {
+		const nodes = document.querySelectorAll('.pills');
+		Array.from(nodes).forEach((node) => node.classList.remove('active'));
+	};
+	const onClickPill = (e, result) => {
 		removeAllActiveClasses();
 		e.target.classList.add('active');
-		setFilterItem(result.categoryStatus)
+		setFilterItem(result.categoryStatus);
 	};
 
-	const data= [
-		{category:"All",categoryStatus:"",status:"active",id:1},
-		{category:"Fintech",categoryStatus:"Fintech",status:"",id:2},
-		{category:"Edtech",categoryStatus:"Edtech",status:"",id:3}
-	]
+	const data = [
+		{ category: 'All', categoryStatus: '', status: 'active', id: 1 },
+		{ category: 'Fintech', categoryStatus: 'Fintech', status: '', id: 2 },
+		{ category: 'Edtech', categoryStatus: 'Edtech', status: '', id: 3 },
+	];
 
 	return (
 		<CategoryTabContainer>
-		<CategoryTabWrapper>
-			{<>
-			{data.map((result)=>{
-return (
-	<Pill key={result.id} type={pillsTypes.category}>
-	<button className={`pills ${result.status}`} onClick={(e)=>onClickPill(e,result)} name={result.categoryStatus}>
-	{result.category}
-	</button>
-</Pill>
-)
-			})}
-				</>
-			}
-		</CategoryTabWrapper>
-	</CategoryTabContainer>
+			<CategoryTabWrapper>
+				{
+					<>
+						{data.map((result) => {
+							return (
+								<Pill key={result.id} type={pillsTypes.category}>
+									<button
+										className={`pills ${result.status}`}
+										onClick={(e) => onClickPill(e, result)}
+										name={result.categoryStatus}
+									>
+										{result.category}
+									</button>
+								</Pill>
+							);
+						})}
+					</>
+				}
+			</CategoryTabWrapper>
+		</CategoryTabContainer>
 	);
 };
 

@@ -1,62 +1,53 @@
-import React, { useRef,useState } from "react"
-import reactDOM from "react-dom";
-import { motion } from "framer-motion";
-import styled from "styled-components";
-import { useEffect } from "react";
-import Image from "next/image";
+import React, { useRef, useState } from 'react';
+import reactDOM from 'react-dom';
+import { motion } from 'framer-motion';
+import styled from 'styled-components';
+import { useEffect } from 'react';
+import Image from 'next/image';
 
 const Modal = ({ children, toggleModal }) => {
 	const [isBrowser, setIsBrowser] = useState(false);
-	const ref=React.useRef()
-	
-    useEffect(() => {
-		//get the portal 
-    ref.current = document.querySelector("#portal");
-	  setIsBrowser(true);
-    }, []);
+	const ref = React.useRef();
 
-useEffect(()=>{
-window.onclick = function (event) {
-		console.log(event.target.className)
-		if (event.target.className.includes("ModalOverlay")) {
-			toggleModal()
-		}
-	  }
+	useEffect(() => {
+		//get the portal
+		ref.current = document.querySelector('#portal');
+		setIsBrowser(true);
+	}, []);
 
-},[toggleModal])
-	  
-
-	  
+	useEffect(() => {
+		window.onclick = function (event) {
+			console.log(event.target.className);
+			if (event.target.className.includes('ModalOverlay')) {
+				toggleModal();
+			}
+		};
+	}, [toggleModal]);
 
 	if (isBrowser && ref.current) {
-	return reactDOM.createPortal(
-		<ModalContainer>
-			<ModalOverlay
-				initial={{
-					opacity:0,
-					transition: {
-						duration: 0.3,
-					},
-				}}
-				animate={{
-					opacity: 1,
-					transition: {
-						duration: 0.3,
-					},
-				}}
-			>
-		
-				{children}
-				
-			</ModalOverlay>
-		</ModalContainer>,
-		document.getElementById("portal")
-	);
+		return reactDOM.createPortal(
+			<ModalContainer>
+				<ModalOverlay
+					initial={{
+						opacity: 0,
+						transition: {
+							duration: 0.3,
+						},
+					}}
+					animate={{
+						opacity: 1,
+						transition: {
+							duration: 0.3,
+						},
+					}}
+				>
+					{children}
+				</ModalOverlay>
+			</ModalContainer>,
+			document.getElementById('portal')
+		);
 	}
-
-	
 };
-
 
 const ModalContainer = styled.div`
 	position: fixed;
@@ -65,7 +56,6 @@ const ModalContainer = styled.div`
 	height: 100%;
 	width: 100%;
 	z-index: 100;
-
 `;
 
 const ModalOverlay = styled(motion.div)`
@@ -79,10 +69,10 @@ const ModalOverlay = styled(motion.div)`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	
+
 	//to target all elements under it
-	& > *{
-		z-index:999;
+	& > * {
+		z-index: 999;
 	}
 `;
 

@@ -1,25 +1,25 @@
 import Image from 'next/image';
-import React from 'react'
-import styled from "styled-components";
-function SocialsCard({id,copy,name}) {
-  return (
-    <>
-       <div className="flex-row">
-
-
- 
-
-<SocialBox>
-     <a
-    className="font_medium"
-    target="_blank"
-    rel="noopener noreferrer"
-    href={`https://twitter.com/intent/tweet?text=${id}`}
-  >
-    <Image width="52" height="52" src="/assets/img/twitter.svg" alt="Share on twitter" />
-  </a>
-  {" "}
-  {/* <a
+import React from 'react';
+import styled from 'styled-components';
+function SocialsCard({ id, copy, name }) {
+	return (
+		<>
+			<div className='flex-row'>
+				<SocialBox>
+					<a
+						className='font_medium'
+						target='_blank'
+						rel='noopener noreferrer'
+						href={`https://twitter.com/intent/tweet?text=${id}`}
+					>
+						<Image
+							width='52'
+							height='52'
+							src='/assets/img/twitter.svg'
+							alt='Share on twitter'
+						/>
+					</a>{' '}
+					{/* <a
     className="font_medium"
     target="_blank"
     rel="noopener noreferrer"
@@ -51,92 +51,101 @@ function SocialsCard({id,copy,name}) {
       ></path>
     </svg>
   </a> */}
-  <a
-    href={`https://wa.me/?text=https://uiland.design/screens/${name}/screens/${id}`}
-    target="_blank"
-    rel="noreferrer"
-  >
-    <Image src="/assets/img/whatsapp.svg" width="52" height="52" alt="Share on WhatsApp" />
-  </a>
-  <a
-    href={`https://telegram.me/share/url?url=https://uiland.design/screens/${name}/screens/${id}`}
-    target="_blank"
-    rel="noreferrer"
-  >
-    <Image width="52" height="52" src="/assets/img/telegram.svg" alt="Share on Telegram" />
-  </a>
-  <a
-    href={`https://www.facebook.com/sharer/sharer.php?quote=https://uiland.design/screens/${name}/screens/${id}`}
-    target="_blank"
-    rel="noreferrer"
-  >
-    <Image width="52" height="52" src="/assets/img/facebook.svg" alt="Share on Facebook" />
-  </a>
-</SocialBox>
-
-</div>
-<CopyContainer>
-<CopyText>
-{`https://uiland.design/screens/${name}/screens/${id}`}
-</CopyText>
-<CopyButton onClick={copy}>
-    Copy
-</CopyButton>
-</CopyContainer>
-    </>
-  )
+					<a
+						href={`https://wa.me/?text=https://uiland.design/screens/${name}/screens/${id}`}
+						target='_blank'
+						rel='noreferrer'
+					>
+						<Image
+							src='/assets/img/whatsapp.svg'
+							width='52'
+							height='52'
+							alt='Share on WhatsApp'
+						/>
+					</a>
+					<a
+						href={`https://telegram.me/share/url?url=https://uiland.design/screens/${name}/screens/${id}`}
+						target='_blank'
+						rel='noreferrer'
+					>
+						<Image
+							width='52'
+							height='52'
+							src='/assets/img/telegram.svg'
+							alt='Share on Telegram'
+						/>
+					</a>
+					<a
+						href={`https://www.facebook.com/sharer/sharer.php?quote=https://uiland.design/screens/${name}/screens/${id}`}
+						target='_blank'
+						rel='noreferrer'
+					>
+						<Image
+							width='52'
+							height='52'
+							src='/assets/img/facebook.svg'
+							alt='Share on Facebook'
+						/>
+					</a>
+				</SocialBox>
+			</div>
+			<CopyContainer>
+				<CopyText>
+					{`https://uiland.design/screens/${name}/screens/${id}`}
+				</CopyText>
+				<CopyButton onClick={copy}>Copy</CopyButton>
+			</CopyContainer>
+		</>
+	);
 }
 
-const SocialBox=styled.div`
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:8px;
-`
-const CopyContainer=styled.div`
-border-radius:12px;
-gap: 16px;
-margin-top:20px;
-padding:6px;
-width:100%;
-background:#dddddd;
-display:flex;
-flex-direction:row;
-justify-content:space-between;
-align-items:center;
+const SocialBox = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 8px;
+`;
+const CopyContainer = styled.div`
+	border-radius: 12px;
+	gap: 16px;
+	margin-top: 20px;
+	padding: 6px;
+	width: 100%;
+	background: #dddddd;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+`;
 
-`
+const CopyText = styled.div`
+	overflow: hidden;
+	text-overflow: ellipsis;
+`;
 
-const CopyText=styled.div`
-overflow: hidden;
-text-overflow: ellipsis;
+const CopyButton = styled.div`
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: flex;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	padding: 1rem;
+	border: none;
+	border-radius: 50px;
+	outline: none;
+	color: white;
+	height: 40px;
+	font-size: 1rem;
+	font-weight: 500;
+	background-color: #1b47e5;
+	cursor: pointer;
+`;
 
-`
-
-const CopyButton=styled.div`
-display: -webkit-inline-box;
-display: -webkit-inline-flex;
-display: -ms-inline-flexbox;
-display: flex;
--webkit-align-items: center;
--webkit-box-align: center;
--ms-flex-align: center;
-align-items: center;
--webkit-box-pack: center;
--webkit-justify-content: center;
--ms-flex-pack: center;
-justify-content: center;
-padding: 1rem;
-border: none;
-border-radius: 50px;
-outline: none;
-color: white;
-height: 40px;
-font-size: 1rem;
-font-weight: 500;
-background-color: #1b47e5;
-cursor: pointer;
-
-`
-
-export default SocialsCard
+export default SocialsCard;

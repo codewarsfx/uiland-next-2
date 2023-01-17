@@ -1,131 +1,135 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-:root{
-  font-size: 14px;
-  box-sizing: border-box;
+:root {
+	font-size: 14px;
+	box-sizing: border-box;
 
- /* general color variables */
+	/* general color variables */
 
- --primary-color: #0066F5;
- --text-color-light: #fff;
- --accent-color : #2EB875;
- --light-grey-color: #D9D9D9;
- --text-color-secondary: #A9ABB9;
- --text-color-dark:#192941;
- --text-color-dark-secondary: #51555B;
- --select-border: #777;
- --col1: #e57858;
- --col2: #e5577d;
- --angle1:14;
- --angle2:344;
- --angle: 160;
- --select-focus: blue;
- --error-color:red;
- --tw-ring-offset-shadow: 0 0 #0000;
- --tw-ring-shadow: 0 0 #0000;
- --tw-shadow: 0 0 #0000;
- --tw-shadow-colored: 0 0 #0000;
- --select-arrow: var(--select-border);
- --primary-font:'Inter', sans-serif;
+	--primary-color: #0066f5;
+	--text-color-light: #fff;
+	--accent-color: #2eb875;
+	--light-grey-color: #d9d9d9;
+	--text-color-secondary: #a9abb9;
+	--text-color-dark: #192941;
+	--text-color-dark-secondary: #51555b;
+	--select-border: #777;
+	--col1: #e57858;
+	--col2: #e5577d;
+	--angle1: 14;
+	--angle2: 344;
+	--angle: 160;
+	--select-focus: blue;
+	--error-color: red;
+	--tw-ring-offset-shadow: 0 0 #0000;
+	--tw-ring-shadow: 0 0 #0000;
+	--tw-shadow: 0 0 #0000;
+	--tw-shadow-colored: 0 0 #0000;
+	--select-arrow: var(--select-border);
+	--primary-font: 'Inter', sans-serif;
 }
 
-*,*::before, *::after{
-box-sizing: inherit;
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
 }
-*{
-  -webkit-tap-highlight-color: transparent !important;
- }
-body{
-  margin:0;
-  padding: 0;
-  font-family: var(--primary-font);
-  background-color: #FFFFFF;
+* {
+	-webkit-tap-highlight-color: transparent !important;
 }
-img{
-  display: inline-block;
+body {
+	margin: 0;
+	padding: 0;
+	font-family: var(--primary-font);
+	background-color: #ffffff;
 }
-
-
-p,h1,h2,h3,h4,h5,h6{
-  margin: 0;
+img {
+	display: inline-block;
 }
 
-a{
-  text-decoration: none;
-  color: inherit;
-
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
 }
 
-.h-30{
-  height: 30px;
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.h-30 {
+	height: 30px;
 }
 
 select {
-   /* A reset of styles, including removing the default dropdown arrow */
-   cursor: pointer;
-   font-size: 16px;
-   font-family: inherit;
-   color: #FFFFFF;
-   padding: 0.2em 1em;
-   line-height: 1.3;
-   height: 40px;
-   width: 100%;
-   box-sizing: border-box;
-   border-top-left-radius: 5px;
-   border-bottom-left-radius: 5px;
-   border-top-right-radius: 5px;
-   border-bottom-right-radius: 5px;
-   margin: 0;
-   border-color: var(--primary-color);
-   -moz-appearance: none;
-   -webkit-appearance: none;
-   appearance: none;
-   background-color: var(--primary-color);
-   background-image: url("/assets/img/dropdown_button.svg"), linear-gradient(var(--primary-color), var(--primary-color));
-   background-repeat: no-repeat;
-   background-position: right 0.7em top 50%;
-   background-size: 0.65em auto;
+	/* A reset of styles, including removing the default dropdown arrow */
+	cursor: pointer;
+	font-size: 16px;
+	font-family: inherit;
+	color: #ffffff;
+	padding: 0.2em 1em;
+	line-height: 1.3;
+	height: 40px;
+	width: 100%;
+	box-sizing: border-box;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	margin: 0;
+	border-color: var(--primary-color);
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: var(--primary-color);
+	background-image: url('/assets/img/dropdown_button.svg'),
+		linear-gradient(var(--primary-color), var(--primary-color));
+	background-repeat: no-repeat;
+	background-position: right 0.7em top 50%;
+	background-size: 0.65em auto;
 }
 /* Remove dropdown arrow in IE10 & IE11 */
 select::-ms-expand {
-  display: none;
+	display: none;
 }
-
 
 select,
 select::after {
-  grid-area: select;
+	grid-area: select;
 }
- /* Interim solution until :focus-within has better support */
+/* Interim solution until :focus-within has better support */
 select:focus + .focus {
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  right: -1px;
-  bottom: -1px;
-  border: 2px solid var(--select-focus);
-  border-radius: inherit;
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	right: -1px;
+	bottom: -1px;
+	border: 2px solid var(--select-focus);
+	border-radius: inherit;
 }
 
 select[multiple] {
-  padding-right: 0;
+	padding-right: 0;
 
-  /*
+	/*
    * Safari will not reveal an option
    * unless the select height has room to 
    * show all of it
    * Firefox and Chrome allow showing 
    * a partial option
    */
-  height: 6rem;
+	height: 6rem;
 
-
-
-  /* 
+	/* 
    * Experimental - styling of selected options
    * in the multiselect
    * Not supported crossbrowser
    */
-  /* //   &:not(:disabled) option {
+	/* //   &:not(:disabled) option {
   //     border-radius: 12px;
   //     transition: 120ms all ease-in;
 
@@ -138,109 +142,93 @@ select[multiple] {
 }
 
 select[multiple]option {
-  white-space: normal;
+	white-space: normal;
 
-/* Only affects Chrome */
-  outline-color: var(--select-focus);
+	/* Only affects Chrome */
+	outline-color: var(--select-focus);
 }
 .select--disabled {
-  cursor: not-allowed;
-  background-color: #eee;
-  background-image: linear-gradient(to top, #ddd, #eee 33%);
+	cursor: not-allowed;
+	background-color: #eee;
+	background-image: linear-gradient(to top, #ddd, #eee 33%);
 }
 
 label {
-  font-size: 1.125rem;
-  font-weight: 500;
+	font-size: 1.125rem;
+	font-weight: 500;
 }
 
 .select + label {
-  margin-top: 2rem;
+	margin-top: 2rem;
 }
 
-.pills{
-padding:0.4em 0.9em;
-border-radius: 5em;
-font-size:16px;
-cursor: pointer;
-border: 1px solid #acacac;
+.pills {
+	padding: 0.4em 0.9em;
+	border-radius: 5em;
+	font-size: 16px;
+	cursor: pointer;
+	border: 1px solid #acacac;
 }
-.pills.active{
- background-color: black;
- color: white;
+.pills.active {
+	background-color: black;
+	color: white;
 }
 
 .font_medium {
-  font-size: 1.5rem;
-  text-align: center;
-  font-weight: 500;
+	font-size: 1.5rem;
+	text-align: center;
+	font-weight: 500;
 }
 .scale_transition {
-  transform: scale(1.2);
-  transition: transform 1s ease-out;
+	transform: scale(1.2);
+	transition: transform 1s ease-out;
 }
-.remove-scroll{
-overflow: hidden;
+.remove-scroll {
+	overflow: hidden;
 }
 
-  .button_modal {
-    width:100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 14px 0 4px 0;
-    background: var(--primary-color);
-    border-color: var(--primary-color);;
-    padding: 1rem 2.4rem;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 2rem;
-    flex-direction: row;
-    gap: 8px;
-  }
-  .button_modal:disabled{
-    background-color: #DDDDDD !important;
-    cursor:not-allowed;
-    opacity: 1 !important;
-    border: none !important;
-  }
-  .button_modal:hover {
-    background-color: #112158;
-  }
+.button_modal {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 14px 0 4px 0;
+	background: var(--primary-color);
+	border-color: var(--primary-color);
+	padding: 1rem 2.4rem;
+	color: white;
+	cursor: pointer;
+	border-radius: 5px;
+	font-size: 2rem;
+	flex-direction: row;
+	gap: 8px;
+}
+.button_modal:disabled {
+	background-color: #dddddd !important;
+	cursor: not-allowed;
+	opacity: 1 !important;
+	border: none !important;
+}
+.button_modal:hover {
+	background-color: #112158;
+}
 
-  .flex-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
+.flex-row {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
 
-  .flex-col {
-    display: flex;
-    flex-direction: column;
-  }
-  .effect {
-    height: 25px;
-    width: 25px;
-    transition: all 0.5s ease-out;
-  }
-  .effect:hover {
-    transform: translateX(2px);
-  }
-
-
-
- 
-
-
-
-
-
-
-  
-   
-    
-   
-    
-    
+.flex-col {
+	display: flex;
+	flex-direction: column;
+}
+.effect {
+	height: 25px;
+	width: 25px;
+	transition: all 0.5s ease-out;
+}
+.effect:hover {
+	transform: translateX(2px);
+}

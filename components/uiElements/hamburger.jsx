@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Hamburger = () => {
 	return (
@@ -11,7 +11,7 @@ const Hamburger = () => {
 };
 
 const HamburgerContainer = styled.div`
-cursor: pointer;
+	cursor: pointer;
 	@media (min-width: 768px) {
 		display: none;
 	}

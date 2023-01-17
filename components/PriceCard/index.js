@@ -1,52 +1,57 @@
-import React from 'react'
-import { BsCheck } from "react-icons/bs";
+import React from 'react';
+import { BsCheck } from 'react-icons/bs';
 
-import styled from "styled-components";
-import PaystackPayment from "../PaystackPayment";
+import styled from 'styled-components';
+import PaystackPayment from '../PaystackPayment';
 
-function PriceCard({type, price,description,title,info1,info2,info3,planId}) {
-  return (
-    <>
-       <PriceCards>
-              <h3 className='price-card-type'>{type}</h3>
-              <h1 className='price-card-price'>₦{price}</h1>
-              <p className='price-card-description'>
-                {description}
-              </p>
-              <div className='price-card-points'>
-                <p className='price-point-title'>{title}</p>
-                <p className='price-card-point'>
-                  <span className='price-card-point-icon'>
-                    <CheckIcon />
-                  </span>
-                  {info1}
-                </p>
-                <p className='price-card-point'>
-                  <span className='price-card-point-icon'>
-                    <CheckIcon />
-                  </span>{" "}
-                  {info2}
-                </p>
-                <p className='price-card-point'>
-                  <span className='price-card-point-icon'>
-                    <CheckIcon />
-                  </span>{" "}
-                  {info3}
-                </p>
-                <PaystackPayment plan={planId}/>
-              </div>
-            </PriceCards>
-    
-    
-    </>
-  )
+function PriceCard({
+	type,
+	price,
+	description,
+	title,
+	info1,
+	info2,
+	info3,
+	planId,
+}) {
+	return (
+		<>
+			<PriceCards>
+				<h3 className='price-card-type'>{type}</h3>
+				<h1 className='price-card-price'>₦{price}</h1>
+				<p className='price-card-description'>{description}</p>
+				<div className='price-card-points'>
+					<p className='price-point-title'>{title}</p>
+					<p className='price-card-point'>
+						<span className='price-card-point-icon'>
+							<CheckIcon />
+						</span>
+						{info1}
+					</p>
+					<p className='price-card-point'>
+						<span className='price-card-point-icon'>
+							<CheckIcon />
+						</span>{' '}
+						{info2}
+					</p>
+					<p className='price-card-point'>
+						<span className='price-card-point-icon'>
+							<CheckIcon />
+						</span>{' '}
+						{info3}
+					</p>
+					<PaystackPayment plan={planId} />
+				</div>
+			</PriceCards>
+		</>
+	);
 }
 const CheckIcon = styled(BsCheck)`
 	color: #bbb;
 	font-weight: 600;
 `;
 
-const PriceCards=styled.div`
+const PriceCards = styled.div`
 border: 0.5px solid #ddd;
 padding: 2em;
 cursor: pointer;
@@ -137,7 +142,6 @@ display: none;
   display: flex;
     }
 }
-`
+`;
 
-
-export default PriceCard
+export default PriceCard;

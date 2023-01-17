@@ -1,8 +1,8 @@
-import Link from "next/link";
-import styled from "styled-components";
+import Link from 'next/link';
+import styled from 'styled-components';
 
-import { Pill } from "../uiElements";
-import { pillsTypes } from "../uiElements/pills";
+import { Pill } from '../uiElements';
+import { pillsTypes } from '../uiElements/pills';
 
 const Tab = () => {
 	return (

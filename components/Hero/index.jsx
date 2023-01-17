@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { motion } from "framer-motion";
-import HeroImgBig from "../HeroImgBig";
-import HeroImgSmall from "../HeroImgSmall";
-import HeroText from "../HeroText";
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
+import HeroImgBig from '../HeroImgBig';
+import HeroImgSmall from '../HeroImgSmall';
+import HeroText from '../HeroText';
 
 const Hero = () => {
 	return (

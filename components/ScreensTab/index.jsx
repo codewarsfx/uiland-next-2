@@ -1,16 +1,13 @@
-import CategoryTabBar from "../CategoryTab";
-import ScreensInCategory from "../ScreensInCategory";
-import SearchTabBar from "../SearchTabBar";
+import CategoryTabBar from '../CategoryTab';
+import ScreensInCategory from '../ScreensInCategory';
+import SearchTabBar from '../SearchTabBar';
 
-
-
-
-const ScreensTab = ({screens}) => {
+const ScreensTab = ({ screens }) => {
 	return (
 		<>
-		<SearchTabBar/>
-			<CategoryTabBar/>
-			<ScreensInCategory screens={ screens} />
+			<SearchTabBar />
+			<CategoryTabBar />
+			<ScreensInCategory screens={screens} />
 		</>
 	);
 };

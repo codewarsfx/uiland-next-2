@@ -1,16 +1,19 @@
-import styled from "styled-components";
-import Image from "next/image"
-import { motion } from "framer-motion";
-import { BASE_DELAY_DURATION } from "../../utils/transitionConstants";
+import styled from 'styled-components';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { BASE_DELAY_DURATION } from '../../utils/transitionConstants';
 
 const HeroImgSmall = () => {
 	return (
-        <HeroImgSmallContainer initial={{ y: 10, opacity: 0 }} animate={{
-            y: 0, opacity: 1, transition: { delay: BASE_DELAY_DURATION + 1.2
-            
-        }}}>
-			<img src='/assets/img/small.svg' 
- alt='hero-imgn' />
+		<HeroImgSmallContainer
+			initial={{ y: 10, opacity: 0 }}
+			animate={{
+				y: 0,
+				opacity: 1,
+				transition: { delay: BASE_DELAY_DURATION + 1.2 },
+			}}
+		>
+			<img src='/assets/img/small.svg' alt='hero-imgn' />
 		</HeroImgSmallContainer>
 	);
 };

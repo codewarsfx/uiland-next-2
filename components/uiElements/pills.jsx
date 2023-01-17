@@ -1,10 +1,9 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 export const pillsTypes = {
-	base: "base",
-	category: "category",
-	screenshot: "screenshot",
+	base: 'base',
+	category: 'category',
+	screenshot: 'screenshot',
 };
 
 const getPill = (pillType) => {
@@ -33,7 +32,7 @@ const BasePill = styled.span`
 	color: var(--text-color-light);
 	border-radius: 5em;
 	font-size: 16px;
-	cursor:pointer;
+	cursor: pointer;
 	&:focus {
 		background-color: ${({ activeState }) => activeState};
 	}
@@ -49,7 +48,7 @@ const CategoryPill = styled(BasePill)`
 	// color: var(---text-color-dark);
 	// font-size: 14px;
 	// transition: background-color 0.2s ease;
-    // cursor: pointer;
+	// cursor: pointer;
 	:first-child {
 		margin-left: 0.8em;
 	}
@@ -63,8 +62,6 @@ const CategoryPill = styled(BasePill)`
 	:hover {
 		background-color: var(--light-grey-color);
 	}
-
-
 `;
 
 const ScreenshotPill = styled(BasePill)`

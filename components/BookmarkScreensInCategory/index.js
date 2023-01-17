@@ -1,32 +1,46 @@
+import styled from 'styled-components';
+import Link from 'next/link';
+import { BrandDescription, BrandLogo, Pill, Screenshot } from '../uiElements';
+import { pillsTypes } from '../uiElements/pills';
+import EmptyState from '../EmptyState';
 
-import styled from "styled-components";
-import Link from 'next/link'
-import { BrandDescription, BrandLogo, Pill, Screenshot } from "../uiElements";
-import { pillsTypes } from "../uiElements/pills";
-import EmptyState from "../EmptyState";
-
-const BookmarkScreensInCategory = ({screens}) => {
-	return (<>
-		<CategorySectionContainer>
-			<CategorySectionWrapper>
-				{JSON.stringify(screens)!==JSON.stringify([]) ?screens.map((result) => (
-					
-					<ScreenShotContainer key={result.album_id.id}>
-							<Link  href={`/screens/${result.album_id.id}`} passHref>
-						<div><ScreenshotContainerTop>
-							<BrandLogo imageUrl={result.album_id.logo} />
-							<BrandDescription name={result.album_id.name} category={result.album_id.category} />
-							<Pill type={pillsTypes.screenshot}>view</Pill>
-						</ScreenshotContainerTop>
-						<ScreenshotContainerBottom>
-							{result.album_id.startScreens.map((screenshot) => (
-								<Screenshot key={screenshot} imgLink={screenshot} alt={name} />
-							))}
-						</ScreenshotContainerBottom></div>
-					</Link></ScreenShotContainer>
-				)):<EmptyState/>}
-			</CategorySectionWrapper>
-		</CategorySectionContainer></>
+const BookmarkScreensInCategory = ({ screens }) => {
+	return (
+		<>
+			<CategorySectionContainer>
+				<CategorySectionWrapper>
+					{JSON.stringify(screens) !== JSON.stringify([]) ? (
+						screens.map((result) => (
+							<ScreenShotContainer key={result.album_id.id}>
+								<Link href={`/screens/${result.album_id.id}`} passHref>
+									<div>
+										<ScreenshotContainerTop>
+											<BrandLogo imageUrl={result.album_id.logo} />
+											<BrandDescription
+												name={result.album_id.name}
+												category={result.album_id.category}
+											/>
+											<Pill type={pillsTypes.screenshot}>view</Pill>
+										</ScreenshotContainerTop>
+										<ScreenshotContainerBottom>
+											{result.album_id.startScreens.map((screenshot) => (
+												<Screenshot
+													key={screenshot}
+													imgLink={screenshot}
+													alt={name}
+												/>
+											))}
+										</ScreenshotContainerBottom>
+									</div>
+								</Link>
+							</ScreenShotContainer>
+						))
+					) : (
+						<EmptyState />
+					)}
+				</CategorySectionWrapper>
+			</CategorySectionContainer>
+		</>
 	);
 };
 
@@ -46,7 +60,7 @@ const CategorySectionWrapper = styled.div`
 	margin: auto;
 	gap: 2em;
 	width: 90%;
-    align-items: center;
+	align-items: center;
 
 	:not(:first-child) {
 		margin-top: 4em;
@@ -74,7 +88,7 @@ const ScreenshotContainerTop = styled.div`
 
 const ScreenshotContainerBottom = styled.div`
 	display: flex;
-	gap:1rem;
+	gap: 1rem;
 	justify-content: space-between;
 `;
 

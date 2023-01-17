@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 const BrandLogo = ({ imageUrl }) => {
 	return (
 		<BrandLogoCotainer>
@@ -14,12 +14,11 @@ const BrandLogoCotainer = styled.div`
 	img {
 		height: 100%;
 		width: 100%;
-        border-radius: 1em;
+		border-radius: 1em;
 	}
 	@media (min-width: 768px) {
 		width: 45px;
 		height: 45px;
-
 	}
 `;
 

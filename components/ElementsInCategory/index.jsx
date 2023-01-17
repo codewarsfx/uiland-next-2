@@ -1,13 +1,13 @@
-import styled from "styled-components";
-import { motion } from "framer-motion";
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 const ElementsInCategory = () => {
 	return (
-		<ElementsInCategoryContainer >
-			<Screenshot initial={{opacity:0}} animate={{opacity:1}}/>
-			<Screenshot initial={{opacity:0}} animate={{opacity:1}} />
-			<Screenshot initial={{opacity:0}} animate={{opacity:1}}/>
-			<Screenshot initial={{opacity:0}} animate={{opacity:1}}/>
+		<ElementsInCategoryContainer>
+			<Screenshot initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+			<Screenshot initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+			<Screenshot initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+			<Screenshot initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
 		</ElementsInCategoryContainer>
 	);
 };

@@ -1,10 +1,9 @@
-
-import CategoryTabBar from "../CategoryTab";
-import ElementsInCategory from "../ElementsInCategory";
+import CategoryTabBar from '../CategoryTab';
+import ElementsInCategory from '../ElementsInCategory';
 const ElementsTab = () => {
 	return (
 		<>
-			<CategoryTabBar/>
+			<CategoryTabBar />
 			<ElementsInCategory />
 		</>
 	);
