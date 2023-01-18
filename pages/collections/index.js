@@ -30,7 +30,7 @@ export default function Collection() {
 					<Link href='/collections/album'>
 						<AlbumTag>
 							<ImageHolder>
-								<Link href='/collections/album' passHref>
+								<Link href='/collections/album' passHref={true}>
 									<a>Albums</a>
 								</Link>
 							</ImageHolder>
@@ -58,7 +58,7 @@ export default function Collection() {
 						<Link href='/'>
 							<EmptyTag>
 								<ImagesHolder>
-									<Link href='/' passHref>
+									<Link href='/' passHref={true}>
 										<a>Create a Collection</a>
 									</Link>
 								</ImagesHolder>

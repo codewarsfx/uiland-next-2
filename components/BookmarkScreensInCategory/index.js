@@ -12,7 +12,7 @@ const BookmarkScreensInCategory = ({ screens }) => {
 					{JSON.stringify(screens) !== JSON.stringify([]) ? (
 						screens.map((result) => (
 							<ScreenShotContainer key={result.album_id.id}>
-								<Link href={`/screens/${result.album_id.id}`} passHref>
+								<Link href={`/screens/${result.album_id.id}`} passHref={true}>
 									<div>
 										<ScreenshotContainerTop>
 											<BrandLogo imageUrl={result.album_id.logo} />
