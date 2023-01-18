@@ -52,7 +52,7 @@ const PaystackPayment = ({ plan }) => {
 			if (data.message === 'Verification successful') {
 				setTimeout(() => {
 					router.push('/');
-				}, 300);
+				}, 200);
 			}
 		}
 		getReference();

@@ -9,6 +9,7 @@ export const getServerSideProps = async ({ res }) => {
 		production: 'https://uiland.design',
 	}[process.env.NODE_ENV];
 
+	const mainPage = ['https://uiland.design'];
 	const staticPages = fs
 		.readdirSync(
 			{
@@ -23,6 +24,7 @@ export const getServerSideProps = async ({ res }) => {
 				'profile.js',
 				'404.html',
 				'_error.js',
+				'index.js',
 				'sitemap.xml.js',
 			].includes(staticPage);
 		})
@@ -34,6 +36,18 @@ export const getServerSideProps = async ({ res }) => {
 
 	const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	${mainPage
+		.map((url) => {
+			return `
+	<url>
+	  <loc>${url}</loc>
+	  <lastmod>${new Date().toISOString()}</lastmod>
+	  <changefreq>weekly</changefreq>
+	  <priority>1.0</priority>
+	</url>
+  `;
+		})
+		.join('')}
       ${staticPages
 				.map((url) => {
 					return `
