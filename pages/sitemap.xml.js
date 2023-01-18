@@ -64,7 +64,7 @@ export const getServerSideProps = async ({ res }) => {
 				.map(({ id, name }) => {
 					return `
               <url>
-                <loc>${baseUrl}/screens/${name}/screens/${id}</loc>
+                <loc>${baseUrl}/screens/${name.toLowerCase()}/screens/${id}</loc>
                 
                 <changefreq>weekly</changefreq>
                 <priority>1.0</priority>
