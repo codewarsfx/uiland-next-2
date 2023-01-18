@@ -178,7 +178,7 @@ const SecondRow = styled.div`
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	background: rgb(0 0 0 / 17%);
+	background: rgb(0 0 0 / 9%);
 	border-radius: 28px;
 `;
 
