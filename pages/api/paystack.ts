@@ -16,11 +16,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 		})
 		.then(
 			(result) => {
-				// console.log("pay",result);
 				res.send(result.data);
 			},
 			(error) => {
-				console.log(error);
 				res.send({
 					status: false,
 					message: 'something went wrong',

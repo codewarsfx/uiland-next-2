@@ -34,14 +34,14 @@ export async function getAllScreens() {
 	// Screens.forEach((res)=>{
 	//   return res['user'] = "a4f0bf66-2a36-4b4f-bf8b-b082cf9aa5c4"
 	// })
-	console.log(Screens);
+
 	return Screens;
 }
 
 //    get all limited screens
 // export async function getLimitedScreens() {
 //   let { data: Screens, error } = await supabase.from("Screens").select("*").limit(1);
-//   console.log("king",Screens);
+//
 //   return Screens;
 // }
 
@@ -75,13 +75,6 @@ export async function getSession() {
 	return session;
 }
 
-// export async function getUserByLocalStorage() {
-//  const y = typeof window !== 'undefined' ?await JSON.parse(localStorage.getItem("user")) : null
-//  console.log("p",y)
-//  return y
-
-// }
-
 //get paying user by checking the event key
 export async function getProfileByEvent(user) {
 	const { data, error } = await supabase
@@ -90,55 +83,8 @@ export async function getProfileByEvent(user) {
 		//   i will use this to limit the result later
 		//   .limit(1)
 		.eq('id', user.id);
-	console.log('event', data, error);
 	return data;
 }
-
-//Experiment to limit content
-// export async function getLimitedResult(id) {
-//   const getEvent = await getProfileByEvent();
-//   console.log("secondevent", getEvent);
-//   let getResult;
-//          console.log(getEvent[0].event)
-//  if (!getEvent[0].event) {
-//     getResult = await getLimitedScreensById(id);
-//     console.log("limit", getResult);
-//   } else {
-//     getResult = await getScreensById(id);
-//     console.log("full", getResult);
-//   }
-//   return getResult;
-// }
-
-// export async function addUserId(id, user) {
-//   console.log(id, user);
-//   const getEvent = await getProfileByEvent(user);
-//   console.log("secondevent", getEvent.event);
-//   let getResult;
-//   if (!getEvent.event) {
-//     getResult = await getLimitedScreensById(id);
-//     console.log("limit", getResult);
-//   } else {
-//     d = await getScreensById(id);
-//     console.log("full", getResult);
-//   }
-//   return getResult;
-// }
-// export async function getHeaderInfo() {
-//     // const session = await getSession();
-//     // console.log("damn",session)
-//       const red = await getProfileByEvent()
-//     console.log("secondevent",red.event)
-//     let d
-//     if(!red.event){
-//       d= await getLimitedScreens();
-//      console.log("limit",d)
-//     }else{
-//        d= await getAllScreens();
-//       console.log("full",d)
-//     }
-//     return d
-//      };
 
 export async function getScreensProperties(id) {
 	const { data, error } = await supabase
@@ -174,7 +120,6 @@ export async function getBookmarks(user) {
 	//   .limit(1)
 	//   .eq('screenId', 'b76461af-34f9-4523-a892-b4991dfa364a')
 
-	console.log(data);
 	return data;
 }
 
@@ -193,7 +138,7 @@ export async function viewSingleBookmark(name) {
     `
 		)
 		.eq('bookmark_name', name);
-	console.log(data);
+
 	return data;
 }
 
@@ -203,8 +148,7 @@ export async function DeleteScreens(id) {
 		.from('bulkBookmark')
 		.delete()
 		.eq('album_id', id);
-	console.log(data);
-	console.log(error);
+
 	return data;
 }
 
@@ -215,25 +159,21 @@ export async function addBookmark(id, user) {
 		.insert({ album_id: id, user_id: user.id })
 		.select();
 
-	console.log(data);
 	return data;
 }
 
 //    get bookmark id in single bookmark
 export async function getAlbumBookmarkId(user) {
-	console.log(user);
 	const { data, error } = await supabase
 		.from('bulkBookmark')
 		.select('album_id')
 		.eq('user_id', user?.id);
-	console.log(data);
 
 	return data;
 }
 
 //add images to singleImageBookmark
 export async function addSingleScreens(content, input, user) {
-	console.log(content, input, user);
 	const { data, error } = await supabase
 		.from('singleImageBookmark')
 		.insert({
@@ -248,12 +188,11 @@ export async function addSingleScreens(content, input, user) {
 
 //delete singlebookmark
 export async function DeleteSingleScreens(result) {
-	console.log(result.id);
 	const { error, data } = await supabase
 		.from('singleImageBookmark')
 		.delete()
 		.eq('screen_id', result.id);
-	console.log(data);
+
 	return data;
 }
 
@@ -280,7 +219,6 @@ export async function getAllSingleBookmarkId(user) {
 		.from('singleImageBookmark')
 		.select('screen_id')
 		.eq('user_id', user?.id);
-	console.log(data);
 
 	return data;
 }
@@ -291,7 +229,7 @@ export async function getAllSingleBookmarkNames() {
 		.from('singleImageBookmark')
 		.select('bookmark_name');
 	// .eq('user_id', user.id)
-	console.log(data);
+
 	//gets unique names in the db
 	const result = data?.map((object) => object.bookmark_name);
 	const uniqueResult = Array.from(new Set(result));
@@ -304,7 +242,7 @@ export async function deleteAccount(user) {
 		.from('profile')
 		.delete()
 		.eq('id', user.id);
-	console.log(data);
+
 	return data;
 }
 
@@ -314,16 +252,14 @@ export async function signout() {
 }
 
 export async function getUserProfile(user) {
-	console.log('wow', user);
 	if (user) {
-		console.log('yes', user);
 		const { data, error } = await supabase
 			.from('profile')
 			.select('*')
 			//   i will use this to limit the result later
 			//   .limit(1)
 			.eq('id', user.id);
-		console.log(data);
+
 		return data;
 	}
 }

@@ -4,7 +4,6 @@ import { getAllScreens } from '../supabase';
 import { GetServerSideProps } from 'next';
 const Sitemap = () => {};
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-
 	const baseUrl = {
 		development: 'http://localhost:3000',
 		production: 'https://uiland.design',

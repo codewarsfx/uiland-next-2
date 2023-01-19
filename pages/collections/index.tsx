@@ -11,14 +11,13 @@ export default function Collection() {
 
 	useEffect(() => {
 		const isMobile = mobileCheck();
-		console.log(isMobile);
+
 		const allBookmarkNames = async () => {
 			const data = await getAllSingleBookmarkNames();
 			setBookmark(data);
 		};
 		allBookmarkNames();
 	}, []);
-	console.log(bookmark);
 	return (
 		<>
 			<SingleHeader>

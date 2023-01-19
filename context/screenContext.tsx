@@ -12,7 +12,7 @@ export const ScreenContextProvider = ({ children }) => {
 		async function getIndividualScreens() {
 			if (user) {
 				const data = await getAllSingleBookmarkId(user);
-				console.log(data);
+
 				data.forEach((item) => {
 					setGetId((prev) => {
 						return [...prev, item.screen_id];

@@ -9,8 +9,6 @@ export default function Profile() {
 	const [userprofile, setUserProfile] = useState([]);
 	const router = useRouter();
 	const user = useContext(UserContext);
-	console.log(user);
-
 	useEffect(() => {
 		if (!user) {
 			router.push('/');
@@ -23,7 +21,6 @@ export default function Profile() {
 	useEffect(() => {
 		async function getProfile() {
 			if (user || user?.id) {
-				console.log(user);
 				const userDetails = await getUserProfile(user);
 				setUserProfile(userDetails);
 			}
@@ -105,11 +102,10 @@ export default function Profile() {
 						</PhotoWrapper>
 						<h1>{user?.user_metadata.full_name}</h1>
 						<h3>{user?.user_metadata.email}</h3>
-						<div onClick={handleDelete}>	<Button type={buttonTypes.error} >
+						<div onClick={handleDelete}>
 							{' '}
-							Delete Account
-						</Button></div>
-					
+							<Button type={buttonTypes.error}> Delete Account</Button>
+						</div>
 					</ProfileContainer>
 					<UserDetails>
 						{userprofile &&

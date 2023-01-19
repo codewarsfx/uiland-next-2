@@ -20,8 +20,6 @@ const Home = ({ screens }) => {
 	};
 
 	const searchNameFilter = (array, data) => {
-		console.log(array, data);
-
 		if (data === '') return array;
 		return array.filter((el) => el.name === data);
 	};
@@ -45,7 +43,6 @@ const Home = ({ screens }) => {
 						body: JSON.stringify(session.user),
 					});
 					const data = await download.json();
-					console.log(data);
 				}
 			}
 			getEmail();
@@ -70,6 +67,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 			screens,
 		},
 	};
-}
+};
 
 export default Home;

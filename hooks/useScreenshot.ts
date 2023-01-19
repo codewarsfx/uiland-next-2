@@ -91,7 +91,7 @@ const useScreenshot = (screens) => {
 		async function getIndividualScreens() {
 			if (user) {
 				const data = await getAllSingleBookmarkId(user);
-				console.log(data);
+
 				data?.forEach((item) => {
 					setGetId((prev) => {
 						return [...prev, item.screen_id];
@@ -104,12 +104,9 @@ const useScreenshot = (screens) => {
 
 	useEffect(() => {
 		async function getPayingUser() {
-			console.log(user);
 			if (user) {
-				console.log(user);
 				let getEvent = await getProfileByEvent(user);
-				console.log(JSON.stringify(getEvent) === JSON.stringify([]));
-				console.log(getEvent[0].event === null);
+
 				if (
 					JSON.stringify(getEvent) === JSON.stringify([]) ||
 					getEvent[0].event === null ||
@@ -117,16 +114,16 @@ const useScreenshot = (screens) => {
 					getEvent[0].event === ''
 				) {
 					const result = screens.slice(0, 1);
-					console.log(result);
+
 					setLimitedScreens(result);
 				} else {
 					setPayingBanner(getEvent[0].event);
-					console.log(getEvent[0].event);
+
 					setLimitedScreens(screens);
 				}
 			} else {
 				const result = screens.slice(0, 1);
-				console.log(result);
+
 				setLimitedScreens(result);
 			}
 		}
@@ -176,7 +173,7 @@ const useScreenshot = (screens) => {
 		async function getBookmarkScreens() {
 			if (user) {
 				const data = await getAlbumBookmarkId(user);
-				console.log(data);
+
 				data.forEach((item) => {
 					setGetAlbumId((prev) => {
 						return [...prev, item.album_id];
@@ -187,9 +184,7 @@ const useScreenshot = (screens) => {
 		getBookmarkScreens();
 	}, [user]);
 
-	useEffect(() => {
-		console.log(input);
-	}, [input]);
+	useEffect(() => {}, [input]);
 
 	useEffect(() => {
 		window.onresize = function () {
@@ -199,7 +194,6 @@ const useScreenshot = (screens) => {
 	}, []);
 
 	const handleClickSubscribeButton = () => {
-		console.log('handleClickSubscribeButton');
 		if (!user) {
 			loginToggleModal();
 		} else {
@@ -239,7 +233,7 @@ const useScreenshot = (screens) => {
 	async function bookmark(data) {
 		if (user) {
 			newtoggleModal();
-			console.log(data);
+
 			setImageContent(data);
 		} else {
 			loginToggleModal();
@@ -250,11 +244,10 @@ const useScreenshot = (screens) => {
 		setProgress(2);
 		setToastPendingText('Deleting');
 		const deletedItem = await DeleteSingleScreens(data);
-		console.log(deletedItem);
+
 		if (deletedItem === null) {
-			console.log(data.id);
 			const filteredResult = getId.filter((result) => result !== data.id);
-			console.log(filteredResult);
+
 			setGetId(filteredResult);
 			setToastSuccessText('Deleted :(');
 			setProgress(3);
@@ -264,17 +257,16 @@ const useScreenshot = (screens) => {
 	//function to bookmark individual screen
 	async function submit(e) {
 		//prevents default refresh
-		console.log(e);
+
 		e.preventDefault();
 		if (user) {
-			console.log(user, imageContent, input);
 			setProgress(2);
 			setToastPendingText('Saving');
 			const result = await addSingleScreens(imageContent, input, user);
-			console.log(result);
+
 			if (result) {
 				setInput('');
-				console.log(result[0].screen_id);
+
 				getId.push(result[0].screen_id);
 
 				// saves the image and shows the toast
@@ -295,13 +287,11 @@ const useScreenshot = (screens) => {
 
 		//fetches the image
 		const image = await fetch(imageUrl);
-		console.log(image);
 
 		//converts it to a blob
 		const imageBlog = await image.blob();
-		console.log(imageBlog);
+
 		const imageURL = URL.createObjectURL(imageBlog);
-		console.log(imageURL);
 
 		//creates the a tag for download to happen <a download="image file name here" href="url"></a>
 		const link = document.createElement('a');
@@ -322,7 +312,7 @@ const useScreenshot = (screens) => {
 		setProgress(2);
 		setToastPendingText('Copying');
 		const response = await fetch(imageUrl);
-		console.log(response);
+
 		const blob = await response.blob();
 
 		navigator.clipboard.write([
@@ -346,10 +336,10 @@ const useScreenshot = (screens) => {
 			setToastPendingText('Saving to collections 🎉');
 			setProgress(2);
 			const result = await addBookmark(router.query.id, user);
-			console.log(result);
+
 			if (result) {
 				getAlbumId.push(router.query.id);
-				console.log(getAlbumId);
+
 				setToastSuccessText('Saved to collections 🎉');
 				setProgress(3);
 				toastNotification(1);
@@ -364,7 +354,7 @@ const useScreenshot = (screens) => {
 		setToastPendingText('Deleting from collections');
 		setProgress(2);
 		const result = await DeleteScreens(router.query.id);
-		console.log(result);
+
 		if (result === null) {
 			setGetAlbumId([]);
 			setToastSuccessText('Deleted from collections :(');
@@ -377,10 +367,7 @@ const useScreenshot = (screens) => {
 			e.target.parentElement.parentElement.parentElement.children[0].children[0]
 				.children[1].currentSrc
 		);
-		console.log(
-			e.target.parentElement.parentElement.parentElement.children[0].children[0]
-				.children[1].currentSrc
-		);
+
 		if (mobile) {
 			setOpenBottomSheet(true);
 		} else {
@@ -417,7 +404,7 @@ const useScreenshot = (screens) => {
 	// useEffect(() => {
 	//   const getHeaderInfo = async () => {
 	//     const data = await getProfileByEvent();
-	//     console.log(data);
+	//
 	//   };
 	//   getHeaderInfo();
 	// }, []);
@@ -435,7 +422,7 @@ const useScreenshot = (screens) => {
 	//   async function getIndividualScreens() {
 	//     if (user) {
 	//       const data = await getAllSingleBookmarkId(user);
-	//       console.log(data);
+	//
 	//       data.forEach((item) => {
 	//         setGetId((prev) => {
 	//           return [...prev, item.screen_id];

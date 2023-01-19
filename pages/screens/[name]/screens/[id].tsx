@@ -734,7 +734,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 	const screens = await getScreensById(id);
 	return {
-
 		props: { screens },
 	};
 };

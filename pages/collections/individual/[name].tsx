@@ -25,7 +25,7 @@ export default function IndividualCollections() {
 		async function getAlbums() {
 			if (user) {
 				const data = await viewSingleBookmark(router.query.name);
-				console.log(data);
+
 				setScreens(data);
 			}
 		}

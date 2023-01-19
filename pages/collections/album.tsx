@@ -9,10 +9,9 @@ export default function AlbumCollections() {
 	const [screens, setScreens] = useState([]);
 	useEffect(() => {
 		async function getAlbums() {
-			console.log(user);
 			if (user) {
 				const data = await getBookmarks(user);
-				console.log(data);
+
 				setScreens(data);
 			}
 		}

@@ -17,7 +17,6 @@ const Modal = ({ children, toggleModal }) => {
 
 	useEffect(() => {
 		window.onclick = function (event) {
-			console.log(event.target.className);
 			if (event.target.className.includes('ModalOverlay')) {
 				toggleModal();
 			}

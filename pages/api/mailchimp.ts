@@ -1,20 +1,5 @@
 const mailchimp = require('@mailchimp/mailchimp_marketing');
 
-// export default function handler(req, res) {
-
-//   mailchimp.setConfig({
-//     apiKey: process.env.NEXT_PUBLIC_MAILCHIMP_API_KEY,
-//     server: process.env.NEXT_PUBLIC_MAILCHIMP_SERVER_PREFIX,
-//   });
-
-//   async function run() {
-//     const response = await mailchimp.ping.get();
-//     console.log(response);
-//     res.send(response)
-//   }
-
-//   run();
-// }
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {

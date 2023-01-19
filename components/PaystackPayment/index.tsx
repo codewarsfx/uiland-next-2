@@ -32,7 +32,7 @@ const PaystackPayment = ({ plan }) => {
 
 	function handlePaystackSuccessAction(response) {
 		// Implementation for whatever you want to do with response and after success call.
-		console.log(response);
+
 		setUrl(response.reference);
 	}
 	useEffect(() => {
@@ -46,7 +46,6 @@ const PaystackPayment = ({ plan }) => {
 			});
 
 			const data = await download.json();
-			console.log(data);
 
 			//prevents it from immediately redirecting back to home
 			if (data.message === 'Verification successful') {

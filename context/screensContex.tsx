@@ -12,7 +12,7 @@ export const ScreensContextProvider = ({ children }) => {
 	const setFilterItemName = (name: SetStateAction<string>) => {
 		setFilterName(name);
 	};
-	console.log(filterName);
+
 	//   useEffect(() => {
 	//     const getScreens = async () => {
 	//       let screens;
