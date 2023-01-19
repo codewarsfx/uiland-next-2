@@ -719,7 +719,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	// Call an external API endpoint to get posts
 	const screen = await getAllScreens();
 	// Get the paths we want to prerender based on posts
-	// In production environments, prerender all pages
+	// In production environments, prerender all page
 	// (slower builds, but faster initial page load)
 	const paths = screen?.map((post) => ({
 		params: { id: post.id, name: post.name.toLowerCase() },
@@ -734,6 +734,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 	const screens = await getScreensById(id);
 	return {
+
 		props: { screens },
 	};
 };
