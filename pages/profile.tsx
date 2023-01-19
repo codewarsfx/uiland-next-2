@@ -105,10 +105,11 @@ export default function Profile() {
 						</PhotoWrapper>
 						<h1>{user?.user_metadata.full_name}</h1>
 						<h3>{user?.user_metadata.email}</h3>
-						<Button type={buttonTypes.error} onClick={handleDelete}>
+						<div onClick={handleDelete}>	<Button type={buttonTypes.error} >
 							{' '}
 							Delete Account
-						</Button>
+						</Button></div>
+					
 					</ProfileContainer>
 					<UserDetails>
 						{userprofile &&
