@@ -21,6 +21,7 @@ import CloseIcon from '../../../../components/CloseModalIcon';
 
 import useScreenshot from '../../../../hooks/useScreenshot';
 import { getAllScreens, getScreensById } from '../../../../supabase';
+import { GetStaticPaths, GetStaticProps } from 'next';
 
 export default function SinglePage({ screens }) {
 	const {
@@ -704,7 +705,7 @@ const ElementsInCategoryContainer = styled.div`
 	}
 `;
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
 	// When this is true (in preview environments) don't
 	// prerender any static pages
 	// (faster builds, but slower initial page load)
@@ -728,7 +729,7 @@ export const getStaticPaths = async () => {
 	return { paths, fallback: false };
 };
 
-export const getStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
 	const id = context.params.id;
 
 	const screens = await getScreensById(id);

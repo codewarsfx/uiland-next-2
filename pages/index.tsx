@@ -7,6 +7,7 @@ import ScreensTab from '../components/ScreensTab';
 import { getAllScreens, supabase } from '../supabase';
 import { ScreensContext } from '../context/screensContex';
 import { UserContext } from '../context/authContext';
+import { GetServerSideProps } from 'next';
 
 const Home = ({ screens }) => {
 	const { filterTerm, filterName } = useContext(ScreensContext);
@@ -40,7 +41,7 @@ const Home = ({ screens }) => {
 				if (event == 'SIGNED_IN') {
 					const download = await fetch('/api/mailchimp', {
 						method: 'POST',
-						header: { 'Content-Type': 'application/json' },
+						headers: { 'Content-Type': 'application/json' },
 						body: JSON.stringify(session.user),
 					});
 					const data = await download.json();
@@ -61,7 +62,7 @@ const Home = ({ screens }) => {
 	);
 };
 
-export async function getServerSideProps(context) {
+export const getServerSideProps: GetServerSideProps = async (context) => {
 	const screens = await getAllScreens();
 
 	return {
