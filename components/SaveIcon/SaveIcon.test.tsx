@@ -5,7 +5,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import SaveIcon from './index';
 
 it('checkTitleRender', () => {
-	const { queryByTitle } = render(<SaveIcon />);
+	const { queryByTitle } = render(<SaveIcon bookmark='' data='' />);
 	const btn = queryByTitle('save to collection');
 	expect(btn).toBeTruthy();
 });

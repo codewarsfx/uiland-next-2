@@ -3,7 +3,9 @@ import { supabase } from '../../supabase';
 var secret = process.env.NEXT_PUBLIC_PAYSTACK_SECRET_TEST_KEY;
 
 // Using Express
-export default function handler(req, res) {
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
 	//validate event
 	try {
 		const hash = crypto
@@ -41,7 +43,7 @@ export default function handler(req, res) {
 				//   subscription_code: req.body.data.subscription_code})
 
 				// update the profile table when a "subscription.create" is available
-				async function insertToProfile() {
+				const insertToProfile = async () => {
 					const { data, error } = await supabase
 						.from('profile')
 						.update({
@@ -70,7 +72,7 @@ export default function handler(req, res) {
 						status: true,
 						message: 'Order placed successfully!',
 					});
-				}
+				};
 				insertToProfile();
 				console.log('stack', req.body);
 				//  return res.send(req.body.data);
@@ -78,7 +80,7 @@ export default function handler(req, res) {
 				req.body.event === 'subscription.not_renew' ||
 				req.body.event === 'subscription.disable'
 			) {
-				async function insertToProfile() {
+				const insertToProfile = async () => {
 					const { data, error } = await supabase
 						.from('profile')
 						.update({
@@ -104,7 +106,7 @@ export default function handler(req, res) {
 						.select();
 					console.log('fish', data);
 					return res.json({ status: true, message: 'Order cancelled!' });
-				}
+				};
 				insertToProfile();
 			}
 			// Do something with event

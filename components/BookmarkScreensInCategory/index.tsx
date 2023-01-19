@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { BrandDescription, BrandLogo, Pill, Screenshot } from '../uiElements';
 import { pillsTypes } from '../uiElements/pills';
 import EmptyState from '../EmptyState';
+import { Key } from 'react';
 
 const BookmarkScreensInCategory = ({ screens }) => {
 	return (
@@ -23,13 +24,15 @@ const BookmarkScreensInCategory = ({ screens }) => {
 											<Pill type={pillsTypes.screenshot}>view</Pill>
 										</ScreenshotContainerTop>
 										<ScreenshotContainerBottom>
-											{result.album_id.startScreens.map((screenshot) => (
-												<Screenshot
-													key={screenshot}
-													imgLink={screenshot}
-													alt={name}
-												/>
-											))}
+											{result.album_id.startScreens.map(
+												(screenshot: string) => (
+													<Screenshot
+														key={screenshot}
+														imgLink={screenshot}
+														Name={screenshot}
+													/>
+												)
+											)}
 										</ScreenshotContainerBottom>
 									</div>
 								</Link>

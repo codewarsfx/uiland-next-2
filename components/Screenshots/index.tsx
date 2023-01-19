@@ -81,13 +81,10 @@ const Screenshots = ({ screens }) => {
 								</select>
 							</div>
 							<Input
-								type='text'
-								name='contentForm'
 								placeholder='Input Name'
-								maxlength='50'
-								autocomplete='off'
-								value={input}
-								onChange={handleChange}
+								submit={submit}
+								input={input}
+								handleChange={handleChange}
 							/>
 
 							<button

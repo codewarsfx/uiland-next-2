@@ -294,7 +294,7 @@ export async function getAllSingleBookmarkNames() {
 	console.log(data);
 	//gets unique names in the db
 	const result = data?.map((object) => object.bookmark_name);
-	const uniqueResult = [...new Set(result)];
+	const uniqueResult = Array.from(new Set(result));
 	return uniqueResult;
 }
 

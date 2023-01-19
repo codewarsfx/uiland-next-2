@@ -8,7 +8,7 @@ const BottomSheet = ({
 	openBottomSheet,
 }) => {
 	useEffect(() => {
-		window.onclick = function (event) {
+		window.onclick = function (event: any) {
 			if (event.target.className.includes('BottomSheetWrapper')) {
 				closeBottomSheetModal();
 			}

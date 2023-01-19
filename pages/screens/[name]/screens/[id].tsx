@@ -175,7 +175,6 @@ export default function SinglePage({ screens }) {
 
 			<SingleHeader>
 				<ImageCardInfo
-					copy={copy}
 					headerInfo={headerInfo}
 					id={router.query.id}
 					getAlbumId={getAlbumId}

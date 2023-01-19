@@ -13,10 +13,10 @@ import {
 	addBookmark,
 	getProfileByEvent,
 	getAllSingleBookmarkId,
-} from '../supabase.js';
+} from '../supabase';
 
 //Hooks
-import useModal from '../hooks/useModal';
+import useModal from './useModal';
 
 //Context
 import { UserContext } from '../context/authContext';
@@ -53,34 +53,38 @@ const useScreenshot = (screens) => {
 	const [inputFilter, setInputFilter] = useState('');
 
 	const [Progress, setProgress] = useState(1);
-	const [headerInfo, setHeaderInfo] = useState({});
+	const [headerInfo, setHeaderInfo] = useState<{ name: ''; logo: ''; id: '' }>({
+		name: '',
+		logo: '',
+		id: '',
+	});
 	const [payingUser, setPayingUser] = useState('');
 
 	//state to manage the bookmark id of the album of images when clicked
 	const [getAlbumId, setGetAlbumId] = useState([]);
 
 	// toast state
-	const [toastPendingText, setToastPendingText] = useState('Saving');
-	const [toastSuccessText, setToastSuccessText] = useState('Saved 🎉');
+	const [toastPendingText, setToastPendingText] = useState<string>('Saving');
+	const [toastSuccessText, setToastSuccessText] = useState<string>('Saved 🎉');
 
 	const [bookmarkk, setBookmarkk] = useState('');
 	//state to hold the input state
 	const [input, setInput] = useState('');
 
 	//to track if user is on mobile
-	const [mobile, setMobile] = useState();
+	const [mobile, setMobile] = useState<boolean>();
 
 	//state to hold the names of bookmarks created
 	const [selectBookmark, setSelectBookmark] = useState(['']);
 
 	//state to disable button
-	const [disabled, setDisabled] = useState(false);
+	const [disabled, setDisabled] = useState<boolean>(false);
 
 	//state to hold the limited screens
-	const [limitedscreens, setLimitedScreens] = useState([]);
+	const [limitedscreens, setLimitedScreens] = useState<[]>([]);
 
 	//state to display the  paying banner
-	const [payingbanner, setPayingBanner] = useState('');
+	const [payingbanner, setPayingBanner] = useState<string>('');
 	const [getId, setGetId] = useState([]);
 
 	useEffect(() => {
@@ -465,8 +469,6 @@ const useScreenshot = (screens) => {
 		loginToggleModal,
 		openBottomSheet,
 		closeBottomSheetModal,
-		downloadImage,
-		copyImage,
 		getAlbumId,
 		handleAddToBookMark,
 		handleDeleteFromBookMark,

@@ -10,7 +10,7 @@ export const buttonTypes = {
 	modal: 'modal',
 };
 
-const getButton = (buttonType) => {
+const getButton = (buttonType: string | number) => {
 	return {
 		[buttonTypes.base]: BaseButton,
 		[buttonTypes.primary]: PrimaryButton,

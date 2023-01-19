@@ -7,7 +7,9 @@ const paystack_headers = {
 	Authorization: `Bearer ${process.env.NEXT_PUBLIC_PAYSTACK_SECRET_TEST_KEY}`,
 };
 axios.create({ paystack_api, responseType: 'json' });
-export default function handler(req, res) {
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
 	axios
 		.get(`${paystack_api}transaction/verify/${req.body}`, {
 			headers: paystack_headers,

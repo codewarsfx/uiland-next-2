@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, SetStateAction, useEffect, useState } from 'react';
 
 export const ScreensContext = createContext(null);
 
@@ -6,10 +6,10 @@ export const ScreensContextProvider = ({ children }) => {
 	const [screens, setScreens] = useState(null);
 	const [filterTerm, setFilterTerm] = useState('');
 	const [filterName, setFilterName] = useState('');
-	const setFilterItem = (term) => {
+	const setFilterItem = (term: SetStateAction<string>) => {
 		setFilterTerm(term);
 	};
-	const setFilterItemName = (name) => {
+	const setFilterItemName = (name: SetStateAction<string>) => {
 		setFilterName(name);
 	};
 	console.log(filterName);

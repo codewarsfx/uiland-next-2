@@ -6,7 +6,7 @@ export const pillsTypes = {
 	screenshot: 'screenshot',
 };
 
-const getPill = (pillType) => {
+const getPill = (pillType: string | number) => {
 	return {
 		[pillsTypes.base]: BasePill,
 		[pillsTypes.category]: CategoryPill,

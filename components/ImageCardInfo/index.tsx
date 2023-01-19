@@ -21,7 +21,7 @@ function ImageCardInfo({
 							viewBox='0 0 24 24'
 							aria-label='Verified account'
 							role='img'
-							class='r-1cvl2hr r-4qtqp9 r-yyyyoo r-1xvli5t r-f9ja8p r-og9te1 r-bnwqim r-1plcrui r-lrvibr'
+							className='r-1cvl2hr r-4qtqp9 r-yyyyoo r-1xvli5t r-f9ja8p r-og9te1 r-bnwqim r-1plcrui r-lrvibr'
 							data-testid='icon-verified'
 						>
 							<g>

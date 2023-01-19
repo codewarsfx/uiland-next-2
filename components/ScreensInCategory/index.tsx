@@ -29,7 +29,7 @@ const ScreensInCategory = ({ screens }) => {
 												<Screenshot
 													key={screenshot}
 													imgLink={screenshot}
-													alt={name}
+													Name={screenshot}
 												/>
 											))}
 										</ScreenshotContainerBottom>

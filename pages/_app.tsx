@@ -9,10 +9,11 @@ import { ScreensContextProvider } from '../context/screensContex';
 import Head from 'next/head';
 import Header from '../components/Header';
 import ScreenContextProvider from '../context/screenContext';
-function MyApp({ Component, pageProps }) {
+import { AppProps } from 'next/app';
+function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter();
 	useEffect(() => {
-		const handleRouteChange = (url) => {
+		const handleRouteChange = (url: any) => {
 			gtag.pageview(url);
 		};
 		router.events.on('routeChangeComplete', handleRouteChange);
@@ -24,7 +25,7 @@ function MyApp({ Component, pageProps }) {
 	}, [router.events]);
 
 	useEffect(() => {
-		hotjar.initialize(3322744, 6);
+		hotjar.initialize(3322744, 6, true);
 	}, []);
 
 	return (
