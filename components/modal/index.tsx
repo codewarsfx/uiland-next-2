@@ -3,7 +3,6 @@ import reactDOM from 'react-dom';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { useEffect } from 'react';
-import Image from 'next/image';
 
 const Modal = ({ children, toggleModal }) => {
 	const [isBrowser, setIsBrowser] = useState(false);
@@ -17,7 +16,9 @@ const Modal = ({ children, toggleModal }) => {
 
 	useEffect(() => {
 		window.onclick = function (event) {
-			if (event.target.className.includes('ModalOverlay')) {
+			// nasty bug caused by this className being triggered, I had to target it
+			if (event.target.className.baseVal === '') {
+			} else if (event.target.className.includes('ModalOverlay')) {
 				toggleModal();
 			}
 		};
@@ -27,17 +28,17 @@ const Modal = ({ children, toggleModal }) => {
 		return reactDOM.createPortal(
 			<ModalContainer>
 				<ModalOverlay
-					initial={{
-						opacity: 0,
-						transition: {
-							duration: 0.3,
-						},
-					}}
+					initial={{ opacity: 0 }}
 					animate={{
 						opacity: 1,
 						transition: {
 							duration: 0.3,
 						},
+					}}
+					transition={{
+						type: 'spring',
+						stiffness: 260,
+						damping: 20,
 					}}
 				>
 					{children}

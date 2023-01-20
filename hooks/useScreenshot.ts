@@ -81,11 +81,15 @@ const useScreenshot = (screens) => {
 	const [disabled, setDisabled] = useState<boolean>(false);
 
 	//state to hold the limited screens
-	const [limitedscreens, setLimitedScreens] = useState<[]>([]);
+	const [limitedscreens, setLimitedScreens] = useState<
+		[{ elementCategory: ''; id: ''; url: '' }]
+	>([{ elementCategory: '', id: '', url: '' }]);
 
 	//state to display the  paying banner
 	const [payingbanner, setPayingBanner] = useState<string>('');
-	const [getId, setGetId] = useState([]);
+	const [getId, setGetId] = useState<[{ screen_id: '' }] | any>([
+		{ screen_id: '' },
+	]);
 
 	useEffect(() => {
 		async function getIndividualScreens() {
@@ -93,8 +97,8 @@ const useScreenshot = (screens) => {
 				const data = await getAllSingleBookmarkId(user);
 
 				data?.forEach((item) => {
-					setGetId((prev) => {
-						return [...prev, item.screen_id];
+					setGetId((prevState) => {
+						return [...prevState, item.screen_id];
 					});
 				});
 			}
@@ -201,11 +205,14 @@ const useScreenshot = (screens) => {
 		}
 	};
 	//filter
-	const searchFilter = (array, data) => {
+	const searchFilter = (
+		array: [{ elementCategory: ''; url: ''; id: '' }],
+		data: string
+	) => {
 		if (data === '') return array;
 		return array.filter((el) => el.elementCategory.toLowerCase() === data);
 	};
-	function handleInputFilter(e) {
+	function handleInputFilter(e: { target: { value: string } }) {
 		//convert the e.target.value to lowercase and add to the inputfilter state
 		setInputFilter(e.target.value.toLowerCase());
 	}
@@ -222,9 +229,9 @@ const useScreenshot = (screens) => {
 		toastNotification(1);
 	};
 	//used to hide hide the modal when clicked
-	const onHide = (name) => {
-		dialogFuncMap[`${name}`](false);
-	};
+	// const onHide = (name) => {
+	// 	dialogFuncMap[`${name}`](false);
+	// };
 	//tracks changes in the input field
 	function handleChange(e) {
 		setInput(e.target.value);
@@ -246,7 +253,9 @@ const useScreenshot = (screens) => {
 		const deletedItem = await DeleteSingleScreens(data);
 
 		if (deletedItem === null) {
-			const filteredResult = getId.filter((result) => result !== data.id);
+			const filteredResult = getId.filter(
+				(result: number | string) => result !== data.id
+			);
 
 			setGetId(filteredResult);
 			setToastSuccessText('Deleted :(');

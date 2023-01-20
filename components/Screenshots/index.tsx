@@ -104,7 +104,7 @@ const Screenshots = ({ screens }) => {
 					<ScreenshotContainer key={data.url}>
 						{/* add the name to alt tag */}
 						<Image
-							src={data.screen_id.url}
+							src={data.url}
 							alt={`Screenshots of  App`}
 							width={1080}
 							height={2240}

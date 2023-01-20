@@ -8,8 +8,10 @@ const BottomSheet = ({
 	openBottomSheet,
 }) => {
 	useEffect(() => {
-		window.onclick = function (event: any) {
-			if (event.target.className.includes('BottomSheetWrapper')) {
+		window.onclick = function (event) {
+			// nasty bug caused by this className being triggered, I had to target it
+			if (event.target.className.baseVal === '') {
+			} else if (event.target.className.includes('BottomSheetWrapper')) {
 				closeBottomSheetModal();
 			}
 		};

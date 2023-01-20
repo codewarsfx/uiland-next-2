@@ -81,16 +81,16 @@ select {
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
 	margin: 0;
-	border-color: var(--primary-color);
+	border-color: #6f7181;
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	appearance: none;
-	background-color: var(--primary-color);
-	background-image: url('/assets/img/dropdown_button.svg'),
-		linear-gradient(var(--primary-color), var(--primary-color));
+	background-color: white;
+	background-image: url('/assets/img/select.svg'), linear-gradient(white, white);
 	background-repeat: no-repeat;
 	background-position: right 0.7em top 50%;
-	background-size: 0.65em auto;
+	color: black;
+	background-size: 1.65em auto;
 }
 /* Remove dropdown arrow in IE10 & IE11 */
 select::-ms-expand {
