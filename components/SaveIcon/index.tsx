@@ -5,8 +5,6 @@ function SaveIcon({ bookmark, data }) {
 		<>
 			<DownloadWrapper onClick={() => bookmark(data)}>
 				<Title className='target' title='save to collection'>
-					
-
 					<svg
 						aria-label='Like'
 						color='#262626'

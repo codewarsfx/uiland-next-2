@@ -10,7 +10,6 @@ import { Input } from '../uiElements';
 
 const Screenshots = ({ screens }) => {
 	const {
-		headerInfo,
 		toggleBottomSheet,
 		modalSheet,
 		modalSaveImage,
@@ -20,36 +19,15 @@ const Screenshots = ({ screens }) => {
 		selectBookmark,
 		input,
 		disabled,
-		toggleModal,
-		isModalopen,
-		copy,
-		isModalLogin,
-		loginToggleModal,
-		openBottomSheet,
-		closeBottomSheetModal,
 		downloadImage,
 		copyImage,
-		getAlbumId,
-		handleAddToBookMark,
-		handleDeleteFromBookMark,
-		elementsCategoryData,
-		inputFilter,
-		handleInputFilter,
-		filtered,
 		getId,
 		deleteIndividualBookmark,
 		bookmark,
 		openBottomSheetModal,
-		payingbanner,
-		handleClickSubscribeButton,
-		buttonTypes,
-		Progress,
-		toastPendingText,
-		toastSuccessText,
-		router,
 		bookmarkk,
 	} = useScreenshot(screens);
-console.log(screens)
+	console.log(screens);
 	return (
 		<>
 			{modalSheet && (

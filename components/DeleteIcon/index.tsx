@@ -5,7 +5,7 @@ function DeleteIcon({ deleteIndividualBookmark, data }) {
 		<>
 			<DownloadWrapper onClick={() => deleteIndividualBookmark(data)}>
 				<Title className='target' title='delete from collection'>
-				<svg
+					<svg
 						aria-label='Unlike'
 						color='#ed4956'
 						fill='#ed4956'

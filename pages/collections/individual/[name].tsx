@@ -4,16 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { UserContext } from '../../../context/authContext';
-import {
-	getAllScreens,
-	getAllSingleBookmarkNames,
-	viewSingleBookmark,
-} from '../../../supabase';
+import { viewSingleBookmark } from '../../../supabase';
 import EmptyState from '../../../components/EmptyState';
-import useScreenshot from '../../../hooks/useScreenshot';
-import DeleteIcon from '../../../components/DeleteIcon';
-import SaveIcon from '../../../components/SaveIcon';
-import ThreeDots from '../../../components/ThreeDots';
 import Screenshots from '../../../components/Screenshots';
 
 export default function IndividualCollections() {
@@ -75,7 +67,7 @@ const Title = styled.h1`
 	margin: 0;
 	padding: 5px;
 	position: absolute;
-	block: '';
+	content: '';
 	border-radius: 5px;
 	background: rgba(0, 0, 0, 0.17);
 	z-index: 99;

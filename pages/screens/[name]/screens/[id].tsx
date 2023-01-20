@@ -8,7 +8,6 @@ import styled from 'styled-components';
 import { BottomSheet, Button, Toast } from '../../../../components/uiElements';
 import ImageCardInfo from '../../../../components/ImageCardInfo';
 import Modal from '../../../../components/modal';
-import { buttonTypes } from '../../../../components/uiElements/button';
 import SocialsCard from '../../../../components/SocialsCard';
 import Select from '../../../../components/uiElements/select';
 import Login from '../../../../components/Login/login';
@@ -224,7 +223,7 @@ export default function SinglePage({ screens }) {
 						</Button>
 					</ButtonWrapper>
 					<GridBackground>
-						<img src='/assets/img/grid.svg' alt="grid" />
+						<img src='/assets/img/grid.svg' alt='grid' />
 					</GridBackground>
 					<Cloud></Cloud>
 				</SubscribeBanner>
@@ -300,9 +299,7 @@ const SecondRow = styled.div`
 	background: rgb(0 0 0 / 9%);
 	border-radius: 28px;
 `;
-const Input = styled.input.attrs(props => ({
-
-  }))`
+const Input = styled.input.attrs((props) => ({}))`
 	color: black;
 	font-size: 1em;
 	border: 1px solid grey;
