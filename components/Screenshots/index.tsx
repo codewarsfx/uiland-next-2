@@ -49,7 +49,7 @@ const Screenshots = ({ screens }) => {
 		router,
 		bookmarkk,
 	} = useScreenshot(screens);
-
+console.log(screens)
 	return (
 		<>
 			{modalSheet && (
@@ -100,11 +100,11 @@ const Screenshots = ({ screens }) => {
 			)}
 
 			{screens.map((data) => (
-				<ScreenShotContent key={data.id}>
-					<ScreenshotContainer key={data.url}>
+				<ScreenShotContent key={data.screen_id.url}>
+					<ScreenshotContainer key={data.screen_id.url}>
 						{/* add the name to alt tag */}
 						<Image
-							src={data.url}
+							src={data.screen_id.url}
 							alt={`Screenshots of  App`}
 							width={1080}
 							height={2240}
