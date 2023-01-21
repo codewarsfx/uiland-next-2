@@ -30,10 +30,11 @@ const PaystackPayment = ({ plan }) => {
 }
  */
 
-	function handlePaystackSuccessAction(response) {
+	const handlePaystackSuccessAction=(response:{reference:""})=> {
 		// Implementation for whatever you want to do with response and after success call.
-
+		console.log(response)
 		setUrl(response.reference);
+		
 	}
 	useEffect(() => {
 		async function getReference() {
@@ -61,13 +62,10 @@ const PaystackPayment = ({ plan }) => {
 	const componentProps = {
 		email: user?.user_metadata.email,
 		plan: plan, //process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_BINUALLY
-		metadata: {
-			name: user?.user_metadata.full_name,
-			phone: '',
-		},
+		amount:0,
 		publicKey,
 		text: 'Get Started',
-		onSuccess: (reference) => handlePaystackSuccessAction(reference),
+		onSuccess: (response: {reference:""}) => handlePaystackSuccessAction(response),
 		onClose: () => alert("Wait! Don't leave :("),
 	};
 
