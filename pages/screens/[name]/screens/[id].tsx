@@ -176,6 +176,7 @@ export default function SinglePage({ screens }) {
 				<ImageCardInfo
 					headerInfo={headerInfo}
 					id={router.query.id}
+					count={filtered?.length}
 					getAlbumId={getAlbumId}
 					handleAddToBookMark={handleAddToBookMark}
 					handleDeleteFromBookMark={handleDeleteFromBookMark}
@@ -183,11 +184,54 @@ export default function SinglePage({ screens }) {
 				/>
 			</SingleHeader>
 
-			<Select
-				elementsCategoryData={elementsCategoryData}
-				inputFilter={inputFilter}
-				handleInputFilter={handleInputFilter}
-			/>
+			<SecondHeader>
+				<ImageCardWrapper>
+					{!getAlbumId?.includes(router.query.id) ? (
+						<BookmarkButton
+							onClick={handleAddToBookMark}
+							title='add to bookmark'
+						>
+							<img
+								src='/assets/img/bookmark-dark.svg'
+								alt='bookmark icon'
+								className={`effect scale_transition`}
+							/>
+						</BookmarkButton>
+					) : (
+						<BookmarkButton onClick={handleDeleteFromBookMark}>
+							<img
+								src='/assets/img/bookmark-transparent.png'
+								alt='bookmark icon'
+								className='effect'
+							/>
+						</BookmarkButton>
+					)}
+					<div className='button_modal' onClick={toggleModal}>
+						<img src='/assets/img/share-icon.svg' alt='share-icon' />
+						<div>Share</div>
+					</div>
+				</ImageCardWrapper>
+				{/* <div className='flex-col'>
+					<div>
+						<h1 className='font_medium'>
+							<a
+								href={headerInfo.url}
+								rel='noopener noreferrer'
+								target='_blank'
+							>
+								Visit Website
+							</a>
+						</h1>
+					</div>
+					
+				</div> */}
+				<Select
+					elementsCategoryData={elementsCategoryData}
+					inputFilter={inputFilter}
+					handleInputFilter={handleInputFilter}
+				/>{' '}
+			</SecondHeader>
+
 			<ElementsInCategoryContainer>
 				{/* todo:populate with filtered data */}
 				{filtered?.map((data) => (
@@ -236,6 +280,43 @@ export default function SinglePage({ screens }) {
 		</>
 	);
 }
+const ImageCardWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex-direction: row;
+	padding: 14px;
+`;
+const BookmarkButton = styled.button`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1.5rem;
+	cursor: pointer;
+	border: none;
+	border-radius: 50%;
+	outline: none;
+	color: white;
+	font-size: 2rem;
+	font-weight: 500;
+	background-color: #c6c8d1;
+
+	&:hover {
+		background-color: grey;
+	}
+
+	&:focus {
+		outline: none;
+	}
+`;
+const SecondHeader = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	/* background: #eaf3ff; */
+	justify-content: space-between;
+	padding: 1em;
+`;
 const Cloud = styled.div`
 	background-image: radial-gradient(
 		60.83% 60.83% at 50% 50%,
@@ -395,11 +476,14 @@ const Title = styled.div`
 `;
 const SingleHeader = styled.div`
 	display: flex;
+	flex-direction: row;
+	background: #eaf3ff;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding: 15px;
-	gap: 8px;
+	padding: 3em;
+	/* padding: 15px; */
+	gap: 28px;
 `;
 
 const WebLink = styled.a`

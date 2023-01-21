@@ -1,50 +1,36 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import styled from 'styled-components';
-import useModal from '../../hooks/useModal';
-import Login from '../Login/login';
-import Modal from '../modal';
-
-function Hero() {
-	const { isModalopen, toggleModal } = useModal();
+function newpage() {
 	return (
-		<>
-			{isModalopen && (
-				<Modal toggleModal={toggleModal}>
-					<Login toggleModal={toggleModal} />
-				</Modal>
-			)}
-			<LandingPage>
-				<div className='landingpage__container'>
-					<div className='landingpage__row'>
-						<div className='landingpage__col landingpage__col-50'>
-							<div className='landingpage__text'>
-								<div className='landingpage__text-h1'>
-									Discover mobile UI used by the Nigeria's top companies
-								</div>
-								<div className='landingpage__text-h2 marg-tb-xs'>
-									save hours of research time with UiLand's curated collection
-									of the best in-production andriod interfaces and screenshots
-								</div>
-								<div onClick={() => toggleModal()}>
-									<button className='landingpage__text-button'>
-										<a>Start free</a>
-									</button>
-								</div>
+		<LandingPage>
+			<div className='landingpage__container'>
+				<div className='landingpage__row'>
+					<div className='landingpage__col landingpage__col-50'>
+						<div className='landingpage__text'>
+							<div className='landingpage__text-h1'>
+								Discover mobile UI used by the Nigeria's top companies
 							</div>
+							<div className='landingpage__text-h2 marg-tb-xs'>
+								save hours of research time with UiLand's curated collection of
+								the best in-production andriod interfaces and screenshots
+							</div>
+							<button className='landingpage__text-button'>
+								<a href='/signup'>Start free</a>
+							</button>
 						</div>
-						<div className='landingpage__col landingpage__col-50'>
-							<div className='outer-ring outer-ring1'>
-								<div className='box box-outside'></div>
-								<div className='outer-ring outer-ring2'>
-									<div className='outer-ring outer-ring3'>
-										<div className='outer-ring outer-ring4'>
-											<div className='outer-ring outer-ring5'>
-												<div className='outer-ring outer-ring6'>
-													{/* <div className='outer-ring outer-ring7'>
+					</div>
+					<div className='landingpage__col landingpage__col-50'>
+						<div className='outer-ring outer-ring1'>
+							<div className='box box-outside'></div>
+							<div className='outer-ring outer-ring2'>
+								<div className='outer-ring outer-ring3'>
+									<div className='outer-ring outer-ring4'>
+										<div className='outer-ring outer-ring5'>
+											<div className='outer-ring outer-ring6'>
+												{/* <div className='outer-ring outer-ring7'>
 												hhh
 												</div> */}
-												</div>
 											</div>
 										</div>
 									</div>
@@ -53,8 +39,8 @@ function Hero() {
 						</div>
 					</div>
 				</div>
-			</LandingPage>
-		</>
+			</div>
+		</LandingPage>
 	);
 }
 const LandingPage = styled.div`
@@ -340,4 +326,4 @@ const LandingPage = styled.div`
 	}
 `;
 
-export default Hero;
+export default newpage;

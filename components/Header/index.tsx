@@ -8,6 +8,7 @@ import {
 	BASE_DURATION,
 } from '../../utils/transitionConstants';
 import useModal from '../../hooks/useModal';
+
 import Login from '../Login/login';
 import Modal from '../modal';
 import { UserContext } from '../../context/authContext';
@@ -16,6 +17,7 @@ import Link from 'next/link';
 
 const Header = () => {
 	const { isModalopen, toggleModal } = useModal();
+
 	const user = useContext(UserContext);
 	const [popup, setPopup] = useState(false);
 

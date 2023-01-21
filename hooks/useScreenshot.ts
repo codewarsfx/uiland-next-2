@@ -53,10 +53,16 @@ const useScreenshot = (screens) => {
 	const [inputFilter, setInputFilter] = useState('');
 
 	const [Progress, setProgress] = useState(1);
-	const [headerInfo, setHeaderInfo] = useState<{ name: ''; logo: ''; id: '' }>({
+	const [headerInfo, setHeaderInfo] = useState<{
+		url: string;
+		name: '';
+		logo: '';
+		id: '';
+	}>({
 		name: '',
 		logo: '',
 		id: '',
+		url: '',
 	});
 	const [payingUser, setPayingUser] = useState('');
 
@@ -409,38 +415,6 @@ const useScreenshot = (screens) => {
 	const dialogFuncMap = {
 		displayBasic: setDisplayBasic,
 	};
-
-	// useEffect(() => {
-	//   const getHeaderInfo = async () => {
-	//     const data = await getProfileByEvent();
-	//
-	//   };
-	//   getHeaderInfo();
-	// }, []);
-
-	// useEffect(()=>{
-	//   const uniqueResult=([...new Set(selectBookmark)])
-	//   setSelectBookmark(uniqueResult)
-	//     },[selectBookmark])
-
-	//copies the url
-
-	//finds the ids of individual screens that have been bookmarked and stores in an array
-	//I used it to indicate on the frontend what image have been saved
-	// useEffect(() => {
-	//   async function getIndividualScreens() {
-	//     if (user) {
-	//       const data = await getAllSingleBookmarkId(user);
-	//
-	//       data.forEach((item) => {
-	//         setGetId((prev) => {
-	//           return [...prev, item.screen_id];
-	//         });
-	//       });
-	//     }
-	//   }
-	//   getIndividualScreens();
-	// }, [user]);
 
 	//finds the ids of album screens that have been bookmarked and stores in an array
 	//I used it to indicate on the frontend what image have been saved
