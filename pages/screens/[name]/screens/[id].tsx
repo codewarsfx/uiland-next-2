@@ -173,15 +173,7 @@ export default function SinglePage({ screens }) {
 			/>
 
 			<SingleHeader>
-				<ImageCardInfo
-					headerInfo={headerInfo}
-					id={router.query.id}
-					count={filtered?.length}
-					getAlbumId={getAlbumId}
-					handleAddToBookMark={handleAddToBookMark}
-					handleDeleteFromBookMark={handleDeleteFromBookMark}
-					toggleModal={toggleModal}
-				/>
+				<ImageCardInfo headerInfo={headerInfo} count={filtered?.length} />
 			</SingleHeader>
 
 			<SecondHeader>
