@@ -203,12 +203,15 @@ const useScreenshot = (screens) => {
 		};
 	}, []);
 
+	// const handleClickSubscribeButton = () => {
+	// 	if (!user) {
+	// 		loginToggleModal();
+	// 	} else {
+	// 		Router.push('/pricing');
+	// 	}
+	// };
 	const handleClickSubscribeButton = () => {
-		if (!user) {
-			loginToggleModal();
-		} else {
-			Router.push('/pricing');
-		}
+		Router.push('/pricing');
 	};
 	//filter
 	const searchFilter = (

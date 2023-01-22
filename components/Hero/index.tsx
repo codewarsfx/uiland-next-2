@@ -33,17 +33,17 @@ function Hero() {
 								</div>
 							</div>
 						</div>
-						<div className='landingpage__col landingpage__col-50'>
+						<div className='landingpage__col landingpage__gridcol-50'>
 							<div className='outer-ring outer-ring1'>
-								<div className='box box-outside'></div>
 								<div className='outer-ring outer-ring2'>
 									<div className='outer-ring outer-ring3'>
 										<div className='outer-ring outer-ring4'>
 											<div className='outer-ring outer-ring5'>
 												<div className='outer-ring outer-ring6'>
 													{/* <div className='outer-ring outer-ring7'>
-												hhh
+												
 												</div> */}
+													UL
 												</div>
 											</div>
 										</div>
@@ -126,7 +126,7 @@ const LandingPage = styled.div`
 		content: '';
 		position: absolute;
 		right: -31px;
-		background: white url(/assets/img/zenith.png);
+		background: white url(/assets/img/firstbank.png);
 		background-repeat: no-repeat;
 		background-size: 58%;
 		border-radius: 50%;
@@ -295,6 +295,19 @@ const LandingPage = styled.div`
 	}
 	@media only screen and (min-width: 62em) {
 		.landingpage__col-50 {
+			max-width: 50%;
+			flex: 0 0 50%;
+		}
+	}
+	.landingpage__gridcol-50 {
+		max-width: 100%;
+		flex: 0 0 100%;
+		display: grid;
+		align-items: center;
+		justify-content: center;
+	}
+	@media only screen and (min-width: 62em) {
+		.landingpage__gridcol-50 {
 			max-width: 50%;
 			flex: 0 0 50%;
 		}

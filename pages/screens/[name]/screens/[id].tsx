@@ -496,7 +496,7 @@ const ElementsInCategoryContainer = styled.div`
 	}
 	@media (min-width: 768px) {
 		width: 95%;
-		
+
 		margin: 3em auto;
 		gap: 32px;
 		grid-template-columns: repeat(4, 1fr);

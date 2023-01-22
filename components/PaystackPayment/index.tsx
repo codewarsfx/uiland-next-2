@@ -100,6 +100,9 @@ const PaymentCta = styled.div`
 	text-align: center;
 	margin-top: 1em;
 	cursor: pointer;
+	:hover{
+		color: black;
+	}
 `;
 
 export default PaystackPayment;
