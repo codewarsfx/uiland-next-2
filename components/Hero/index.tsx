@@ -43,7 +43,7 @@ function Hero() {
 													{/* <div className='outer-ring outer-ring7'>
 												
 												</div> */}
-													UL
+													<h3>UL</h3>
 												</div>
 											</div>
 										</div>
@@ -61,7 +61,10 @@ const LandingPage = styled.div`
 	background-color: #0066f5;
 	padding: 50px 0;
 	overflow: hidden;
-
+	h3 {
+		color: white;
+		font-size: 20px;
+	}
 	.grid-stars {
 		background: white;
 		border-top-left-radius: 0;
@@ -202,8 +205,8 @@ const LandingPage = styled.div`
 		width: 150px;
 	}
 	.outer-ring6 {
-		height: 50px;
-		width: 50px;
+		height: 80px;
+		width: 80px;
 	}
 	.outer-ring7 {
 		height: 5px;
