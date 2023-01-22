@@ -13,6 +13,7 @@ import {
 	addBookmark,
 	getProfileByEvent,
 	getAllSingleBookmarkId,
+	viewSingleBookmark,
 } from '../supabase';
 
 //Hooks
@@ -97,6 +98,7 @@ const useScreenshot = (screens) => {
 		{ screen_id: '' },
 	]);
 
+	const [indiscreens, setIndiScreens] = useState([]);
 	useEffect(() => {
 		async function getIndividualScreens() {
 			if (user) {
@@ -111,7 +113,7 @@ const useScreenshot = (screens) => {
 		}
 		getIndividualScreens();
 	}, [user]);
-
+	console.log(getId);
 	useEffect(() => {
 		async function getPayingUser() {
 			if (user) {
@@ -255,7 +257,20 @@ const useScreenshot = (screens) => {
 			loginToggleModal();
 		}
 	}
+
+	useEffect(() => {
+		async function getAlbums() {
+			if (user) {
+				const data = await viewSingleBookmark(router.query.name);
+
+				setIndiScreens(data);
+			}
+		}
+		getAlbums();
+	}, [router.query.name, user]);
+
 	//function to delete individual screens
+
 	async function deleteIndividualBookmark(data) {
 		setProgress(2);
 		setToastPendingText('Deleting');
@@ -265,7 +280,10 @@ const useScreenshot = (screens) => {
 			const filteredResult = getId.filter(
 				(result: number | string) => result !== data.id
 			);
-
+			const filteredIndiResult = indiscreens.filter(
+				(result: { screen_id: { id: '' } }) => result.screen_id.id !== data.id
+			);
+			setIndiScreens(filteredIndiResult);
 			setGetId(filteredResult);
 			setToastSuccessText('Deleted :(');
 			setProgress(3);
@@ -430,6 +448,7 @@ const useScreenshot = (screens) => {
 
 	return {
 		headerInfo,
+		indiscreens,
 		toggleBottomSheet,
 		downloadImage,
 		copyImage,

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Link from 'next/link';
-import Image from 'next/image';
+import useScreenshot from '../../../hooks/useScreenshot';
 import { useRouter } from 'next/router';
 import { UserContext } from '../../../context/authContext';
 import { viewSingleBookmark } from '../../../supabase';
@@ -13,6 +12,7 @@ export default function IndividualCollections() {
 	const [screens, setScreens] = useState([]);
 	const user = useContext(UserContext);
 
+	const { indiscreens } = useScreenshot(screens);
 	useEffect(() => {
 		async function getAlbums() {
 			if (user) {
@@ -34,7 +34,7 @@ export default function IndividualCollections() {
 			</SingleHeader>
 			<ElementsInCategoryContainer>
 				{screens.length > 0 ? (
-					<Screenshots screens={screens} />
+					<Screenshots screens={indiscreens} />
 				) : (
 					<EmptyState />
 				)}
@@ -61,19 +61,12 @@ const ScreenshotContainer = styled.div`
 `;
 
 const Title = styled.h1`
-	z-index: 99;
 	font-size: 12px;
 	font-weight: 300;
 	margin: 0;
 	padding: 5px;
-	position: absolute;
-	content: '';
 	border-radius: 5px;
-	background: rgba(0, 0, 0, 0.17);
-	z-index: 99;
-	top: 0;
-	right: 0;
-	visibility: hidden;
+	color: black;
 	svg {
 		width: 23px;
 		height: 23px;

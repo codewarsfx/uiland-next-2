@@ -6,7 +6,7 @@ import DeleteIcon from '../DeleteIcon';
 import Modal from '../modal';
 import SaveIcon from '../SaveIcon';
 import ThreeDots from '../ThreeDots';
-import { Input } from '../uiElements';
+import { Input, Toast } from '../uiElements';
 
 const Screenshots = ({ screens }) => {
 	const {
@@ -26,8 +26,11 @@ const Screenshots = ({ screens }) => {
 		bookmark,
 		openBottomSheetModal,
 		bookmarkk,
+		Progress,
+		toastPendingText,
+		toastSuccessText,
 	} = useScreenshot(screens);
-	console.log(screens);
+
 	return (
 		<>
 			{modalSheet && (
@@ -89,22 +92,33 @@ const Screenshots = ({ screens }) => {
 						/>
 					</ScreenshotContainer>
 					<SecondRow>
-						{getId.includes(data.id) ? (
+						{getId.includes(data.screen_id.id) ? (
 							<DeleteIcon
 								deleteIndividualBookmark={deleteIndividualBookmark}
-								data={data}
+								data={data.screen_id}
 							/>
 						) : (
-							<SaveIcon bookmark={bookmark} data={data} />
+							<DeletedText>Removed :(</DeletedText>
 						)}
-						<ThreeDots openBottomSheet={openBottomSheetModal} />
+						{getId.includes(data.screen_id.id) && (
+							<ThreeDots openBottomSheet={openBottomSheetModal} />
+						)}
 					</SecondRow>
 				</ScreenShotContent>
 			))}
+			<Toast
+				Progress={Progress}
+				pendingText={toastPendingText}
+				successText={toastSuccessText}
+			/>
 		</>
 	);
 };
-
+const DeletedText = styled.div`
+	display: flex;
+	flex-direction: column;
+	padding: 7px 0px 7px 12px;
+`;
 const SelectModalBox = styled.div`
 	width: 80%;
 
