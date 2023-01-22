@@ -33,9 +33,6 @@ const BasePill = styled.span`
 	border-radius: 5em;
 	font-size: 16px;
 	cursor: pointer;
-	&:focus {
-		background-color: ${({ activeState }) => activeState};
-	}
 
 	@media (min-width: 768px) {
 		font-size: 20px;
