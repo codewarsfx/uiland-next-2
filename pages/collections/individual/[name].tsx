@@ -105,7 +105,7 @@ const ElementsInCategoryContainer = styled.div`
 	display: grid;
 	grid-template-columns: repeat(1, 1fr);
 	margin: 1.5em auto;
-	gap: 20px;
+	gap: 32px;
 	width: 90%;
 	@media (min-width: 540px) {
 		grid-template-columns: repeat(2, 1fr);
@@ -113,7 +113,7 @@ const ElementsInCategoryContainer = styled.div`
 	@media (min-width: 768px) {
 		width: 95%;
 		margin: 3em auto;
-		gap: 20px;
+		gap: 32px;
 		grid-template-columns: repeat(4, 1fr);
 	}
 `;

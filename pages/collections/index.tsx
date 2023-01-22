@@ -130,8 +130,8 @@ const AlbumTag = styled.div`
 		flex: 0 0 49%;
 	}
 	@media (min-width: 768px) {
-		max-width: 20%;
-		flex: 0 0 20%;
+		max-width: 19%;
+		flex: 0 0 19%;
 	}
 	a {
 		font-size: 20px;
@@ -193,8 +193,8 @@ const EmptyTag = styled.div`
 		flex: 0 0 49%;
 	}
 	@media (min-width: 768px) {
-		max-width: 20%;
-		flex: 0 0 20%;
+		max-width: 19%;
+		flex: 0 0 19%;
 	}
 	a {
 		font-size: 20px;
@@ -256,8 +256,8 @@ const IndividualTag = styled.div`
 		flex: 0 0 49%;
 	}
 	@media (min-width: 768px) {
-		max-width: 20%;
-		flex: 0 0 20%;
+		max-width: 19%;
+		flex: 0 0 19%;
 	}
 	p {
 		font-size: 20px;
@@ -302,8 +302,8 @@ const Content = styled.div`
 	display: flex;
 	align-items: center;
 	width: 100%;
-	justify-content: flex-start;
-	gap: 10px;
+	justify-content: space-between;
+	row-gap: 10px;
 	flex-wrap: wrap;
 `;
 const TitleBackground = styled.div`

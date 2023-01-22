@@ -62,6 +62,25 @@ const LandingPage = styled.div`
 	padding: 50px 0;
 	overflow: hidden;
 
+	.grid-stars {
+		background: white;
+		border-top-left-radius: 0;
+		border-top-right-radius: 3px;
+		border-bottom-left-radius: 3px;
+		/* border-radius: 4px; */
+		position: relative;
+		/* margin: 0 1px 1px 0; */
+		z-index: 10;
+	}
+	.grid {
+		width: calc(320vh);
+		grid-template-columns: repeat(32, calc(10vh));
+		background: #000000;
+		grid-template-rows: repeat(10, 10vh);
+		height: 100vh;
+		display: grid;
+	}
+
 	.outer-ring {
 		display: flex;
 		align-items: center;
@@ -80,9 +99,11 @@ const LandingPage = styled.div`
 		height: 50px;
 		width: 50px;
 		content: '';
-		background: url(/assets/img/paystack.png);
+		background: white url(/assets/img/paystack.png);
 		background-repeat: no-repeat;
-		background-size: cover;
+		background-size: 60%;
+		border-radius: 50%;
+		background-position: center;
 		position: absolute;
 		bottom: -31px;
 	}
@@ -92,9 +113,11 @@ const LandingPage = styled.div`
 		content: '';
 		position: absolute;
 		left: -31px;
-		background: url(/assets/img/flutterwave.png);
+		background: white url(/assets/img/flutterwave.png);
 		background-repeat: no-repeat;
-		background-size: cover;
+		background-size: 77%;
+		border-radius: 50%;
+		background-position: center;
 		animation: spin2 12s linear infinite;
 	}
 	.outer-ring3::before {
@@ -103,9 +126,12 @@ const LandingPage = styled.div`
 		content: '';
 		position: absolute;
 		right: -31px;
-		background: url(/assets/img/zenith.png);
+		background: white url(/assets/img/zenith.png);
 		background-repeat: no-repeat;
-		background-size: cover;
+		background-size: 58%;
+		border-radius: 50%;
+		background-position: center;
+		-webkit-animation: spin 12s linear infinite;
 		animation: spin 12s linear infinite;
 	}
 	.outer-ring4::before {
@@ -114,9 +140,11 @@ const LandingPage = styled.div`
 		content: '';
 		position: absolute;
 		bottom: -31px;
-		background: url(/assets/img/airtel.png);
+		background: white url(/assets/img/airtel.png);
 		background-repeat: no-repeat;
-		background-size: cover;
+		background-size: 58%;
+		border-radius: 50%;
+		background-position: center;
 		animation: spin 12s linear infinite;
 	}
 	.outer-ring5::before {
@@ -125,9 +153,11 @@ const LandingPage = styled.div`
 		content: '';
 		position: absolute;
 		top: -31px;
-		background: url(/assets/img/kuda.svg);
+		background: white url(/assets/img/kuda.svg);
 		background-repeat: no-repeat;
-		background-size: cover;
+		background-size: 58%;
+		border-radius: 50%;
+		background-position: center;
 		animation: spin 12s linear infinite;
 	}
 	.outer-ring6::before {
@@ -136,9 +166,11 @@ const LandingPage = styled.div`
 		content: '';
 		position: absolute;
 		left: -31px;
-		background: url(/assets/img/okra.png);
+		background: white url(/assets/img/okra.png);
 		background-repeat: no-repeat;
-		background-size: cover;
+		background-size: 58%;
+		border-radius: 50%;
+		background-position: center;
 		animation: spin 12s linear infinite;
 	}
 	/* .outer-ring7::before {

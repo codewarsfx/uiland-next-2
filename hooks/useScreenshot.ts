@@ -123,7 +123,7 @@ const useScreenshot = (screens) => {
 					getEvent[0].event === undefined ||
 					getEvent[0].event === ''
 				) {
-					const result = screens.slice(0, 1);
+					const result = screens.slice(0, 30);
 
 					setLimitedScreens(result);
 				} else {
@@ -132,7 +132,7 @@ const useScreenshot = (screens) => {
 					setLimitedScreens(screens);
 				}
 			} else {
-				const result = screens.slice(0, 1);
+				const result = screens.slice(0, 30);
 
 				setLimitedScreens(result);
 			}
@@ -403,6 +403,12 @@ const useScreenshot = (screens) => {
 		'skeleton',
 		'tooltip',
 		'bottom sheet',
+		'camera',
+		'card',
+		'accordion',
+		'footer',
+		'icon',
+		'empty state',
 		'divider',
 		'input',
 		'loading',
