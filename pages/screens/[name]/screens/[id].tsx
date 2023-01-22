@@ -327,8 +327,15 @@ const ButtonWrapper = styled.div`
 const GridBackground = styled.div`
 	position: absolute;
 	height: 100%;
+	img{
+		width:100%;
+	}
 `;
 const SubscribeBanner = styled.div`
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 	position: relative;
 	/* margin-top: -223px; */
 	background: linear-gradient(
