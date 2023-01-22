@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import { BsCheck } from 'react-icons/bs';
 
@@ -40,7 +41,13 @@ function PriceCard({
 						</span>{' '}
 						{info3}
 					</p>
-					<PaystackPayment plan={planId} />
+					{planId === '' ? (
+						<Link href='/'>
+							<PaymentCta>Try Now</PaymentCta>
+						</Link>
+					) : (
+						<PaystackPayment plan={planId} />
+					)}
 				</div>
 			</PriceCards>
 		</>
@@ -50,7 +57,20 @@ const CheckIcon = styled(BsCheck)`
 	color: #bbb;
 	font-weight: 600;
 `;
-
+const PaymentCta = styled.div`
+	width: 100%;
+	font-size: 16px;
+	padding: 0.8em 0;
+	border: 1px solid #aaa;
+	background-color: #fff;
+	border-radius: 0.5em;
+	text-align: center;
+	margin-top: 1em;
+	cursor: pointer;
+	:hover {
+		color: black;
+	}
+`;
 const PriceCards = styled.div`
 	border: 0.5px solid #ddd;
 	padding: 2em;

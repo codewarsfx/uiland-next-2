@@ -19,7 +19,7 @@ export default function Pricing() {
 			info1: 'Real time Contact Syncing',
 			info2: 'Enhanced email Sending',
 			info3: 'No seat Limit',
-			planId: process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_ANNUALY,
+			planId: '',
 		},
 		{
 			type: 'Annual',
@@ -42,7 +42,7 @@ export default function Pricing() {
 			info1: 'Real time Contact Syncing',
 			info2: 'Enhanced email Sending',
 			info3: 'No seat Limit',
-			planId: process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_BINUALLY,
+			planId: '',
 		},
 		{
 			type: 'Bi-Annual',
