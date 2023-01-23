@@ -17,8 +17,7 @@ export default function IndividualCollections() {
 		async function getAlbums() {
 			if (user) {
 				const data = await viewSingleBookmark(router.query.name);
-
-				setScreens(data);
+setScreens(data);
 			}
 		}
 		getAlbums();
@@ -92,8 +91,9 @@ const ElementsInCategoryContainer = styled.div`
 	position: relative;
 
 	display: grid;
-	
+
 	grid-template-columns: repeat(1, 1fr);
+
 	margin: 1.5em auto;
 	gap: 32px;
 	width: 90%;
