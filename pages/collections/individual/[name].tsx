@@ -17,7 +17,7 @@ export default function IndividualCollections() {
 		async function getAlbums() {
 			if (user) {
 				const data = await viewSingleBookmark(router.query.name);
-setScreens(data);
+				setScreens(data);
 			}
 		}
 		getAlbums();
@@ -86,7 +86,6 @@ const SingleHeader = styled.div`
 	gap: 8px;
 `;
 
-
 const ElementsInCategoryContainer = styled.div`
 	position: relative;
 
@@ -115,5 +114,4 @@ const SecondRow = styled.div`
 	justify-content: space-between;
 	background: rgb(0 0 0 / 17%);
 	border-radius: 28px;
-
 `;
