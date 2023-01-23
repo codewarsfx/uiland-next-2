@@ -2,7 +2,7 @@ import styled from 'styled-components';
 const BrandLogo = ({ imageUrl }) => {
 	return (
 		<BrandLogoCotainer>
-			<img src={imageUrl} alt='brandlogo' />
+			<img src={imageUrl}  alt='brandlogo' />
 		</BrandLogoCotainer>
 	);
 };
@@ -17,6 +17,7 @@ const BrandLogoCotainer = styled.div`
 	img {
 		height: 100%;
 		width: 100%;
+
 	}
 	@media (min-width: 768px) {
 		width: 50px;
