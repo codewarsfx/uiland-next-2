@@ -118,4 +118,5 @@ const SecondRow = styled.div`
 	justify-content: space-between;
 	background: rgb(0 0 0 / 17%);
 	border-radius: 28px;
+	
 `;
