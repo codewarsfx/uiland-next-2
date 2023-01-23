@@ -87,15 +87,12 @@ const SingleHeader = styled.div`
 	gap: 8px;
 `;
 
-const WebLink = styled.a`
-	font-weight: 200;
-	font-size: 1.3rem;
-	text-decoration: none;
-	color: var(--primary-color);
-`;
+
 const ElementsInCategoryContainer = styled.div`
 	position: relative;
+
 	display: grid;
+	
 	grid-template-columns: repeat(1, 1fr);
 	margin: 1.5em auto;
 	gap: 32px;
@@ -118,5 +115,5 @@ const SecondRow = styled.div`
 	justify-content: space-between;
 	background: rgb(0 0 0 / 17%);
 	border-radius: 28px;
-	
+
 `;
