@@ -50,6 +50,13 @@ const ImageCardWrappers = styled.div`
 const ImageCardLogo = styled.div`
 	border-radius: 20px;
 	overflow: hidden;
+	height: 240px;
+	width: 240px;
+	background: white;
+	img {
+		width: 100%;
+		padding: 12px;
+	}
 `;
 const ImageCardInfoName = styled.div`
 	display: flex;
