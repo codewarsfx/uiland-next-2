@@ -65,8 +65,8 @@ const ImageCardInfoName = styled.div`
 	.big {
 		font-size: 70px;
 		color: var(--primary-text-black);
-		padding-left:15px;
-		padding-right:15px;
+		padding-left: 15px;
+		padding-right: 15px;
 	}
 
 	div {

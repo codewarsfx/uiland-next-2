@@ -1,9 +1,10 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
 import { BsCheck } from 'react-icons/bs';
 
 import styled from 'styled-components';
 import PaystackPayment from '../PaystackPayment';
+import { UserContext } from '../../context/authContext';
 
 function PriceCard({
 	type,
@@ -15,6 +16,7 @@ function PriceCard({
 	info3,
 	planId,
 }) {
+	const user = useContext(UserContext);
 	return (
 		<>
 			<PriceCards>
@@ -41,7 +43,7 @@ function PriceCard({
 						</span>{' '}
 						{info3}
 					</p>
-					{planId === '' ? (
+					{planId === '' || !user ? (
 						<Link href='/'>
 							<PaymentCta>Try Now</PaymentCta>
 						</Link>
