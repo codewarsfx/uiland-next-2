@@ -36,7 +36,7 @@ function ImageCardInfo({ headerInfo, count }) {
 					<h3>
 						{count} screen{count > 1 && 's'}
 					</h3>
-					&nbsp; &#x2022; &nbsp;
+					{/* &nbsp; &#x2022; &nbsp;
 					<h3>
 						<a
 							target='_blank'
@@ -46,7 +46,7 @@ function ImageCardInfo({ headerInfo, count }) {
 						>
 							{headerInfo.url}
 						</a>
-					</h3>
+					</h3> */}
 				</ImageCardInfoName>
 			</ImageCardInfoWrapper>
 		</>
