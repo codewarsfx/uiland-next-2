@@ -58,6 +58,10 @@ function Hero() {
 							</div>
 						</div>
 						<div className='landingpage__col landingpage__gridcol-50'>
+							<div className='static-logo'>
+								{' '}
+								<h3>UL</h3>
+							</div>
 							<div className='outer-ring outer-ring1'>
 								<div className='outer-ring outer-ring2'>
 									<div className='outer-ring outer-ring3'>
@@ -67,7 +71,6 @@ function Hero() {
 													{/* <div className='outer-ring outer-ring7'>
 												
 												</div> */}
-													<h3>UL</h3>
 												</div>
 											</div>
 										</div>
@@ -368,6 +371,14 @@ const LandingPage = styled.div`
 		width: 100%;
 		padding-right: 15px;
 		padding-left: 15px;
+	}
+	.static-logo {
+		position: absolute;
+		left: 50%;
+		-webkit-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+		top: 50%;
 	}
 	.landingpage__col-50 {
 		max-width: 100%;

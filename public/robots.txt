@@ -4,7 +4,7 @@
 User-agent: *
 Disallow: /profile
 Disallow: /collections/
-Disallow: /404.html
+
 
 # Allow all crawlers
 User-agent: *
