@@ -199,6 +199,7 @@ label {
 	font-size: 16px;
 	font-weight: 500;
 	color: var(--primary-text-black);
+	background-color: #e6e8eb;
 	cursor: pointer;
 	border: 1px solid #dadada;
 }
