@@ -20,15 +20,39 @@ function Hero() {
 						<div className='landingpage__col landingpage__col-50'>
 							<div className='landingpage__text'>
 								<div className='landingpage__text-h1'>
-									Discover mobile UI used by the Nigeria's top companies
+									Discover mobile UI used by{' '}
+									<span className='ring-wrapper'>
+										<span className='ring-wrapper-svg'>
+											<svg
+												xmlns='http://www.w3.org/2000/svg'
+												viewBox='0 0 120 68'
+												className='stroke-width'
+											>
+												<g
+													fill='none'
+													stroke='currentColor'
+													stroke-linecap='round'
+													stroke-linejoin='round'
+													stroke-width='2'
+												>
+													<path d='M105 10C28-9-29 40 34 56c62 16 91-29 66-29'></path>
+													<path d='M109 16C82-20-56 21 30 55s105-27 75-45'></path>
+												</g>
+											</svg>
+										</span>
+										Africa's
+									</span>{' '}
+									top companies
 								</div>
+
 								<div className='landingpage__text-h2 marg-tb-xs'>
-									save hours of research time with UiLand's curated collection
+									Save hours of research time with UiLand's curated collection
 									of the best in-production andriod interfaces and screenshots
+									and become a top product designer.
 								</div>
 								<div onClick={() => toggleModal()}>
 									<button className='landingpage__text-button'>
-										<a>Start free</a>
+										<a>Get Started</a>
 									</button>
 								</div>
 							</div>
@@ -61,9 +85,63 @@ const LandingPage = styled.div`
 	background-color: #0066f5;
 	padding: 50px 0;
 	overflow: hidden;
+
+	path:first-child {
+		stroke-dasharray: 247;
+		stroke-dashoffset: 247;
+		animation-delay: 0.5s;
+		animation-iteration-count: 1;
+		animation-direction: linear;
+		animation-duration: 2s;
+		animation-timing-function: ease-in-out;
+		animation-fill-mode: forwards;
+		animation-play-state: running;
+		animation-name: dash;
+	}
+	path:last-child {
+		stroke-dasharray: 296;
+		stroke-dashoffset: 296;
+		animation-delay: 0.5s;
+		animation-iteration-count: 1;
+		animation-direction: linear;
+		animation-duration: 1s;
+		animation-timing-function: ease-in-out;
+		animation-fill-mode: forwards;
+		animation-play-state: running;
+		animation-name: dash2;
+	}
+
+	@keyframes dash {
+		from {
+			stroke-dashoffset: 247;
+		}
+		to {
+			stroke-dashoffset: 0;
+		}
+	}
+	@keyframes dash2 {
+		from {
+			stroke-dashoffset: 296;
+		}
+		to {
+			stroke-dashoffset: 0;
+		}
+	}
 	h3 {
 		color: white;
 		font-size: 20px;
+	}
+	.ring-wrapper {
+		position: relative;
+		display: inline;
+	}
+	.ring-wrapper-svg {
+		position: absolute;
+		width: 100%;
+		top: -22%;
+		left: -2px;
+		color: orange;
+		pointer-events: none;
 	}
 	.grid-stars {
 		background: white;
@@ -237,14 +315,14 @@ const LandingPage = styled.div`
 	}
 
 	.landingpage__container {
-		width: 100%;
+		width: 90%;
 		padding-right: 15px;
 		padding-left: 15px;
 		margin-right: auto;
 		margin-left: auto;
 	}
 
-	@media (min-width: 576px) {
+	/* @media (min-width: 576px) {
 		.landingpage__container {
 			max-width: 864px;
 		}
@@ -260,7 +338,7 @@ const LandingPage = styled.div`
 		.landingpage__container {
 			max-width: 1140px;
 		}
-	}
+	} */
 	.landingpage__row {
 		flex-direction: column-reverse;
 		display: -ms-flexbox;
@@ -331,26 +409,35 @@ const LandingPage = styled.div`
 		padding: 1rem 1.3rem;
 		cursor: pointer;
 		border: none;
-		border-radius: 5px;
+		border-radius: 40px;
 		outline: none;
-		color: #1e4573;
-		font-size: 1.5rem;
+		font-size: 16px;
 		font-weight: 400;
-		background-color: white;
+		background-color: orange;
+		transition: all 0.2s ease-in-out;
+	}
+	.landingpage__text-button:hover {
+		background-color: #e29301;
 	}
 	.landingpage__text-button a {
-		color: #1e4573;
+		color: #fff;
+		font-weight: 500;
 	}
 	.landingpage__text-h1 {
-		font-size: 3.2rem;
-		line-height: 1.3;
+		font-size: 63px;
+		line-height: 120%;
+		letter-spacing: -0.5px;
+		text-align: left !important;
+		font-weight: 700;
 		color: white;
-		font-weight: 600;
 	}
 	.landingpage__text-h2 {
-		font-size: 1.4rem;
+		line-height: 151%;
+		font-weight: 500;
+		font-size: 20px;
+		text-align: left;
 		color: white;
-		line-height: 1.4;
+		padding-right: 23px;
 	}
 	.landingpage__text {
 		display: flex;
@@ -362,7 +449,7 @@ const LandingPage = styled.div`
 		.landingpage__text {
 			display: flex;
 			justify-content: center;
-			align-items: center;
+			align-items: flex-start;
 			text-align: center;
 			flex-direction: column;
 		}
@@ -374,12 +461,12 @@ const LandingPage = styled.div`
 			line-height: 1.13;
 		}
 		.landingpage__text-h2 {
-			font-size: 1.2rem;
+			font-size: 16px;
 		}
 	}
 	@media only screen and (max-width: 600px) {
 		.landingpage__text-h1 {
-			font-size: 2.5rem;
+			font-size: 2rem;
 			margin-top: 1.2rem;
 			color: white;
 			font-weight: 600;

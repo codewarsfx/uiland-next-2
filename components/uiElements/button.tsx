@@ -45,10 +45,12 @@ const BaseButton = styled.button`
 `;
 
 const PrimaryButton = styled(BaseButton)`
-	color: var(--primary-color);
-	background-color: var(--text-color-light);
-	border-radius: 8px;
+	color: white;
+	background-color: var(--primary-color);
+	border: 1px solid white;
+	border-radius: 40px;
 	transition: transform 0.1s ease;
+	font-weight: 500;
 
 	:hover {
 		transform: scale(1.05);

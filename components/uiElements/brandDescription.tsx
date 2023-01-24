@@ -15,24 +15,25 @@ const BrandDescriptionContainer = styled.div`
 	margin-left: 0.5em;
 
 	.brand-name {
-		font-weight: 700;
+		font-weight: 600;
 		font-size: 16px;
-		color: var(---text-color-dark);
+		color: var(--primary-text-black);
 	}
 
 	.brand-category {
 		font-size: 12px;
-		color: #888;
+		color: #8691a0;
 		margin-top: 0.5em;
+		font-weight: 500;
 	}
 
 	@media (min-width: 768px) {
 		.brand-name {
-			font-size: 20px;
+			font-size: 24px;
 		}
 
 		.brand-category {
-			font-size: 14px;
+			font-size: 16px;
 		}
 	}
 `;

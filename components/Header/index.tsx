@@ -152,10 +152,6 @@ const HeaderContainer = styled(motion.header)`
 	justify-content: center;
 	align-items: center;
 	padding: 1.5em 0;
-
-	@media (min-width: 768px) {
-		width: 95%;
-	}
 `;
 
 const HeaderCTA = styled.div`

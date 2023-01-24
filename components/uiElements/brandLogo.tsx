@@ -8,8 +8,11 @@ const BrandLogo = ({ imageUrl }) => {
 };
 
 const BrandLogoCotainer = styled.div`
-	width: 40px;
-	height: 40px;
+	width: 50px;
+	display: flex;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
 	border-radius: 12px;
 	background: white;
 	padding: 9px;
@@ -18,10 +21,10 @@ const BrandLogoCotainer = styled.div`
 		height: 100%;
 		width: 100%;
 	}
-	@media (min-width: 768px) {
+	/* @media (min-width: 768px) {
 		width: 50px;
 		height: 50px;
-	}
+	} */
 `;
 
 export default BrandLogo;

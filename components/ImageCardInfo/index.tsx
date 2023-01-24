@@ -64,6 +64,7 @@ const ImageCardInfoName = styled.div`
 	justify-content: center;
 	.big {
 		font-size: 70px;
+		color: var(--primary-text-black);
 	}
 
 	div {
@@ -84,6 +85,7 @@ const ImageCardInfoWrapper = styled.div`
 
 	& > h1 {
 		font-size: 1.8rem;
+		color: var(--primary-text-black);
 	}
 `;
 

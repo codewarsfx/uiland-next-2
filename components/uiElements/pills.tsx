@@ -63,6 +63,7 @@ const CategoryPill = styled(BasePill)`
 
 const ScreenshotPill = styled(BasePill)`
 	font-size: 12px;
+	font-weight: 500;
 	color: var(--primary-color);
 	border: 1px solid var(--primary-color);
 	background-color: #e6f0ff;

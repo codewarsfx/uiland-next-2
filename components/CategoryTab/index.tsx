@@ -68,10 +68,6 @@ const CategoryTabWrapper = styled.div`
 	::-webkit-scrollbar {
 		display: none;
 	}
-
-	@media (min-width: 768px) {
-		gap: 1.5em;
-	}
 `;
 
 export default CategoryTabBar;

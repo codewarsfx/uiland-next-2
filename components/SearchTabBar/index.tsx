@@ -46,7 +46,7 @@ const FormBackground = styled.div`
 	padding: 12px;
 	background: #fff;
 	border: 1px solid #dddddd;
-	border-radius: 8px;
+	border-radius: 40px;
 	input {
 		border: 0;
 		font-size: 16px;
@@ -59,7 +59,7 @@ const FormBackground = styled.div`
 		margin: auto;
 		width: 100%;
 		border-radius: 8px;
-
+		font-weight: 500;
 		&:focus {
 			box-shadow: none;
 			border: none;
