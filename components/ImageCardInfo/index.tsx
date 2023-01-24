@@ -50,12 +50,17 @@ const ImageCardWrappers = styled.div`
 const ImageCardLogo = styled.div`
 	border-radius: 20px;
 	overflow: hidden;
-	height: 240px;
-	width: 240px;
+	height: 172px;
+	width: 172px;
+
 	background: white;
 	img {
 		width: 100%;
 		padding: 12px;
+	}
+	@media (min-width: 768px) {
+		height: 240px;
+		width: 240px;
 	}
 `;
 const ImageCardInfoName = styled.div`
@@ -63,10 +68,15 @@ const ImageCardInfoName = styled.div`
 	align-items: center;
 	justify-content: center;
 	.big {
-		font-size: 70px;
+		font-size: 50px;
 		color: var(--primary-text-black);
 		padding-left: 15px;
 		padding-right: 15px;
+	}
+	@media (min-width: 768px) {
+		.big {
+			font-size: 70px;
+		}
 	}
 
 	div {
