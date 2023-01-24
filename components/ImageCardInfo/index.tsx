@@ -27,14 +27,17 @@ function ImageCardInfo({ headerInfo, count }) {
 						<h4>Verified Site</h4>
 					</ImageCardInfoName>
 					<ImageCardInfoName>
-						<h1 className='big'>	<a
-							target='_blank'
-							href={headerInfo.url}
-							rel='noreferrer'
-							style={{ textDecoration: 'underline' }}
-						>
-					{headerInfo.name}
-						</a></h1>
+						<h1 className='big'>
+							{' '}
+							<a
+								target='_blank'
+								href={headerInfo.url}
+								rel='noreferrer'
+								style={{ textDecoration: 'underline' }}
+							>
+								{headerInfo.name}
+							</a>
+						</h1>
 					</ImageCardInfoName>
 				</ImageCardWrappers>
 
@@ -43,7 +46,6 @@ function ImageCardInfo({ headerInfo, count }) {
 					<h3>
 						{count} screen{count > 1 && 's'}
 					</h3>
-					
 				</ImageCardInfoName>
 			</ImageCardInfoWrapper>
 		</>

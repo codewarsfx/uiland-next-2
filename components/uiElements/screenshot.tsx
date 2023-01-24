@@ -17,6 +17,7 @@ const ScreenshotContainer = styled(motion.div)`
 	background-color: var(--light-grey-color);
 	cursor: pointer;
 	border: 1px solid #dddddd;
+	max-height: 634px;
 	img {
 		height: 100%;
 		width: 100%;

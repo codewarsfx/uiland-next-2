@@ -127,6 +127,17 @@ export default function Pricing() {
 					})}
 				</section>
 			</section>
+			<section>
+				<h3>
+					For subscribers outside Nigeria , please check the{' '}
+					<a
+						href='https://www.cbn.gov.ng/rates/ExchRateByCurrency.asp'
+						style={{ textDecoration: 'underline', textAlign: 'center' }}
+					>
+						Official Central Bank of Nigeria Exchange Rates
+					</a>
+				</h3>
+			</section>
 		</PricingWrapper>
 	);
 }

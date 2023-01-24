@@ -143,6 +143,8 @@ const LandingPage = styled.div`
 		color: orange;
 		pointer-events: none;
 	}
+
+	//remeber to create a grid style pattern like crunnicify.com
 	.grid-stars {
 		background: white;
 		border-top-left-radius: 0;

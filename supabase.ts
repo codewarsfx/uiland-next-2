@@ -54,6 +54,7 @@ export async function getScreensById(id) {
 	const { data, error } = await supabase
 		.from('screenImages')
 		.select('*')
+		.order('order', { ascending: true })
 		//   i will use this to limit the result later
 		//   .limit(1)
 		.eq('screenId', id);
@@ -65,6 +66,7 @@ export async function getLimitedScreensById(id) {
 	const { data, error } = await supabase
 		.from('screenImages')
 		.select('*')
+		.order('order', { ascending: true })
 		.limit(1)
 		.eq('screenId', id);
 	return data;
