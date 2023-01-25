@@ -39,6 +39,8 @@ const useScreenshot = (screens) => {
 		isModalLogin,
 		toggleBottomSheet,
 		modalSheet,
+		guideModalState,
+		guideModal,
 	} = useModal();
 
 	// state for the bottomsheet
@@ -482,6 +484,8 @@ const useScreenshot = (screens) => {
 		disabled,
 		toggleModal,
 		isModalopen,
+		guideModalState,
+		guideModal,
 		copy,
 		isModalLogin,
 		loginToggleModal,

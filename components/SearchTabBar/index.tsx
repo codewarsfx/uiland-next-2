@@ -19,8 +19,9 @@ const SearchTabBar = () => {
 
 	function submit(e) {
 		e.preventDefault();
-	const	lowerCaseAll= input.toLowerCase();
-		const firstInputCapitalized = lowerCaseAll.charAt(0).toUpperCase() + lowerCaseAll.slice(1);
+		const lowerCaseAll = input.toLowerCase();
+		const firstInputCapitalized =
+			lowerCaseAll.charAt(0).toUpperCase() + lowerCaseAll.slice(1);
 		setFilterItemName(firstInputCapitalized);
 	}
 

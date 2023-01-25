@@ -5,6 +5,7 @@ const useModal = () => {
 	const [isModalLogin, setIsModalLogin] = useState(false);
 	const [modalSaveImage, setModalSaveImage] = useState(false);
 	const [modalSheet, setModalSheet] = useState(false);
+	const [guideModalState, setGuideModalState] = useState(false);
 	const toggleModal = () => {
 		setShowModal((showModal) => !showModal);
 	};
@@ -17,8 +18,12 @@ const useModal = () => {
 	const toggleBottomSheet = () => {
 		setModalSheet((showModal) => !showModal);
 	};
-
+	const guideModal = () => {
+		setGuideModalState((showModal) => !showModal);
+	};
 	return {
+		guideModal,
+		guideModalState,
 		modalSaveImage,
 		isModalopen,
 		toggleModal,

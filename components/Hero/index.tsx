@@ -15,7 +15,6 @@ function Hero() {
 				</Modal>
 			)}
 			<LandingPage>
-			
 				<div className='landingpage__container'>
 					<div className='landingpage__row'>
 						<div className='landingpage__col landingpage__col-50'>
