@@ -260,7 +260,7 @@ export default function SinglePage({ screens }) {
 				<Modal toggleModal={guideModal}>
 					<SocialModalBox>
 						<GuideBox>
-							{guides
+							{guides && guides
 								.filter((guide) => guide.id === active)
 								.map((result) => (
 									<>
