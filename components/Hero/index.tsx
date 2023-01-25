@@ -15,6 +15,7 @@ function Hero() {
 				</Modal>
 			)}
 			<LandingPage>
+			
 				<div className='landingpage__container'>
 					<div className='landingpage__row'>
 						<div className='landingpage__col landingpage__col-50'>
@@ -86,6 +87,9 @@ function Hero() {
 }
 const LandingPage = styled.div`
 	background-color: #0066f5;
+	/* background: #0d1117 url(/assets/img/bg-stars.webp); */
+	/* background-repeat:no-repeat;
+	background-size:100% 100%; */
 	padding: 50px 0;
 	overflow: hidden;
 
