@@ -302,8 +302,7 @@ const Content = styled.div`
 	display: flex;
 	align-items: center;
 	width: 100%;
-	justify-content: space-between;
-	row-gap: 10px;
+	gap: 10px;
 	flex-wrap: wrap;
 `;
 const TitleBackground = styled.div`
