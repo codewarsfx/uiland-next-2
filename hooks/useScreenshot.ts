@@ -56,9 +56,9 @@ const useScreenshot = (screens) => {
 	const [Progress, setProgress] = useState(1);
 	const [headerInfo, setHeaderInfo] = useState<{
 		url: string;
-		name: '';
-		logo: '';
-		id: '';
+		name: string;
+		logo: string;
+		id: string;
 	}>({
 		name: '',
 		logo: '',
@@ -126,6 +126,7 @@ const useScreenshot = (screens) => {
 					getEvent[0].event === ''
 				) {
 					const result = screens.slice(0, 30);
+					
 
 					setLimitedScreens(result);
 				} else {
