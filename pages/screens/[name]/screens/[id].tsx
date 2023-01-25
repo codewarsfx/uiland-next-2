@@ -118,7 +118,7 @@ export default function SinglePage({ screens }) {
 			title1: 'SAVE ALL PHOTOS EASILY',
 			title2:
 				'Look for the icon to save all photos instantly  in just few clicks',
-			image: '/assets/img/guide-8.png',
+			image: '/assets/img/guide-1.png',
 		},
 		{
 			id: 2,
