@@ -34,7 +34,7 @@ const Button = ({ type, children }) => {
 //base button style
 const BaseButton = styled.button`
 	padding: 0.6em 2.4em;
-	font-size: 16px;
+	font-size: 14px;
 	color: var(--primary-color);
 	border: none;
 	cursor: pointer;
@@ -58,10 +58,9 @@ const PrimaryButton = styled(BaseButton)`
 `;
 
 const LoginButton = styled(PrimaryButton)`
-	display: none;
-	@media (min-width: 768px) {
-		display: block;
-	}
+
+
+
 `;
 
 const GoogleButton = styled(PrimaryButton)`

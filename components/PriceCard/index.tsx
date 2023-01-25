@@ -5,6 +5,9 @@ import { BsCheck } from 'react-icons/bs';
 import styled from 'styled-components';
 import PaystackPayment from '../PaystackPayment';
 import { UserContext } from '../../context/authContext';
+import Login from '../Login/login';
+import Modal from '../modal';
+import useModal from '../../hooks/useModal';
 
 function PriceCard({
 	type,
@@ -17,8 +20,15 @@ function PriceCard({
 	planId,
 }) {
 	const user = useContext(UserContext);
+	const { loginToggleModal, isModalLogin } = useModal();
+
 	return (
 		<>
+			{isModalLogin && (
+				<Modal toggleModal={loginToggleModal}>
+					<Login toggleModal={loginToggleModal} />
+				</Modal>
+			)}
 			<PriceCards>
 				<h3 className='price-card-type'>{type}</h3>
 				<h1 className='price-card-price'>₦{price}</h1>
@@ -44,9 +54,7 @@ function PriceCard({
 						{info3}
 					</p>
 					{planId === '' || !user ? (
-						<Link href='/'>
-							<PaymentCta>Try Now</PaymentCta>
-						</Link>
+						<PaymentCta onClick={loginToggleModal}>Try Now</PaymentCta>
 					) : (
 						<PaystackPayment plan={planId} />
 					)}
@@ -93,6 +101,10 @@ const PriceCards = styled.div`
 
 		.price-card-description {
 			color: #fff;
+		}
+
+		${PaymentCta} {
+			color: black;
 		}
 
 		.price-card-point-icon {
