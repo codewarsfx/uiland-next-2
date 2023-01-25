@@ -49,11 +49,6 @@ const Header = () => {
 						{!user ? (
 							<div onClick={() => toggleModal()}>
 								<Button type={buttonTypes.login}> Login</Button>
-								<HamburgerContainer>
-									<HamburgerSticks />
-									<HamburgerSticks />
-									<HamburgerSticks />
-								</HamburgerContainer>
 							</div>
 						) : (
 							<HeaderInfo>
