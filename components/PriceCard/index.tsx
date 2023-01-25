@@ -95,6 +95,10 @@ const PriceCards = styled.div`
 			color: #fff;
 		}
 
+		${PaymentCta}{
+			color: black;
+		}
+
 		.price-card-point-icon {
 			background-color: #fff;
 		}

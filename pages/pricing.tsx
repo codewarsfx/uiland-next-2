@@ -83,6 +83,17 @@ export default function Pricing() {
 					Bi-Annual
 				</button>
 			</section>
+			<section className='pricing-text pricing-text--description'>
+				<p>
+					For subscribers outside Nigeria , please check the{' '}
+					<a
+						href='https://www.cbn.gov.ng/rates/ExchRateByCurrency.asp'
+						style={{ textDecoration: 'underline', textAlign: 'center' }}
+					>
+						Official Central Bank of Nigeria Exchange Rates
+					</a>
+				</p>
+			</section>
 			<section className='price-cards'>
 				<section
 					className={`price-cards-annual price-card-annual--${
@@ -127,17 +138,7 @@ export default function Pricing() {
 					})}
 				</section>
 			</section>
-			<section>
-				<h3>
-					For subscribers outside Nigeria , please check the{' '}
-					<a
-						href='https://www.cbn.gov.ng/rates/ExchRateByCurrency.asp'
-						style={{ textDecoration: 'underline', textAlign: 'center' }}
-					>
-						Official Central Bank of Nigeria Exchange Rates
-					</a>
-				</h3>
-			</section>
+	
 		</PricingWrapper>
 	);
 }
@@ -188,11 +189,17 @@ const PricingWrapper = styled.div`
 		cursor: pointer;
 		transition: all 0.2s ease;
 	}
+	.pricing-text--description{
+		font-size: 12px;
+		text-align: center;
+		margin-bottom: 2em;
+	}
 
 	.price-btn--active {
 		background-color: var(--primary-color);
 		color: var(--text-color-light);
 	}
+
 
 	.price-cards-annual {
 		position: absolute;
@@ -210,4 +217,8 @@ const PricingWrapper = styled.div`
 			display: flex;
 		}
 	}
+
+
 `;
+
+
