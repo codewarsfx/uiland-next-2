@@ -127,7 +127,6 @@ const useScreenshot = (screens) => {
 				) {
 					const result = screens.slice(0, 30);
 
-
 					setLimitedScreens(result);
 				} else {
 					setPayingBanner(getEvent[0].event);

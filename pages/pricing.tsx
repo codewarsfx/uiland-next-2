@@ -138,7 +138,6 @@ export default function Pricing() {
 					})}
 				</section>
 			</section>
-	
 		</PricingWrapper>
 	);
 }
@@ -189,7 +188,7 @@ const PricingWrapper = styled.div`
 		cursor: pointer;
 		transition: all 0.2s ease;
 	}
-	.pricing-text--description{
+	.pricing-text--description {
 		font-size: 12px;
 		text-align: center;
 		margin-bottom: 2em;
@@ -199,7 +198,6 @@ const PricingWrapper = styled.div`
 		background-color: var(--primary-color);
 		color: var(--text-color-light);
 	}
-
 
 	.price-cards-annual {
 		position: absolute;
@@ -217,8 +215,4 @@ const PricingWrapper = styled.div`
 			display: flex;
 		}
 	}
-
-
 `;
-
-

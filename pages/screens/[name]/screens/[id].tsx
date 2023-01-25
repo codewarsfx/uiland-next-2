@@ -199,8 +199,7 @@ export default function SinglePage({ screens }) {
 						</BookmarkButton>
 					)}
 					<div className='button_modal' onClick={toggleModal}>
-						<img src='/assets/img/share-icon.svg' alt='share-icon' />
-					
+						<img src='/assets/img/share.svg' alt='share-icon' />
 					</div>
 				</ImageCardWrapper>
 				{/* <div className='flex-col'>
@@ -291,7 +290,8 @@ const BookmarkButton = styled.button`
 	color: white;
 	font-size: 2rem;
 	font-weight: 500;
-	background-color: #c6c8d1;
+	background: #ffffff;
+	box-shadow: 0px 2px 4px 0px #c3c1c1;
 
 	&:hover {
 		background-color: grey;
