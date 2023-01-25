@@ -200,7 +200,7 @@ export default function SinglePage({ screens }) {
 					)}
 					<div className='button_modal' onClick={toggleModal}>
 						<img src='/assets/img/share-icon.svg' alt='share-icon' />
-						<div>Share</div>
+					
 					</div>
 				</ImageCardWrapper>
 				{/* <div className='flex-col'>
