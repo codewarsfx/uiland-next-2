@@ -126,7 +126,7 @@ const useScreenshot = (screens) => {
 					getEvent[0].event === ''
 				) {
 					const result = screens.slice(0, 30);
-					
+
 
 					setLimitedScreens(result);
 				} else {
@@ -432,7 +432,11 @@ const useScreenshot = (screens) => {
 		'skeleton',
 		'tooltip',
 		'bottom sheet',
+		'referral',
+		'tab',
+		'blog post',
 		'camera',
+		'payment',
 		'card',
 		'accordion',
 		'footer',

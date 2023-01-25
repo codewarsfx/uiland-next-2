@@ -19,7 +19,7 @@ const SearchTabBar = () => {
 
 	function submit(e) {
 		e.preventDefault();
-		setFilterItemName(input);
+		setFilterItemName(input.toLowerCase());
 	}
 
 	return (
