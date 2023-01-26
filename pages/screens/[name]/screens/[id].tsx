@@ -21,6 +21,7 @@ import CloseIcon from '../../../../components/CloseModalIcon';
 import useScreenshot from '../../../../hooks/useScreenshot';
 import { getAllScreens, getScreensById } from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import AddToBookmark from '../../../../components/AddToBookmark';
 
 export default function SinglePage({ screens }) {
 	const {
@@ -112,40 +113,7 @@ export default function SinglePage({ screens }) {
 			)}
 			{modalSaveImage && (
 				<Modal toggleModal={newtoggleModal}>
-					<SelectModalBox>
-						<CloseIcon toggle={newtoggleModal} />
-						<form onSubmit={submit}>
-							<b style={{ fontSize: '16px' }}>Create a Bookmark</b>
-
-							<div className='select'>
-								<select value={bookmarkk} onChange={handleChange}>
-									{selectBookmark.map((item, i) => {
-										return (
-											<option value={item} key={i}>
-												{item}
-											</option>
-										);
-									})}
-								</select>
-							</div>
-							<Input
-								type='text'
-								name='contentForm'
-								placeholder='Input Name'
-								autoComplete='off'
-								value={input}
-								onChange={handleChange}
-							/>
-
-							<button
-								className={`button_modal`}
-								type='submit'
-								disabled={disabled}
-							>
-								Submit
-							</button>
-						</form>
-					</SelectModalBox>
+					<AddToBookmark newtoggleModal={newtoggleModal} submit={submit} handleChange={handleChange} bookmarkk={bookmarkk} selectBookmark={selectBookmark} input={input}  disabled={disabled}  />
 				</Modal>
 			)}
 			{isModalopen && (
@@ -200,7 +168,6 @@ export default function SinglePage({ screens }) {
 					)}
 					<div className='button_modal' onClick={toggleModal}>
 						<img src='/assets/img/share-icon.svg' alt='share-icon' />
-					
 					</div>
 				</ImageCardWrapper>
 				{/* <div className='flex-col'>

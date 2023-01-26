@@ -110,8 +110,8 @@ const ImagesHolder = styled(ImageHolder)`
 	);
 `;
 const AlbumTag = styled.div`
-	max-width: 100%;
-	border-radius: 7%;
+	width: 100%;
+	border-radius: 10px;
 	flex: 0 0 100%;
 	overflow: hidden;
 	display: flex;
@@ -125,14 +125,7 @@ const AlbumTag = styled.div`
 		-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 		clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 	}
-	@media (min-width: 540px) {
-		max-width: 49%;
-		flex: 0 0 49%;
-	}
-	@media (min-width: 768px) {
-		max-width: 19%;
-		flex: 0 0 19%;
-	}
+	
 	a {
 		font-size: 20px;
 		font-weight: 600;
@@ -174,7 +167,7 @@ const AlbumTag = styled.div`
 `;
 const EmptyTag = styled.div`
 	max-width: 100%;
-	border-radius: 7%;
+	border-radius: 10px;
 	flex: 0 0 100%;
 	overflow: hidden;
 	display: flex;
@@ -236,8 +229,8 @@ const EmptyTag = styled.div`
 	// }
 `;
 const IndividualTag = styled.div`
-	max-width: 100%;
-	border-radius: 7%;
+	width: 100%;
+	border-radius: 10px;
 	flex: 0 0 100%;
 	overflow: hidden;
 	display: flex;
@@ -250,14 +243,6 @@ const IndividualTag = styled.div`
 	:hover p::before {
 		-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 		clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-	}
-	@media (min-width: 540px) {
-		max-width: 49%;
-		flex: 0 0 49%;
-	}
-	@media (min-width: 768px) {
-		max-width: 19%;
-		flex: 0 0 19%;
 	}
 	p {
 		font-size: 20px;
@@ -299,15 +284,16 @@ const IndividualTag = styled.div`
 	// }
 `;
 const Content = styled.div`
-	display: flex;
-	align-items: center;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	margin: 1.5em auto;
+	gap: 20px;
 	width: 100%;
-	gap: 10px;
 	flex-wrap: wrap;
 `;
 const TitleBackground = styled.div`
 	align-items: flex-end;
-	border-radius: 20px;
+	border-radius: 10px;
 	padding: 12px;
 	display: flex;
 	width: 100%;
