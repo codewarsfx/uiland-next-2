@@ -70,7 +70,6 @@ export default function SinglePage({ screens }) {
 	const [visits, setVisits] = useState<number>();
 	const [active, setActive] = useState<number>(1);
 
-
 	//This is used to track the number of times a user has visited the screen. The guide modal
 	//is displayed if the user is a first-time user.
 	useEffect(() => {
@@ -88,7 +87,6 @@ export default function SinglePage({ screens }) {
 		}
 		localStorage.setItem('numberOfVisits', String(addToNumber));
 	}, []);
-	
 
 	//function for the previous state
 	function prevPage() {
@@ -100,7 +98,7 @@ export default function SinglePage({ screens }) {
 			return prevPage;
 		});
 	}
-		//function for the next state
+	//function for the next state
 	function nextPage() {
 		setActive((next) => {
 			let nextPage = next + 1;
@@ -260,22 +258,23 @@ export default function SinglePage({ screens }) {
 				<Modal toggleModal={guideModal}>
 					<SocialModalBox>
 						<GuideBox>
-							{guides && guides
-								.filter((guide) => guide.id === active)
-								.map((result) => (
-									<>
-										<GuideWrapper>
-											<div className='border-bottom'>
-												<img src={result.image}  />
-											</div>
+							{guides &&
+								guides
+									.filter((guide) => guide.id === active)
+									.map((result) => (
+										<>
+											<GuideWrapper>
+												<div className='border-bottom'>
+													<img src={result.image} />
+												</div>
 
-											<GuideBoxContent>
-												<h2>{result.title1}</h2>
-												<p>{result.title2}</p>
-											</GuideBoxContent>
-										</GuideWrapper>
-									</>
-								))}
+												<GuideBoxContent>
+													<h2>{result.title1}</h2>
+													<p>{result.title2}</p>
+												</GuideBoxContent>
+											</GuideWrapper>
+										</>
+									))}
 
 							<NavigationBox>
 								{active !== 1 ? (
