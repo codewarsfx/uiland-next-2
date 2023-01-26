@@ -16,19 +16,19 @@ export default function Pricing() {
 			price: '0',
 			description: 'per user/month billed annually',
 			title: 'For small teams',
-			info1: 'Real time Contact Syncing',
-			info2: 'Enhanced email Sending',
-			info3: 'No seat Limit',
+			info1: 'Browse 	30	 Screens Per Company',
+			info2: 'Unlimited Filter and Search results',
+			info3: 'Unlimited Collections',
 			planId: '',
 		},
 		{
 			type: 'Annual',
-			price: '24000',
+			price: '22000',
 			description: 'per user/month billed annually',
 			title: 'For small teams',
-			info1: 'Real time Contact Syncing',
-			info2: 'Enhanced email Sending',
-			info3: 'No seat Limit',
+			info1: 'Browse All Screens Per Company',
+			info2: 'Unlimited Filter and Search results',
+			info3: 'Unlimited Collections',
 			planId: process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_ANNUALY,
 		},
 	];
@@ -39,9 +39,9 @@ export default function Pricing() {
 			price: '0',
 			description: 'per user/month billed bi-annually',
 			title: 'For small teams',
-			info1: 'Real time Contact Syncing',
-			info2: 'Enhanced email Sending',
-			info3: 'No seat Limit',
+			info1: 'Browse 	30	 Screens Per Company',
+			info2: 'Unlimited Filter and Search results',
+			info3: 'Unlimited Collections',
 			planId: '',
 		},
 		{
@@ -49,9 +49,9 @@ export default function Pricing() {
 			price: '12000',
 			description: 'per user/month billed bi-annually',
 			title: 'For small teams',
-			info1: 'Real time Contact Syncing',
-			info2: 'Enhanced email Sending',
-			info3: 'No seat Limit',
+			info1: 'Browse All Screens Per Company',
+			info2: 'Unlimited Filter and Search results',
+			info3: 'Unlimited Collections',
 			planId: process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_BINUALLY,
 		},
 	];
@@ -69,10 +69,10 @@ export default function Pricing() {
 	return (
 		<PricingWrapper>
 			<section className='pricing-text'>
-				<h1 className='pricing-text-primary'>From Zero to Mastery</h1>
+				<h1 className='pricing-text-primary'>Get Inspired by UI designs</h1>
 				<p className='pricing-text-sec'>
-					Designed for every stage of your journey <br />
-					Strat today, no credit card required
+					Designed to make your design journey easier <br />
+					Start today
 				</p>
 			</section>
 			<section className='price-tabs' onClick={() => setIsActive(!isActive)}>
@@ -84,7 +84,7 @@ export default function Pricing() {
 				</button>
 			</section>
 			<section className='pricing-text pricing-text--description'>
-				<p>
+				<h3>
 					For subscribers outside Nigeria , please check the{' '}
 					<a
 						href='https://www.cbn.gov.ng/rates/ExchRateByCurrency.asp'
@@ -92,7 +92,7 @@ export default function Pricing() {
 					>
 						Official Central Bank of Nigeria Exchange Rates
 					</a>
-				</p>
+				</h3>
 			</section>
 			<section className='price-cards'>
 				<section
@@ -189,7 +189,7 @@ const PricingWrapper = styled.div`
 		transition: all 0.2s ease;
 	}
 	.pricing-text--description {
-		font-size: 12px;
+		font-size: 18px;
 		text-align: center;
 		margin-bottom: 2em;
 	}
