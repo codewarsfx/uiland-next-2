@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-function SaveIcon({ bookmark, data }) {
+function SaveIcon({ bookmark, data,}) {
 	return (
 		<>
 			<DownloadWrapper onClick={() => bookmark(data)}>

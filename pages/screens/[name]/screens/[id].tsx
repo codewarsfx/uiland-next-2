@@ -12,8 +12,8 @@ import SocialsCard from '../../../../components/SocialsCard';
 import Select from '../../../../components/uiElements/select';
 import Login from '../../../../components/Login/login';
 import ThreeDots from '../../../../components/ThreeDots';
-import DeleteIcon from '../../../../components/DeleteIcon';
-import SaveIcon from '../../../../components/SaveIcon';
+// import DeleteIcon from '../../../../components/DeleteIcon';
+// import SaveIcon from '../../../../components/SaveIcon';
 import CloseIcon from '../../../../components/CloseModalIcon';
 
 //hooks
@@ -22,6 +22,7 @@ import useScreenshot from '../../../../hooks/useScreenshot';
 import { getAllScreens, getScreensById } from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import AddToBookmark from '../../../../components/AddToBookmark';
+import LikeIcon from '../../../../components/LikeIcon';
 
 export default function SinglePage({ screens }) {
 	const {
@@ -206,12 +207,12 @@ export default function SinglePage({ screens }) {
 
 						<SecondRow>
 							{getId.includes(data.id) ? (
-								<DeleteIcon
-									deleteIndividualBookmark={deleteIndividualBookmark}
-									data={data}
-								/>
+								<LikeIcon deleteIndividualBookmark={deleteIndividualBookmark}
+								data={data} bookmark={bookmark}  />
+				
 							) : (
-								<SaveIcon bookmark={bookmark} data={data} />
+								<LikeIcon deleteIndividualBookmark={deleteIndividualBookmark}
+								data={data} bookmark={bookmark} />
 							)}
 							<ThreeDots openBottomSheet={openBottomSheetModal} />
 						</SecondRow>
@@ -340,11 +341,11 @@ const BottomsheetModal = styled.div`
 `;
 const SecondRow = styled.div`
 	display: flex;
-	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	background: rgb(0 0 0 / 9%);
-	border-radius: 28px;
+	background:#eee;
+	height: 40px;
+	border-radius:.5em;
 `;
 const Input = styled.input.attrs((props) => ({}))`
 	color: black;

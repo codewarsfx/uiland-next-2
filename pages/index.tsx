@@ -8,6 +8,7 @@ import { getAllScreens, supabase } from '../supabase';
 import { ScreensContext } from '../context/screensContex';
 import { UserContext } from '../context/authContext';
 import { GetServerSideProps } from 'next';
+import LikeIcon from '../components/LikeIcon';
 
 const Home = ({ screens }) => {
 	const { filterTerm, filterName } = useContext(ScreensContext);
@@ -51,10 +52,11 @@ const Home = ({ screens }) => {
 
 	return (
 		<>
-			<ToastContainer autoClose={2000} position='top-center' />
+			 <ToastContainer autoClose={2000} position='top-center' />
 			{!user && <Hero />}
 			<Tab />
-			<ScreensTab screens={result} />
+			<ScreensTab screens={result} /> 
+			
 		</>
 	);
 };
