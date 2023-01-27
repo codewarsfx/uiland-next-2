@@ -444,7 +444,7 @@ const GuideBox = styled.div`
 `;
 const GuideWrapper = styled.div`
 	display: flex;
-	width:100%;
+	width: 100%;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;

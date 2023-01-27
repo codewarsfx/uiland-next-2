@@ -20,7 +20,7 @@ function Hero() {
 						<div className='landingpage__col landingpage__col-50'>
 							<div className='landingpage__text'>
 								<div className='landingpage__text-h1'>
-									Discover mobile UI used by{' '}
+									Get Inspired by designs used by{' '}
 									<span className='ring-wrapper'>
 										<span className='ring-wrapper-svg'>
 											<svg
@@ -42,7 +42,7 @@ function Hero() {
 										</span>
 										Africa's
 									</span>{' '}
-									top companies
+									companies
 								</div>
 
 								<div className='landingpage__text-h2 marg-tb-xs'>
