@@ -170,7 +170,7 @@ export default function Profile() {
 							<p>Currency</p>
 						</div>
 						<div className='profile-detail-value'>
-							{userprofile ? userprofile[0].currency : 'Nil'}
+							{userprofile ? userprofile[0]?.currency : 'Nil'}
 						</div>
 					</div>
 				</div>

@@ -33,6 +33,7 @@ export default function SinglePage({ screens }) {
 		modalSheet,
 		modalSaveImage,
 		newtoggleModal,
+		hasSubmitted,
 		submit,
 		handleChange,
 		selectBookmark,
@@ -212,7 +213,7 @@ export default function SinglePage({ screens }) {
 
 						<SecondRow>
 		
-								<LikeIcon ids={getId} deleteIndividualBookmark={deleteIndividualBookmark} bookmark={bookmark} data={data} />	
+								<LikeIcon ids={getId} deleteIndividualBookmark={deleteIndividualBookmark} bookmark={bookmark} data={data} hasSumbitted={hasSubmitted} />	
 							
 							<ThreeDots openBottomSheet={openBottomSheetModal} />
 						</SecondRow>

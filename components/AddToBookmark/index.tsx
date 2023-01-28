@@ -8,7 +8,7 @@ const AddToBookmark = ({
 	bookmarkk,
 	selectBookmark,
 	input,
-	disabled,
+	disabled
 }) => {
 	return (
 		<Wrapper>
@@ -27,7 +27,7 @@ const AddToBookmark = ({
 							value={bookmarkk}
 							onChange={handleChange}
 						>
-							<option selected>Choose an existing collection</option>
+							<option>Choose an existing collection</option>
 							{selectBookmark.map((item, i) => {
 								return (
 									<option value={item} key={i}>
