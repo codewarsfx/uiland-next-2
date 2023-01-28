@@ -103,7 +103,6 @@ const ImageHolder = styled.div`
 `;
 
 const ImagesHolder = styled(ImageHolder)`
-   width: 100%;
 	background: linear-gradient(
 		calc(var(--angle) * 1deg),
 		hsl(14deg 73% 62%),
@@ -111,8 +110,8 @@ const ImagesHolder = styled(ImageHolder)`
 	);
 `;
 const AlbumTag = styled.div`
-	width: 100%;
-	border-radius: 10px;
+	max-width: 100%;
+	border-radius: 7%;
 	flex: 0 0 100%;
 	overflow: hidden;
 	display: flex;
@@ -126,7 +125,14 @@ const AlbumTag = styled.div`
 		-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 		clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 	}
-	
+	@media (min-width: 540px) {
+		max-width: 49%;
+		flex: 0 0 49%;
+	}
+	@media (min-width: 768px) {
+		max-width: 19%;
+		flex: 0 0 19%;
+	}
 	a {
 		font-size: 20px;
 		font-weight: 600;
@@ -168,7 +174,7 @@ const AlbumTag = styled.div`
 `;
 const EmptyTag = styled.div`
 	max-width: 100%;
-	border-radius: 10px;
+	border-radius: 7%;
 	flex: 0 0 100%;
 	overflow: hidden;
 	display: flex;
@@ -230,8 +236,8 @@ const EmptyTag = styled.div`
 	// }
 `;
 const IndividualTag = styled.div`
-	width: 100%;
-	border-radius: 10px;
+	max-width: 100%;
+	border-radius: 7%;
 	flex: 0 0 100%;
 	overflow: hidden;
 	display: flex;
@@ -244,6 +250,14 @@ const IndividualTag = styled.div`
 	:hover p::before {
 		-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 		clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+	}
+	@media (min-width: 540px) {
+		max-width: 49%;
+		flex: 0 0 49%;
+	}
+	@media (min-width: 768px) {
+		max-width: 19%;
+		flex: 0 0 19%;
 	}
 	p {
 		font-size: 20px;
@@ -285,16 +299,16 @@ const IndividualTag = styled.div`
 	// }
 `;
 const Content = styled.div`
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-	margin: 1.5em auto;
-	gap: 20px;
+	display: flex;
+	align-items: center;
 	width: 100%;
+	justify-content: space-between;
+	row-gap: 10px;
 	flex-wrap: wrap;
 `;
 const TitleBackground = styled.div`
 	align-items: flex-end;
-	border-radius: 10px;
+	border-radius: 20px;
 	padding: 12px;
 	display: flex;
 	width: 100%;

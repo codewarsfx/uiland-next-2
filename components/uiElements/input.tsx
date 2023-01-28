@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-const Input = ({ input, handleChange, placeholder, submit}) => {
+const Input = ({ input, handleChange, placeholder, submit }) => {
 	return (
 		<>
 			<Form onSubmit={submit}>
