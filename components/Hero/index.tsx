@@ -48,7 +48,7 @@ function Hero() {
 								<div className='landingpage__text-h2 marg-tb-xs'>
 									Save hours of research time with UiLand's curated collection
 									of the best in-production andriod interfaces and screenshots
-									and become a top product designer.
+									and become a better designer.
 								</div>
 								<div onClick={() => toggleModal()}>
 									<button className='landingpage__text-button'>
@@ -86,6 +86,9 @@ function Hero() {
 }
 const LandingPage = styled.div`
 	background-color: #0066f5;
+	/* background: #0d1117 url(/assets/img/bg-stars.webp); */
+	/* background-repeat:no-repeat;
+	background-size:100% 100%; */
 	padding: 50px 0;
 	overflow: hidden;
 

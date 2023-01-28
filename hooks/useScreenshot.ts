@@ -39,6 +39,8 @@ const useScreenshot = (screens) => {
 		isModalLogin,
 		toggleBottomSheet,
 		modalSheet,
+		guideModalState,
+		guideModal,
 	} = useModal();
 
 	// state for the bottomsheet
@@ -127,7 +129,6 @@ const useScreenshot = (screens) => {
 					getEvent[0].event === ''
 				) {
 					const result = screens.slice(0, 30);
-					
 
 					setLimitedScreens(result);
 				} else {
@@ -426,6 +427,8 @@ const useScreenshot = (screens) => {
 		'overlay',
 		'radio button',
 		'ratings',
+		'profile icon',
+		'tooltip',
 		'share icon',
 		'disabled',
 		'file upload',
@@ -433,12 +436,26 @@ const useScreenshot = (screens) => {
 		'skeleton',
 		'tooltip',
 		'bottom sheet',
+		'location icon',
+		'error',
+		'checkboxes',
+		'flags',
+		'hide password',
+		'steps',
+		'back icon',
+		'referral',
+		'tab',
+		'blog post',
 		'camera',
+		'payment',
 		'card',
 		'accordion',
 		'footer',
 		'popup',
 		'switch',
+		'map',
+		'check icon',
+		'success message',
 		'icon',
 		'empty state',
 		'divider',
@@ -451,6 +468,7 @@ const useScreenshot = (screens) => {
 		'copy icon',
 		'calendar',
 		'pills',
+		'payment',
 		'error message',
 		'topbar',
 		'gallery',
@@ -480,6 +498,8 @@ const useScreenshot = (screens) => {
 		disabled,
 		toggleModal,
 		isModalopen,
+		guideModalState,
+		guideModal,
 		copy,
 		isModalLogin,
 		loginToggleModal,

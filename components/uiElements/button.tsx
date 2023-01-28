@@ -57,11 +57,7 @@ const PrimaryButton = styled(BaseButton)`
 	}
 `;
 
-const LoginButton = styled(PrimaryButton)`
-
-
-
-`;
+const LoginButton = styled(PrimaryButton)``;
 
 const GoogleButton = styled(PrimaryButton)`
 	color: black;

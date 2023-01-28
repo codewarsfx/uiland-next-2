@@ -77,7 +77,7 @@ const LoginContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	height: 50%;
+	padding: 32px 0;
 	box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.4);
 	position: relative;
 	img {

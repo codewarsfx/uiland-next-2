@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 
@@ -24,6 +25,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import AddToBookmark from '../../../../components/AddToBookmark';
 import LikeIcon from '../../../../components/LikeIcon';
 import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 export default function SinglePage({ screens }) {
 	const {
@@ -43,6 +45,8 @@ export default function SinglePage({ screens }) {
 		copy,
 		isModalLogin,
 		loginToggleModal,
+		guideModalState,
+		guideModal,
 		openBottomSheet,
 		closeBottomSheetModal,
 		downloadImage,
@@ -67,7 +71,93 @@ export default function SinglePage({ screens }) {
 		router,
 		bookmarkk,
 	} = useScreenshot(screens);
+	const [visits, setVisits] = useState<number>();
+	const [active, setActive] = useState<number>(1);
 
+	//This is used to track the number of times a user has visited the screen. The guide modal
+	//is displayed if the user is a first-time user.
+	useEffect(() => {
+		let numberOfVisits = localStorage.getItem('numberOfVisits');
+		//changes the string to a number
+		let toNumber = parseInt(numberOfVisits);
+		if (!toNumber) {
+			toNumber = 0;
+		}
+		//adds one every time a user visits the page
+		let addToNumber = +toNumber + 1;
+		setVisits(addToNumber);
+		if (addToNumber < 2) {
+			guideModal();
+		}
+		localStorage.setItem('numberOfVisits', String(addToNumber));
+	}, []);
+
+	//function for the previous state
+	function prevPage() {
+		setActive((prev) => {
+			let prevPage = prev - 1;
+			if (prevPage < 1 || prevPage === 1) {
+				prevPage = 1;
+			}
+			return prevPage;
+		});
+	}
+	//function for the next state
+	function nextPage() {
+		setActive((next) => {
+			let nextPage = next + 1;
+			if (nextPage > 6 || nextPage === 6) {
+				nextPage = 6;
+			}
+			return nextPage;
+		});
+	}
+
+	//state for the various guides
+	const guides = [
+		{
+			id: 1,
+			title1: 'SAVE ALL PHOTOS EASILY',
+			title2:
+				'Look for the icon to save all photos instantly  in just few clicks',
+			image: '/assets/img/guide-1.png',
+		},
+		{
+			id: 2,
+			title1: 'SHARE YOUR BEST SHOTS',
+			title2:
+				'Share the best photos or the complete gallery on Facebook,Twitter and Whatsapp',
+			image: '/assets/img/guide-2.png',
+		},
+		{
+			id: 3,
+			title1: 'PICK YOUR FAVOURITES',
+			title2:
+				'Create a list of Favourite photos to share with your friends ,family, and photographers',
+			image: '/assets/img/guide-4.png',
+		},
+		{
+			id: 4,
+			title1: 'COPY AND DOWNLOAD YOUR FAVOURITES',
+			title2:
+				'Look for the icon to copy your images to Figma and download your images instantly  in just few clicks',
+			image: '/assets/img/guide-5.png',
+		},
+		{
+			id: 5,
+			title1: 'COPY AND DOWNLOAD YOUR FAVOURITES',
+			title2:
+				'Look for the icon to copy your images to Figma and download your images instantly  in just few clicks',
+			image: '/assets/img/guide-6.png',
+		},
+		{
+			id: 6,
+			title1: 'FILTER TO YOUR FAVOURITE IMAGES',
+			title2:
+				'Look for the icon to filter the images  instantly  in just few clicks',
+			image: '/assets/img/guide-3.png',
+		},
+	];
 	return (
 		<>
 			{/* for SEO */}
@@ -143,7 +233,53 @@ export default function SinglePage({ screens }) {
 					<Login toggleModal={loginToggleModal} />
 				</Modal>
 			)}
+			{guideModalState && (
+				<Modal toggleModal={guideModal}>
+					<SocialModalBox>
+						<GuideBox>
+							{guides &&
+								guides
+									.filter((guide) => guide.id === active)
+									.map((result) => (
+										<>
+											<GuideWrapper>
+												<div className='border-bottom'>
+													<img src={result.image} />
+												</div>
 
+												<GuideBoxContent>
+													<h2>{result.title1}</h2>
+													<p>{result.title2}</p>
+												</GuideBoxContent>
+											</GuideWrapper>
+										</>
+									))}
+
+							<NavigationBox>
+								{active !== 1 ? (
+									<button onClick={prevPage}>Back</button>
+								) : (
+									<div></div>
+								)}
+								<button
+									className='active'
+									onClick={active === 6 ? guideModal : nextPage}
+								>
+									{active === 6 ? 'Explore ' : 'Next'}
+								</button>
+							</NavigationBox>
+						</GuideBox>
+						<DotWrapper>
+							<div className={`dot ${active === 1 && 'active'}`}></div>
+							<div className={`dot ${active === 2 && 'active'}`}></div>
+							<div className={`dot ${active === 3 && 'active'}`}></div>
+							<div className={`dot ${active === 4 && 'active'}`}></div>
+							<div className={`dot ${active === 5 && 'active'}`}></div>
+							<div className={`dot ${active === 6 && 'active'}`}></div>
+						</DotWrapper>
+					</SocialModalBox>
+				</Modal>
+			)}
 			<BottomSheet
 				openBottomSheet={openBottomSheet}
 				closeBottomSheetModal={closeBottomSheetModal}
@@ -178,7 +314,7 @@ export default function SinglePage({ screens }) {
 						</BookmarkButton>
 					)}
 					<div className='button_modal' onClick={toggleModal}>
-						<img src='/assets/img/share-icon.svg' alt='share-icon' />
+						<img src='/assets/img/share.svg' alt='share-icon' />
 					</div>
 				</ImageCardWrapper>
 				{/* <div className='flex-col'>
@@ -250,6 +386,86 @@ export default function SinglePage({ screens }) {
 		</>
 	);
 }
+const Dot = styled.div`
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	.active {
+		background-color: white;
+	}
+`;
+
+const DotWrapper = styled.div`
+	display: flex;
+	width: 100%;
+	gap: 12px;
+	align-items: center;
+	padding: 12px;
+	background: #070707;
+	border-radius: 8px;
+
+	justify-content: center;
+	.dot {
+		height: 20px;
+		width: 20px;
+		border-radius: 50%;
+		background: grey;
+	}
+	.dot.active {
+		background: white;
+	}
+`;
+const GuideBox = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+`;
+const GuideWrapper = styled.div`
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	.border-bottom {
+		border-bottom: 1px solid grey;
+	}
+	img {
+		width: 100%;
+		object-fit: cover;
+	}
+`;
+const GuideBoxContent = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 20px;
+	margin: 12px 0;
+`;
+const NavigationBox = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	margin-bottom: 12px;
+	button {
+		display: flex;
+		cursor: pointer;
+		padding: 12px 20px;
+		border: 1px solid #bbbaba;
+		border-radius: 6px;
+		font-size: 18px;
+		font-weight: 500;
+		color: black;
+		background: white;
+	}
+	button.active {
+		background: var(--primary-color);
+		color: white;
+	}
+`;
 const ImageCardWrapper = styled.div`
 	display: flex;
 	align-items: center;
@@ -269,7 +485,8 @@ const BookmarkButton = styled.button`
 	color: white;
 	font-size: 2rem;
 	font-weight: 500;
-	background-color: #c6c8d1;
+	background: #ffffff;
+	box-shadow: 0px 2px 4px 0px #c3c1c1;
 
 	&:hover {
 		background-color: grey;
