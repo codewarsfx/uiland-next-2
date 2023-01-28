@@ -212,7 +212,7 @@ export default function SinglePage({ screens }) {
 				
 							) : (
 								<LikeIcon deleteIndividualBookmark={deleteIndividualBookmark}
-								data={data} bookmark={bookmark} />
+								data={data} bookmark={bookmark}  />
 							)}
 							<ThreeDots openBottomSheet={openBottomSheetModal} />
 						</SecondRow>

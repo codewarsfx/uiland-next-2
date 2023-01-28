@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const LikeIcon = ({ bookmark, data, deleteIndividualBookmark}) => {
+const LikeIcon = ({ bookmark, data, deleteIndividualBookmark,start=false}) => {
 	const [isLiked, setIsLiked] = useState(false);
 
 	useEffect(() => {
