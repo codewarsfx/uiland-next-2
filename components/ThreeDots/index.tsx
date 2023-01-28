@@ -17,9 +17,9 @@ const Container = styled.div`
 	padding: 7px 12px 7px 0px;
 `;
 const Dots = styled.div`
-	background: var(--primary-text-black);
-	height: 12px;
-	width: 12px;
+	background:#777;
+	height: 8px;
+	width: 8px;
 	border-radius: 100%;
 `;
 export default ThreeDots;

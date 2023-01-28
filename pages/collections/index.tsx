@@ -103,6 +103,7 @@ const ImageHolder = styled.div`
 `;
 
 const ImagesHolder = styled(ImageHolder)`
+   width: 100%;
 	background: linear-gradient(
 		calc(var(--angle) * 1deg),
 		hsl(14deg 73% 62%),

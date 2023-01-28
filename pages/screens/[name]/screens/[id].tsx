@@ -26,7 +26,6 @@ import LikeIcon from '../../../../components/LikeIcon';
 import { useEffect, useState } from 'react';
 
 export default function SinglePage({ screens }) {
-	
 	const {
 		headerInfo,
 		toggleBottomSheet,
@@ -68,9 +67,6 @@ export default function SinglePage({ screens }) {
 		router,
 		bookmarkk,
 	} = useScreenshot(screens);
-
-
-
 
 	return (
 		<>
@@ -120,7 +116,15 @@ export default function SinglePage({ screens }) {
 			)}
 			{modalSaveImage && (
 				<Modal toggleModal={newtoggleModal}>
-					<AddToBookmark newtoggleModal={newtoggleModal} submit={submit} handleChange={handleChange} bookmarkk={bookmarkk} selectBookmark={selectBookmark} input={input}  disabled={disabled}  />
+					<AddToBookmark
+						newtoggleModal={newtoggleModal}
+						submit={submit}
+						handleChange={handleChange}
+						bookmarkk={bookmarkk}
+						selectBookmark={selectBookmark}
+						input={input}
+						disabled={disabled}
+					/>
 				</Modal>
 			)}
 			{isModalopen && (
@@ -212,9 +216,14 @@ export default function SinglePage({ screens }) {
 						</ScreenshotContainer>
 
 						<SecondRow>
-		
-								<LikeIcon ids={getId} deleteIndividualBookmark={deleteIndividualBookmark} bookmark={bookmark} data={data} hasSumbitted={hasSubmitted} />	
-							
+							<LikeIcon
+								ids={getId}
+								deleteIndividualBookmark={deleteIndividualBookmark}
+								bookmark={bookmark}
+								data={data}
+								hasSumbitted={hasSubmitted}
+							/>
+
 							<ThreeDots openBottomSheet={openBottomSheetModal} />
 						</SecondRow>
 					</ScreenShotContent>
@@ -344,9 +353,9 @@ const SecondRow = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	background:#eee;
+	background: #f3f3f3;
 	height: 40px;
-	border-radius:.5em;
+	border-radius: 0.5em;
 `;
 const Input = styled.input.attrs((props) => ({}))`
 	color: black;

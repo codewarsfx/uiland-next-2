@@ -5,7 +5,7 @@ const LikeIcon = ({ hasSumbitted,ids, data, deleteIndividualBookmark, bookmark }
 	const [isLiked, setIsLiked] = useState(false);
 
 	useEffect(() => {
-		if (has === true && ids.includes(data.id)) {
+		if (hasSumbitted === true && ids.includes(data.id)) {
 			setIsLiked(true);
 		}
 
