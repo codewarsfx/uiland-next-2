@@ -39,6 +39,7 @@
 	-webkit-tap-highlight-color: transparent !important;
 	font-family: var(--primary-font);
 }
+
 body {
 	margin: 0;
 	padding: 0;

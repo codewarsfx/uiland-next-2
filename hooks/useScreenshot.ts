@@ -46,6 +46,8 @@ const useScreenshot = (screens) => {
 	// state for the bottomsheet
 	const [openBottomSheet, setOpenBottomSheet] = useState(false);
 
+	const [hasSubmitted, setHasSubmitted] = useState(false)
+
 	//state for the image url
 	const [imageUrl, setImageUrl] = useState('');
 
@@ -115,7 +117,6 @@ const useScreenshot = (screens) => {
 		}
 		getIndividualScreens();
 	}, [user]);
-	console.log(getId);
 	useEffect(() => {
 		async function getPayingUser() {
 			if (user) {
@@ -253,7 +254,6 @@ const useScreenshot = (screens) => {
 	async function bookmark(data) {
 		if (user) {
 			newtoggleModal();
-
 			setImageContent(data);
 		} else {
 			loginToggleModal();
@@ -314,6 +314,7 @@ const useScreenshot = (screens) => {
 				toastNotification(1);
 				selectBookmark.push(input);
 				newtoggleModal();
+				setHasSubmitted(true)
 			}
 		} else {
 			console.log('pls login');
@@ -523,6 +524,7 @@ const useScreenshot = (screens) => {
 		toastSuccessText,
 		router,
 		bookmarkk,
+		hasSubmitted
 	};
 };
 
