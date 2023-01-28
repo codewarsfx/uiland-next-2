@@ -22,6 +22,6 @@
 		"components/BookmarkScreensInCategory/index.jsx",
 		"jest.config.js",
 		"next.config.js"
-, "components/LikeIcon/index.jsx"	],
+, "components/LikeIcon/index.jsx", "pages/screens/[name]/screens/[id].tsx"	],
 	"exclude": ["node_modules"]
 }

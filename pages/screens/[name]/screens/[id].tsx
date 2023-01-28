@@ -23,8 +23,10 @@ import { getAllScreens, getScreensById } from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import AddToBookmark from '../../../../components/AddToBookmark';
 import LikeIcon from '../../../../components/LikeIcon';
+import { useEffect, useState } from 'react';
 
 export default function SinglePage({ screens }) {
+	
 	const {
 		headerInfo,
 		toggleBottomSheet,
@@ -65,6 +67,9 @@ export default function SinglePage({ screens }) {
 		router,
 		bookmarkk,
 	} = useScreenshot(screens);
+
+
+
 
 	return (
 		<>
@@ -206,14 +211,9 @@ export default function SinglePage({ screens }) {
 						</ScreenshotContainer>
 
 						<SecondRow>
-							{getId.includes(data.id) ? (
-								<LikeIcon deleteIndividualBookmark={deleteIndividualBookmark}
-								data={data} bookmark={bookmark}  />
-				
-							) : (
-								<LikeIcon deleteIndividualBookmark={deleteIndividualBookmark}
-								data={data} bookmark={bookmark}  />
-							)}
+		
+								<LikeIcon ids={getId} deleteIndividualBookmark={deleteIndividualBookmark} bookmark={bookmark} data={data} />	
+							
 							<ThreeDots openBottomSheet={openBottomSheetModal} />
 						</SecondRow>
 					</ScreenShotContent>

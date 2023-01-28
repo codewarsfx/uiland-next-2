@@ -1,31 +1,39 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const LikeIcon = ({ bookmark, data, deleteIndividualBookmark,start=false}) => {
+const LikeIcon = ({ids,data,deleteIndividualBookmark,bookmark }) => {
 	const [isLiked, setIsLiked] = useState(false);
 
 	useEffect(() => {
-		if (isLiked) {
-			bookmark(data);
-			return
-		}
-		else {
-			deleteIndividualBookmark(data)
-			return
-		}
-	}, [isLiked]);
-
-	useEffect(() => {
-		if (start) {
+		if (ids.includes(data.id)) {
 			setIsLiked(true)
-		} else {
-			setIsLiked(false)
 		}
 	},[])
-	return <Icon onClick={ () => {
+
+	const Like = (data) => {
+		bookmark(data)
 		setIsLiked(!isLiked)
 	}
-} isLiked={isLiked} />;
+
+	const unLike = (data) => {
+		deleteIndividualBookmark(data)
+		setIsLiked(!isLiked)
+	}
+
+	const handleIconClick = () => {
+		if (isLiked) {
+		unLike(data)
+			return;
+		}
+		Like(data)
+  }
+
+	return (
+		<Icon
+		onClick={handleIconClick} 
+			isLiked={isLiked}
+		/>
+	);
 };
 
 const Icon = styled.div`
