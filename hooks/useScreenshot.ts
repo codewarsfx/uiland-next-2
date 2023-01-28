@@ -321,6 +321,7 @@ const useScreenshot = (screens) => {
 	}
 	//function to download the individual images
 	async function downloadImage() {
+		setProgress(2);
 		setToastPendingText('Downloading...');
 
 		//fetches the image

@@ -16,6 +16,7 @@ import ThreeDots from '../../../../components/ThreeDots';
 import DeleteIcon from '../../../../components/DeleteIcon';
 import SaveIcon from '../../../../components/SaveIcon';
 import CloseIcon from '../../../../components/CloseModalIcon';
+import AddToBookmark from '../../../../components/AddToBookmark';
 
 //hooks
 
@@ -202,40 +203,15 @@ export default function SinglePage({ screens }) {
 			)}
 			{modalSaveImage && (
 				<Modal toggleModal={newtoggleModal}>
-					<SelectModalBox>
-						<CloseIcon toggle={newtoggleModal} />
-						<form onSubmit={submit}>
-							<b style={{ fontSize: '16px' }}>Create a Bookmark</b>
-
-							<div className='select'>
-								<select value={bookmarkk} onChange={handleChange}>
-									{selectBookmark.map((item, i) => {
-										return (
-											<option value={item} key={i}>
-												{item}
-											</option>
-										);
-									})}
-								</select>
-							</div>
-							<Input
-								type='text'
-								name='contentForm'
-								placeholder='Input Name'
-								autoComplete='off'
-								value={input}
-								onChange={handleChange}
-							/>
-
-							<button
-								className={`button_modal`}
-								type='submit'
-								disabled={disabled}
-							>
-								Submit
-							</button>
-						</form>
-					</SelectModalBox>
+					<AddToBookmark
+						newtoggleModal={newtoggleModal}
+						submit={submit}
+						handleChange={handleChange}
+						bookmarkk={bookmarkk}
+						selectBookmark={selectBookmark}
+						input={input}
+						disabled={disabled}
+					/>
 				</Modal>
 			)}
 			{isModalopen && (

@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { UserContext } from '../context/authContext';
 import { deleteAccount, getUserProfile } from '../supabase';
-import { buttonTypes } from '../components/uiElements/button';
-import { Button } from '../components/uiElements';
 export default function Profile() {
 	const [userprofile, setUserProfile] = useState([]);
 	const router = useRouter();
@@ -23,6 +21,7 @@ export default function Profile() {
 			if (user || user?.id) {
 				const userDetails = await getUserProfile(user);
 				setUserProfile(userDetails);
+				console.log(userDetails);
 			}
 		}
 		getProfile();
@@ -86,117 +85,247 @@ export default function Profile() {
 	// "SUB_h25tir565gmin76"
 
 	return (
-		<>
-			<SingleHeader>
-				<>
-					<Title>Profile</Title>
+		<Main>
+			<div className='wrapper'>
+				<div className='profile-summary'>
+					<div className='profile-summary-primary'>
+						<h2 className='profile-title'>{user?.user_metadata.full_name}</h2>
+						<p className='profile-detail'>{user?.user_metadata.email}</p>
+					</div>
+					<div className='profile-summary-avatar'>
+						{user?.user_metadata.avatar_url ? (
+							<img
+								src={user?.user_metadata.avatar_url}
+								referrerPolicy='no-referrer'
+								className='avatar-img'
+								alt={`Avavtar of ${user?.user_metadata.full_name}`}
+							/>
+						) : (
+							<span className='avatar-initials'>
+								{user?.user_metadata.full_name[0]}
+							</span>
+						)}
+					</div>
+				</div>
+				<div className='profile-details     profile-details--top'>
+					<p className='profile-details-summary'>PERSONAL DETAILS</p>
+					<div className='profile-details-row'>
+						<div className='profile-detail'>
+							<p>First Name</p>
+						</div>
+						<div className='profile-detail-value'>
+							<p>{user?.user_metadata.full_name.split(' ')[0]}</p>
+						</div>
+					</div>
+					<div className='profile-details-row'>
+						<div className='profile-detail'>
+							<p>Last Name</p>
+						</div>
+						<div className='profile-detail-value'>
+							<p>
+								{user?.user_metadata.full_name.split(' ')[1]
+									? user.user_metadata.full_name.split(' ')[1]
+									: 'Nil'}{' '}
+							</p>
+						</div>
+					</div>
+					<div className='profile-details-row'>
+						<div className='profile-detail'>
+							<p>Email</p>
+						</div>
+						<div className='profile-detail-value'>
+							<p>{user?.user_metadata.email}</p>
+						</div>
+					</div>
+				</div>
+				<div className='profile-details'>
+					<p className='profile-details-summary'>
+						PAYMENTS{' '}
+						{userprofile[0]?.status === 'active' && (
+							<span className='pill'>Active</span>
+						)}
+					</p>
+					<div className='profile-details-row'>
+						<div className='profile-detail'>
+							<p>Subscription</p>
+						</div>
+						<div className='profile-detail-value'>
+							{userprofile ? userprofile[0]?.plan_name : 'No Active Plan'}
+						</div>
+					</div>
+					<div className='profile-details-row'>
+						<div className='profile-detail'>
+							<p>Next Payment Date</p>
+						</div>
+						<div className='profile-detail-value'>
+							{userprofile && userprofile[0]?.status === 'active'
+								? userprofile[0].next_payment_date
+								: 'Nil'}
+						</div>
+					</div>
+					<div className='profile-details-row'>
+						<div className='profile-detail'>
+							<p>Currency</p>
+						</div>
+						<div className='profile-detail-value'>
+							{userprofile ? userprofile[0]?.currency : 'Nil'}
+						</div>
+					</div>
+				</div>
 
-					<ProfileContainer>
-						{/* gets the displayname */}
-						<PhotoWrapper>
+				<div className='profile-delete'>
+					<button className='btn btn-delete' onClick={handleDelete}>
+						Delete Account
+					</button>
+				</div>
+			</div>
+
+			{/* gets the displayname */}
+			{/* <PhotoWrapper>
 							<img
 								src={user?.user_metadata.avatar_url}
 								referrerPolicy='no-referrer'
 								alt={`Avavtar of ${user?.user_metadata.full_name}`}
 							/>
-						</PhotoWrapper>
-						<h1>{user?.user_metadata.full_name}</h1>
-						<h3>{user?.user_metadata.email}</h3>
-						<div onClick={handleDelete}>
-							{' '}
-							<Button type={buttonTypes.error}> Delete Account</Button>
-						</div>
-					</ProfileContainer>
-					<UserDetails>
-						{userprofile &&
-							userprofile.map((user) => {
-								return (
-									<div key={user.id}>
-										<p>{user.email}</p>
-										<p>{user.bank}</p>
-										<p>{user.brand}</p>
-										<p>{user.status}</p>
-										<p>{user.plan_name}</p>
-										<p>{user.next_payment_date}</p>
-										<p>{user.plan_interval}</p>
-										<p>{user.amount}</p>
-										<p>{user.exp_month}</p>
-										<p>{user.currency}</p>
-										<p>{user.created_at}</p>
-										<p>{user.created_date_at}</p>
-									</div>
-								);
-							})}
-					</UserDetails>
-				</>
-			</SingleHeader>
-		</>
+						</PhotoWrapper> */}
+		</Main>
 	);
 }
 
-const UserDetails = styled.div``;
-const PhotoWrapper = styled.div`
-	overflow: hidden;
-	img {
-		border-radius: 100%;
-		height: 45px;
-		border: 2px solid #c6c9d0;
-		width: 45px;
-	}
-`;
-const ProfileContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	padding: 12px;
-	background: white;
-	gap: 8px;
-	border-radius: 12px 20px;
-`;
-const Title = styled.h1`
-	z-index: 99;
-	font-size: 24px;
-	font-weight: 600;
+const Main = styled.main`
 	margin: 0;
-	padding: 0;
-`;
-const SingleHeader = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	padding: 15px;
-	gap: 8px;
-`;
-
-const ElementsInCategoryContainer = styled.div`
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(281px, 1fr));
-	margin: 1.5em auto;
-	gap: 10px;
-	width: 90%;
-
+	width: 100%;
+	height: 100vh;
+	background-color: #eee;
+	padding: 1.8em;
+	.wrapper {
+		max-width: 500px;
+		margin: auto;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+	.avatar-initials {
+		font-size: 18px;
+		font-weight: 700;
+		color: #fff;
+	}
+	.avatar-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 50%;
+		border: 4px solid #fff;
+	}
+	.profile-summary {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		grid-column: 1/3;
+	}
+	.profile-title {
+		font-size: 24px;
+		letter-spacing: 0.1em;
+		margin-bottom: 0.3em;
+	}
+	.pill {
+		padding: 0.5em;
+		background-color: var(--primary-color);
+		color: white;
+		font-size: 8px;
+		border-radius: 25px;
+	}
+	.profile-details {
+		margin-top: 2.2em;
+		grid-column: 1/3;
+	}
+	.profile-summary-avatar {
+		width: 50px;
+		height: 50px;
+		background-color: rgb(36, 75, 246);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.profile-details-row {
+		display: flex;
+		padding: 1.5em;
+		background-color: white;
+		border-bottom: 1px solid rgb(246, 246, 246);
+	}
+	.profile-details-row:first-of-type {
+		border-radius: 0.5em 0.5em 0 0;
+	}
+	.profile-details-row:last-of-type {
+		border-radius: 0 0 0.5em 0.5em;
+	}
+	.profile-details-row:only-of-type {
+		border-radius: 0.5em 0.5em 0.5em 0.5em;
+	}
+	.profile-detail-value {
+		margin-left: auto;
+		font-weight: 500;
+	}
+	.profile-details-summary {
+		font-size: 14px;
+		letter-spacing: 2px;
+		margin-bottom: 1em;
+		color: #888;
+	}
+	/* *{
+    border:1px solid red;
+} */
+	.profile-detail {
+		color: #888;
+	}
+	.profile-delete {
+		grid-column: 1/3;
+		margin-top: 1.5em;
+	}
+	.btn {
+		width: 100%;
+	}
+	.btn-delete {
+		font-weight: 500;
+		color: rgb(243, 94, 94);
+		padding: 16px;
+		border-radius: 0.5em 0.5em 0 0;
+		border: none;
+		font-size: 16px;
+		cursor: pointer;
+	}
 	@media (min-width: 768px) {
-		width: 95%;
-		margin: 3em auto;
-		gap: 20px;
+		.profile-summary {
+			grid-column: 1/3;
+			flex-direction: column;
+			justify-content: flex-start;
+		}
+		.profile-details {
+			grid-column: 1/3;
+		}
+		.profile-summary-avatar {
+			order: 0;
+			width: 150px;
+			height: 150px;
+		}
+		.profile-summary-primary {
+			order: 1;
+			margin-top: 1em;
+			text-align: center;
+		}
+		.profile-title {
+			font-size: 36px;
+			margin: 0;
+		}
+		.profile-detail,
+		.profile-detail-value {
+			font-size: 18px;
+		}
+		.profile-delete {
+			grid-column: 1/3;
+		}
+		.avatar-initials {
+			font-size: 36px;
+		}
 	}
 `;
-
-// export const getServerSideProps=async({req})=>{
-//   const {user} = await supabase.auth.api.getUserByCookie(req)
-
-//   if(!user){
-//     return{
-//       redirect:{
-//         permanent:false,
-//         destination:"/"
-//       },
-//       props:{},
-//     }
-//   }
-//   return{
-//     props:{}
-//   }
-// }

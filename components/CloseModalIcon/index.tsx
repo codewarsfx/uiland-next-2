@@ -1,34 +1,42 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const CloseIcon = ({ toggle }) => {
 	return (
-		<>
-			<Container>
-				<img
-					src='/assets/img/cancel.svg'
-					onClick={toggle}
-					alt='cancel button'
-				/>
-			</Container>
-		</>
+		<Close onClick={toggle}>
+			<svg
+				viewBox='0 0 32 32'
+				xmlns='http://www.w3.org/2000/svg'
+				aria-hidden='true'
+				role='presentation'
+				focusable='false'
+			>
+				<path d='m6 6 20 20'></path>
+				<path d='m26 6-20 20'></path>
+			</svg>
+		</Close>
 	);
 };
 
-const Container = styled.div`
+const Close = styled.span`
+	width: 40px;
+	height: 40px;
+	margin: '5px 0 0 10px';
 	display: flex;
-	align-items: center;
 	justify-content: center;
-	margin-bottom: 12px;
-	position: relative;
-
-	img {
-		width: 5rem;
-		transform-origin: 100% 0;
-		opacity: 1;
-		position: absolute;
-		top: 1rem;
-		right: 1rem;
-		transform: scale(0.28);
+	align-items: center;
+	border-radius: 50%;
+	cursor: pointer;
+	:hover {
+		background-color: #f0efef;
+	}
+	svg {
+		display: block;
+		fill: none;
+		height: 18px;
+		width: 18px;
+		stroke: var(--text-color-dark);
+		stroke-width: 4;
+		overflow: visible;
 	}
 `;
 

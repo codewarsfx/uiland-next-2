@@ -61,12 +61,15 @@ const ScreenshotContainer = styled.div`
 `;
 
 const Title = styled.h1`
-	font-size: 12px;
-	font-weight: 300;
+	font-size: 40px;
+	font-weight: 500;
 	margin: 0;
 	padding: 5px;
 	border-radius: 5px;
 	color: black;
+	@media (min-width: 768px) {
+		font-size: 72px;
+	}
 	svg {
 		width: 23px;
 		height: 23px;
