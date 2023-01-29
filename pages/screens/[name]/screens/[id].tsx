@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 
@@ -25,7 +24,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import AddToBookmark from '../../../../components/AddToBookmark';
 import LikeIcon from '../../../../components/LikeIcon';
 import { useEffect, useState } from 'react';
-import { useEffect } from 'react';
+
 
 export default function SinglePage({ screens }) {
 	const {
