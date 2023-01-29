@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 //Next library
 import Router, { useRouter } from 'next/router';
+import * as gtag from '../lib/gtag';
 
 //All Supabase endpoints
 import {
@@ -321,6 +322,8 @@ const useScreenshot = (screens) => {
 	}
 	//function to download the individual images
 	async function downloadImage() {
+
+gtag.event( 'search', headerInfo.name )
 		setProgress(2);
 		setToastPendingText('Downloading...');
 
