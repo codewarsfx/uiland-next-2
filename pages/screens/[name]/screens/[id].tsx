@@ -22,6 +22,7 @@ import AddToBookmark from '../../../../components/AddToBookmark';
 import useScreenshot from '../../../../hooks/useScreenshot';
 import { getAllScreens, getScreensById } from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { useEffect, useState } from 'react';
 
 
 export default function SinglePage({ screens }) {
@@ -467,8 +468,8 @@ const ImageCardWrapper = styled.div`
 	align-items: center;
 	gap: 12px;
 	flex-direction: row;
-	padding: 14px;
 `;
+
 const BookmarkButton = styled.button`
 	display: flex;
 	align-items: center;
@@ -494,11 +495,10 @@ const BookmarkButton = styled.button`
 `;
 const SecondHeader = styled.div`
 	display: flex;
-	flex-direction: row;
 	align-items: center;
-	/* background: #eaf3ff; */
 	justify-content: space-between;
-	padding: 1em;
+	width: 95%;
+	margin: 3em auto;
 `;
 const Cloud = styled.div`
 	background-image: radial-gradient(
@@ -695,7 +695,7 @@ const ElementsInCategoryContainer = styled.div`
 	@media (min-width: 768px) {
 		width: 95%;
 
-		margin: 3em auto;
+		margin: 0 auto 3em auto;
 		gap: 32px;
 		grid-template-columns: repeat(4, 1fr);
 	}

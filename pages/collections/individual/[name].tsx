@@ -7,12 +7,16 @@ import { viewSingleBookmark } from '../../../supabase';
 import EmptyState from '../../../components/EmptyState';
 import Screenshots from '../../../components/Screenshots';
 
+
+
 export default function IndividualCollections() {
 	const router = useRouter();
 	const [screens, setScreens] = useState([]);
 	const user = useContext(UserContext);
-
 	const { indiscreens } = useScreenshot(screens);
+
+
+
 	useEffect(() => {
 		async function getAlbums() {
 			if (user) {
@@ -23,6 +27,12 @@ export default function IndividualCollections() {
 		}
 		getAlbums();
 	}, [router.query.name, user]);
+
+
+
+
+
+
 
 	return (
 		<>

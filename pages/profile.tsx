@@ -204,7 +204,7 @@ const Main = styled.main`
 	width: 100%;
 	height: 100vh;
 	background-color: #eee;
-	padding: 1.8em;
+	/* padding: 1.8em; */
 	.wrapper {
 		max-width: 500px;
 		margin: auto;

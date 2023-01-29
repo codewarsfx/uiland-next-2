@@ -264,7 +264,6 @@ const useScreenshot = (screens) => {
 		async function getAlbums() {
 			if (user) {
 				const data = await viewSingleBookmark(router.query.name);
-
 				setIndiScreens(data);
 			}
 		}
