@@ -27,7 +27,7 @@ const AddToBookmark = ({
 							value={bookmarkk}
 							onChange={handleChange}
 						>
-							<option selected disabled>
+							<option value="none" selected disabled hidden>
 								Choose an existing collection
 							</option>
 							{selectBookmark.map((item, i) => {
