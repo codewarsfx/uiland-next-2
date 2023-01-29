@@ -86,7 +86,11 @@ export default function Pricing() {
 
 		getSubscriptionInfo();
 	}, []);
-
+	const buttonDetails = [
+		{ id: 1, text: 'Annual' },
+		{ id: 2, text: 'Bi-Annual' },
+		{ id: 3, text: 'Quaterly' },
+	];
 	return (
 		<PricingWrapper>
 			<section className='pricing-text'>
@@ -97,24 +101,19 @@ export default function Pricing() {
 				</p>
 			</section>
 			<section className='price-tabs'>
-				<button
-					onClick={() => setIsActive(1)}
-					className={`price-btn price-btn--${isActive === 1 ? 'active' : ''}`}
-				>
-					Annual
-				</button>
-				<button
-					onClick={() => setIsActive(2)}
-					className={`price-btn price-btn--${isActive === 2 ? 'active' : ''}`}
-				>
-					Bi-Annual
-				</button>
-				<button
-					onClick={() => setIsActive(3)}
-					className={`price-btn price-btn--${isActive === 3 ? 'active' : ''}`}
-				>
-					Quaterly
-				</button>
+				{buttonDetails.map((details) => {
+					return (
+						<button
+							onClick={() => setIsActive(details.id)}
+							key={details.id}
+							className={`price-btn price-btn--${
+								isActive === details.id ? 'active' : ''
+							}`}
+						>
+							{details.text}
+						</button>
+					);
+				})}
 			</section>
 			<section className='pricing-text pricing-text--description'>
 				<h3>
