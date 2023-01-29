@@ -217,6 +217,7 @@ export default function SinglePage({ screens }) {
 			{isModalopen && (
 				<Modal toggleModal={toggleModal}>
 					<SocialModalBox>
+					<CloseIcon toggle={toggleModal} />
 						<SocialsCard
 							id={router.query.id}
 							copy={copy}
@@ -624,7 +625,7 @@ const SocialModalBox = styled.div`
 	position: relative;
 	background-color: #fff;
 	max-width: 37.5rem;
-	padding: 1.6rem;
+	padding: .5em 1.6rem 1.6rem ;
 	border-radius: 0.5rem;
 `;
 

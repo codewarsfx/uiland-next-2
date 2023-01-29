@@ -18,6 +18,8 @@ const CloseIcon = ({ toggle }) => {
 };
 
 const Close = styled.span`
+	position: relative;
+    left:93%;
 	width: 40px;
 	height: 40px;
 	margin: '5px 0 0 10px';
@@ -37,6 +39,10 @@ const Close = styled.span`
 		stroke: var(--text-color-dark);
 		stroke-width: 4;
 		overflow: visible;
+	}
+
+	@media (max-width: 760px){
+		left:88%;
 	}
 `;
 

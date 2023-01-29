@@ -61,7 +61,8 @@ const AddToBookmark = ({
 
 const Wrapper = styled.div`
 	background-color: white;
-	height: 50vh;
+	/* height: 50vh; */
+	padding: .5em;
 	width: 90%;
 	max-width: 600px;
 	border-radius: 0.5em;
@@ -79,7 +80,7 @@ const ModalHeader = styled.div`
 		font-size: 16px;
 		text-align: center;
 		font-weight: 500;
-		width: 90%;
+		width: 80%;
 		color: var(--primary-text-black);
 	}
 `;
