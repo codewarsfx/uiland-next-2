@@ -98,7 +98,7 @@ export default function Profile() {
 								src={user?.user_metadata.avatar_url}
 								referrerPolicy='no-referrer'
 								className='avatar-img'
-								alt={`Avavtar of ${user?.user_metadata.full_name}`}
+								alt={`Avatar of ${user?.user_metadata.full_name}`}
 							/>
 						) : (
 							<span className='avatar-initials'>
@@ -139,18 +139,34 @@ export default function Profile() {
 					</div>
 				</div>
 				<div className='profile-details'>
-					<p className='profile-details-summary'>
-						PAYMENTS{' '}
-						{userprofile[0]?.status === 'active' && (
-							<span className='pill'>Active</span>
-						)}
-					</p>
+					<p className='profile-details-summary'>PAYMENTS </p>
 					<div className='profile-details-row'>
 						<div className='profile-detail'>
 							<p>Subscription</p>
 						</div>
 						<div className='profile-detail-value'>
 							{userprofile ? userprofile[0]?.plan_name : 'No Active Plan'}
+						</div>
+					</div>
+					<div className='profile-details-row'>
+						<div className='profile-detail'>
+							<p>Status</p>
+						</div>
+						<div className='profile-detail-value'>
+							{userprofile && userprofile[0]?.status === 'active'
+								? userprofile[0]?.status
+								: 'Inactive'}
+						</div>
+					</div>
+
+					<div className='profile-details-row'>
+						<div className='profile-detail'>
+							<p>Payment Date</p>
+						</div>
+						<div className='profile-detail-value'>
+							{userprofile && userprofile[0]?.status === 'active'
+								? userprofile[0].created_date_at
+								: 'Nil'}
 						</div>
 					</div>
 					<div className='profile-details-row'>
@@ -179,15 +195,6 @@ export default function Profile() {
 					</button>
 				</div>
 			</div>
-
-			{/* gets the displayname */}
-			{/* <PhotoWrapper>
-							<img
-								src={user?.user_metadata.avatar_url}
-								referrerPolicy='no-referrer'
-								alt={`Avavtar of ${user?.user_metadata.full_name}`}
-							/>
-						</PhotoWrapper> */}
 		</Main>
 	);
 }
@@ -251,7 +258,7 @@ const Main = styled.main`
 		display: flex;
 		padding: 1.5em;
 		background-color: white;
-		border-bottom: 1px solid rgb(246, 246, 246);
+		border-bottom: 1px solid rgb(226 226 226);
 	}
 	.profile-details-row:first-of-type {
 		border-radius: 0.5em 0.5em 0 0;
@@ -267,10 +274,11 @@ const Main = styled.main`
 		font-weight: 500;
 	}
 	.profile-details-summary {
-		font-size: 14px;
+		font-size: 20px;
 		letter-spacing: 2px;
 		margin-bottom: 1em;
 		color: #888;
+		font-weight: 500;
 	}
 	/* *{
     border:1px solid red;

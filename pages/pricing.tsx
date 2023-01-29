@@ -8,7 +8,7 @@ import { UserContext } from '../context/authContext';
 
 export default function Pricing() {
 	const user = useContext(UserContext);
-	const [isActive, setIsActive] = useState(false);
+	const [isActive, setIsActive] = useState(1);
 
 	const Plan1 = [
 		{
@@ -55,7 +55,28 @@ export default function Pricing() {
 			planId: process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_BINUALLY,
 		},
 	];
-
+	const Plan3 = [
+		{
+			type: 'Free',
+			price: '0',
+			description: 'per user/month billed quaterly',
+			title: 'For small teams',
+			info1: 'Browse 	30	 Screens Per Company',
+			info2: 'Unlimited Filter and Search results',
+			info3: 'Unlimited Collections',
+			planId: '',
+		},
+		{
+			type: 'Quaterly',
+			price: '9000',
+			description: 'per user/month billed quaterly',
+			title: 'For small teams',
+			info1: 'Browse All Screens Per Company',
+			info2: 'Unlimited Filter and Search results',
+			info3: 'Unlimited Collections',
+			planId: process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_QUATERLY,
+		},
+	];
 	useEffect(() => {
 		async function getSubscriptionInfo() {
 			const data = await fetch('/api/paystackwebhook');
@@ -75,12 +96,24 @@ export default function Pricing() {
 					Start today
 				</p>
 			</section>
-			<section className='price-tabs' onClick={() => setIsActive(!isActive)}>
-				<button className={`price-btn price-btn--${!isActive ? 'active' : ''}`}>
+			<section className='price-tabs'>
+				<button
+					onClick={() => setIsActive(1)}
+					className={`price-btn price-btn--${isActive === 1 ? 'active' : ''}`}
+				>
 					Annual
 				</button>
-				<button className={`price-btn price-btn--${isActive ? 'active' : ''}`}>
+				<button
+					onClick={() => setIsActive(2)}
+					className={`price-btn price-btn--${isActive === 2 ? 'active' : ''}`}
+				>
 					Bi-Annual
+				</button>
+				<button
+					onClick={() => setIsActive(3)}
+					className={`price-btn price-btn--${isActive === 3 ? 'active' : ''}`}
+				>
+					Quaterly
 				</button>
 			</section>
 			<section className='pricing-text pricing-text--description'>
@@ -89,6 +122,8 @@ export default function Pricing() {
 					<a
 						href='https://www.cbn.gov.ng/rates/ExchRateByCurrency.asp'
 						style={{ textDecoration: 'underline', textAlign: 'center' }}
+						target='_blank'
+						rel='noreferrer'
 					>
 						Official Central Bank of Nigeria Exchange Rates
 					</a>
@@ -97,7 +132,7 @@ export default function Pricing() {
 			<section className='price-cards'>
 				<section
 					className={`price-cards-annual price-card-annual--${
-						!isActive ? 'active' : ''
+						isActive === 1 ? 'active' : ''
 					}`}
 				>
 					{Plan1.map((items, id) => {
@@ -118,10 +153,31 @@ export default function Pricing() {
 				</section>
 				<section
 					className={`price-cards-annual price-card-annual--${
-						isActive ? 'active' : ''
+						isActive === 2 ? 'active' : ''
 					}`}
 				>
 					{Plan2.map((items, id) => {
+						return (
+							<PriceCard
+								key={id}
+								type={items.type}
+								price={items.price}
+								description={items.description}
+								title={items.title}
+								info1={items.info1}
+								info2={items.info2}
+								info3={items.info3}
+								planId={items.planId}
+							/>
+						);
+					})}
+				</section>
+				<section
+					className={`price-cards-annual price-card-annual--${
+						isActive === 3 ? 'active' : ''
+					}`}
+				>
+					{Plan3.map((items, id) => {
 						return (
 							<PriceCard
 								key={id}
@@ -173,7 +229,7 @@ const PricingWrapper = styled.div`
 		border-radius: 0.5em;
 		border: 1px solid #ddd;
 		display: flex;
-		width: 235px;
+		width: 330px;
 		justify-content: space-between;
 	}
 

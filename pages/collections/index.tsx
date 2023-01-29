@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { UserContext } from '../../context/authContext';
 import { getAllSingleBookmarkNames } from '../../supabase';
@@ -7,6 +8,7 @@ import { mobileCheck } from '../../utils/isMobile';
 
 export default function Collection() {
 	const user = useContext(UserContext);
+	const router = useRouter();
 	const [bookmark, setBookmark] = useState([]);
 
 	useEffect(() => {
@@ -18,6 +20,11 @@ export default function Collection() {
 		};
 		allBookmarkNames();
 	}, []);
+	useEffect(() => {
+		if (!user) {
+			router.push('/');
+		}
+	}, [router, user]);
 	return (
 		<>
 			<SingleHeader>
@@ -125,14 +132,7 @@ const AlbumTag = styled.div`
 		-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 		clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 	}
-	@media (min-width: 540px) {
-		max-width: 49%;
-		flex: 0 0 49%;
-	}
-	@media (min-width: 768px) {
-		max-width: 19%;
-		flex: 0 0 19%;
-	}
+
 	a {
 		font-size: 20px;
 		font-weight: 600;
@@ -188,14 +188,7 @@ const EmptyTag = styled.div`
 		-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 		clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 	}
-	@media (min-width: 540px) {
-		max-width: 49%;
-		flex: 0 0 49%;
-	}
-	@media (min-width: 768px) {
-		max-width: 19%;
-		flex: 0 0 19%;
-	}
+
 	a {
 		font-size: 20px;
 		font-weight: 600;
@@ -251,14 +244,7 @@ const IndividualTag = styled.div`
 		-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 		clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 	}
-	@media (min-width: 540px) {
-		max-width: 49%;
-		flex: 0 0 49%;
-	}
-	@media (min-width: 768px) {
-		max-width: 19%;
-		flex: 0 0 19%;
-	}
+
 	p {
 		font-size: 20px;
 		font-weight: 600;
@@ -299,12 +285,20 @@ const IndividualTag = styled.div`
 	// }
 `;
 const Content = styled.div`
-	display: flex;
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	gap: 12px;
 	align-items: center;
 	width: 100%;
 	justify-content: space-between;
 	row-gap: 10px;
 	flex-wrap: wrap;
+	@media (min-width: 540px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	@media (min-width: 768px) {
+		grid-template-columns: repeat(5, 1fr);
+	}
 `;
 const TitleBackground = styled.div`
 	align-items: flex-end;

@@ -31,9 +31,9 @@ function Hero() {
 												<g
 													fill='none'
 													stroke='currentColor'
-													stroke-linecap='round'
-													stroke-linejoin='round'
-													stroke-width='2'
+													strokeLinecap='round'
+													strokeLinejoin='round'
+													strokeWidth='2'
 												>
 													<path d='M105 10C28-9-29 40 34 56c62 16 91-29 66-29'></path>
 													<path d='M109 16C82-20-56 21 30 55s105-27 75-45'></path>

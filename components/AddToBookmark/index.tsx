@@ -27,7 +27,9 @@ const AddToBookmark = ({
 							value={bookmarkk}
 							onChange={handleChange}
 						>
-							<option selected>Choose an existing collection</option>
+							<option selected disabled>
+								Choose an existing collection
+							</option>
 							{selectBookmark.map((item, i) => {
 								return (
 									<option value={item} key={i}>
@@ -48,7 +50,9 @@ const AddToBookmark = ({
 							autoComplete='off'
 						/>
 					</div>
-					<FormButton disabled={disabled}>Continue</FormButton>
+					<button className='form__button' disabled={disabled}>
+						Continue
+					</button>
 				</form>
 			</ModalBottom>
 		</Wrapper>
@@ -117,12 +121,7 @@ const Title = styled.h1`
 `;
 
 const FormButton = styled.button`
-	background: linear-gradient(
-		to right,
-		rgb(30, 80, 230) 0%,
-		rgb(35, 28, 227) 50%,
-		rgb(60, 4, 215) 100%
-	);
+	background: linear-gradient(to right, #0066f5 0%, #0458cd 50%, #1f539d 100%);
 	border: none;
 	padding: 1.5em;
 	color: white;
