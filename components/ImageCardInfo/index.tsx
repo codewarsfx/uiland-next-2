@@ -98,7 +98,6 @@ const ImageCardLogo = styled.div`
 	background: white;
 	img {
 		width: 100%;
-		padding: 12px;
 	}
 	@media (min-width: 768px) {
 		height: 240px;
