@@ -8,7 +8,7 @@ const AddToBookmark = ({
 	bookmarkk,
 	selectBookmark,
 	input,
-	disabled
+	disabled,
 }) => {
 	return (
 		<Wrapper>
@@ -27,7 +27,9 @@ const AddToBookmark = ({
 							value={bookmarkk}
 							onChange={handleChange}
 						>
-							<option>Choose an existing collection</option>
+							<option selected disabled>
+								Choose an existing collection
+							</option>
 							{selectBookmark.map((item, i) => {
 								return (
 									<option value={item} key={i}>
@@ -48,7 +50,9 @@ const AddToBookmark = ({
 							autoComplete='off'
 						/>
 					</div>
-					<FormButton disabled={disabled}>Continue</FormButton>
+					<button className='form__button' disabled={disabled}>
+						Continue
+					</button>
 				</form>
 			</ModalBottom>
 		</Wrapper>
@@ -61,7 +65,6 @@ const Wrapper = styled.div`
 	width: 90%;
 	max-width: 600px;
 	border-radius: 0.5em;
-
 	@media (min-width: 760px) {
 		border-radius: 1em;
 	}
@@ -72,7 +75,6 @@ const ModalHeader = styled.div`
 	display: flex;
 	align-items: center;
 	padding: 1em;
-
 	h2 {
 		font-size: 16px;
 		text-align: center;
@@ -84,7 +86,6 @@ const ModalHeader = styled.div`
 
 const ModalBottom = styled.div`
 	padding: 0 2em;
-
 	.form-element-group {
 		width: 100%;
 		margin: auto;
@@ -97,7 +98,6 @@ const ModalBottom = styled.div`
 	.form-element-group:last-child {
 		border-radius: 0 0 0.3em 0.3em;
 	}
-
 	.form-element {
 		width: 100%;
 		padding: 1.5em;
@@ -105,7 +105,6 @@ const ModalBottom = styled.div`
 		::placeholder {
 			font-size: 16px;
 		}
-
 		:focus {
 			outline-color: black;
 		}
@@ -116,19 +115,13 @@ const Title = styled.h1`
 	font-weight: 500;
 	font-size: 20px;
 	margin: 1em 0;
-
 	@media (min-width: 760px) {
 		margin: 1.5em 0;
 	}
 `;
 
 const FormButton = styled.button`
-	background: linear-gradient(
-		to right,
-		rgb(30, 80, 230) 0%,
-		rgb(35, 28, 227) 50%,
-		rgb(60, 4, 215) 100%
-	);
+	background: linear-gradient(to right, #0066f5 0%, #0458cd 50%, #1f539d 100%);
 	border: none;
 	padding: 1.5em;
 	color: white;

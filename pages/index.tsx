@@ -8,7 +8,6 @@ import { getAllScreens, supabase } from '../supabase';
 import { ScreensContext } from '../context/screensContex';
 import { UserContext } from '../context/authContext';
 import { GetServerSideProps } from 'next';
-import LikeIcon from '../components/LikeIcon';
 
 const Home = ({ screens }) => {
 	const { filterTerm, filterName } = useContext(ScreensContext);
@@ -33,30 +32,14 @@ const Home = ({ screens }) => {
 		setResult(searchFilter(screens, filterTerm));
 	}, [filterTerm, screens]);
 
-	//saves first user in mailchimp database
-	useEffect(() => {
-		supabase.auth.onAuthStateChange((event, session) => {
-			async function getEmail() {
-				if (event == 'SIGNED_IN') {
-					const download = await fetch('/api/mailchimp', {
-						method: 'POST',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify(session.user),
-					});
-					const data = await download.json();
-				}
-			}
-			getEmail();
-		});
-	}, []);
+	
 
 	return (
 		<>
-			 <ToastContainer autoClose={2000} position='top-center' />
+			<ToastContainer autoClose={2000} position='top-center' />
 			{!user && <Hero />}
 			<Tab />
-			<ScreensTab screens={result} /> 
-			
+			<ScreensTab screens={result} />
 		</>
 	);
 };

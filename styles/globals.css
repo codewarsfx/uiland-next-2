@@ -39,7 +39,6 @@
 	-webkit-tap-highlight-color: transparent !important;
 	font-family: var(--primary-font);
 }
-
 body {
 	margin: 0;
 	padding: 0;
@@ -223,7 +222,8 @@ label {
 }
 
 .button_modal {
-	padding: 0.7rem;
+	height: 67px;
+	width: 67px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -249,8 +249,30 @@ label {
 	opacity: 1 !important;
 	border: none !important;
 }
+.form__button {
+	background: linear-gradient(to right, #0066f5 0%, #0458cd 50%, #1f539d 100%);
+	border: none;
+	padding: 1.5em;
+	color: white;
+	margin: 20px 0 30px;
+	border-radius: 0.5em;
+	cursor: pointer;
+	width: 100%;
+	font-weight: 500;
+}
+
+.form__button:disabled {
+	background: #dddddd !important;
+	cursor: not-allowed;
+	opacity: 1 !important;
+	border: none !important;
+}
+
 .button_modal:hover {
 	background-color: #a1a2a7;
+}
+.form__button:hover {
+	background: linear-gradient(to right, #09418e 0%, #0458cd 50%, #1f539d 100%);
 }
 
 .flex-row {

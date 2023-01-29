@@ -12,6 +12,9 @@ function Select({ inputFilter, handleInputFilter, elementsCategoryData }) {
 							value={inputFilter}
 							onChange={handleInputFilter}
 						>
+							<option selected disabled>
+								Filter Images
+							</option>
 							{elementsCategoryData.map((item, i) => {
 								return (
 									<option value={item} key={i}>

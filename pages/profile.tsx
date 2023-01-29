@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { UserContext } from '../context/authContext';
 import { deleteAccount, getUserProfile } from '../supabase';
-import { buttonTypes } from '../components/uiElements/button';
-import { Button } from '../components/uiElements';
 export default function Profile() {
 	const [userprofile, setUserProfile] = useState([]);
 	const router = useRouter();
@@ -100,7 +98,7 @@ export default function Profile() {
 								src={user?.user_metadata.avatar_url}
 								referrerPolicy='no-referrer'
 								className='avatar-img'
-								alt={`Avavtar of ${user?.user_metadata.full_name}`}
+								alt={`Avatar of ${user?.user_metadata.full_name}`}
 							/>
 						) : (
 							<span className='avatar-initials'>
@@ -141,18 +139,34 @@ export default function Profile() {
 					</div>
 				</div>
 				<div className='profile-details'>
-					<p className='profile-details-summary'>
-						PAYMENTS{' '}
-						{userprofile[0]?.status === 'active' && (
-							<span className='pill'>Active</span>
-						)}
-					</p>
+					<p className='profile-details-summary'>PAYMENTS </p>
 					<div className='profile-details-row'>
 						<div className='profile-detail'>
 							<p>Subscription</p>
 						</div>
 						<div className='profile-detail-value'>
 							{userprofile ? userprofile[0]?.plan_name : 'No Active Plan'}
+						</div>
+					</div>
+					<div className='profile-details-row'>
+						<div className='profile-detail'>
+							<p>Status</p>
+						</div>
+						<div className='profile-detail-value'>
+							{userprofile && userprofile[0]?.status === 'active'
+								? userprofile[0]?.status
+								: 'Inactive'}
+						</div>
+					</div>
+
+					<div className='profile-details-row'>
+						<div className='profile-detail'>
+							<p>Payment Date</p>
+						</div>
+						<div className='profile-detail-value'>
+							{userprofile && userprofile[0]?.status === 'active'
+								? userprofile[0].created_date_at
+								: 'Nil'}
 						</div>
 					</div>
 					<div className='profile-details-row'>
@@ -181,15 +195,6 @@ export default function Profile() {
 					</button>
 				</div>
 			</div>
-
-			{/* gets the displayname */}
-			{/* <PhotoWrapper>
-							<img
-								src={user?.user_metadata.avatar_url}
-								referrerPolicy='no-referrer'
-								alt={`Avavtar of ${user?.user_metadata.full_name}`}
-							/>
-						</PhotoWrapper> */}
 		</Main>
 	);
 }
@@ -200,14 +205,12 @@ const Main = styled.main`
 	height: 100vh;
 	background-color: #eee;
 	padding: 1.8em;
-
 	.wrapper {
 		max-width: 500px;
 		margin: auto;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 	}
-
 	.avatar-initials {
 		font-size: 18px;
 		font-weight: 700;
@@ -220,20 +223,17 @@ const Main = styled.main`
 		border-radius: 50%;
 		border: 4px solid #fff;
 	}
-
 	.profile-summary {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		grid-column: 1/3;
 	}
-
 	.profile-title {
 		font-size: 24px;
 		letter-spacing: 0.1em;
 		margin-bottom: 0.3em;
 	}
-
 	.pill {
 		padding: 0.5em;
 		background-color: var(--primary-color);
@@ -241,12 +241,10 @@ const Main = styled.main`
 		font-size: 8px;
 		border-radius: 25px;
 	}
-
 	.profile-details {
 		margin-top: 2.2em;
 		grid-column: 1/3;
 	}
-
 	.profile-summary-avatar {
 		width: 50px;
 		height: 50px;
@@ -260,7 +258,7 @@ const Main = styled.main`
 		display: flex;
 		padding: 1.5em;
 		background-color: white;
-		border-bottom: 1px solid rgb(246, 246, 246);
+		border-bottom: 1px solid rgb(226 226 226);
 	}
 	.profile-details-row:first-of-type {
 		border-radius: 0.5em 0.5em 0 0;
@@ -268,46 +266,42 @@ const Main = styled.main`
 	.profile-details-row:last-of-type {
 		border-radius: 0 0 0.5em 0.5em;
 	}
-
 	.profile-details-row:only-of-type {
 		border-radius: 0.5em 0.5em 0.5em 0.5em;
 	}
-
 	.profile-detail-value {
 		margin-left: auto;
 		font-weight: 500;
 	}
 	.profile-details-summary {
-		font-size: 14px;
+		font-size: 20px;
 		letter-spacing: 2px;
 		margin-bottom: 1em;
 		color: #888;
+		font-weight: 500;
 	}
-
 	/* *{
     border:1px solid red;
 } */
-
 	.profile-detail {
 		color: #888;
 	}
-
 	.profile-delete {
 		grid-column: 1/3;
 		margin-top: 1.5em;
 	}
-
 	.btn {
 		width: 100%;
 	}
-
 	.btn-delete {
+		font-weight: 500;
 		color: rgb(243, 94, 94);
+		padding: 16px;
+		border-radius: 0.5em 0.5em 0 0;
 		border: none;
 		font-size: 16px;
 		cursor: pointer;
 	}
-
 	@media (min-width: 768px) {
 		.profile-summary {
 			grid-column: 1/3;
@@ -317,7 +311,6 @@ const Main = styled.main`
 		.profile-details {
 			grid-column: 1/3;
 		}
-
 		.profile-summary-avatar {
 			order: 0;
 			width: 150px;
@@ -344,20 +337,3 @@ const Main = styled.main`
 		}
 	}
 `;
-
-// export const getServerSideProps=async({req})=>{
-//   const {user} = await supabase.auth.api.getUserByCookie(req)
-
-//   if(!user){
-//     return{
-//       redirect:{
-//         permanent:false,
-//         destination:"/"
-//       },
-//       props:{},
-//     }
-//   }
-//   return{
-//     props:{}
-//   }
-// }

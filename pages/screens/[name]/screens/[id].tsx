@@ -12,18 +12,16 @@ import SocialsCard from '../../../../components/SocialsCard';
 import Select from '../../../../components/uiElements/select';
 import Login from '../../../../components/Login/login';
 import ThreeDots from '../../../../components/ThreeDots';
-// import DeleteIcon from '../../../../components/DeleteIcon';
-// import SaveIcon from '../../../../components/SaveIcon';
+import DeleteIcon from '../../../../components/DeleteIcon';
+import SaveIcon from '../../../../components/SaveIcon';
 import CloseIcon from '../../../../components/CloseModalIcon';
+import AddToBookmark from '../../../../components/AddToBookmark';
 
 //hooks
 
 import useScreenshot from '../../../../hooks/useScreenshot';
 import { getAllScreens, getScreensById } from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import AddToBookmark from '../../../../components/AddToBookmark';
-import LikeIcon from '../../../../components/LikeIcon';
-import { useEffect, useState } from 'react';
 
 
 export default function SinglePage({ screens }) {
@@ -33,7 +31,6 @@ export default function SinglePage({ screens }) {
 		modalSheet,
 		modalSaveImage,
 		newtoggleModal,
-		hasSubmitted,
 		submit,
 		handleChange,
 		selectBookmark,
@@ -351,14 +348,14 @@ export default function SinglePage({ screens }) {
 						</ScreenshotContainer>
 
 						<SecondRow>
-							<LikeIcon
-								ids={getId}
-								deleteIndividualBookmark={deleteIndividualBookmark}
-								bookmark={bookmark}
-								data={data}
-								hasSumbitted={hasSubmitted}
-							/>
-
+							{getId.includes(data.id) ? (
+								<DeleteIcon
+									deleteIndividualBookmark={deleteIndividualBookmark}
+									data={data}
+								/>
+							) : (
+								<SaveIcon bookmark={bookmark} data={data} />
+							)}
 							<ThreeDots openBottomSheet={openBottomSheetModal} />
 						</SecondRow>
 					</ScreenShotContent>
@@ -567,11 +564,11 @@ const BottomsheetModal = styled.div`
 `;
 const SecondRow = styled.div`
 	display: flex;
+	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	background: #f3f3f3;
-	height: 40px;
-	border-radius: 0.5em;
+	background: rgb(0 0 0 / 9%);
+	border-radius: 28px;
 `;
 const Input = styled.input.attrs((props) => ({}))`
 	color: black;
