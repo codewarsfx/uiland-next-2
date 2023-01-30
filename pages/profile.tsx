@@ -11,9 +11,9 @@ export default function Profile() {
 
 	useEffect(() => {
 		if (!user) {
-			router.push('/')
+			router.push('/');
 		}
-	},[])
+	}, []);
 
 	function handleDelete() {
 		deleteAccount(user);
@@ -89,124 +89,125 @@ export default function Profile() {
 	if (user) {
 		return (
 			<>
-			<Header/>
-			<Main>
-				<div className='wrapper'>
-					<div className='profile-summary'>
-						<div className='profile-summary-primary'>
-							<h2 className='profile-title'>{user?.user_metadata.full_name}</h2>
-							<p className='profile-detail'>{user?.user_metadata.email}</p>
+				<Header />
+				<Main>
+					<div className='wrapper'>
+						<div className='profile-summary'>
+							<div className='profile-summary-primary'>
+								<h2 className='profile-title'>
+									{user?.user_metadata.full_name}
+								</h2>
+								<p className='profile-detail'>{user?.user_metadata.email}</p>
+							</div>
+							<div className='profile-summary-avatar'>
+								{user?.user_metadata.avatar_url ? (
+									<img
+										src={user?.user_metadata.avatar_url}
+										referrerPolicy='no-referrer'
+										className='avatar-img'
+										alt={`Avatar of ${user?.user_metadata.full_name}`}
+									/>
+								) : (
+									<span className='avatar-initials'>
+										{user?.user_metadata.full_name[0]}
+									</span>
+								)}
+							</div>
 						</div>
-						<div className='profile-summary-avatar'>
-							{user?.user_metadata.avatar_url ? (
-								<img
-									src={user?.user_metadata.avatar_url}
-									referrerPolicy='no-referrer'
-									className='avatar-img'
-									alt={`Avatar of ${user?.user_metadata.full_name}`}
-								/>
-							) : (
-								<span className='avatar-initials'>
-									{user?.user_metadata.full_name[0]}
-								</span>
-							)}
+						<div className='profile-details     profile-details--top'>
+							<p className='profile-details-summary'>PERSONAL DETAILS</p>
+							<div className='profile-details-row'>
+								<div className='profile-detail'>
+									<p>First Name</p>
+								</div>
+								<div className='profile-detail-value'>
+									<p>{user?.user_metadata.full_name.split(' ')[0]}</p>
+								</div>
+							</div>
+							<div className='profile-details-row'>
+								<div className='profile-detail'>
+									<p>Last Name</p>
+								</div>
+								<div className='profile-detail-value'>
+									<p>
+										{user?.user_metadata.full_name.split(' ')[1]
+											? user.user_metadata.full_name.split(' ')[1]
+											: 'Nil'}{' '}
+									</p>
+								</div>
+							</div>
+							<div className='profile-details-row'>
+								<div className='profile-detail'>
+									<p>Email</p>
+								</div>
+								<div className='profile-detail-value'>
+									<p>{user?.user_metadata.email}</p>
+								</div>
+							</div>
+						</div>
+						<div className='profile-details'>
+							<p className='profile-details-summary'>PAYMENTS </p>
+							<div className='profile-details-row'>
+								<div className='profile-detail'>
+									<p>Subscription</p>
+								</div>
+								<div className='profile-detail-value'>
+									{userprofile ? userprofile[0]?.plan_name : 'No Active Plan'}
+								</div>
+							</div>
+							<div className='profile-details-row'>
+								<div className='profile-detail'>
+									<p>Status</p>
+								</div>
+								<div className='profile-detail-value'>
+									{userprofile && userprofile[0]?.status === 'active'
+										? userprofile[0]?.status
+										: 'Inactive'}
+								</div>
+							</div>
+
+							<div className='profile-details-row'>
+								<div className='profile-detail'>
+									<p>Payment Date</p>
+								</div>
+								<div className='profile-detail-value'>
+									{userprofile && userprofile[0]?.status === 'active'
+										? userprofile[0].created_date_at
+										: 'Nil'}
+								</div>
+							</div>
+							<div className='profile-details-row'>
+								<div className='profile-detail'>
+									<p>Next Payment Date</p>
+								</div>
+								<div className='profile-detail-value'>
+									{userprofile && userprofile[0]?.status === 'active'
+										? userprofile[0].next_payment_date
+										: 'Nil'}
+								</div>
+							</div>
+							<div className='profile-details-row'>
+								<div className='profile-detail'>
+									<p>Currency</p>
+								</div>
+								<div className='profile-detail-value'>
+									{userprofile ? userprofile[0]?.currency : 'Nil'}
+								</div>
+							</div>
+						</div>
+
+						<div className='profile-delete'>
+							<button className='btn btn-delete' onClick={handleDelete}>
+								Delete Account
+							</button>
 						</div>
 					</div>
-					<div className='profile-details     profile-details--top'>
-						<p className='profile-details-summary'>PERSONAL DETAILS</p>
-						<div className='profile-details-row'>
-							<div className='profile-detail'>
-								<p>First Name</p>
-							</div>
-							<div className='profile-detail-value'>
-								<p>{user?.user_metadata.full_name.split(' ')[0]}</p>
-							</div>
-						</div>
-						<div className='profile-details-row'>
-							<div className='profile-detail'>
-								<p>Last Name</p>
-							</div>
-							<div className='profile-detail-value'>
-								<p>
-									{user?.user_metadata.full_name.split(' ')[1]
-										? user.user_metadata.full_name.split(' ')[1]
-										: 'Nil'}{' '}
-								</p>
-							</div>
-						</div>
-						<div className='profile-details-row'>
-							<div className='profile-detail'>
-								<p>Email</p>
-							</div>
-							<div className='profile-detail-value'>
-								<p>{user?.user_metadata.email}</p>
-							</div>
-						</div>
-					</div>
-					<div className='profile-details'>
-						<p className='profile-details-summary'>PAYMENTS </p>
-						<div className='profile-details-row'>
-							<div className='profile-detail'>
-								<p>Subscription</p>
-							</div>
-							<div className='profile-detail-value'>
-								{userprofile ? userprofile[0]?.plan_name : 'No Active Plan'}
-							</div>
-						</div>
-						<div className='profile-details-row'>
-							<div className='profile-detail'>
-								<p>Status</p>
-							</div>
-							<div className='profile-detail-value'>
-								{userprofile && userprofile[0]?.status === 'active'
-									? userprofile[0]?.status
-									: 'Inactive'}
-							</div>
-						</div>
-	
-						<div className='profile-details-row'>
-							<div className='profile-detail'>
-								<p>Payment Date</p>
-							</div>
-							<div className='profile-detail-value'>
-								{userprofile && userprofile[0]?.status === 'active'
-									? userprofile[0].created_date_at
-									: 'Nil'}
-							</div>
-						</div>
-						<div className='profile-details-row'>
-							<div className='profile-detail'>
-								<p>Next Payment Date</p>
-							</div>
-							<div className='profile-detail-value'>
-								{userprofile && userprofile[0]?.status === 'active'
-									? userprofile[0].next_payment_date
-									: 'Nil'}
-							</div>
-						</div>
-						<div className='profile-details-row'>
-							<div className='profile-detail'>
-								<p>Currency</p>
-							</div>
-							<div className='profile-detail-value'>
-								{userprofile ? userprofile[0]?.currency : 'Nil'}
-							</div>
-						</div>
-					</div>
-	
-					<div className='profile-delete'>
-						<button className='btn btn-delete' onClick={handleDelete}>
-							Delete Account
-						</button>
-					</div>
-				</div>
 				</Main>
-				</>
+			</>
 		);
 	}
 
-	return null
-
+	return null;
 }
 
 const Main = styled.main`

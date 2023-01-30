@@ -321,8 +321,7 @@ const useScreenshot = (screens) => {
 	}
 	//function to download the individual images
 	async function downloadImage() {
-
-gtag.event( 'click_download', 'general', 'download', 'value' )
+		gtag.event('click_download', 'general', 'download', 'value');
 		setProgress(2);
 		setToastPendingText('Downloading...');
 

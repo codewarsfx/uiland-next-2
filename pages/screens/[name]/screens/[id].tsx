@@ -25,7 +25,6 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { useEffect, useState } from 'react';
 import Header from '../../../../components/Header';
 
-
 export default function SinglePage({ screens }) {
 	const {
 		headerInfo,
@@ -190,7 +189,7 @@ export default function SinglePage({ screens }) {
 					content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
 				></meta>
 			</Head>
-			<Header/>
+			<Header />
 			{modalSheet && (
 				<Modal toggleModal={toggleBottomSheet}>
 					<ModalBox>
@@ -218,7 +217,7 @@ export default function SinglePage({ screens }) {
 			{isModalopen && (
 				<Modal toggleModal={toggleModal}>
 					<SocialModalBox>
-					<CloseIcon toggle={toggleModal} />
+						<CloseIcon toggle={toggleModal} />
 						<SocialsCard
 							id={router.query.id}
 							copy={copy}
@@ -626,7 +625,7 @@ const SocialModalBox = styled.div`
 	position: relative;
 	background-color: #fff;
 	max-width: 37.5rem;
-	padding: .5em 1.6rem 1.6rem ;
+	padding: 0.5em 1.6rem 1.6rem;
 	border-radius: 0.5rem;
 `;
 

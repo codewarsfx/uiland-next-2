@@ -25,17 +25,17 @@ export default function Collection() {
 		if (!user) {
 			router.push('/');
 		}
-	}, [router, user]); 
+	}, [router, user]);
 
 	if (user) {
 		return (
 			<>
-				<Header/>
+				<Header />
 				<SingleHeader>
 					<TitleBackground>
 						<Title>Collections</Title>
 					</TitleBackground>
-	
+
 					<Content>
 						<Link href='/collections/album'>
 							<AlbumTag>
@@ -46,7 +46,7 @@ export default function Collection() {
 								</ImageHolder>
 							</AlbumTag>
 						</Link>
-	
+
 						{JSON.stringify(bookmark) !== JSON.stringify([]) ? (
 							bookmark.map((name) => {
 								return (
@@ -81,10 +81,8 @@ export default function Collection() {
 			</>
 		);
 	}
-	
-	return null
 
-
+	return null;
 }
 
 // function getRandomNumber(maxNum){
