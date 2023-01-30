@@ -32,8 +32,6 @@ const Home = ({ screens }) => {
 		setResult(searchFilter(screens, filterTerm));
 	}, [filterTerm, screens]);
 
-	
-
 	return (
 		<>
 			<ToastContainer autoClose={2000} position='top-center' />

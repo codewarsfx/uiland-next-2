@@ -12,10 +12,10 @@ function Select({ inputFilter, handleInputFilter, elementsCategoryData }) {
 							value={inputFilter}
 							onChange={handleInputFilter}
 						>
-							<option selected disabled>
+							<option value="none" selected disabled hidden >
 								Filter Images
 							</option>
-							{elementsCategoryData.map((item, i) => {
+							{elementsCategoryData.map((item:string, i: React.Key) => {
 								return (
 									<option value={item} key={i}>
 										{item}
