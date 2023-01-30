@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import useModal from '../../hooks/useModal';
 import Header from '../Header';
@@ -8,6 +8,9 @@ import Modal from '../modal';
 
 function Hero() {
 	const { isModalopen, toggleModal } = useModal();
+
+
+
 	return (
 		<>
 			<Header/>

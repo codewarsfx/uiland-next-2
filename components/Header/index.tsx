@@ -22,15 +22,13 @@ const Header = () => {
 	const [popup, setPopup] = useState(false);
 
 	//animations states
-	const initialState = { y: -100 };
+	const initialState = { opacity:0 };
 	const animateTo = {
-		y: 0,
+		opacity: 1,
 		transition: {
-			type: 'spring',
-			stiffness: 300,
 			delay: BASE_DELAY_DURATION,
 			duration: BASE_DURATION,
-		},
+		}
 	};
 
 	function showPopup() {
