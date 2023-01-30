@@ -15,7 +15,7 @@ const BrandLogoCotainer = styled.div`
 	justify-content: center;
 	border-radius: 12px;
 	background: white;
-	padding: 9px;
+	overflow: hidden;
 	border: 1px solid #dddddd;
 	img {
 		height: 100%;

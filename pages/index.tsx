@@ -33,8 +33,6 @@ const Home = ({ screens }) => {
 		setResult(searchFilter(screens, filterTerm));
 	}, [filterTerm, screens]);
 
-	
-
 	return (
 		<>
 			{user && <Header/>}
