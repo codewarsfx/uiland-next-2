@@ -23,6 +23,7 @@ import useScreenshot from '../../../../hooks/useScreenshot';
 import { getAllScreens, getScreensById } from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useEffect, useState } from 'react';
+import Header from '../../../../components/Header';
 
 
 export default function SinglePage({ screens }) {
@@ -189,7 +190,7 @@ export default function SinglePage({ screens }) {
 					content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
 				></meta>
 			</Head>
-
+			<Header/>
 			{modalSheet && (
 				<Modal toggleModal={toggleBottomSheet}>
 					<ModalBox>

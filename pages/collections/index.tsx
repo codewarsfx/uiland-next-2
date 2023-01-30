@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { UserContext } from '../../context/authContext';
 import { getAllSingleBookmarkNames } from '../../supabase';
 import { mobileCheck } from '../../utils/isMobile';
+import Header from '../../components/Header';
 
 export default function Collection() {
 	const user = useContext(UserContext);
@@ -29,6 +30,7 @@ export default function Collection() {
 	if (user) {
 		return (
 			<>
+				<Header/>
 				<SingleHeader>
 					<TitleBackground>
 						<Title>Collections</Title>
@@ -81,7 +83,7 @@ export default function Collection() {
 	}
 	
 	return null
-	
+
 
 }
 

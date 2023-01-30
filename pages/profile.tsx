@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Router, { useRouter } from 'next/router';
 import { UserContext } from '../context/authContext';
 import { deleteAccount, getUserProfile } from '../supabase';
+import Header from '../components/Header';
 export default function Profile() {
 	const [userprofile, setUserProfile] = useState([]);
 	const router = useRouter();
@@ -87,6 +88,8 @@ export default function Profile() {
 	// "SUB_h25tir565gmin76"
 	if (user) {
 		return (
+			<>
+			<Header/>
 			<Main>
 				<div className='wrapper'>
 					<div className='profile-summary'>
@@ -197,7 +200,8 @@ export default function Profile() {
 						</button>
 					</div>
 				</div>
-			</Main>
+				</Main>
+				</>
 		);
 	}
 
@@ -208,7 +212,7 @@ export default function Profile() {
 const Main = styled.main`
 	margin: 0;
 	width: 100%;
-	height: 100vh;
+	padding: 1em;
 	background-color: #eee;
 	/* padding: 1.8em; */
 	.wrapper {

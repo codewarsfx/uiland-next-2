@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { UserContext } from '../../context/authContext';
 import { getBookmarks } from '../../supabase';
 import BookmarkScreensInCategory from '../../components/BookmarkScreensInCategory';
+import Header from '../../components/Header';
 
 export default function AlbumCollections() {
 	const user = useContext(UserContext);
@@ -20,6 +21,7 @@ export default function AlbumCollections() {
 
 	return (
 		<>
+			<Header/>
 			<SingleHeader>
 				<>
 					<Title>Albums</Title>

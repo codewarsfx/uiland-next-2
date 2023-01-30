@@ -6,6 +6,7 @@ import { UserContext } from '../../../context/authContext';
 import { viewSingleBookmark } from '../../../supabase';
 import EmptyState from '../../../components/EmptyState';
 import Screenshots from '../../../components/Screenshots';
+import Header from '../../../components/Header';
 
 
 
@@ -36,6 +37,7 @@ export default function IndividualCollections() {
 
 	return (
 		<>
+			<Header/>
 			<SingleHeader>
 				<>
 					<Title>{router.query.name}</Title>

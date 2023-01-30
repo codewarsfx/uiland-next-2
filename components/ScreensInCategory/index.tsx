@@ -12,7 +12,7 @@ const ScreensInCategory = ({ screens }) => {
 				<CategorySectionWrapper>
 					{/* checks for empty array */}
 					{JSON.stringify(screens) !== JSON.stringify([]) ? (
-						screens.map(({ startScreens, name, category, logo, id }) => (
+						screens?.map(({ startScreens, name, category, logo, id }) => (
 							<ScreenShotContainer key={id}>
 								<Link
 									href={`/screens/${name.toLowerCase()}/screens/${id}`}

@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import useModal from '../../hooks/useModal';
+import Header from '../Header';
 import Login from '../Login/login';
 import Modal from '../modal';
 
@@ -9,6 +10,7 @@ function Hero() {
 	const { isModalopen, toggleModal } = useModal();
 	return (
 		<>
+			<Header/>
 			{isModalopen && (
 				<Modal toggleModal={toggleModal}>
 					<Login toggleModal={toggleModal} />
