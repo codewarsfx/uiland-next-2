@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { UserContext } from '../../context/authContext';
 import { getAllSingleBookmarkNames } from '../../supabase';
 import { mobileCheck } from '../../utils/isMobile';
+import Header from '../../components/Header';
 
 export default function Collection() {
 	const user = useContext(UserContext);
@@ -24,58 +25,66 @@ export default function Collection() {
 		if (!user) {
 			router.push('/');
 		}
-	}, [router, user]);
-	return (
-		<>
-			<SingleHeader>
-				<TitleBackground>
-					<Title>Collections</Title>
-				</TitleBackground>
+	}, [router, user]); 
 
-				<Content>
-					<Link href='/collections/album'>
-						<AlbumTag>
-							<ImageHolder>
-								<Link href='/collections/album' passHref={true}>
-									<a>Albums</a>
-								</Link>
-							</ImageHolder>
-						</AlbumTag>
-					</Link>
-
-					{JSON.stringify(bookmark) !== JSON.stringify([]) ? (
-						bookmark.map((name) => {
-							return (
-								<>
-									<Link href={`/collections/individual/${name}`}>
-										<IndividualTag>
-											<ImagesHolder>
-												<Link href={`/collections/individual/${name}`}>
-													<p data-text={name}>{name}</p>
-												</Link>
-												{/* <img src="/assets/img/image-collection.jpg"/> */}
-											</ImagesHolder>
-										</IndividualTag>
+	if (user) {
+		return (
+			<>
+				<Header/>
+				<SingleHeader>
+					<TitleBackground>
+						<Title>Collections</Title>
+					</TitleBackground>
+	
+					<Content>
+						<Link href='/collections/album'>
+							<AlbumTag>
+								<ImageHolder>
+									<Link href='/collections/album' passHref={true}>
+										<a>Albums</a>
 									</Link>
-								</>
-							);
-						})
-					) : (
-						<Link href='/'>
-							<EmptyTag>
-								<ImagesHolder>
-									<Link href='/' passHref={true}>
-										<a>Create a Collection</a>
-									</Link>
-								</ImagesHolder>
-							</EmptyTag>
+								</ImageHolder>
+							</AlbumTag>
 						</Link>
-					)}
-				</Content>
-			</SingleHeader>
-			<ElementsInCategoryContainer></ElementsInCategoryContainer>
-		</>
-	);
+	
+						{JSON.stringify(bookmark) !== JSON.stringify([]) ? (
+							bookmark.map((name) => {
+								return (
+									<>
+										<Link href={`/collections/individual/${name}`}>
+											<IndividualTag>
+												<ImagesHolder>
+													<Link href={`/collections/individual/${name}`}>
+														<p data-text={name}>{name}</p>
+													</Link>
+													{/* <img src="/assets/img/image-collection.jpg"/> */}
+												</ImagesHolder>
+											</IndividualTag>
+										</Link>
+									</>
+								);
+							})
+						) : (
+							<Link href='/'>
+								<EmptyTag>
+									<ImagesHolder>
+										<Link href='/' passHref={true}>
+											<a>Create a Collection</a>
+										</Link>
+									</ImagesHolder>
+								</EmptyTag>
+							</Link>
+						)}
+					</Content>
+				</SingleHeader>
+				<ElementsInCategoryContainer></ElementsInCategoryContainer>
+			</>
+		);
+	}
+	
+	return null
+
+
 }
 
 // function getRandomNumber(maxNum){

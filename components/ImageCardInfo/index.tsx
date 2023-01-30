@@ -68,12 +68,12 @@ const CardWrapper = styled.div`
 	width: 100%;
 `;
 const BackIcon = styled.div`
-	width: 4rem;
-	height: 4rem;
+	width: 3.5rem;
+	height: 3.5rem;
 	opacity: 1;
 	position: absolute;
-	top: 0;
-	right: 0;
+	top: -20px;
+	right: -20px;
 	background: white;
 	padding: 17px;
 	border-radius: 50%;
@@ -81,6 +81,12 @@ const BackIcon = styled.div`
 	transition: all 6ms ease-out;
 	:hover {
 		scale: 1.2;
+	}
+	@media (min-width: 768px) {
+		top: 0;
+		right: 0;
+		width: 4rem;
+		height: 4rem;
 	}
 `;
 const ImageCardWrappers = styled.div`

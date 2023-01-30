@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 
@@ -23,7 +22,9 @@ import AddToBookmark from '../../../../components/AddToBookmark';
 import useScreenshot from '../../../../hooks/useScreenshot';
 import { getAllScreens, getScreensById } from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Header from '../../../../components/Header';
+
 
 export default function SinglePage({ screens }) {
 	const {
@@ -189,7 +190,7 @@ export default function SinglePage({ screens }) {
 					content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
 				></meta>
 			</Head>
-
+			<Header/>
 			{modalSheet && (
 				<Modal toggleModal={toggleBottomSheet}>
 					<ModalBox>
@@ -217,6 +218,7 @@ export default function SinglePage({ screens }) {
 			{isModalopen && (
 				<Modal toggleModal={toggleModal}>
 					<SocialModalBox>
+					<CloseIcon toggle={toggleModal} />
 						<SocialsCard
 							id={router.query.id}
 							copy={copy}
@@ -468,8 +470,8 @@ const ImageCardWrapper = styled.div`
 	align-items: center;
 	gap: 12px;
 	flex-direction: row;
-	padding: 14px;
 `;
+
 const BookmarkButton = styled.button`
 	display: flex;
 	align-items: center;
@@ -495,11 +497,10 @@ const BookmarkButton = styled.button`
 `;
 const SecondHeader = styled.div`
 	display: flex;
-	flex-direction: row;
 	align-items: center;
-	/* background: #eaf3ff; */
 	justify-content: space-between;
-	padding: 1em;
+	width: 95%;
+	margin: 3em auto;
 `;
 const Cloud = styled.div`
 	background-image: radial-gradient(
@@ -625,7 +626,7 @@ const SocialModalBox = styled.div`
 	position: relative;
 	background-color: #fff;
 	max-width: 37.5rem;
-	padding: 1.6rem;
+	padding: .5em 1.6rem 1.6rem ;
 	border-radius: 0.5rem;
 `;
 
@@ -696,7 +697,7 @@ const ElementsInCategoryContainer = styled.div`
 	@media (min-width: 768px) {
 		width: 95%;
 
-		margin: 3em auto;
+		margin: 0 auto 3em auto;
 		gap: 32px;
 		grid-template-columns: repeat(4, 1fr);
 	}
