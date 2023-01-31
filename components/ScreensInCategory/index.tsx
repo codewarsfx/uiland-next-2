@@ -16,7 +16,8 @@ const ScreensInCategory = ({ screens }) => {
 							<ScreenShotContainer key={id}>
 								<Link
 									href={`/screens/${name.toLowerCase()}/screens/${id}`}
-									passHref={true}
+									passHref
+									legacyBehavior
 								>
 									<div>
 										<ScreenshotContainerTop>

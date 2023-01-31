@@ -9,7 +9,7 @@ function ImageCardInfo({ headerInfo, count }) {
 					<img src={headerInfo.logo} />
 				</ImageCardLogo>
 				<BackIcon>
-					<Link href='/' passHref={true}>
+					<Link href='/' passHref legacyBehavior>
 						<img src='/assets/img/cancel.svg' alt='cancel button' />
 					</Link>
 				</BackIcon>
