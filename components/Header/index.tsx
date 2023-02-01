@@ -22,13 +22,13 @@ const Header = () => {
 	const [popup, setPopup] = useState(false);
 
 	//animations states
-	const initialState = { opacity:0 };
+	const initialState = { opacity: 0 };
 	const animateTo = {
 		opacity: 1,
 		transition: {
 			delay: BASE_DELAY_DURATION,
 			duration: BASE_DURATION,
-		}
+		},
 	};
 
 	function showPopup() {

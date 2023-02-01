@@ -11,38 +11,47 @@ const BookmarkScreensInCategory = ({ screens }) => {
 			<CategorySectionContainer>
 				<CategorySectionWrapper>
 					{JSON.stringify(screens) !== JSON.stringify([]) ? (
-						screens.map((result) => (
-							<ScreenShotContainer key={result.album_id.id}>
-								<Link
-									href={`/screens/${result.album_id.name.toLowerCase()}/screens/${
-										result.album_id.id
-									}`}
-									passHref={true}
-								>
-									<div>
-										<ScreenshotContainerTop>
-											<BrandLogo imageUrl={result.album_id.logo} />
-											<BrandDescription
-												name={result.album_id.name}
-												category={result.album_id.category}
-											/>
-											<Pill type={pillsTypes.screenshot}>view</Pill>
-										</ScreenshotContainerTop>
-										<ScreenshotContainerBottom>
-											{result.album_id.startScreens.map(
-												(screenshot: string) => (
-													<Screenshot
-														key={screenshot}
-														imgLink={screenshot}
-														Name={screenshot}
-													/>
-												)
-											)}
-										</ScreenshotContainerBottom>
-									</div>
-								</Link>
-							</ScreenShotContainer>
-						))
+						screens.map(
+							(result: {
+								album_id: {
+									id: Key;
+									name: string;
+									logo: string;
+									category: string;
+									startScreens: string[];
+								};
+							}) => (
+								<ScreenShotContainer key={result.album_id.id}>
+									<Link
+										href={`/screens/${result.album_id.name.toLowerCase()}/screens/${
+											result.album_id.id
+										}`}
+									>
+										<div>
+											<ScreenshotContainerTop>
+												<BrandLogo imageUrl={result.album_id.logo} />
+												<BrandDescription
+													name={result.album_id.name}
+													category={result.album_id.category}
+												/>
+												<Pill type={pillsTypes.screenshot}>view</Pill>
+											</ScreenshotContainerTop>
+											<ScreenshotContainerBottom>
+												{result.album_id.startScreens.map(
+													(screenshot: string) => (
+														<Screenshot
+															key={screenshot}
+															imgLink={screenshot}
+															Name={screenshot}
+														/>
+													)
+												)}
+											</ScreenshotContainerBottom>
+										</div>
+									</Link>
+								</ScreenShotContainer>
+							)
+						)
 					) : (
 						<EmptyState />
 					)}

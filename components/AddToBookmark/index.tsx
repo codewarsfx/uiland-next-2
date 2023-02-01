@@ -27,7 +27,7 @@ const AddToBookmark = ({
 							value={bookmarkk}
 							onChange={handleChange}
 						>
-							<option value="none" selected disabled hidden>
+							<option value='none' selected disabled hidden>
 								Choose an existing collection
 							</option>
 							{selectBookmark.map((item, i) => {
@@ -62,7 +62,7 @@ const AddToBookmark = ({
 const Wrapper = styled.div`
 	background-color: white;
 	/* height: 50vh; */
-	padding: .5em;
+	padding: 0.5em;
 	width: 90%;
 	max-width: 600px;
 	border-radius: 0.5em;

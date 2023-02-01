@@ -35,7 +35,7 @@ const Home = ({ screens }) => {
 
 	return (
 		<>
-			{user && <Header/>}
+			{user && <Header />}
 			<ToastContainer autoClose={2000} position='top-center' />
 			{!user && <Hero />}
 			<Tab />

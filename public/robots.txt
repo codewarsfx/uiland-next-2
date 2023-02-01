@@ -5,7 +5,6 @@ User-agent: *
 Disallow: /profile
 Disallow: /collections/
 
-
 # Allow all crawlers
 User-agent: *
 Allow: /

@@ -9,11 +9,9 @@ import Modal from '../modal';
 function Hero() {
 	const { isModalopen, toggleModal } = useModal();
 
-
-
 	return (
 		<>
-			<Header/>
+			<Header />
 			{isModalopen && (
 				<Modal toggleModal={toggleModal}>
 					<Login toggleModal={toggleModal} />
