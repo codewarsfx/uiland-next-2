@@ -1,19 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Router, { useRouter } from 'next/router';
-import { UserContext } from '../context/authContext';
-import { deleteAccount, getUserProfile } from '../supabase';
-import Header from '../components/Header';
-export default function Profile() {
-	const [userprofile, setUserProfile] = useState([]);
-	const router = useRouter();
-	const user = useContext(UserContext);
+import { useRouter } from 'next/router';
 
-	useEffect(() => {
-		if (!user) {
-			router.push('/');
-		}
-	}, []);
+import { deleteAccount, getUserProfile, supabase } from '../supabase';
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
+
+export default function Profile({user}) {
+	const [userprofile, setUserProfile] = useState([])
+	const router = useRouter();
 
 	function handleDelete() {
 		deleteAccount(user);
@@ -86,10 +80,8 @@ export default function Profile() {
 	// subscription_code
 	// :
 	// "SUB_h25tir565gmin76"
-	if (user) {
 		return (
 			<>
-				<Header />
 				<Main>
 					<div className='wrapper'>
 						<div className='profile-summary'>
@@ -205,9 +197,6 @@ export default function Profile() {
 				</Main>
 			</>
 		);
-	}
-
-	return null;
 }
 
 const Main = styled.main`
@@ -348,3 +337,31 @@ const Main = styled.main`
 		}
 	}
 `;
+
+export const getServerSideProps = async (ctx) => {
+	// Create authenticated Supabase Client
+	const supabase = createServerSupabaseClient(ctx)
+	// Check if we have a session
+	const {
+	  data: { session },
+	} = await supabase.auth.getSession()
+  
+	if (!session)
+	  return {
+		redirect: {
+		  destination: '/',
+		  permanent: false,
+		},
+	  }
+  
+	// Run queries with RLS on the server
+	const { data } = await supabase.from('users').select('*')
+  
+	return {
+	  props: {
+		initialSession: session,
+		user: session.user,
+		data: data ?? [],
+	  },
+	}
+  }

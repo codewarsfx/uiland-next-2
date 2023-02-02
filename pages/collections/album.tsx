@@ -21,7 +21,6 @@ export default function AlbumCollections() {
 
 	return (
 		<>
-			<Header />
 			<SingleHeader>
 				<>
 					<Title>Albums</Title>

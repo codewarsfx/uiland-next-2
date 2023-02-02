@@ -6,14 +6,12 @@ import { UserContext } from '../../context/authContext';
 import { getAllSingleBookmarkNames } from '../../supabase';
 import { mobileCheck } from '../../utils/isMobile';
 import Header from '../../components/Header';
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 
-export default function Collection() {
-	const user = useContext(UserContext);
-	const router = useRouter();
+export default function Collection({user}) {
 	const [bookmark, setBookmark] = useState([]);
 
 	useEffect(() => {
-		const isMobile = mobileCheck();
 
 		const allBookmarkNames = async () => {
 			const data = await getAllSingleBookmarkNames();
@@ -21,16 +19,9 @@ export default function Collection() {
 		};
 		allBookmarkNames();
 	}, []);
-	useEffect(() => {
-		if (!user) {
-			router.push('/');
-		}
-	}, [router, user]);
 
-	if (user) {
 		return (
 			<>
-				<Header />
 				<SingleHeader>
 					<TitleBackground>
 						<Title>Collections</Title>
@@ -80,9 +71,7 @@ export default function Collection() {
 				<ElementsInCategoryContainer></ElementsInCategoryContainer>
 			</>
 		);
-	}
 
-	return null;
 }
 
 // function getRandomNumber(maxNum){
@@ -350,3 +339,31 @@ const SingleHeader = styled.div`
 	padding: 15px;
 	gap: 8px;
 `;
+
+export const getServerSideProps = async (ctx) => {
+	// Create authenticated Supabase Client
+	const supabase = createServerSupabaseClient(ctx)
+	// Check if we have a session
+	const {
+	  data: { session },
+	} = await supabase.auth.getSession()
+  
+	if (!session)
+	  return {
+		redirect: {
+		  destination: '/',
+		  permanent: false,
+		},
+	  }
+  
+	// Run queries with RLS on the server
+	const { data } = await supabase.from('users').select('*')
+  
+	return {
+	  props: {
+		initialSession: session,
+		user: session.user,
+		data: data ?? [],
+	  },
+	}
+  }

@@ -9,6 +9,7 @@ import { ScreensContext } from '../context/screensContex';
 import { UserContext } from '../context/authContext';
 import { GetServerSideProps } from 'next';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const Home = ({ screens }) => {
 	const { filterTerm, filterName } = useContext(ScreensContext);
@@ -35,11 +36,11 @@ const Home = ({ screens }) => {
 
 	return (
 		<>
-			{user && <Header />}
 			<ToastContainer autoClose={2000} position='top-center' />
 			{!user && <Hero />}
 			<Tab />
 			<ScreensTab screens={result} />
+			<Footer/>
 		</>
 	);
 };
