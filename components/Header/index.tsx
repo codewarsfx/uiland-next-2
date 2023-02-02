@@ -14,12 +14,18 @@ import Modal from '../modal';
 import { UserContext } from '../../context/authContext';
 import { signout } from '../../supabase';
 import Link from 'next/link';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
 const Header = () => {
 	const { isModalopen, toggleModal } = useModal();
 
 	const user = useContext(UserContext);
 	const [popup, setPopup] = useState(false);
+	const router = useRouter();
+	const supabaseClient = useSupabaseClient();
 
 	//animations states
 	const initialState = { opacity: 0 };
@@ -34,6 +40,13 @@ const Header = () => {
 	function showPopup() {
 		setPopup(!popup);
 	}
+
+	const signoutuser = async () => {
+		await signout();
+		await supabaseClient.auth.signOut();
+		router.push('/');
+	};
+
 	return (
 		<>
 			<Wrapper>
@@ -68,7 +81,7 @@ const Header = () => {
 												<ProfileText>
 													<Link href='/profile'>Profile</Link>
 												</ProfileText>
-												<LogOutText onClick={signout}>Log Out</LogOutText>
+												<LogOutText onClick={signoutuser}>Log Out</LogOutText>
 											</Popup>
 										)}
 									</RelativeWrapper>
