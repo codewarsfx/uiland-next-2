@@ -27,7 +27,6 @@ export default function IndividualCollections() {
 
 	return (
 		<>
-			<Header />
 			<SingleHeader>
 				<>
 					<Title>{router.query.name}</Title>

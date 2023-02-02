@@ -21,16 +21,9 @@ export default function Collection() {
 		};
 		allBookmarkNames();
 	}, []);
-	useEffect(() => {
-		if (!user) {
-			router.push('/');
-		}
-	}, [router, user]);
 
-	if (user) {
 		return (
 			<>
-				<Header />
 				<SingleHeader>
 					<TitleBackground>
 						<Title>Collections</Title>
@@ -80,9 +73,7 @@ export default function Collection() {
 				<ElementsInCategoryContainer></ElementsInCategoryContainer>
 			</>
 		);
-	}
 
-	return null;
 }
 
 // function getRandomNumber(maxNum){

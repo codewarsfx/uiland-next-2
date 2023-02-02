@@ -11,7 +11,6 @@ function Hero() {
 
 	return (
 		<>
-			<Header />
 			{isModalopen && (
 				<Modal toggleModal={toggleModal}>
 					<Login toggleModal={toggleModal} />
