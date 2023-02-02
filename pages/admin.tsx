@@ -5,7 +5,9 @@ function Admin() {
 	const [input, setInput] = useState('');
 	const [company, setCompany] = useState('');
 	const [screenIds, setScreenIds] = useState('');
-	const [images, setImages] = useState([]);
+	const [images, setImages] = useState([
+		//add images json to screen
+	]);
 	useEffect(() => {
 		async function getAllImages() {
 			images.map(async (image, id) => {
@@ -31,15 +33,18 @@ function Admin() {
 		setInput(e.target.value);
 	}
 	function handleChangeCompany(e) {
-		setInput(e.target.value);
+		setCompany(e.target.value);
 	}
 	function handleChangeScreenIds(e) {
-		setInput(e.target.value);
+		setScreenIds(e.target.value);
 	}
 	return (
 		<div>
+			<label>Company:</label>
 			<input type='text' value={company} onChange={handleChangeCompany} />
+			<label>Id:</label>
 			<input type='text' value={screenIds} onChange={handleChangeScreenIds} />
+			<label>Code:</label>
 			<input type='text' value={input} onChange={handleChange} />
 		</div>
 	);

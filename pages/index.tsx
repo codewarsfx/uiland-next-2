@@ -40,7 +40,7 @@ const Home = ({ screens }) => {
 			{!user && <Hero />}
 			<Tab />
 			<ScreensTab screens={result} />
-			<Footer/>
+			<Footer />
 		</>
 	);
 };

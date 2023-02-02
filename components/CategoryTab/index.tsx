@@ -29,6 +29,18 @@ const CategoryTabBar = () => {
 			status: '',
 			id: 5,
 		},
+		{
+			category: 'Investment',
+			categoryStatus: 'Investment',
+			status: '',
+			id: 6,
+		},
+		{
+			category: 'Bank',
+			categoryStatus: 'Bank',
+			status: '',
+			id: 7,
+		},
 	];
 
 	return (

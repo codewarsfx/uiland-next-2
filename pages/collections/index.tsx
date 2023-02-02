@@ -8,11 +8,10 @@ import { mobileCheck } from '../../utils/isMobile';
 import Header from '../../components/Header';
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 
-export default function Collection({user}) {
+export default function Collection({ user }) {
 	const [bookmark, setBookmark] = useState([]);
 
 	useEffect(() => {
-
 		const allBookmarkNames = async () => {
 			const data = await getAllSingleBookmarkNames();
 			setBookmark(data);
@@ -20,58 +19,57 @@ export default function Collection({user}) {
 		allBookmarkNames();
 	}, []);
 
-		return (
-			<>
-				<SingleHeader>
-					<TitleBackground>
-						<Title>Collections</Title>
-					</TitleBackground>
+	return (
+		<>
+			<SingleHeader>
+				<TitleBackground>
+					<Title>Collections</Title>
+				</TitleBackground>
 
-					<Content>
-						<Link href='/collections/album'>
-							<AlbumTag>
-								<ImageHolder>
-									<Link href='/collections/album'>
-										<a>Albums</a>
+				<Content>
+					<Link href='/collections/album'>
+						<AlbumTag>
+							<ImageHolder>
+								<Link href='/collections/album'>
+									<a>Albums</a>
+								</Link>
+							</ImageHolder>
+						</AlbumTag>
+					</Link>
+
+					{JSON.stringify(bookmark) !== JSON.stringify([]) ? (
+						bookmark.map((name) => {
+							return (
+								<>
+									<Link href={`/collections/individual/${name}`}>
+										<IndividualTag>
+											<ImagesHolder>
+												<Link href={`/collections/individual/${name}`}>
+													<p data-text={name}>{name}</p>
+												</Link>
+												{/* <img src="/assets/img/image-collection.jpg"/> */}
+											</ImagesHolder>
+										</IndividualTag>
 									</Link>
-								</ImageHolder>
-							</AlbumTag>
+								</>
+							);
+						})
+					) : (
+						<Link href='/'>
+							<EmptyTag>
+								<ImagesHolder>
+									<Link href='/'>
+										<a>Create a Collection</a>
+									</Link>
+								</ImagesHolder>
+							</EmptyTag>
 						</Link>
-
-						{JSON.stringify(bookmark) !== JSON.stringify([]) ? (
-							bookmark.map((name) => {
-								return (
-									<>
-										<Link href={`/collections/individual/${name}`}>
-											<IndividualTag>
-												<ImagesHolder>
-													<Link href={`/collections/individual/${name}`}>
-														<p data-text={name}>{name}</p>
-													</Link>
-													{/* <img src="/assets/img/image-collection.jpg"/> */}
-												</ImagesHolder>
-											</IndividualTag>
-										</Link>
-									</>
-								);
-							})
-						) : (
-							<Link href='/'>
-								<EmptyTag>
-									<ImagesHolder>
-										<Link href='/'>
-											<a>Create a Collection</a>
-										</Link>
-									</ImagesHolder>
-								</EmptyTag>
-							</Link>
-						)}
-					</Content>
-				</SingleHeader>
-				<ElementsInCategoryContainer></ElementsInCategoryContainer>
-			</>
-		);
-
+					)}
+				</Content>
+			</SingleHeader>
+			<ElementsInCategoryContainer></ElementsInCategoryContainer>
+		</>
+	);
 }
 
 // function getRandomNumber(maxNum){
@@ -342,28 +340,28 @@ const SingleHeader = styled.div`
 
 export const getServerSideProps = async (ctx) => {
 	// Create authenticated Supabase Client
-	const supabase = createServerSupabaseClient(ctx)
+	const supabase = createServerSupabaseClient(ctx);
 	// Check if we have a session
 	const {
-	  data: { session },
-	} = await supabase.auth.getSession()
-  
+		data: { session },
+	} = await supabase.auth.getSession();
+
 	if (!session)
-	  return {
-		redirect: {
-		  destination: '/',
-		  permanent: false,
-		},
-	  }
-  
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false,
+			},
+		};
+
 	// Run queries with RLS on the server
-	const { data } = await supabase.from('users').select('*')
-  
+	const { data } = await supabase.from('users').select('*');
+
 	return {
-	  props: {
-		initialSession: session,
-		user: session.user,
-		data: data ?? [],
-	  },
-	}
-  }
+		props: {
+			initialSession: session,
+			user: session.user,
+			data: data ?? [],
+		},
+	};
+};

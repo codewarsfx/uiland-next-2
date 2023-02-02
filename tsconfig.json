@@ -21,7 +21,8 @@
 		"**/*.tsx",
 		"components/BookmarkScreensInCategory/index.jsx",
 		"jest.config.js",
-		"next.config.js"
-, "pages/_app.tsx"	],
+		"next.config.js",
+		"pages/_app.tsx"
+	],
 	"exclude": ["node_modules"]
 }

@@ -4,8 +4,6 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
-
-
 //supabase signup with Google Oauth
 const getURL = () => {
 	let url =
@@ -303,7 +301,7 @@ export async function addImagesToScreens(
 		.insert({
 			screenId: screenId,
 			url: url,
-			order: 2105 + id,
+			order: 3500 + id,
 		})
 		.select();
 	console.log(data);
