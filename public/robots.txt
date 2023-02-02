@@ -3,6 +3,7 @@
 # Block all crawlers for /profile
 User-agent: *
 Disallow: /profile
+Disallow: /admin
 Disallow: /collections/
 
 # Allow all crawlers

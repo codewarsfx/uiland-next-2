@@ -51,14 +51,29 @@ export async function getAllScreens() {
 //get individual screens content
 
 export async function getScreensById(id) {
-	const { data, error } = await supabase
-		.from('screenImages')
-		.select('*')
-		.order('order', { ascending: true })
-		//   i will use this to limit the result later
-		//   .limit(1)
-		.eq('screenId', id);
-	return data;
+	//this is for the boomplay screens
+	if (
+		id === 'b274aac8-8a59-4034-8456-f8a2539ddc24' ||
+		id === '04b85c78-5dd6-4387-a785-a5edb72d0937'
+	) {
+		const { data, error } = await supabase
+			.from('screenImages')
+			.select('*')
+			.order('url', { ascending: true })
+			//   i will use this to limit the result later
+			//   .limit(1)
+			.eq('screenId', id);
+		return data;
+	} else {
+		const { data, error } = await supabase
+			.from('screenImages')
+			.select('*')
+			.order('order', { ascending: true })
+			//   i will use this to limit the result later
+			//   .limit(1)
+			.eq('screenId', id);
+		return data;
+	}
 }
 
 //get individual screens content(limited)
@@ -267,4 +282,28 @@ export async function getUserProfile(user) {
 
 		return data;
 	}
+}
+
+//get urls from public storage
+export function getImage(company, image) {
+	const { data } = supabase.storage.from(company).getPublicUrl(image);
+
+	return data;
+}
+
+export async function addImagesToScreens(
+	screenId: string,
+	id: number,
+	url: string
+) {
+	const { data, error } = await supabase
+		.from('screenImages')
+		.insert({
+			screenId: screenId,
+			url: url,
+			order: 2105 + id,
+		})
+		.select();
+	console.log(data);
+	return data;
 }

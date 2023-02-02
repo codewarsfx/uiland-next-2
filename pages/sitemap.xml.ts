@@ -24,6 +24,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 				'profile.js',
 				'_error.js',
 				'404.html',
+				'admin.tsx',
 				'index.js',
 				'sitemap.xml.js',
 			].includes(staticPage);

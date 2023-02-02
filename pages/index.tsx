@@ -4,7 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Tab from '../components/TabSection';
 import ScreensTab from '../components/ScreensTab';
-import { getAllScreens, supabase } from '../supabase';
+import { getAllScreens } from '../supabase';
 import { ScreensContext } from '../context/screensContex';
 import { UserContext } from '../context/authContext';
 import { GetServerSideProps } from 'next';
