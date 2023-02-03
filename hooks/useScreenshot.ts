@@ -122,12 +122,13 @@ const useScreenshot = (screens) => {
 		}
 		getIndividualScreens();
 	}, [user]);
-	console.log(getId);
+	
 	useEffect(() => {
+
 		async function getPayingUser() {
 			if (user) {
 				let getEvent = await getProfileByEvent(user);
-
+				
 				if (
 					JSON.stringify(getEvent) === JSON.stringify([]) ||
 					getEvent[0].event === null ||
@@ -135,21 +136,18 @@ const useScreenshot = (screens) => {
 					getEvent[0].event === ''
 				) {
 					const result = screens.slice(0, 30);
-
 					setLimitedScreens(result);
 				} else {
 					setPayingBanner(getEvent[0].event);
-
 					setLimitedScreens(screens);
 				}
 			} else {
 				const result = screens.slice(0, 30);
-
 				setLimitedScreens(result);
 			}
 		}
 		getPayingUser();
-	}, [screens, user]);
+	}, [screens,user]);
 
 	//omitting the [  ] here caused a massive render :(
 	useEffect(() => {
@@ -229,12 +227,10 @@ const useScreenshot = (screens) => {
 		array: [{ elementCategory: ''; url: ''; id: '' }],
 		data: string
 	) => {
-		console.log('filtered term', data)
-	
-		console.log(array.map(item=>item.elementCategory))
 		if (data === '') return array;
 		return array.filter((el) => el.elementCategory.toLowerCase() === data);
 	};
+
 	function handleInputFilter(e: { target: { value: string } }) {
 		//convert the e.target.value to lowercase and add to the inputfilter state
 		setInputFilter(e.target.value.toLowerCase());
@@ -462,14 +458,15 @@ const useScreenshot = (screens) => {
 
 	//update the filter component from the backend
 	useEffect(() => {
-		async function updateFilter() {
+		function updateFilter() {
 			const filtered = limitedscreens.map(item=>item.elementCategory)
-			setElementsCategoryData((prevState) => {
-				return [...prevState, ...filtered];
-			});
+			 setElementsCategoryData(filtered)
+		
 		}
 		updateFilter();
-	}, [router.query.id]);
+	}, [limitedscreens]);
+
+
 
 	//the list of properties to filter by
 

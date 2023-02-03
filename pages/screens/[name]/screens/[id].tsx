@@ -261,7 +261,7 @@ export default function SinglePage({ screens }) {
 										<>
 											<GuideWrapper>
 												<div className='border-bottom'>
-													<img src={result.image} />
+													<img src={result?.image} />
 												</div>
 
 												<GuideBoxContent>
