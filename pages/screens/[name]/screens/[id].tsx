@@ -515,14 +515,14 @@ const BookmarkButton = styled.button`
 	justify-content: center;
 	padding: 1.5rem;
 	cursor: pointer;
-	border: none;
+
 	border-radius: 50%;
 	outline: none;
 	color: white;
 	font-size: 2rem;
 	font-weight: 500;
 	background: #ffffff;
-	box-shadow: 0px 2px 4px 0px #c3c1c1;
+	border: 2px solid #bac1d8;
 
 	&:hover {
 		background-color: grey;
