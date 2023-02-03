@@ -23,6 +23,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 				'_document.js',
 				'profile.js',
 				'_error.js',
+				'collections.js',
 				'404.html',
 				'admin.tsx',
 				'index.js',

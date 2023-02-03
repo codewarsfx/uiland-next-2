@@ -84,14 +84,13 @@ const Screenshots = ({ screens }) => {
 				<ScreenShotContent key={data.screen_id.url}>
 					<ScreenshotContainer key={data.screen_id.url}>
 						{/* add the name to alt tag */}
-					
-							<Image
-								src={data.screen_id.url}
-								alt={`Screenshots of ${data.screen_id.name}  App`}
-								width={1080}
-								height={2240}
-							/>
-					
+
+						<Image
+							src={data.screen_id.url}
+							alt={`Screenshots of ${data.screen_id.name}  App`}
+							width={1080}
+							height={2240}
+						/>
 					</ScreenshotContainer>
 					<SecondRow>
 						{getId.includes(data.screen_id.id) ? (

@@ -3,6 +3,8 @@ import Image from 'next/image';
 
 //Third party libraries
 import styled from 'styled-components';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 
 // Components
 import { BottomSheet, Button, Toast } from '../../../../components/uiElements';
@@ -23,7 +25,6 @@ import useScreenshot from '../../../../hooks/useScreenshot';
 import { getAllScreens, getScreensById } from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useEffect, useState } from 'react';
-import Header from '../../../../components/Header';
 
 export default function SinglePage({ screens }) {
 	const {
@@ -67,6 +68,7 @@ export default function SinglePage({ screens }) {
 		toastSuccessText,
 		router,
 		bookmarkk,
+		generateZIP,
 	} = useScreenshot(screens);
 	const [visits, setVisits] = useState<number>();
 	const [active, setActive] = useState<number>(1);
@@ -103,8 +105,8 @@ export default function SinglePage({ screens }) {
 	function nextPage() {
 		setActive((next) => {
 			let nextPage = next + 1;
-			if (nextPage > 6 || nextPage === 6) {
-				nextPage = 6;
+			if (nextPage > 7 || nextPage === 7) {
+				nextPage = 7;
 			}
 			return nextPage;
 		});
@@ -128,27 +130,33 @@ export default function SinglePage({ screens }) {
 		},
 		{
 			id: 3,
+			title1: 'DOWNLOAD ALL IMAGES',
+			title2: 'Download all images at your comfort and work on them later',
+			image: '/assets/img/guide-9.png',
+		},
+		{
+			id: 4,
 			title1: 'PICK YOUR FAVOURITES',
 			title2:
 				'Create a list of Favourite photos to share with your friends ,family, and photographers',
 			image: '/assets/img/guide-4.png',
 		},
 		{
-			id: 4,
+			id: 5,
 			title1: 'COPY AND DOWNLOAD YOUR FAVOURITES',
 			title2:
 				'Look for the icon to copy your images to Figma and download your images instantly  in just few clicks',
 			image: '/assets/img/guide-5.png',
 		},
 		{
-			id: 5,
+			id: 6,
 			title1: 'COPY AND DOWNLOAD YOUR FAVOURITES',
 			title2:
 				'Look for the icon to copy your images to Figma and download your images instantly  in just few clicks',
 			image: '/assets/img/guide-6.png',
 		},
 		{
-			id: 6,
+			id: 7,
 			title1: 'FILTER TO YOUR FAVOURITE IMAGES',
 			title2:
 				'Look for the icon to filter the images  instantly  in just few clicks',
@@ -260,9 +268,9 @@ export default function SinglePage({ screens }) {
 								)}
 								<button
 									className='active'
-									onClick={active === 6 ? guideModal : nextPage}
+									onClick={active === 7 ? guideModal : nextPage}
 								>
-									{active === 6 ? 'Explore ' : 'Next'}
+									{active === 7 ? 'Explore ' : 'Next'}
 								</button>
 							</NavigationBox>
 						</GuideBox>
@@ -273,6 +281,7 @@ export default function SinglePage({ screens }) {
 							<div className={`dot ${active === 4 && 'active'}`}></div>
 							<div className={`dot ${active === 5 && 'active'}`}></div>
 							<div className={`dot ${active === 6 && 'active'}`}></div>
+							<div className={`dot ${active === 7 && 'active'}`}></div>
 						</DotWrapper>
 					</SocialModalBox>
 				</Modal>
@@ -310,8 +319,22 @@ export default function SinglePage({ screens }) {
 							/>
 						</BookmarkButton>
 					)}
-					<div className='button_modal' onClick={toggleModal}>
+					<div
+						className='button_modal'
+						onClick={toggleModal}
+						title='share online'
+					>
 						<img src='/assets/img/share.svg' alt='share-icon' />
+					</div>
+					<div
+						className='button_modal'
+						onClick={generateZIP}
+						title='download all images'
+					>
+						<img
+							src='/assets/img/download-file-icon.svg'
+							alt='download-file-icon'
+						/>
 					</div>
 				</ImageCardWrapper>
 				{/* <div className='flex-col'>
@@ -496,9 +519,15 @@ const BookmarkButton = styled.button`
 const SecondHeader = styled.div`
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 	width: 95%;
 	margin: 3em auto;
+	flex-wrap: wrap;
+	gap: 16px;
+
+	@media (min-width: 442px) {
+		justify-content: space-between;
+	}
 `;
 const Cloud = styled.div`
 	background-image: radial-gradient(

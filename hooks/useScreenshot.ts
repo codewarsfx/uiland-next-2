@@ -16,6 +16,8 @@ import {
 	getAllSingleBookmarkId,
 	viewSingleBookmark,
 } from '../supabase';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 
 //Hooks
 import useModal from './useModal';
@@ -230,6 +232,36 @@ const useScreenshot = (screens) => {
 		//convert the e.target.value to lowercase and add to the inputfilter state
 		setInputFilter(e.target.value.toLowerCase());
 	}
+
+	async function generateZIP() {
+		var zip = new JSZip();
+		var count = 0;
+		var zipFilename = 'images_bundle.zip';
+		// we will download these images in zip file
+
+		filtered?.forEach(async function (imgURL, i) {
+			//show toast
+			setProgress(2);
+			setToastPendingText('Downloading All Images...');
+			const id = i + 1;
+			var filename = 'image' + -+id + '.png';
+			var image = await fetch(imgURL.url);
+			var imageBlog = await image.blob();
+			var img = zip.folder('images');
+			// loading a file and add it in a zip file
+			img.file(filename, imageBlog, { binary: true });
+			count++;
+			if (count == filtered?.length) {
+				zip.generateAsync({ type: 'blob' }).then(function (content) {
+					saveAs(content, zipFilename);
+					setToastSuccessText('Downloaded 🎉');
+					setProgress(3);
+					toastNotification(1);
+				});
+			}
+		});
+	}
+
 	const copy = async () => {
 		// copies the link and shows the toast
 
@@ -321,7 +353,7 @@ const useScreenshot = (screens) => {
 	}
 	//function to download the individual images
 	async function downloadImage() {
-		gtag.event('click_download', 'general', 'download', 'value');
+		gtag.event('click_download', 'general', 'download', imageUrl);
 		setProgress(2);
 		setToastPendingText('Downloading...');
 
@@ -345,6 +377,7 @@ const useScreenshot = (screens) => {
 		toastNotification(1);
 	}
 	async function copyImage() {
+		gtag.event('click_copy', 'general', 'copy', imageUrl);
 		//contains a url in this format
 		// "http://localhost:3000/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fuiland.appspot.com%2Fo%2FCowrywise%252FCowrywise-screens%252FScreenshot_2022-10-13-14-46-21-882_com.cowrywise.android-min.jpg%3Falt%3Dmedia%26token%3D3efdba80-8ec5-463a-9466-317f9247a6c3&w=1080&q=75"
 		//which contains the prefetched images
@@ -525,6 +558,7 @@ const useScreenshot = (screens) => {
 		toastSuccessText,
 		router,
 		bookmarkk,
+		generateZIP,
 	};
 };
 
