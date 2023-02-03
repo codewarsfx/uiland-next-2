@@ -19,15 +19,17 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
 // };
 
 export async function signInWithGoogle() {
+	let redirectUrl =
+		process.env.NODE_ENV === 'production'
+			? 'https://uiland.design'
+			: 'http://localhost:3000/';
 
-	let redirectUrl = process.env.NODE_ENV === 'production' ? 'https://uiland.design' : 'http://localhost:3000/'
-
-	console.log(redirectUrl)
+	console.log(redirectUrl);
 	const { data, error } = await supabase.auth.signInWithOAuth({
 		provider: 'google',
 		options: {
-			redirectTo: redirectUrl
-		  }
+			redirectTo: redirectUrl,
+		},
 	});
 	return data;
 }

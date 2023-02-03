@@ -73,9 +73,8 @@ export default function App({
 					</Script>
 
 					<Head>
-					
-					<link rel='shortcut icon' href='/favicon.ico' />
-				
+						<link rel='shortcut icon' href='/favicon.ico' />
+
 						<meta charSet='utf-8' />
 						<title>Welcome to Uiland</title>
 						<meta

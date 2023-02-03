@@ -105,7 +105,7 @@ const useScreenshot = (screens) => {
 	]);
 
 	//state to display the filters
-	const [elementsCategoryData, setElementsCategoryData] = useState(['']);
+	const [elementsCategoryData, setElementsCategoryData] = useState([]);
 
 	const [indiscreens, setIndiScreens] = useState([]);
 	useEffect(() => {
@@ -122,13 +122,12 @@ const useScreenshot = (screens) => {
 		}
 		getIndividualScreens();
 	}, [user]);
-	
-	useEffect(() => {
 
+	useEffect(() => {
 		async function getPayingUser() {
 			if (user) {
 				let getEvent = await getProfileByEvent(user);
-				
+
 				if (
 					JSON.stringify(getEvent) === JSON.stringify([]) ||
 					getEvent[0].event === null ||
@@ -147,7 +146,7 @@ const useScreenshot = (screens) => {
 			}
 		}
 		getPayingUser();
-	}, [screens,user]);
+	}, [screens, user]);
 
 	//omitting the [  ] here caused a massive render :(
 	useEffect(() => {
@@ -212,13 +211,6 @@ const useScreenshot = (screens) => {
 		};
 	}, []);
 
-	// const handleClickSubscribeButton = () => {
-	// 	if (!user) {
-	// 		loginToggleModal();
-	// 	} else {
-	// 		Router.push('/pricing');
-	// 	}
-	// };
 	const handleClickSubscribeButton = () => {
 		Router.push('/pricing');
 	};
@@ -459,14 +451,13 @@ const useScreenshot = (screens) => {
 	//update the filter component from the backend
 	useEffect(() => {
 		function updateFilter() {
-			const filtered = limitedscreens.map(item=>item.elementCategory)
-			 setElementsCategoryData(filtered)
-		
+			const filtered = limitedscreens.map((item) => item.elementCategory);
+			const uniqueResult = Array.from(new Set(filtered));
+
+			setElementsCategoryData(uniqueResult);
 		}
 		updateFilter();
 	}, [limitedscreens]);
-
-
 
 	//the list of properties to filter by
 
