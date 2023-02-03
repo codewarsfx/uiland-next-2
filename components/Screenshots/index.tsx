@@ -7,6 +7,7 @@ import Modal from '../modal';
 import SaveIcon from '../SaveIcon';
 import ThreeDots from '../ThreeDots';
 import { Input, Toast } from '../uiElements';
+import Link from 'next/link';
 
 const Screenshots = ({ screens }) => {
 	const {
@@ -63,7 +64,6 @@ const Screenshots = ({ screens }) => {
 							</div>
 							<Input
 								placeholder='Input Name'
-								submit={submit}
 								input={input}
 								handleChange={handleChange}
 							/>
@@ -84,12 +84,20 @@ const Screenshots = ({ screens }) => {
 				<ScreenShotContent key={data.screen_id.url}>
 					<ScreenshotContainer key={data.screen_id.url}>
 						{/* add the name to alt tag */}
-						<Image
-							src={data.screen_id.url}
-							alt={`Screenshots of  App`}
-							width={1080}
-							height={2240}
-						/>
+						<Link
+							href={`/screens/${data.screen_id.name.toLowerCase()}/screens/${
+								data.screen_id.id
+							}`}
+							passHref
+							legacyBehavior
+						>
+							<Image
+								src={data.screen_id.url}
+								alt={`Screenshots of ${data.screen_id.name}  App`}
+								width={1080}
+								height={2240}
+							/>
+						</Link>
 					</ScreenshotContainer>
 					<SecondRow>
 						{getId.includes(data.screen_id.id) ? (

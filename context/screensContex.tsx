@@ -10,6 +10,7 @@ export const ScreensContextProvider = ({ children }) => {
 		setFilterTerm(term);
 	};
 	const setFilterItemName = (name: SetStateAction<string>) => {
+		console.log(name);
 		setFilterName(name);
 	};
 

@@ -153,7 +153,8 @@ export async function viewSingleBookmark(name) {
       id,
       screen_id (
           id,
-          url
+          url,
+		  name
       )
     `
 		)

@@ -17,13 +17,14 @@ const Home = ({ screens }) => {
 	const [result, setResult] = useState([]);
 
 	const searchFilter = (array, data) => {
+		console.log(data);
 		if (data === '') return array;
-		return array.filter((el) => el.category === data);
+		return array.filter((el) => el.category.includes(data));
 	};
 
 	const searchNameFilter = (array, data) => {
 		if (data === '') return array;
-		return array.filter((el) => el.name === data);
+		return array.filter((el) => el.name.includes(data));
 	};
 
 	useEffect(() => {

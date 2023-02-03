@@ -1,4 +1,4 @@
-import React, { useState, useContext,useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { Input } from '../uiElements';
 import { ScreensContext } from '../../context/screensContex';
@@ -17,22 +17,27 @@ const SearchTabBar = () => {
 		setInput(e.target.value);
 	}
 
-	function submit(e) {
-		e.preventDefault();
+	// function submit(e) {
+	// 	e.preventDefault();
+	// 	const lowerCaseAll = input.toLowerCase();
+	// 	const firstInputCapitalized =
+	// 		lowerCaseAll.charAt(0).toUpperCase() + lowerCaseAll.slice(1);
+	// 	setFilterItemName(firstInputCapitalized);
+	// }
+
+	useEffect(() => {
 		const lowerCaseAll = input.toLowerCase();
 		const firstInputCapitalized =
 			lowerCaseAll.charAt(0).toUpperCase() + lowerCaseAll.slice(1);
+		console.log(firstInputCapitalized);
 		setFilterItemName(firstInputCapitalized);
-	}
-
-
+	}, [input, setFilterItemName]);
 	return (
 		<FormWrapper>
 			<FormBackground>
 				<Input
 					input={input}
 					handleChange={handleChange}
-					submit={submit}
 					placeholder="search company's name"
 				/>
 			</FormBackground>
