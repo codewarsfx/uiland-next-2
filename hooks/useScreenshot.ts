@@ -229,9 +229,6 @@ const useScreenshot = (screens) => {
 		array: [{ elementCategory: ''; url: ''; id: '' }],
 		data: string
 	) => {
-		console.log('filtered term', data)
-	
-		console.log(array.map(item=>item.elementCategory))
 		if (data === '') return array;
 		return array.filter((el) => el.elementCategory.toLowerCase() === data);
 	};
@@ -464,8 +461,9 @@ const useScreenshot = (screens) => {
 	useEffect(() => {
 		async function updateFilter() {
 			const filtered = await getElementCategoryFilter(router.query.id);
-			
-		
+			console.log(filtered);
+			// const filtered = limitedscreens.map(item=>item.elementCategory)
+			// console.log(filtered)
 			setElementsCategoryData((prevState) => {
 				return [...prevState, ...filtered];
 			});
