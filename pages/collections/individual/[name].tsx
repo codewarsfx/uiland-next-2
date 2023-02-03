@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import useScreenshot from '../../../hooks/useScreenshot';
 import { useRouter } from 'next/router';
 import { UserContext } from '../../../context/authContext';
+import { viewSingleBookmark } from '../../../supabase';
 import EmptyState from '../../../components/EmptyState';
 import Screenshots from '../../../components/Screenshots';
 
@@ -12,7 +13,16 @@ export default function IndividualCollections() {
 	const user = useContext(UserContext);
 	const { indiscreens } = useScreenshot(screens);
 
-	
+	useEffect(() => {
+		async function getAlbums() {
+			if (user) {
+				const data = await viewSingleBookmark(router.query.name);
+
+				setScreens(data);
+			}
+		}
+		getAlbums();
+	}, [router.query.name, user]);
 
 	return (
 		<>
