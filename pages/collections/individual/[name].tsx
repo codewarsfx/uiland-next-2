@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import useScreenshot from '../../../hooks/useScreenshot';
 import { useRouter } from 'next/router';
 import { UserContext } from '../../../context/authContext';
-import { viewSingleBookmark } from '../../../supabase';
 import EmptyState from '../../../components/EmptyState';
 import Screenshots from '../../../components/Screenshots';
 
@@ -12,6 +11,8 @@ export default function IndividualCollections() {
 	const [screens, setScreens] = useState([]);
 	const user = useContext(UserContext);
 	const { indiscreens } = useScreenshot(screens);
+
+	
 
 	return (
 		<>
