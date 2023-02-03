@@ -463,7 +463,9 @@ const useScreenshot = (screens) => {
 	//update the filter component from the backend
 	useEffect(() => {
 		async function updateFilter() {
-			const filtered = limitedscreens.map(item=>item.elementCategory)
+			const filtered = await getElementCategoryFilter(router.query.id);
+			
+		
 			setElementsCategoryData((prevState) => {
 				return [...prevState, ...filtered];
 			});
