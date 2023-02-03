@@ -22,10 +22,10 @@ const Footer = () => {
 				<section className='footer-links'>
 					<ul className='link-items'>
 						<li>
-							<a href='/'>Home</a>
+							<a href='/' >Home</a>
 						</li>
 						<li>
-							<a href='/pricing'>Pricing</a>
+							<a href='/pricing' target="_blank">Pricing</a>
 						</li>
 						<li>
 							<a href='/'>Products</a>
@@ -36,10 +36,10 @@ const Footer = () => {
 					</ul>
 					<ul className='link-items'>
 						<li>
-							<a href='#'>Terms and Conditions</a>
+							<a href='/terms' target="_blank">Terms and Conditions</a>
 						</li>
 						<li>
-							<a href='#'>Return Policy</a>
+							<a href='/refund' target="_blank">Return Policy</a>
 						</li>
 						<li>
 							<a href='#'>Privacy Policies</a>
@@ -65,7 +65,7 @@ const Footer = () => {
 };
 
 const FooterWrapper = styled.footer`
-	background-color: rgb(69, 69, 69);
+	background-color: rgb(9, 9, 9);
 	color: rgb(255, 255, 255);
 	padding: 2em;
 	margin-top: 7em;
@@ -108,6 +108,7 @@ const FooterWrapper = styled.footer`
 		color: #fff;
 		font-size: 1.4rem;
 		font-family: inherit;
+		
 	}
 
 	.footer-links {
@@ -120,7 +121,7 @@ const FooterWrapper = styled.footer`
 	.footer-links li {
 		margin: 0.4em 0;
 		list-style: none;
-		margin-top: 1.2em;
+		margin-top: 1.2em;font-weight:500;
 	}
 
 	.attribution {

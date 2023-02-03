@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext,useEffect } from 'react';
 import styled from 'styled-components';
 import { Input } from '../uiElements';
 import { ScreensContext } from '../../context/screensContex';
@@ -24,6 +24,7 @@ const SearchTabBar = () => {
 			lowerCaseAll.charAt(0).toUpperCase() + lowerCaseAll.slice(1);
 		setFilterItemName(firstInputCapitalized);
 	}
+
 
 	return (
 		<FormWrapper>
