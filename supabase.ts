@@ -22,12 +22,12 @@ export async function signInWithGoogle() {
 
 	let redirectUrl = process.env.NODE_ENV === 'production' ? 'https://uiland.design' : 'http://localhost:3000/'
 
-	
+	console.log(redirectUrl)
 	const { data, error } = await supabase.auth.signInWithOAuth({
 		provider: 'google',
 		options: {
-			redirectTo: redirectUrl,
-		},
+			redirectTo: redirectUrl
+		  }
 	});
 	return data;
 }
@@ -86,7 +86,6 @@ export async function getScreensByIdCount(id) {
 		.from('screenImages')
 		.select('*', { count: 'exact', head: true })
 		.eq('screenId', id);
-	console.log(count);
 	return count;
 }
 
