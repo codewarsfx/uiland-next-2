@@ -3,8 +3,6 @@ import Image from 'next/image';
 
 //Third party libraries
 import styled from 'styled-components';
-import JSZip from 'jszip';
-import { saveAs } from 'file-saver';
 
 // Components
 import { BottomSheet, Button, Toast } from '../../../../components/uiElements';
@@ -22,7 +20,11 @@ import AddToBookmark from '../../../../components/AddToBookmark';
 //hooks
 
 import useScreenshot from '../../../../hooks/useScreenshot';
-import { getAllScreens, getScreensById } from '../../../../supabase';
+import {
+	getAllScreens,
+	getScreensById,
+	getScreensByIdCount,
+} from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useEffect, useState } from 'react';
 
@@ -72,6 +74,7 @@ export default function SinglePage({ screens }) {
 	} = useScreenshot(screens);
 	const [visits, setVisits] = useState<number>();
 	const [active, setActive] = useState<number>(1);
+	const [actualCount, setActualCount] = useState<number>(0);
 
 	//This is used to track the number of times a user has visited the screen. The guide modal
 	//is displayed if the user is a first-time user.
@@ -90,6 +93,15 @@ export default function SinglePage({ screens }) {
 		}
 		localStorage.setItem('numberOfVisits', String(addToNumber));
 	}, []);
+
+	//get actual cunt of screens
+	useEffect(() => {
+		async function getCount() {
+			const count = await getScreensByIdCount(router.query.id);
+			setActualCount(count);
+		}
+		getCount();
+	}, [router.query.id]);
 
 	//function for the previous state
 	function prevPage() {
@@ -294,7 +306,11 @@ export default function SinglePage({ screens }) {
 			/>
 
 			<SingleHeader>
-				<ImageCardInfo headerInfo={headerInfo} count={filtered?.length} />
+				<ImageCardInfo
+					headerInfo={headerInfo}
+					count={filtered?.length}
+					actualCount={actualCount}
+				/>
 			</SingleHeader>
 
 			<SecondHeader>

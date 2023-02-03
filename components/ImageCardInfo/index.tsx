@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
-function ImageCardInfo({ headerInfo, count }) {
+function ImageCardInfo({ headerInfo, count, actualCount }) {
 	return (
 		<>
 			<CardWrapper>
@@ -51,8 +51,9 @@ function ImageCardInfo({ headerInfo, count }) {
 						<h3>{headerInfo.country || 'Nigeria'}</h3> &nbsp; &#x2022; &nbsp;
 						<h3>
 							{count} screen{count > 1 && 's'}
-						</h3>
+						</h3>{' '}
 					</ImageCardInfoName>
+					<h3>{actualCount} screens available</h3>
 				</ImageCardInfoWrapper>
 			</CardWrapper>
 		</>

@@ -76,6 +76,16 @@ export async function getScreensById(id) {
 	}
 }
 
+//get individual screen content count
+export async function getScreensByIdCount(id) {
+	const { count, error } = await supabase
+		.from('screenImages')
+		.select('*', { count: 'exact', head: true })
+		.eq('screenId', id);
+	console.log(count);
+	return count;
+}
+
 //get individual screens content(limited)
 export async function getLimitedScreensById(id) {
 	const { data, error } = await supabase
@@ -252,6 +262,19 @@ export async function getAllSingleBookmarkNames() {
 
 	//gets unique names in the db
 	const result = data?.map((object) => object.bookmark_name);
+	const uniqueResult = Array.from(new Set(result));
+	return uniqueResult;
+}
+
+//    get unique filters in a company
+export async function getElementCategoryFilter(id) {
+	const { data, error } = await supabase
+		.from('screenImages')
+		.select('elementCategory')
+		.eq('screenId', id);
+
+	//gets unique names in the db
+	const result = data?.map((object) => object.elementCategory);
 	const uniqueResult = Array.from(new Set(result));
 	return uniqueResult;
 }

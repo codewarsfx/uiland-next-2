@@ -15,6 +15,7 @@ import {
 	getProfileByEvent,
 	getAllSingleBookmarkId,
 	viewSingleBookmark,
+	getElementCategoryFilter,
 } from '../supabase';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
@@ -102,6 +103,9 @@ const useScreenshot = (screens) => {
 	const [getId, setGetId] = useState<[{ screen_id: '' }] | any>([
 		{ screen_id: '' },
 	]);
+
+	//state to display the filters
+	const [elementsCategoryData, setElementsCategoryData] = useState(['']);
 
 	const [indiscreens, setIndiScreens] = useState([]);
 	useEffect(() => {
@@ -452,63 +456,21 @@ const useScreenshot = (screens) => {
 	}
 
 	const filtered = searchFilter(limitedscreens, inputFilter);
+
+	//update the filter component from the backend
+	useEffect(() => {
+		async function updateFilter() {
+			const filtered = await getElementCategoryFilter(router.query.id);
+			console.log(filtered);
+			setElementsCategoryData((prevState) => {
+				return [...prevState, ...filtered];
+			});
+		}
+		updateFilter();
+	}, [router.query.id]);
+
 	//the list of properties to filter by
-	const elementsCategoryData = [
-		'',
-		'search',
-		'card',
-		'textarea',
-		'overlay',
-		'radio button',
-		'ratings',
-		'profile icon',
-		'tooltip',
-		'share icon',
-		'disabled',
-		'file upload',
-		'dialog',
-		'skeleton',
-		'tooltip',
-		'bottom sheet',
-		'location icon',
-		'error',
-		'checkboxes',
-		'flags',
-		'hide password',
-		'steps',
-		'back icon',
-		'referral',
-		'tab',
-		'blog post',
-		'camera',
-		'payment',
-		'card',
-		'accordion',
-		'footer',
-		'popup',
-		'switch',
-		'map',
-		'check icon',
-		'success message',
-		'icon',
-		'empty state',
-		'divider',
-		'input',
-		'loading',
-		'button',
-		'toast',
-		'radio button',
-		'dropdown',
-		'copy icon',
-		'calendar',
-		'pills',
-		'payment',
-		'error message',
-		'topbar',
-		'gallery',
-		'chat',
-		'divider',
-	];
+
 	const dialogFuncMap = {
 		displayBasic: setDisplayBasic,
 	};
