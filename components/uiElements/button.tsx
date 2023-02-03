@@ -76,6 +76,7 @@ const ErrorButton = styled(PrimaryButton)`
 const ModalButton = styled.button`
 	display: flex;
 	align-items: center;
+	font-weight: 500;
 	justify-content: center;
 	margin: 14px 0 4px 0;
 	background: var(--primary-color);
