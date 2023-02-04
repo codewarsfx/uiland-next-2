@@ -329,7 +329,7 @@ export async function addImagesToScreens(
 		.insert({
 			screenId: screenId,
 			url: url,
-			order: 3500 + id,
+			order: 3800 + id,
 		})
 		.select();
 	console.log(data);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useRouter } from 'next/router';
-import { PaystackButton, usePaystackPayment } from 'react-paystack';
+import { usePaystackPayment } from 'react-paystack';
 import { PaystackProps } from 'react-paystack/dist/types';
 import { UserContext } from '../../context/authContext';
 import styled from 'styled-components';

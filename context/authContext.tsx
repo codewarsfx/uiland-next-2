@@ -30,22 +30,6 @@ export const UserContextProvider = ({ children }) => {
 		};
 		supabaseAuth();
 	}, []);
-	//saves first user in mailchimp database
-	useEffect(() => {
-		supabase.auth.onAuthStateChange((event, session) => {
-			async function getEmail() {
-				if (event == 'SIGNED_IN') {
-					const download = await fetch('/api/mailchimp', {
-						method: 'POST',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify(session.user),
-					});
-					const data = await download.json();
-				}
-			}
-			getEmail();
-		});
-	}, []);
 
 	return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
 };
