@@ -30,13 +30,7 @@ const SmallCircle = styled.div`
 	background: #dddddd;
 	border-radius: 50%;
 `;
-// const BigCircle = styled.div`
-// 	height: 50px;
-// 	width: 50px;
-// 	margin-right: 5px;
-// 	background: #dddddd;
-// 	border-radius: 50%;
-// `;
+
 const ToastWrapper = styled.div`
 	position: fixed;
 	display: block;
