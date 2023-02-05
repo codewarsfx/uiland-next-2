@@ -1,11 +1,18 @@
 import { FiFacebook } from 'react-icons/fi';
 import { AiOutlineYoutube, AiOutlineInstagram } from 'react-icons/ai';
 import { CiTwitter } from 'react-icons/ci';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const Footer = () => {
 	return (
 		<FooterWrapper>
+			<AbsoluteGrid>
+				<AbsoluteGridFirst>
+					<Grid>
+						<BlurEdges></BlurEdges>
+					</Grid>
+				</AbsoluteGridFirst>
+			</AbsoluteGrid>
 			<div className='wrapper footer-wrapper'>
 				<div className='logo'>
 					<div>
@@ -22,7 +29,7 @@ const Footer = () => {
 				<section className='footer-links'>
 					<ul className='link-items'>
 						<li>
-							<a href='/'>Home</a>
+							<a href='#0'>Home</a>
 						</li>
 						<li>
 							<a href='/pricing' target='_blank'>
@@ -30,7 +37,7 @@ const Footer = () => {
 							</a>
 						</li>
 						<li>
-							<a href='/'>Products</a>
+							<a href=''>Products</a>
 						</li>
 						<li>
 							<a href='#'>About Us</a>
@@ -69,12 +76,75 @@ const Footer = () => {
 		</FooterWrapper>
 	);
 };
+const BlurEdges = styled.div`
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 11;
+	background: radial-gradient(
+		ellipse at 50% 50%,
+		rgba(14, 20, 22, 0) 0,
+		#0e1416 80%
+	);
+`;
+const Grid = styled.div`
+	position: relative;
+	width: 100%;
+	height: 500%;
+	background-image: linear-gradient(
+			90deg,
+			hsla(0, 0%, 100%, 0.3) 1px,
+			transparent 0
+		),
+		linear-gradient(180deg, hsla(0, 0%, 100%, 0.3) 1px, transparent 0);
+	background-size: 45px 35px;
+	background-repeat: repeat;
+	transform-origin: 100% 0 0;
 
+	animation-duration: 15s;
+	animation-timing-function: linear;
+	animation-delay: 0s;
+	animation-iteration-count: infinite;
+	animation-direction: normal;
+	animation-fill-mode: none;
+	animation-play-state: running;
+	animation-name: moveGrid;
+
+	@keyframes moveGrid {
+		from {
+			transform: rotateX(45deg) translateZ(19px) translateY(-9px) skewY(10deg);
+		}
+		to {
+			transform: rotateX(45deg) translateZ(19px) translateY(-500px) skewY(10deg);
+		}
+	}
+`;
+
+const AbsoluteGrid = styled.div`
+	position: absolute;
+	width: 100%;
+	background: black;
+	height: 100%;
+	left: 0;
+
+	right: 0;
+`;
+const AbsoluteGridFirst = styled.div`
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	z-index: 10;
+	perspective: 450px;
+`;
 const FooterWrapper = styled.footer`
+	position: relative;
 	background-color: rgb(9, 9, 9);
 	color: rgb(255, 255, 255);
 	padding: 2em;
 	margin-top: 7em;
+	z-index: 123;
+	position: relative;
 
 	.footer-icon {
 		font-size: 24px;
