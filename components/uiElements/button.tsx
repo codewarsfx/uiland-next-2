@@ -85,7 +85,7 @@ const ModalButton = styled.button`
 	color: white;
 	cursor: pointer;
 	border-radius: 5px;
-	font-size: 2rem;
+	font-size: 1.2rem;
 	flex-direction: row;
 	gap: 8px;
 
