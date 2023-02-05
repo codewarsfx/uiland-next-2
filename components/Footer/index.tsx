@@ -215,6 +215,8 @@ const FooterWrapper = styled.footer`
 		display: flex;
 		align-items: center;
 		width: 85%;
+		z-index: 123;
+	position: relative;
 	}
 
 	@media (max-width: 760px) {
