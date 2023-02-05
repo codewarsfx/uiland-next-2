@@ -1,12 +1,24 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import Lottie from 'lottie-react';
+import pendingDownload from '../../public/assets/json/pendingDownload.json';
+import completedDownload from '../../public/assets/json/completedDownload.json';
 function Toast({ Progress, pendingText, successText }) {
 	return (
 		<>
 			{/* hides the toast if Progress state is 1 */}
 			{Progress !== 1 && (
 				<ToastWrapper>
-					<SmallCircle></SmallCircle>
+					//shows the lottie json if
+					{Progress == 2 ? (
+						<SmallCircle>
+							<Lottie animationData={pendingDownload} loop={true} />
+						</SmallCircle>
+					) : (
+						<SmallCircle>
+							<Lottie animationData={completedDownload} loop={true} />
+						</SmallCircle>
+					)}
 					{Progress == 2 ? (
 						<ToastTitle>{pendingText}</ToastTitle>
 					) : Progress == 3 ? (
@@ -20,12 +32,19 @@ function Toast({ Progress, pendingText, successText }) {
 	);
 }
 const SmallCircle = styled.div`
-	height: 18px;
-	width: 18px;
+	height: 38px;
+	width: 38px;
 	margin-right: 5px;
 	background: #dddddd;
 	border-radius: 50%;
 `;
+// const BigCircle = styled.div`
+// 	height: 50px;
+// 	width: 50px;
+// 	margin-right: 5px;
+// 	background: #dddddd;
+// 	border-radius: 50%;
+// `;
 const ToastWrapper = styled.div`
 	position: fixed;
 	display: block;
@@ -43,5 +62,6 @@ const ToastWrapper = styled.div`
 const ToastTitle = styled.div`
 	font-size: 20px;
 	color: #000;
+	font-weight: 500;
 `;
 export default Toast;
