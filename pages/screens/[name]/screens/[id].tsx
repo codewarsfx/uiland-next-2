@@ -396,6 +396,7 @@ export default function SinglePage({ screens }) {
 								alt={`Screenshots of ${headerInfo.name} App`}
 								width={1080}
 								height={2240}
+								unoptimized
 							/>
 						</ScreenshotContainer>
 

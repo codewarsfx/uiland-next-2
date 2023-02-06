@@ -90,6 +90,7 @@ const Screenshots = ({ screens }) => {
 							alt={`Screenshots of ${data.screen_id.name}  App`}
 							width={1080}
 							height={2240}
+							unoptimized
 						/>
 					</ScreenshotContainer>
 					<SecondRow>
