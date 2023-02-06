@@ -68,6 +68,7 @@ const GoogleButton = styled(PrimaryButton)`
 	padding-right: 15px;
     padding-left: 15px;
 	
+
 `;
 const ErrorButton = styled(PrimaryButton)`
 	color: var(--text-color-light);
