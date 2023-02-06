@@ -97,7 +97,6 @@ const Screenshots = ({ screens }) => {
 							<DeleteIcon
 								deleteIndividualBookmark={deleteIndividualBookmark}
 
-								
 								data={data.screen_id}
 							/>
 						) : (
