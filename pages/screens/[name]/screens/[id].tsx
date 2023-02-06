@@ -27,6 +27,7 @@ import {
 } from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 export default function SinglePage({ screens }) {
 	const {
@@ -175,6 +176,13 @@ export default function SinglePage({ screens }) {
 			image: '/assets/img/guide-3.png',
 		},
 	];
+	 // This function will scroll the window to the top 
+	 const scrollToTop = () => {
+		window.scrollTo({
+		  top: 0,
+		  behavior: 'smooth' // for smoothly scrolling
+		});
+	  };
 	return (
 		<>
 			{/* for SEO */}
@@ -346,6 +354,7 @@ export default function SinglePage({ screens }) {
 						className='button_modal'
 						onClick={generateZIP}
 						title='download all images'
+				
 					>
 						<img
 							src='/assets/img/download-file-icon.svg'
@@ -375,7 +384,11 @@ export default function SinglePage({ screens }) {
 			</SecondHeader>
 
 			<ElementsInCategoryContainer>
+				<ScrollTop onClick={scrollToTop} title="scroll to top">
+				<img src="/assets/img/scroll-arrow.svg"/>
+</ScrollTop>
 				{/* todo:populate with filtered data */}
+
 				{filtered?.map((data) => (
 					<ScreenShotContent key={data.id}>
 						<ScreenshotContainer>
@@ -727,6 +740,33 @@ const WebLink = styled.a`
 	text-decoration: none;
 	color: var(--primary-color);
 `;
+const ScrollTop = styled.div`
+    position: fixed;
+    bottom: 12px;
+    padding: 9px;
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+    -webkit-transform-origin: center;
+    -ms-transform-origin: center;
+    transform-origin: center;
+    cursor: pointer;
+    right: 29px;
+    z-index: 100;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 1px solid #1d1d1d;
+    background-color: white;
+    -webkit-transition: all 5ms ease-out;
+    transition: all 5ms ease-out;
+	img{
+		width:100%;
+	}
+	:hover{
+		transform: rotate(280deg);
+	}
+`
 const ElementsInCategoryContainer = styled.div`
 	position: relative;
 	display: grid;
