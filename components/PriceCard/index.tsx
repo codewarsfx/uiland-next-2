@@ -17,6 +17,8 @@ function PriceCard({
 	info1,
 	info2,
 	info3,
+	info4,
+	info5,
 	planId,
 }) {
 	const user = useContext(UserContext);
@@ -52,6 +54,18 @@ function PriceCard({
 							<CheckIcon />
 						</span>{' '}
 						{info3}
+					</p>
+					<p className='price-card-point'>
+						<span className='price-card-point-icon'>
+							<CheckIcon />
+						</span>{' '}
+						{info4}
+					</p>
+					<p className='price-card-point'>
+						<span className='price-card-point-icon'>
+							<CheckIcon />
+						</span>{' '}
+						{info5}
 					</p>
 					{planId === '' || !user ? (
 						<PaymentCta onClick={loginToggleModal}>Try Now</PaymentCta>

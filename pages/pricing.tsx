@@ -16,19 +16,23 @@ export default function Pricing() {
 			price: '0',
 			description: 'per user/month billed annually',
 			title: 'For small teams',
-			info1: 'Browse 	30	 Screens Per Company',
-			info2: 'Unlimited Filter and Search results',
+			info1: 'Browse 	30 Screens Per Company',
+			info2: 'Limited Filter and Search results',
 			info3: 'Unlimited Collections',
+			info4: 'Unlimited Single Downloads',
+			info5: 'Unlimited Batch Downloads',
 			planId: '',
 		},
 		{
 			type: 'Annual',
-			price: '22000',
+			price: '20000',
 			description: 'per user/month billed annually',
 			title: 'For small teams',
 			info1: 'Browse All Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
+			info4: 'Unlimited Single Downloads',
+			info5: 'Unlimited Batch Downloads',
 			planId: process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_ANNUALY,
 		},
 	];
@@ -42,16 +46,20 @@ export default function Pricing() {
 			info1: 'Browse 	30	 Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
+			info4: 'Unlimited Single Downloads',
+			info5: 'Unlimited Batch Downloads',
 			planId: '',
 		},
 		{
 			type: 'Bi-Annual',
-			price: '12000',
+			price: '10000',
 			description: 'per user/month billed bi-annually',
 			title: 'For small teams',
 			info1: 'Browse All Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
+			info4: 'Unlimited Single Downloads',
+			info5: 'Unlimited Batch Downloads',
 			planId: process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_BINUALLY,
 		},
 	];
@@ -64,16 +72,20 @@ export default function Pricing() {
 			info1: 'Browse 	30	 Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
+			info4: 'Unlimited Single Downloads',
+			info5: 'Unlimited Batch Downloads',
 			planId: '',
 		},
 		{
 			type: 'Quaterly',
-			price: '9000',
+			price: '6000',
 			description: 'per user/month billed quaterly',
 			title: 'For small teams',
 			info1: 'Browse All Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
+			info4: 'Unlimited Single Downloads',
+			info5: 'Unlimited Batch Downloads',
 			planId: process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_QUATERLY,
 		},
 	];
@@ -117,7 +129,7 @@ export default function Pricing() {
 			</section>
 			<section className='pricing-text pricing-text--description'>
 				<h3>
-					For subscribers outside Nigeria , please check the{' '}
+					{/* For subscribers outside Nigeria , please check the{' '}
 					<a
 						href='https://www.cbn.gov.ng/rates/ExchRateByCurrency.asp'
 						style={{ textDecoration: 'underline', textAlign: 'center' }}
@@ -125,7 +137,9 @@ export default function Pricing() {
 						rel='noreferrer'
 					>
 						Official Central Bank of Nigeria Exchange Rates
-					</a>
+					</a> */}
+					If Uiland doesn&lsquo;t help you in your design process, just tell us
+					and we&lsquo;ll refund your money in full&#128157;
 				</h3>
 			</section>
 			<section className='price-cards'>
@@ -145,6 +159,8 @@ export default function Pricing() {
 								info1={items.info1}
 								info2={items.info2}
 								info3={items.info3}
+								info4={items.info4}
+								info5={items.info5}
 								planId={items.planId}
 							/>
 						);
@@ -166,6 +182,8 @@ export default function Pricing() {
 								info1={items.info1}
 								info2={items.info2}
 								info3={items.info3}
+								info4={items.info4}
+								info5={items.info5}
 								planId={items.planId}
 							/>
 						);
@@ -187,6 +205,8 @@ export default function Pricing() {
 								info1={items.info1}
 								info2={items.info2}
 								info3={items.info3}
+								info4={items.info4}
+								info5={items.info5}
 								planId={items.planId}
 							/>
 						);
