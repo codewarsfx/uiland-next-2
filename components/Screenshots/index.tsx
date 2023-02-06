@@ -96,6 +96,7 @@ const Screenshots = ({ screens }) => {
 						{getId.includes(data.screen_id.id) ? (
 							<DeleteIcon
 								deleteIndividualBookmark={deleteIndividualBookmark}
+
 								
 								data={data.screen_id}
 							/>
