@@ -271,6 +271,7 @@ const Main = styled.main`
 		margin-left: auto;
 		font-weight: 500;
 	}
+	
 	.profile-details-summary {
 		font-size: 20px;
 		letter-spacing: 2px;
