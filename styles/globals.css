@@ -112,7 +112,7 @@ select {
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
 	margin: 0;
-	border-color: #6f7181;
+	border: 2px solid #bac1d8;
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	appearance: none;
