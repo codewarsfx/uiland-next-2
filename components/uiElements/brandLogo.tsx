@@ -14,7 +14,7 @@ const BrandLogoCotainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	border-radius: 12px;
-	
+
 	background: white;
 	overflow: hidden;
 	border: 1px solid #dddddd;

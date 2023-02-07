@@ -124,29 +124,34 @@ const useScreenshot = (screens) => {
 	}, [user]);
 
 	useEffect(() => {
-		async function getPayingUser() {
-			if (user) {
-				let getEvent = await getProfileByEvent(user);
+		setLimitedScreens(screens);
+	}, [screens]);
 
-				if (
-					JSON.stringify(getEvent) === JSON.stringify([]) ||
-					getEvent[0].event === null ||
-					getEvent[0].event === undefined ||
-					getEvent[0].event === ''
-				) {
-					const result = screens.slice(0, 40);
-					setLimitedScreens(result);
-				} else {
-					setPayingBanner(getEvent[0].event);
-					setLimitedScreens(screens);
-				}
-			} else {
-				const result = screens.slice(0, 40);
-				setLimitedScreens(result);
-			}
-		}
-		getPayingUser();
-	}, [screens, user]);
+	//show unlimited screens to paid users
+	// useEffect(() => {
+	// 	async function getPayingUser() {
+	// 		if (user) {
+	// 			let getEvent = await getProfileByEvent(user);
+
+	// 			if (
+	// 				JSON.stringify(getEvent) === JSON.stringify([]) ||
+	// 				getEvent[0].event === null ||
+	// 				getEvent[0].event === undefined ||
+	// 				getEvent[0].event === ''
+	// 			) {
+	// 				const result = screens.slice(0, 40);
+	// 				setLimitedScreens(result);
+	// 			} else {
+	// 				setPayingBanner(getEvent[0].event);
+	// 				setLimitedScreens(screens);
+	// 			}
+	// 		} else {
+	// 			const result = screens.slice(0, 40);
+	// 			setLimitedScreens(result);
+	// 		}
+	// 	}
+	// 	getPayingUser();
+	// }, [screens, user]);
 
 	//omitting the [  ] here caused a massive render :(
 	useEffect(() => {
@@ -229,32 +234,47 @@ const useScreenshot = (screens) => {
 	}
 
 	async function generateZIP() {
-		var zip = new JSZip();
-		var count = 0;
-		var zipFilename = 'images_bundle.zip';
-		// we will download these images in zip file
+		if (user) {
+			let getEvent = await getProfileByEvent(user);
 
-		filtered?.forEach(async function (imgURL, i) {
-			//show toast
-			setProgress(2);
-			setToastPendingText('Downloading All Images...');
-			const id = i + 1;
-			var filename = 'image' + -+id + '.png';
-			var image = await fetch(imgURL.url);
-			var imageBlog = await image.blob();
-			var img = zip.folder('images');
-			// loading a file and add it in a zip file
-			img.file(filename, imageBlog, { binary: true });
-			count++;
-			if (count == filtered?.length) {
-				zip.generateAsync({ type: 'blob' }).then(function (content) {
-					saveAs(content, zipFilename);
-					setToastSuccessText('Downloaded 🎉');
-					setProgress(3);
-					toastNotification(1);
+			if (
+				JSON.stringify(getEvent) === JSON.stringify([]) ||
+				getEvent[0].event === null ||
+				getEvent[0].event === undefined ||
+				getEvent[0].event === ''
+			) {
+				Router.push('/pricing');
+			} else {
+				var zip = new JSZip();
+				var count = 0;
+				var zipFilename = 'images_bundle.zip';
+				// we will download these images in zip file
+
+				filtered?.forEach(async function (imgURL, i) {
+					//show toast
+					setProgress(2);
+					setToastPendingText('Downloading All Images...');
+					const id = i + 1;
+					var filename = 'image' + -+id + '.png';
+					var image = await fetch(imgURL.url);
+					var imageBlog = await image.blob();
+					var img = zip.folder('images');
+					// loading a file and add it in a zip file
+					img.file(filename, imageBlog, { binary: true });
+					count++;
+					if (count == filtered?.length) {
+						zip.generateAsync({ type: 'blob' }).then(function (content) {
+							saveAs(content, zipFilename);
+							setToastSuccessText('Downloaded 🎉');
+							setProgress(3);
+							toastNotification(1);
+						});
+					}
 				});
 			}
-		});
+		} else {
+			Router.push('/pricing');
+		}
 	}
 
 	const copy = async () => {
@@ -348,49 +368,57 @@ const useScreenshot = (screens) => {
 	}
 	//function to download the individual images
 	async function downloadImage() {
-		gtag.event('click_download', 'general', 'download', 'imageUrl');
-		setProgress(2);
-		setToastPendingText('Downloading...');
+		if (user) {
+			gtag.event('click_download', 'general', 'download', 'imageUrl');
+			setProgress(2);
+			setToastPendingText('Downloading...');
 
-		//fetches the image
-		const image = await fetch(imageUrl);
+			//fetches the image
+			const image = await fetch(imageUrl);
 
-		//converts it to a blob
-		const imageBlog = await image.blob();
+			//converts it to a blob
+			const imageBlog = await image.blob();
 
-		const imageURL = URL.createObjectURL(imageBlog);
+			const imageURL = URL.createObjectURL(imageBlog);
 
-		//creates the a tag for download to happen <a download="image file name here" href="url"></a>
-		const link = document.createElement('a');
-		link.href = imageURL;
-		link.download = 'image file name here';
-		document.body.appendChild(link);
-		link.click();
-		document.body.removeChild(link);
-		setToastSuccessText('Downloaded 🎉');
-		setProgress(3);
-		toastNotification(1);
+			//creates the a tag for download to happen <a download="image file name here" href="url"></a>
+			const link = document.createElement('a');
+			link.href = imageURL;
+			link.download = 'image file name here';
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+			setToastSuccessText('Downloaded 🎉');
+			setProgress(3);
+			toastNotification(1);
+		} else {
+			loginToggleModal();
+		}
 	}
 	async function copyImage() {
-		gtag.event('click_copy', 'general', 'copy', 'copied');
-		//contains a url in this format
-		// "http://localhost:3000/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fuiland.appspot.com%2Fo%2FCowrywise%252FCowrywise-screens%252FScreenshot_2022-10-13-14-46-21-882_com.cowrywise.android-min.jpg%3Falt%3Dmedia%26token%3D3efdba80-8ec5-463a-9466-317f9247a6c3&w=1080&q=75"
-		//which contains the prefetched images
-		// This prevents cors error while getting the images
-		setProgress(2);
-		setToastPendingText('Copying');
-		const response = await fetch(imageUrl);
+		if (user) {
+			gtag.event('click_copy', 'general', 'copy', 'copied');
+			//contains a url in this format
+			// "http://localhost:3000/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fuiland.appspot.com%2Fo%2FCowrywise%252FCowrywise-screens%252FScreenshot_2022-10-13-14-46-21-882_com.cowrywise.android-min.jpg%3Falt%3Dmedia%26token%3D3efdba80-8ec5-463a-9466-317f9247a6c3&w=1080&q=75"
+			//which contains the prefetched images
+			// This prevents cors error while getting the images
+			setProgress(2);
+			setToastPendingText('Copying');
+			const response = await fetch(imageUrl);
 
-		const blob = await response.blob();
+			const blob = await response.blob();
 
-		navigator.clipboard.write([
-			new window.ClipboardItem({
-				[blob.type]: blob,
-			}),
-		]);
-		setToastSuccessText('Copied Image');
-		setProgress(3);
-		toastNotification(1);
+			navigator.clipboard.write([
+				new window.ClipboardItem({
+					[blob.type]: blob,
+				}),
+			]);
+			setToastSuccessText('Copied Image');
+			setProgress(3);
+			toastNotification(1);
+		} else {
+			loginToggleModal();
+		}
 	}
 	//util for toast notification
 	const toastNotification = (state) => {
@@ -413,7 +441,6 @@ const useScreenshot = (screens) => {
 				toastNotification(1);
 			}
 		} else {
-			//add modal later
 			loginToggleModal();
 		}
 	}

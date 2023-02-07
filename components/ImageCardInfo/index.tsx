@@ -55,7 +55,7 @@ function ImageCardInfo({ headerInfo, count, actualCount }) {
 							{count} screen{count > 1 && 's'}
 						</h3>{' '}
 					</ImageCardInfoName>
-					<h3>{actualCount} screens available</h3>
+					{/* <h3>{actualCount} screens available</h3> */}
 				</ImageCardInfoWrapper>
 			</CardWrapper>
 		</>

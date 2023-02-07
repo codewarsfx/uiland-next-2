@@ -16,23 +16,24 @@ export default function Pricing() {
 			price: '0',
 			description: 'per user/month billed annually',
 			title: 'For small teams',
-			info1: 'Browse 	40 Screens Per Company',
-			info2: 'Limited Filter and Search results',
+			info1: 'Browse 	All Screens Per Company',
+			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
 			info4: 'Unlimited Single Downloads',
-			info5: 'Unlimited Batch Downloads',
+
 			planId: '',
 		},
 		{
 			type: 'Annual',
-			price: '20000',
+			price: '9000',
 			description: 'per user/month billed annually',
 			title: 'For small teams',
 			info1: 'Browse All Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
 			info4: 'Unlimited Single Downloads',
-			info5: 'Unlimited Batch Downloads',
+			info5: 'Batch Downloads',
+			info6: 'Version Travel',
 			planId: process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_ANNUALY,
 		},
 	];
@@ -43,23 +44,24 @@ export default function Pricing() {
 			price: '0',
 			description: 'per user/month billed bi-annually',
 			title: 'For small teams',
-			info1: 'Browse 	40	 Screens Per Company',
+			info1: 'Browse 	All	 Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
 			info4: 'Unlimited Single Downloads',
-			info5: 'Unlimited Batch Downloads',
+
 			planId: '',
 		},
 		{
 			type: 'Bi-Annual',
-			price: '10000',
+			price: '5000',
 			description: 'per user/month billed bi-annually',
 			title: 'For small teams',
 			info1: 'Browse All Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
 			info4: 'Unlimited Single Downloads',
-			info5: 'Unlimited Batch Downloads',
+			info5: 'Batch Downloads',
+			info6: 'Version Travel',
 			planId: process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_BINUALLY,
 		},
 	];
@@ -69,23 +71,24 @@ export default function Pricing() {
 			price: '0',
 			description: 'per user/month billed quaterly',
 			title: 'For small teams',
-			info1: 'Browse 	40	 Screens Per Company',
+			info1: 'Browse 	All	 Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
 			info4: 'Unlimited Single Downloads',
-			info5: 'Unlimited Batch Downloads',
+
 			planId: '',
 		},
 		{
 			type: 'Quaterly',
-			price: '6000',
+			price: '2000',
 			description: 'per user/month billed quaterly',
 			title: 'For small teams',
 			info1: 'Browse All Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
 			info4: 'Unlimited Single Downloads',
-			info5: 'Unlimited Batch Downloads',
+			info5: 'Batch Downloads',
+			info6: 'Version Travel',
 			planId: process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_QUATERLY,
 		},
 	];
@@ -161,6 +164,7 @@ export default function Pricing() {
 								info3={items.info3}
 								info4={items.info4}
 								info5={items.info5}
+								info6={items.info6}
 								planId={items.planId}
 							/>
 						);
@@ -184,6 +188,7 @@ export default function Pricing() {
 								info3={items.info3}
 								info4={items.info4}
 								info5={items.info5}
+								info6={items.info6}
 								planId={items.planId}
 							/>
 						);
@@ -207,6 +212,7 @@ export default function Pricing() {
 								info3={items.info3}
 								info4={items.info4}
 								info5={items.info5}
+								info6={items.info6}
 								planId={items.planId}
 							/>
 						);
@@ -256,6 +262,7 @@ const PricingWrapper = styled.div`
 		color: #666;
 		border: none;
 		padding: 0.9em 2.1em;
+		font-weight: 500;
 		margin: 0;
 		font-size: 14px;
 		background-color: inherit;

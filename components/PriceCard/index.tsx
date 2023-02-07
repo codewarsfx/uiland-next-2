@@ -19,6 +19,7 @@ function PriceCard({
 	info3,
 	info4,
 	info5,
+	info6,
 	planId,
 }) {
 	const user = useContext(UserContext);
@@ -61,12 +62,22 @@ function PriceCard({
 						</span>{' '}
 						{info4}
 					</p>
-					<p className='price-card-point'>
-						<span className='price-card-point-icon'>
-							<CheckIcon />
-						</span>{' '}
-						{info5}
-					</p>
+					{info5 && (
+						<p className='price-card-point'>
+							<span className='price-card-point-icon'>
+								<CheckIcon />
+							</span>{' '}
+							{info5}
+						</p>
+					)}
+					{info6 && (
+						<p className='price-card-point'>
+							<span className='price-card-point-icon'>
+								<CheckIcon />
+							</span>{' '}
+							{info6}
+						</p>
+					)}
 					{planId === '' || !user ? (
 						<PaymentCta onClick={loginToggleModal}>Try Now</PaymentCta>
 					) : (
