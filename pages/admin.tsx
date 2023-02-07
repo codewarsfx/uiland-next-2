@@ -14,10 +14,10 @@ function Admin() {
 				if (!available.includes(image)) {
 					if (input === 'yes') {
 						const data = getImage(company, image);
-						console.log(data);
+
 						const red = await addImagesToScreens(screenIds, id, data.publicUrl);
-						console.log(red);
-						console.log(image);
+						// console.log(red);
+						// console.log(image);
 						setAvaliable((prev) => {
 							return [...prev, image];
 						});
@@ -28,7 +28,7 @@ function Admin() {
 		getAllImages();
 	}, [input]);
 
-	console.log(available);
+	// console.log(available);
 	function handleChange(e) {
 		setInput(e.target.value);
 	}

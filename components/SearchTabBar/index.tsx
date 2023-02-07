@@ -29,7 +29,6 @@ const SearchTabBar = () => {
 		const lowerCaseAll = input.toLowerCase();
 		const firstInputCapitalized =
 			lowerCaseAll.charAt(0).toUpperCase() + lowerCaseAll.slice(1);
-		console.log(firstInputCapitalized);
 		setFilterItemName(firstInputCapitalized);
 	}, [input, setFilterItemName]);
 	return (

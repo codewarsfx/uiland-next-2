@@ -24,7 +24,6 @@ export async function signInWithGoogle() {
 			? 'https://uiland.design'
 			: 'http://localhost:3000/';
 
-	console.log(redirectUrl);
 	const { data, error } = await supabase.auth.signInWithOAuth({
 		provider: 'google',
 		options: {
@@ -332,6 +331,6 @@ export async function addImagesToScreens(
 			order: 3800 + id,
 		})
 		.select();
-	console.log(data);
+
 	return data;
 }

@@ -47,7 +47,6 @@ const PaystackPayment = ({ plan }) => {
 	const initializePayment = usePaystackPayment(config);
 
 	const onSuccess = async (reference: referenceObj) => {
-		console.log(reference);
 		const download = await fetch('/api/paystack', {
 			method: 'POST',
 			headers: {

@@ -18,7 +18,6 @@ export default function Profile({ user }) {
 			if (user || user?.id) {
 				const userDetails = await getUserProfile(user);
 				setUserProfile(userDetails);
-				console.log(userDetails);
 			}
 		}
 		getProfile();
@@ -271,7 +270,7 @@ const Main = styled.main`
 		margin-left: auto;
 		font-weight: 500;
 	}
-	
+
 	.profile-details-summary {
 		font-size: 20px;
 		letter-spacing: 2px;

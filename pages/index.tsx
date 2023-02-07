@@ -17,7 +17,6 @@ const Home = ({ screens }) => {
 	const [result, setResult] = useState([]);
 
 	const searchFilter = (array, data) => {
-		console.log(data);
 		if (data === '') return array;
 		return array.filter((el) => el.category.includes(data));
 	};
