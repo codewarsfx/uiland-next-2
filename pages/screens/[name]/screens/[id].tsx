@@ -151,7 +151,7 @@ export default function SinglePage({ screens }) {
 			id: 4,
 			title1: 'PICK YOUR FAVOURITES',
 			title2:
-				'Create a list of Favourite photos to share with your friends ,family, and photographers',
+				'Create a list of Favourite photos to share with your friends ,family, developers and designers',
 			image: '/assets/img/guide-4.png',
 		},
 		{
