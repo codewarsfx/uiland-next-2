@@ -348,7 +348,7 @@ const useScreenshot = (screens) => {
 	}
 	//function to download the individual images
 	async function downloadImage() {
-		gtag.event('click_download', 'general', 'download', imageUrl);
+		gtag.event('click_download', 'general', 'download', 'imageUrl');
 		setProgress(2);
 		setToastPendingText('Downloading...');
 
@@ -372,7 +372,7 @@ const useScreenshot = (screens) => {
 		toastNotification(1);
 	}
 	async function copyImage() {
-		gtag.event('click_copy', 'general', 'copy', imageUrl);
+		gtag.event('click_copy', 'general', 'copy', 'copied');
 		//contains a url in this format
 		// "http://localhost:3000/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fuiland.appspot.com%2Fo%2FCowrywise%252FCowrywise-screens%252FScreenshot_2022-10-13-14-46-21-882_com.cowrywise.android-min.jpg%3Falt%3Dmedia%26token%3D3efdba80-8ec5-463a-9466-317f9247a6c3&w=1080&q=75"
 		//which contains the prefetched images
