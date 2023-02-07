@@ -134,14 +134,14 @@ const useScreenshot = (screens) => {
 					getEvent[0].event === undefined ||
 					getEvent[0].event === ''
 				) {
-					const result = screens.slice(0, 30);
+					const result = screens.slice(0, 40);
 					setLimitedScreens(result);
 				} else {
 					setPayingBanner(getEvent[0].event);
 					setLimitedScreens(screens);
 				}
 			} else {
-				const result = screens.slice(0, 30);
+				const result = screens.slice(0, 40);
 				setLimitedScreens(result);
 			}
 		}

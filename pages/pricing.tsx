@@ -16,7 +16,7 @@ export default function Pricing() {
 			price: '0',
 			description: 'per user/month billed annually',
 			title: 'For small teams',
-			info1: 'Browse 	30 Screens Per Company',
+			info1: 'Browse 	40 Screens Per Company',
 			info2: 'Limited Filter and Search results',
 			info3: 'Unlimited Collections',
 			info4: 'Unlimited Single Downloads',
@@ -43,7 +43,7 @@ export default function Pricing() {
 			price: '0',
 			description: 'per user/month billed bi-annually',
 			title: 'For small teams',
-			info1: 'Browse 	30	 Screens Per Company',
+			info1: 'Browse 	40	 Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
 			info4: 'Unlimited Single Downloads',
@@ -69,7 +69,7 @@ export default function Pricing() {
 			price: '0',
 			description: 'per user/month billed quaterly',
 			title: 'For small teams',
-			info1: 'Browse 	30	 Screens Per Company',
+			info1: 'Browse 	40	 Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
 			info4: 'Unlimited Single Downloads',
@@ -138,8 +138,8 @@ export default function Pricing() {
 					>
 						Official Central Bank of Nigeria Exchange Rates
 					</a> */}
-					If Uiland doesn&lsquo;t help you in your design process, just tell us
-					and we&lsquo;ll refund your money in full&#128157;
+					{/* If Uiland doesn&lsquo;t help you in your design process, just tell us
+					and we&lsquo;ll refund your money in full&#128157; */}
 				</h3>
 			</section>
 			<section className='price-cards'>

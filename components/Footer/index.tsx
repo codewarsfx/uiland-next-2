@@ -57,6 +57,9 @@ const Footer = () => {
 						<li>
 							<a href='#'>Privacy Policies</a>
 						</li>
+						<li>
+							<a href='mailto:design@uiland.design'>Contact Us</a>
+						</li>
 					</ul>
 				</section>
 
