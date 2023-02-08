@@ -153,14 +153,14 @@ const LandingPage = styled.div`
 	}
 
 	//remeber to create a grid style pattern like crunnicify.com
-	.grid-stars {
+	/* .grid-stars {
 		background: white;
 		border-top-left-radius: 0;
 		border-top-right-radius: 3px;
 		border-bottom-left-radius: 3px;
-		/* border-radius: 4px; */
+		 border-radius: 4px; 
 		position: relative;
-		/* margin: 0 1px 1px 0; */
+		 margin: 0 1px 1px 0; 
 		z-index: 10;
 	}
 	.grid {
@@ -170,7 +170,7 @@ const LandingPage = styled.div`
 		grid-template-rows: repeat(10, 10vh);
 		height: 100vh;
 		display: grid;
-	}
+	} */
 
 	.outer-ring {
 		display: flex;
@@ -264,17 +264,7 @@ const LandingPage = styled.div`
 		background-position: center;
 		animation: spin 12s linear infinite;
 	}
-	/* .outer-ring7::before {
-		height: 25px;
-		width: 25px;
-    content:'';
-    position:absolute;
-    top:-31px;
-    background: white;border-radius:50%;
-    animation: spin 12s linear infinite;
-
-    
-	} */
+	
 
 	.outer-ring2 {
 		height: 450px;
@@ -301,10 +291,7 @@ const LandingPage = styled.div`
 		width: 5px;
 	}
 
-	/* .outer-ring8 {
-		height: 200px;
-		width: 200px;
-	} */
+
 
 	@keyframes spin1 {
 		0% {
