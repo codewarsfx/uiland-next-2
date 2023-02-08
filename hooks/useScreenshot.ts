@@ -61,6 +61,7 @@ const useScreenshot = (screens) => {
 
 	const [Progress, setProgress] = useState(1);
 	const [headerInfo, setHeaderInfo] = useState<{
+		timeTravel: any;
 		url: string;
 		name: string;
 		logo: string;
@@ -70,6 +71,8 @@ const useScreenshot = (screens) => {
 		logo: '',
 		id: '',
 		url: '',
+		timeTravel:[]
+
 	});
 	const [payingUser, setPayingUser] = useState('');
 
@@ -161,7 +164,7 @@ const useScreenshot = (screens) => {
 		};
 		getHeaderInfo();
 	}, [router.query.id]);
-
+console.log(headerInfo)
 	//checker to empty the bookmark names select field if the user has deleted all his bookmarked images
 	useEffect(() => {
 		if (!getId) {

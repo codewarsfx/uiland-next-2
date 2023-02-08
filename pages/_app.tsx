@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { hotjar } from 'react-hotjar';
-
+import { Analytics } from '@vercel/analytics/react';
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { SessionContextProvider } from '@supabase/auth-helpers-react';
 import { useState } from 'react';
@@ -148,6 +148,7 @@ export default function App({
 					</Head>
 					<Header />
 					<Component {...pageProps} />
+					<Analytics />
 				</ScreensContextProvider>
 			</UserContextProvider>
 		</SessionContextProvider>

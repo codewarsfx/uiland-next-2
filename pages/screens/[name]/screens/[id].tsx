@@ -27,7 +27,7 @@ import {
 } from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
+
 
 export default function SinglePage({ screens }) {
 	const {
@@ -183,6 +183,7 @@ export default function SinglePage({ screens }) {
 			behavior: 'smooth', // for smoothly scrolling
 		});
 	};
+	console.log(headerInfo.timeTravel.map((time)=>new Date(time).toLocaleString()))
 	return (
 		<>
 			{/* for SEO */}

@@ -15,6 +15,7 @@
 		"@supabase/auth-helpers-nextjs": "^0.5.4",
 		"@supabase/auth-helpers-react": "^0.3.1",
 		"@supabase/supabase-js": "^2.2.3",
+		"@vercel/analytics": "^0.1.8",
 		"axios": "^1.2.2",
 		"crypto": "^1.0.1",
 		"file-saver": "^2.0.5",
