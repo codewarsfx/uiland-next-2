@@ -214,16 +214,14 @@ export default function SinglePage({ screens }) {
 		];
 
 		//stores the travel history in storedStates state
-		timeHost.map((item: string) => {
-			setStoredStates((prev) => [...prev, item]);
-		});
+	
 
 		//this is to remove the last date from the travel history which
 		//isnt needed in the UI because it is a date that is used for comparison to find the oldest travel history
-		const changedArray = storedstates;
+	
 
-		changedArray.pop();
-		changedArray.forEach((time) => {
+		timeHost.pop();
+		timeHost.forEach((time) => {
 			//gets the month
 			const month = new Date(time).getMonth();
 			//gets the year
@@ -442,7 +440,7 @@ export default function SinglePage({ screens }) {
 					<CategoryTabWrapper>
 						{
 							<>
-								{getPeriod&&getPeriod.map((result, id, arr) => {
+								{JSON.stringify(getPeriod) !== JSON.stringify([])&&getPeriod.map((result, id, arr) => {
 									return (
 										<Pill key={id} type={pillsTypes.category}>
 											<button
