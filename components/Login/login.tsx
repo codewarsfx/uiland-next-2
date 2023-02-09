@@ -79,6 +79,9 @@ const LoginContainer = styled.div`
 	padding: 32px 0;
 	box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.4);
 	position: relative;
+	svg{
+		max-width:50px;
+	}
 	img {
 		width: 5rem;
 		transform-origin: 100% 0;
