@@ -81,6 +81,7 @@ export default function SinglePage({ screens }) {
 		generateZIP,
 		onClickPill,
 		pillStatus,
+		timeHost
 	} = useScreenshot(screens);
 
 	const [visits, setVisits] = useState<number>();
@@ -213,7 +214,7 @@ export default function SinglePage({ screens }) {
 		];
 
 		//stores the travel history in storedStates state
-		headerInfo.timeTravel.map((item: string) => {
+		timeHost.map((item: string) => {
 			setStoredStates((prev) => [...prev, item]);
 		});
 
@@ -235,7 +236,7 @@ export default function SinglePage({ screens }) {
 			});
 		});
 		//adding this dependency works for now
-	}, [headerInfo.timeTravel]);
+	}, [timeHost]);
 
 	return (
 		<>

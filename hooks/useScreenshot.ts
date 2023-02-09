@@ -114,6 +114,8 @@ const useScreenshot = (screens) => {
 	//state to display the filters
 	const [elementsCategoryData, setElementsCategoryData] = useState([]);
 
+	const [timeHost,setTimeHost]=useState([]);
+
 	const [indiscreens, setIndiScreens] = useState([]);
 	useEffect(() => {
 		async function getIndividualScreens() {
@@ -256,6 +258,15 @@ const useScreenshot = (screens) => {
 		const getHeaderInfo = async () => {
 			const data = await getScreensProperties(router.query.id);
 			setHeaderInfo(data);
+		};
+		getHeaderInfo();
+	}, [router.query.id]);
+
+
+	useEffect(() => {
+		const getHeaderInfo = async () => {
+			const data = await getScreensProperties(router.query.id);
+			setTimeHost(data.timeTravel);
 		};
 		getHeaderInfo();
 	}, [router.query.id]);
@@ -595,6 +606,7 @@ const useScreenshot = (screens) => {
 
 	return {
 		headerInfo,
+		timeHost,
 		indiscreens,
 		toggleBottomSheet,
 		downloadImage,
