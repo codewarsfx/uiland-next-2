@@ -38,7 +38,7 @@ export async function getAllScreens() {
 	let { data: Screens, error } = await supabase
 		.from('Screens')
 		.select('*')
-		.order('created_at', { ascending: false });
+		.order('created_at', { ascending: true });
 	// Screens.forEach((res)=>{
 	//   return res['user'] = "a4f0bf66-2a36-4b4f-bf8b-b082cf9aa5c4"
 	// })
@@ -318,6 +318,7 @@ export function getImage(company, image) {
 	return data;
 }
 
+//my magic tool
 export async function addImagesToScreens(
 	screenId: string,
 	id: number,
@@ -328,9 +329,17 @@ export async function addImagesToScreens(
 		.insert({
 			screenId: screenId,
 			url: url,
-			order: 3800 + id,
+			order: 4000 + id,
 		})
 		.select();
 
 	return data;
+}
+
+//get the range of dates wwithin a period
+export async function getRange() {
+	const { data, error } = await supabase
+		.from('screenImages')
+		.select()
+		.rangeLte('created_at', '[2023-01-01 14:00, 2023-03-01 16:00)');
 }

@@ -264,7 +264,6 @@ const LandingPage = styled.div`
 		background-position: center;
 		animation: spin 12s linear infinite;
 	}
-	
 
 	.outer-ring2 {
 		height: 450px;
@@ -290,8 +289,6 @@ const LandingPage = styled.div`
 		height: 5px;
 		width: 5px;
 	}
-
-
 
 	@keyframes spin1 {
 		0% {

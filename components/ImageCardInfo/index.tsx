@@ -17,7 +17,6 @@ function ImageCardInfo({ headerInfo, count, actualCount }) {
 				</Link>
 				<ImageCardInfoWrapper>
 					<ImageCardWrappers>
-					
 						<ImageCardInfoName>
 							<h1 className='big'>
 								{' '}
@@ -29,7 +28,8 @@ function ImageCardInfo({ headerInfo, count, actualCount }) {
 								>
 									{headerInfo.name}
 								</a>
-							</h1>&nbsp;	<div>
+							</h1>{' '}
+							<div>
 								<svg
 									viewBox='0 0 24 24'
 									aria-label='Verified account'

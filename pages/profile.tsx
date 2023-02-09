@@ -22,7 +22,6 @@ export default function Profile({ user }) {
 		}
 		getProfile();
 	}, [user]);
-	
 
 	//response from the backend
 

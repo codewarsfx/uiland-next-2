@@ -61,7 +61,8 @@ const useScreenshot = (screens) => {
 
 	const [Progress, setProgress] = useState(1);
 	const [headerInfo, setHeaderInfo] = useState<{
-		timeTravel: any;
+		created_at: string;
+		timeTravel: string[];
 		url: string;
 		name: string;
 		logo: string;
@@ -71,8 +72,8 @@ const useScreenshot = (screens) => {
 		logo: '',
 		id: '',
 		url: '',
-		timeTravel:[]
-
+		timeTravel: [],
+		created_at: '',
 	});
 	const [payingUser, setPayingUser] = useState('');
 
@@ -102,10 +103,13 @@ const useScreenshot = (screens) => {
 	>([{ elementCategory: '', id: '', url: '' }]);
 
 	//state to display the  paying banner
-	const [payingbanner, setPayingBanner] = useState<string>('');
+	const [payingbanner, setPayingBanner] = useState<string>('inactive');
 	const [getId, setGetId] = useState<[{ screen_id: '' }] | any>([
 		{ screen_id: '' },
 	]);
+
+	//state to set the active status of pill
+	const [pillStatus, setPillStatus] = useState<number>(0);
 
 	//state to display the filters
 	const [elementsCategoryData, setElementsCategoryData] = useState([]);
@@ -127,8 +131,101 @@ const useScreenshot = (screens) => {
 	}, [user]);
 
 	useEffect(() => {
-		setLimitedScreens(screens);
-	}, [screens]);
+		// console.log(screens.filter((item) =>{
+		// return	new Date(headerInfo.created_at).setDate(new Date(headerInfo.created_at).getDate() + 0) < new Date(item.created_at).setDate(new Date(item.created_at).getDate() + 5)
+		// }))
+
+		// console.log(headerInfo)
+		// const date= new Date(screens[0].created_at)
+		// console.log(new Date(screens[0].created_at).setDate(date.getDate() + 0))
+		// console.log(date.setDate(date.getDate() + 5))
+		// console.log(screens[0].created_at < "2023-01-08T02:35:37+00:00" )
+
+		//this logic displays all the first version of screens of a company .
+		//This function displays all the screens that were created lesss than 5 days
+		//after the company table was created. This is to version this category as the first versions of screens
+		if (JSON.stringify(headerInfo.timeTravel) !== JSON.stringify([])) {
+			setLimitedScreens(
+				screens.filter((item) => {
+					return (
+						new Date(item.created_at).setDate(
+							new Date(item.created_at).getDate()
+						) >
+						new Date(headerInfo.timeTravel[0]).setDate(
+							new Date(headerInfo.timeTravel[0]).getDate() + 0
+						)
+					);
+				})
+			);
+		} else {
+			setLimitedScreens(screens);
+		}
+	}, [headerInfo, screens]);
+
+	async function onClickPill(id, arr) {
+		//stores id in pillstatus state
+		setPillStatus(id);
+
+		//function that runs if the first pill is selected
+		if (id === 0) {
+			setLimitedScreens(
+				screens.filter((item: { created_at: '' }) => {
+					// make the timetravel value  less than the createddate to enable it be filtered
+					//had to make sure that the first date on timeTravel array is lesser than the first version of the application to
+					//ensure that only the first set of screens are displayed
+					return (
+						new Date(item.created_at).setDate(
+							new Date(item.created_at).getDate()
+						) >
+						new Date(headerInfo.timeTravel[id]).setDate(
+							new Date(headerInfo.timeTravel[id]).getDate() + 0
+						)
+					);
+				})
+			);
+		}
+
+		//function that runs if the last pill is selected
+		else if (id === arr.length - 1) {
+			// console.log(headerInfo.timeTravel[id])
+			// console.log(screens[0].created_at)
+			// console.log(new Date(headerInfo.timeTravel[id]).setDate(new Date(headerInfo.timeTravel[id]).getDate() + 0))
+			// console.log(new Date(screens[0].created_at).setDate(new Date(screens[0].created_at).getDate() + 0))
+			setLimitedScreens(
+				screens.filter((item: { created_at: '' }) => {
+					return (
+						new Date(item.created_at).setDate(
+							new Date(item.created_at).getDate() + 0
+						) <
+						new Date(headerInfo.timeTravel[arr.length - 1]).setDate(
+							new Date(headerInfo.timeTravel[arr.length - 1]).getDate() + 0
+						)
+					);
+				})
+			);
+		} else {
+			// console.log(new Date(headerInfo.timeTravel[id+1]).setDate(new Date(headerInfo.timeTravel[id+1]).getDate() + 0))
+			// console.log(new Date(headerInfo.timeTravel[id+1]).setDate(new Date(headerInfo.timeTravel[id]).getDate() + 0))
+			setLimitedScreens(
+				screens.filter((item: { created_at: '' }) => {
+					return (
+						new Date(headerInfo.timeTravel[id + 1]).setDate(
+							new Date(headerInfo.timeTravel[id + 1]).getDate() + 0
+						) <
+							new Date(headerInfo.timeTravel[id]).setDate(
+								new Date(headerInfo.timeTravel[id]).getDate() + 0
+							) &&
+						new Date(headerInfo.timeTravel[id - 1]).setDate(
+							new Date(headerInfo.timeTravel[id - 1]).getDate() + 0
+						) >
+							new Date(headerInfo.timeTravel[id]).setDate(
+								new Date(headerInfo.timeTravel[id]).getDate() + 0
+							)
+					);
+				})
+			);
+		}
+	}
 
 	//show unlimited screens to paid users
 	// useEffect(() => {
@@ -164,7 +261,7 @@ const useScreenshot = (screens) => {
 		};
 		getHeaderInfo();
 	}, [router.query.id]);
-console.log(headerInfo)
+
 	//checker to empty the bookmark names select field if the user has deleted all his bookmarked images
 	useEffect(() => {
 		if (!getId) {
@@ -541,6 +638,8 @@ console.log(headerInfo)
 		router,
 		bookmarkk,
 		generateZIP,
+		onClickPill,
+		pillStatus,
 	};
 };
 

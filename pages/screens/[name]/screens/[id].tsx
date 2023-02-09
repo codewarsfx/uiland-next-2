@@ -5,7 +5,14 @@ import Image from 'next/image';
 import styled from 'styled-components';
 
 // Components
-import { BottomSheet, Button, Toast } from '../../../../components/uiElements';
+import {
+	BottomSheet,
+	Button,
+	Toast,
+	Pill,
+} from '../../../../components/uiElements';
+
+import { pillsTypes } from '../../../../components/uiElements/pills';
 import ImageCardInfo from '../../../../components/ImageCardInfo';
 import Modal from '../../../../components/modal';
 import SocialsCard from '../../../../components/SocialsCard';
@@ -24,10 +31,10 @@ import {
 	getAllScreens,
 	getScreensById,
 	getScreensByIdCount,
+	getRange,
 } from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useEffect, useState } from 'react';
-
 
 export default function SinglePage({ screens }) {
 	const {
@@ -72,10 +79,15 @@ export default function SinglePage({ screens }) {
 		router,
 		bookmarkk,
 		generateZIP,
+		onClickPill,
+		pillStatus,
 	} = useScreenshot(screens);
+
 	const [visits, setVisits] = useState<number>();
 	const [active, setActive] = useState<number>(1);
 	const [actualCount, setActualCount] = useState<number>(0);
+	const [getPeriod, setGetPeriod] = useState([]);
+	const [storedstates, setStoredStates] = useState<string[]>([]);
 
 	//This is used to track the number of times a user has visited the screen. The guide modal
 	//is displayed if the user is a first-time user.
@@ -183,7 +195,48 @@ export default function SinglePage({ screens }) {
 			behavior: 'smooth', // for smoothly scrolling
 		});
 	};
-	console.log(headerInfo.timeTravel.map((time)=>new Date(time).toLocaleString()))
+
+	useEffect(() => {
+		let monthNames = [
+			'January',
+			'February',
+			'March',
+			'April',
+			'May',
+			'June',
+			'July',
+			'August',
+			'September',
+			'October',
+			'November',
+			'December',
+		];
+
+		//stores the travel history in storedStates state
+		headerInfo.timeTravel.map((item: string) => {
+			setStoredStates((prev) => [...prev, item]);
+		});
+
+		//this is to remove the last date from the travel history which
+		//isnt needed in the UI because it is a date that is used for comparison to find the oldest travel history
+		const changedArray = storedstates;
+
+		changedArray.pop();
+		changedArray.forEach((time) => {
+			//gets the month
+			const month = new Date(time).getMonth();
+			//gets the year
+			const year = new Date(time).getFullYear();
+			//merges the month and year together and displays the month's name
+			const fullDate = monthNames[month] + ' ' + year;
+			//map them into the getperiod state
+			setGetPeriod((prev) => {
+				return [...prev, fullDate];
+			});
+		});
+		//adding this dependency works for now
+	}, [headerInfo.timeTravel]);
+
 	return (
 		<>
 			{/* for SEO */}
@@ -346,13 +399,6 @@ export default function SinglePage({ screens }) {
 					)}
 					<div
 						className='button_modal'
-						onClick={toggleModal}
-						title='share online'
-					>
-						<img src='/assets/img/share.svg' alt='share-icon' />
-					</div>
-					<div
-						className='button_modal'
 						onClick={generateZIP}
 						title='download all images'
 					>
@@ -360,6 +406,13 @@ export default function SinglePage({ screens }) {
 							src='/assets/img/download-file-icon.svg'
 							alt='download-file-icon'
 						/>
+					</div>
+					<div
+						className='button_modal'
+						onClick={toggleModal}
+						title='share online'
+					>
+						<img src='/assets/img/share.svg' alt='share-icon' />
 					</div>
 				</ImageCardWrapper>
 				{/* <div className='flex-col'>
@@ -382,7 +435,29 @@ export default function SinglePage({ screens }) {
 					handleInputFilter={handleInputFilter}
 				/>{' '}
 			</SecondHeader>
-
+			{getPeriod && (
+				<CategoryTabContainer>
+					<CategoryTabWrapper>
+						{
+							<>
+								{getPeriod.map((result, id, arr) => {
+									return (
+										<Pill key={id} type={pillsTypes.category}>
+											<button
+												className={`pills ${pillStatus === id && 'active'}`}
+												onClick={() => onClickPill(id, arr)}
+												name={result}
+											>
+												{result}
+											</button>
+										</Pill>
+									);
+								})}
+							</>
+						}
+					</CategoryTabWrapper>
+				</CategoryTabContainer>
+			)}
 			<ElementsInCategoryContainer>
 				<ScrollTop onClick={scrollToTop} title='scroll to top'>
 					<img src='/assets/img/scroll-arrow.svg' />
@@ -436,6 +511,25 @@ export default function SinglePage({ screens }) {
 		</>
 	);
 }
+const CategoryTabContainer = styled.section`
+	margin: 1.5em 0;
+	padding: 1em 0;
+	border: 1px solid var(--light-grey-color);
+	@media (min-width: 768px) {
+		margin: 3em 0;
+	}
+`;
+
+const CategoryTabWrapper = styled.div`
+	display: flex;
+	flex-wrap: nowrap;
+	overflow-x: scroll;
+	gap: 0.8em;
+
+	::-webkit-scrollbar {
+		display: none;
+	}
+`;
 const Dot = styled.div`
 	height: 20px;
 	width: 20px;

@@ -10,7 +10,6 @@ const Login = ({ toggleModal }) => {
 		try {
 			await signInWithGoogle();
 			toggleModal();
-		
 		} catch (e) {
 			toast.error('Sorry an error occurred while trying to login');
 		}
