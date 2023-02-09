@@ -88,7 +88,6 @@ export default function SinglePage({ screens }) {
 	const [active, setActive] = useState<number>(1);
 	const [actualCount, setActualCount] = useState<number>(0);
 	const [getPeriod, setGetPeriod] = useState([]);
-	const [storedstates, setStoredStates] = useState<string[]>([]);
 
 	//This is used to track the number of times a user has visited the screen. The guide modal
 	//is displayed if the user is a first-time user.
@@ -213,14 +212,14 @@ export default function SinglePage({ screens }) {
 			'December',
 		];
 
-		//stores the travel history in storedStates state
+		
 	
 
 		//this is to remove the last date from the travel history which
 		//isnt needed in the UI because it is a date that is used for comparison to find the oldest travel history
-	
-
 		timeHost.pop();
+
+	
 		timeHost.forEach((time) => {
 			//gets the month
 			const month = new Date(time).getMonth();
@@ -235,7 +234,7 @@ export default function SinglePage({ screens }) {
 		});
 		//adding this dependency works for now
 	}, [timeHost]);
-	console.log(getPeriod)
+	
 
 	return (
 		<>
