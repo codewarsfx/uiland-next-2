@@ -40,7 +40,7 @@ export default function Collection({ user }) {
 					{JSON.stringify(bookmark) !== JSON.stringify([]) ? (
 						bookmark.map((name) => {
 							return (
-								<>
+								<div key={name}>
 									<Link href={`/collections/individual/${name}`}>
 										<IndividualTag>
 											<ImagesHolder>
@@ -51,7 +51,7 @@ export default function Collection({ user }) {
 											</ImagesHolder>
 										</IndividualTag>
 									</Link>
-								</>
+								</div>
 							);
 						})
 					) : (

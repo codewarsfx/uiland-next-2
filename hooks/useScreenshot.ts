@@ -114,7 +114,7 @@ const useScreenshot = (screens) => {
 	//state to display the filters
 	const [elementsCategoryData, setElementsCategoryData] = useState([]);
 
-	const [timeHost,setTimeHost]=useState([]);
+	const [timeHost, setTimeHost] = useState([]);
 
 	const [indiscreens, setIndiScreens] = useState([]);
 	useEffect(() => {
@@ -146,7 +146,10 @@ const useScreenshot = (screens) => {
 		//this logic displays all the first version of screens of a company .
 		//This function displays all the screens that were created lesss than 5 days
 		//after the company table was created. This is to version this category as the first versions of screens
-		
+
+		if (router.route === '/collections/individual/[name]') {
+			setLimitedScreens(screens);
+		} else {
 			setLimitedScreens(
 				screens.filter((item) => {
 					return (
@@ -159,8 +162,8 @@ const useScreenshot = (screens) => {
 					);
 				})
 			);
-		
-	}, [headerInfo, screens]);
+		}
+	}, [headerInfo, router, screens]);
 
 	async function onClickPill(id, arr) {
 		//stores id in pillstatus state
@@ -261,7 +264,6 @@ const useScreenshot = (screens) => {
 		};
 		getHeaderInfo();
 	}, [router.query.id]);
-
 
 	useEffect(() => {
 		const getHeaderInfo = async () => {

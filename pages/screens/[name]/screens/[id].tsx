@@ -81,7 +81,7 @@ export default function SinglePage({ screens }) {
 		generateZIP,
 		onClickPill,
 		pillStatus,
-		timeHost
+		timeHost,
 	} = useScreenshot(screens);
 
 	const [visits, setVisits] = useState<number>();
@@ -212,14 +212,10 @@ export default function SinglePage({ screens }) {
 			'December',
 		];
 
-		
-	
-
 		//this is to remove the last date from the travel history which
 		//isnt needed in the UI because it is a date that is used for comparison to find the oldest travel history
 		timeHost.pop();
 
-	
 		timeHost.forEach((time) => {
 			//gets the month
 			const month = new Date(time).getMonth();
@@ -234,7 +230,6 @@ export default function SinglePage({ screens }) {
 		});
 		//adding this dependency works for now
 	}, [timeHost]);
-	
 
 	return (
 		<>
@@ -434,12 +429,13 @@ export default function SinglePage({ screens }) {
 					handleInputFilter={handleInputFilter}
 				/>{' '}
 			</SecondHeader>
-		
-				<CategoryTabContainer>
-					<CategoryTabWrapper>
-						{
-							<>
-								{JSON.stringify(getPeriod) !== JSON.stringify([])&&getPeriod.map((result, id, arr) => {
+
+			<CategoryTabContainer>
+				<CategoryTabWrapper>
+					{
+						<>
+							{JSON.stringify(getPeriod) !== JSON.stringify([]) &&
+								getPeriod.map((result, id, arr) => {
 									return (
 										<Pill key={id} type={pillsTypes.category}>
 											<button
@@ -452,11 +448,11 @@ export default function SinglePage({ screens }) {
 										</Pill>
 									);
 								})}
-							</>
-						}
-					</CategoryTabWrapper>
-				</CategoryTabContainer>
-		
+						</>
+					}
+				</CategoryTabWrapper>
+			</CategoryTabContainer>
+
 			<ElementsInCategoryContainer>
 				<ScrollTop onClick={scrollToTop} title='scroll to top'>
 					<img src='/assets/img/scroll-arrow.svg' />
