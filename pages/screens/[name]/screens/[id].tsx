@@ -441,7 +441,7 @@ export default function SinglePage({ screens }) {
 					<CategoryTabWrapper>
 						{
 							<>
-								{getPeriod.map((result, id, arr) => {
+								{getPeriod&&getPeriod.map((result, id, arr) => {
 									return (
 										<Pill key={id} type={pillsTypes.category}>
 											<button
