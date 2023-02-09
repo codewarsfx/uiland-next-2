@@ -237,6 +237,7 @@ export default function SinglePage({ screens }) {
 		});
 		//adding this dependency works for now
 	}, [timeHost]);
+	console.log(getPeriod)
 
 	return (
 		<>
