@@ -435,7 +435,7 @@ export default function SinglePage({ screens }) {
 					handleInputFilter={handleInputFilter}
 				/>{' '}
 			</SecondHeader>
-			{getPeriod && (
+		
 				<CategoryTabContainer>
 					<CategoryTabWrapper>
 						{
@@ -457,7 +457,7 @@ export default function SinglePage({ screens }) {
 						}
 					</CategoryTabWrapper>
 				</CategoryTabContainer>
-			)}
+		
 			<ElementsInCategoryContainer>
 				<ScrollTop onClick={scrollToTop} title='scroll to top'>
 					<img src='/assets/img/scroll-arrow.svg' />

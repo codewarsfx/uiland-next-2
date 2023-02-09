@@ -144,7 +144,7 @@ const useScreenshot = (screens) => {
 		//this logic displays all the first version of screens of a company .
 		//This function displays all the screens that were created lesss than 5 days
 		//after the company table was created. This is to version this category as the first versions of screens
-		if (JSON.stringify(headerInfo.timeTravel) !== JSON.stringify([])) {
+		
 			setLimitedScreens(
 				screens.filter((item) => {
 					return (
@@ -157,9 +157,7 @@ const useScreenshot = (screens) => {
 					);
 				})
 			);
-		} else {
-			setLimitedScreens(screens);
-		}
+		
 	}, [headerInfo, screens]);
 
 	async function onClickPill(id, arr) {
