@@ -12,7 +12,7 @@ import {
 	Pill,
 } from '../../../../components/uiElements';
 
-import { PopContext } from '../../../../context/PopContext';
+import { PopContext, PopContextProvider } from '../../../../context/PopContext';
 import { pillsTypes } from '../../../../components/uiElements/pills';
 import ImageCardInfo from '../../../../components/ImageCardInfo';
 import Modal from '../../../../components/modal';
