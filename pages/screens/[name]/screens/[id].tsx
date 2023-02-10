@@ -88,6 +88,8 @@ export default function SinglePage({ screens }) {
 	const [active, setActive] = useState<number>(1);
 	const [actualCount, setActualCount] = useState<number>(0);
 	const [getPeriod, setGetPeriod] = useState([]);
+	// The back-to-top button is hidden at the beginning
+	const [showButton, setShowButton] = useState(false);
 
 	//This is used to track the number of times a user has visited the screen. The guide modal
 	//is displayed if the user is a first-time user.
@@ -195,6 +197,15 @@ export default function SinglePage({ screens }) {
 			behavior: 'smooth', // for smoothly scrolling
 		});
 	};
+	useEffect(() => {
+		window.addEventListener("scroll", () => {
+		  if (window.pageYOffset > 800) {
+			setShowButton(true);
+		  } else {
+			setShowButton(false);
+		  }
+		});
+	  }, []);
 
 	useEffect(() => {
 		let monthNames = [
@@ -454,9 +465,9 @@ export default function SinglePage({ screens }) {
 			</CategoryTabContainer>
 
 			<ElementsInCategoryContainer>
-				<ScrollTop onClick={scrollToTop} title='scroll to top'>
+				{showButton&&<ScrollTop onClick={scrollToTop} title='scroll to top'>
 					<img src='/assets/img/scroll-arrow.svg' />
-				</ScrollTop>
+				</ScrollTop>}
 				{/* todo:populate with filtered data */}
 
 				{filtered?.map((data) => (
