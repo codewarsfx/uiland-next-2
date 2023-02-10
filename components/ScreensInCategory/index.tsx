@@ -26,11 +26,12 @@ const ScreensInCategory = ({ screens }) => {
 											<Pill type={pillsTypes.screenshot}>view</Pill>
 										</ScreenshotContainerTop>
 										<ScreenshotContainerBottom>
-											{startScreens.map((screenshot) => (
+										{startScreens.map(({img,base64}) => (
 												<Screenshot
-													key={screenshot}
-													imgLink={screenshot}
-													Name={screenshot}
+													key={img}
+													imgLink={img}
+													Name={img}
+													blurPlaceholder ={base64}
 												/>
 											))}
 										</ScreenshotContainerBottom>
