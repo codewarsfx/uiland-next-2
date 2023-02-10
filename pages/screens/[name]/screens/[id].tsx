@@ -12,6 +12,7 @@ import {
 	Pill,
 } from '../../../../components/uiElements';
 
+import { PopContext } from '../../../../context/PopContext';
 import { pillsTypes } from '../../../../components/uiElements/pills';
 import ImageCardInfo from '../../../../components/ImageCardInfo';
 import Modal from '../../../../components/modal';
@@ -34,8 +35,8 @@ import {
 	getRange,
 } from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { useEffect, useState } from 'react';
-import { PopContext, PopContextProvider } from '../../../../context/PopContext';
+import { useEffect, useState, useContext } from 'react';
+import NewsLetter from '../../../../components/NewsLetter';
 
 export default function SinglePage({ screens }) {
 	const {
@@ -89,6 +90,9 @@ export default function SinglePage({ screens }) {
 	const [active, setActive] = useState<number>(1);
 	const [actualCount, setActualCount] = useState<number>(0);
 	const [getPeriod, setGetPeriod] = useState([]);
+	// The back-to-top button is hidden at the beginning
+	const [showButton, setShowButton] = useState(false);
+	const { openNewsLetter, setOpenNewsLetter } = useContext(PopContext);
 
 	//This is used to track the number of times a user has visited the screen. The guide modal
 	//is displayed if the user is a first-time user.
@@ -196,6 +200,15 @@ export default function SinglePage({ screens }) {
 			behavior: 'smooth', // for smoothly scrolling
 		});
 	};
+	useEffect(() => {
+		window.addEventListener('scroll', () => {
+			if (window.pageYOffset > 800) {
+				setShowButton(true);
+			} else {
+				setShowButton(false);
+			}
+		});
+	}, []);
 
 	useEffect(() => {
 		let monthNames = [
@@ -306,6 +319,11 @@ export default function SinglePage({ screens }) {
 			{isModalLogin && (
 				<Modal toggleModal={loginToggleModal}>
 					<Login toggleModal={loginToggleModal} />
+				</Modal>
+			)}
+			{openNewsLetter && (
+				<Modal toggleModal={() => setOpenNewsLetter(!openNewsLetter)}>
+					<NewsLetter toggleModal={() => setOpenNewsLetter(!openNewsLetter)} />
 				</Modal>
 			)}
 			{guideModalState && (
@@ -456,9 +474,11 @@ export default function SinglePage({ screens }) {
 			</CategoryTabContainer>
 
 			<ElementsInCategoryContainer>
-				<ScrollTop onClick={scrollToTop} title='scroll to top'>
-					<img src='/assets/img/scroll-arrow.svg' />
-				</ScrollTop>
+				{showButton && (
+					<ScrollTop onClick={scrollToTop} title='scroll to top'>
+						<img src='/assets/img/scroll-arrow.svg' />
+					</ScrollTop>
+				)}
 				{/* todo:populate with filtered data */}
 
 				{filtered?.map((data) => (
