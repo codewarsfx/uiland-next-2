@@ -12,7 +12,7 @@ import {
 	Pill,
 } from '../../../../components/uiElements';
 
-import { PopContext, PopContextProvider } from '../../../../context/PopContext';
+import { PopContext} from '../../../../context/PopContext';
 import { pillsTypes } from '../../../../components/uiElements/pills';
 import ImageCardInfo from '../../../../components/ImageCardInfo';
 import Modal from '../../../../components/modal';
@@ -37,8 +37,9 @@ import {
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useEffect, useState, useContext } from 'react';
 import NewsLetter from '../../../../components/NewsLetter';
+import withPopContext from '../../../../HOC/withPopContext';
 
-export default function SinglePage({ screens }) {
+const SinglePage = ({ screens })=> {
 	const {
 		headerInfo,
 		toggleBottomSheet,
@@ -279,7 +280,7 @@ export default function SinglePage({ screens }) {
 					content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
 				></meta>
 			</Head>
-			<PopContextProvider>
+		
 			{modalSheet && (
 				<Modal toggleModal={toggleBottomSheet}>
 					<ModalBox>
@@ -525,7 +526,6 @@ export default function SinglePage({ screens }) {
 				pendingText={toastPendingText}
 				successText={toastSuccessText}
 				/>
-				</PopContextProvider>
 		</>
 	);
 }
@@ -931,3 +931,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		props: { screens },
 	};
 };
+
+
+export default withPopContext(SinglePage)
