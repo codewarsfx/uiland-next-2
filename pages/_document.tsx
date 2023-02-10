@@ -29,6 +29,10 @@ class MainDocument extends Document {
 			<Html>
 				<Head>
 					<link rel='shortcut icon' href='/favicon.ico' />
+					<link rel='shortcut icon' href='/favicon.ico' />
+					<link rel='manifest' href='/manifest.json' />
+					<link rel='apple-touch-icon' href='/icon.png'></link>
+					<meta name='theme-color' content='#0066f5' />
 				</Head>
 				<body>
 					<Main />
