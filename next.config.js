@@ -1,13 +1,12 @@
 /** @type {import('next').NextConfig} */
 
-
-const runtimeCaching = require("next-pwa/cache");
-const withPWA = require("next-pwa")({
+const runtimeCaching = require('next-pwa/cache');
+const withPWA = require('next-pwa')({
 	dest: 'public',
 	register: true,
-    skipWaiting: true,
-    runtimeCaching
-  });
+	skipWaiting: true,
+	runtimeCaching,
+});
 
 const nextConfig = {
 	reactStrictMode: true,
@@ -19,7 +18,6 @@ const nextConfig = {
 			'epcjufipobybxdmcqjgb.supabase.co',
 		],
 	},
-	
 };
 
-module.exports =  withPWA(nextConfig);
+module.exports = withPWA(nextConfig);
