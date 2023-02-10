@@ -1,8 +1,9 @@
 import { useReducer } from 'react';
 import styled from 'styled-components';
+import { addUserData } from '../../supabase';
 import { ModalBottom, ModalHeader, Title, Wrapper } from '../AddToBookmark';
 import CloseIcon from '../CloseModalIcon';
-
+import { Player } from '@lottiefiles/react-lottie-player';
 
 //reducers
 const reducer = (state, action) => {
@@ -20,6 +21,7 @@ const reducer = (state, action) => {
 	}
 };
 
+//animation variables
 const dropIn = {
 	hidden: {
 		y: '-10vh',
@@ -33,7 +35,6 @@ const dropIn = {
 		},
 	},
 };
-
 
 const NewsLetter = ({ toggleModal }) => {
 	const initialState = {
@@ -56,18 +57,35 @@ const NewsLetter = ({ toggleModal }) => {
 		});
 	};
 
+	const handleSubmit = async (e, type) => {
+		e.preventDefault();
+		let inputdata, defaultName;
+		if (type === 'EmailNewsLetter') {
+			inputdata = {
+				email: inputState.email.value,
+			};
+			defaultName = 'defaultemail';
+		} else if (type === 'Feedback') {
+			inputdata = {
+				feedback: inputState.feedback.value,
+			};
+			defaultName = 'defaultfeedback';
+		}
 
+		await addUserData(type, inputdata);
+		dispatch({ type: defaultName });
+	};
 
 	return (
 		<Wrapper variants={dropIn} initial='hidden' animate='visible'>
 			<ModalHeader>
-				<CloseIcon toggle={()=>{}} />
+				<CloseIcon toggle={toggleModal} />
 				<h2> Hi there, UiLander! </h2>
 			</ModalHeader>
 			<ModalBottomWrapper>
 				<FormTitle>Join Our Newsletter</FormTitle>
 				<Description>Be the first to know about out latest updates</Description>
-				<form>
+				<form onSubmit={(e) => handleSubmit(e, 'EmailNewsLetter')}>
 					<div className='form-element-group'>
 						<input
 							type='email'
@@ -82,13 +100,13 @@ const NewsLetter = ({ toggleModal }) => {
 					</div>
 					<button className='form__button'>
 						{' '}
-						{inputState.email.submitted ?   'Subscribed'  : 'Subscribe'}
+						{inputState.email.submitted ?  <div className='wrap'> Subscribed <Player src='/assets/lottie/email.json' className='lottie lottie--top' autoplay/></div>  : 'Subscribe'}
 					</button>
 				</form>
 				<hr className='rule' />
 				<FormTitle>Leave a Feedback</FormTitle>
 				<Description>Need Something Improved? drop a feedback</Description>
-				<form>
+				<form onSubmit={(e) => handleSubmit(e, 'Feedback')}>
 					<div className='form-element-group'>
 						<textarea
 							className='form-element'
@@ -101,7 +119,7 @@ const NewsLetter = ({ toggleModal }) => {
 						/>
 					</div>
 					<button className='form__button'>
-						{inputState.feedback.submitted ?  'Submitted'  : 'Submit'}
+						{inputState.feedback.submitted ? <div className='wrap'> Submitted <Player src='/assets/lottie/sent.json' className='lottie' autoplay/></div>  : 'Submit'}
 					</button>
 				</form>
 			</ModalBottomWrapper>

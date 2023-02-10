@@ -10,11 +10,15 @@ import { UserContext } from '../context/authContext';
 import { GetServerSideProps } from 'next';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Modal from '../components/modal';
+import NewsLetter from '../components/NewsLetter';
+import { PopContext } from '../context/PopContext';
 
 const Home = ({ screens }) => {
 	const { filterTerm, filterName } = useContext(ScreensContext);
 	const user = useContext(UserContext);
 	const [result, setResult] = useState([]);
+	const { openNewsLetter, setOpenNewsLetter } = useContext(PopContext);
 
 	const searchFilter = (array, data) => {
 		if (data === '') return array;
@@ -41,6 +45,11 @@ const Home = ({ screens }) => {
 			<Tab />
 			<ScreensTab screens={result} />
 			<Footer />
+			{openNewsLetter && (
+				<Modal toggleModal={() => setOpenNewsLetter(!openNewsLetter)}>
+					<NewsLetter toggleModal={() => setOpenNewsLetter(!openNewsLetter)} />
+				</Modal>
+			)}
 		</>
 	);
 };

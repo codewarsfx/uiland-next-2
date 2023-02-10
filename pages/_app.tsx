@@ -17,6 +17,7 @@ import ScreenContextProvider from '../context/screenContext';
 import { Session } from '@supabase/auth-helpers-react';
 import { AppProps } from 'next/app';
 import { supabase } from '../supabase';
+import { PopContextProvider } from '../context/PopContext';
 
 export default function App({
 	Component,
@@ -147,7 +148,9 @@ export default function App({
 						/>
 					</Head>
 					<Header />
-					<Component {...pageProps} />
+					<PopContextProvider>
+						<Component {...pageProps} />
+					</PopContextProvider>
 					<Analytics />
 				</ScreensContextProvider>
 			</UserContextProvider>
