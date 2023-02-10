@@ -12,7 +12,7 @@ import {
 	Pill,
 } from '../../../../components/uiElements';
 
-import { PopContext } from '../../../../context/PopContext';
+import { PopContext, PopContextProvider } from '../../../../context/PopContext';
 import { pillsTypes } from '../../../../components/uiElements/pills';
 import ImageCardInfo from '../../../../components/ImageCardInfo';
 import Modal from '../../../../components/modal';
@@ -279,6 +279,7 @@ export default function SinglePage({ screens }) {
 					content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
 				></meta>
 			</Head>
+			<PopContextProvider>
 			{modalSheet && (
 				<Modal toggleModal={toggleBottomSheet}>
 					<ModalBox>
@@ -523,7 +524,8 @@ export default function SinglePage({ screens }) {
 				Progress={Progress}
 				pendingText={toastPendingText}
 				successText={toastSuccessText}
-			/>
+				/>
+				</PopContextProvider>
 		</>
 	);
 }
