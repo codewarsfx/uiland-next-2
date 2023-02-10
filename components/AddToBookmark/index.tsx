@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import CloseIcon from '../CloseModalIcon';
 
@@ -59,7 +60,7 @@ const AddToBookmark = ({
 	);
 };
 
-const Wrapper = styled.div`
+export const Wrapper = styled(motion.div)`
 	background-color: white;
 	/* height: 50vh; */
 	padding: 0.5em;
@@ -71,7 +72,7 @@ const Wrapper = styled.div`
 	}
 `;
 
-const ModalHeader = styled.div`
+export const ModalHeader = styled.div`
 	border-bottom: 1px solid #eee;
 	display: flex;
 	align-items: center;
@@ -85,7 +86,7 @@ const ModalHeader = styled.div`
 	}
 `;
 
-const ModalBottom = styled.div`
+export const ModalBottom = styled.div`
 	padding: 0 2em;
 	.form-element-group {
 		width: 100%;
@@ -112,7 +113,7 @@ const ModalBottom = styled.div`
 	}
 `;
 
-const Title = styled.h1`
+export const Title = styled.h1`
 	font-weight: 500;
 	font-size: 20px;
 	margin: 1em 0;

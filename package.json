@@ -11,6 +11,7 @@
 		"prettier": "prettier --write ."
 	},
 	"dependencies": {
+		"@lottiefiles/react-lottie-player": "^3.5.2",
 		"@mailchimp/mailchimp_marketing": "^3.0.80",
 		"@supabase/auth-helpers-nextjs": "^0.5.4",
 		"@supabase/auth-helpers-react": "^0.3.1",
@@ -23,7 +24,9 @@
 		"jszip": "^3.10.1",
 		"lottie-react": "^2.3.1",
 		"next": "12.3.1",
+		"next-pwa": "^5.6.0",
 		"paystack-api": "^2.0.6",
+		"plaiceholder": "^2.5.0",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"react-hotjar": "^5.4.0",

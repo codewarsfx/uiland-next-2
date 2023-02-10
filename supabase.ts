@@ -343,3 +343,18 @@ export async function getRange() {
 		.select()
 		.rangeLte('created_at', '[2023-01-01 14:00, 2023-03-01 16:00)');
 }
+
+
+
+export const addUserData = async (type, formdata) => {
+	const { error, data } = await supabase
+		.from(type)
+		.insert(formdata)
+		.select()
+	if (error) {
+		console.log(error)
+	}
+
+	return data
+
+}

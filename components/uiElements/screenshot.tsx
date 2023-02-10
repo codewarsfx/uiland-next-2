@@ -2,11 +2,18 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-const Screenshot = ({ imgLink, Name }) => {
+const Screenshot = ({ imgLink, Name,blurPlaceholder='' }) => {
 	return (
 		<>
 			<ScreenshotContainer initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-				<Image width={320} height={640} src={imgLink} alt={Name} />
+				<Image
+					width={320}
+					height={640}
+					src={imgLink}
+					alt={Name}
+					placeholder={blurPlaceholder == '' ? 'empty': 'blur'}
+				    blurDataURL = {blurPlaceholder}
+				/>
 			</ScreenshotContainer>
 		</>
 	);
@@ -16,6 +23,7 @@ const ScreenshotContainer = styled(motion.div)`
 	border-radius: 0.8em;
 	cursor: pointer;
 	border: 1px solid #dddddd;
+	overflow: hidden;
 
 	max-height: 634px;
 	img {
