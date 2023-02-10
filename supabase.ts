@@ -329,20 +329,14 @@ export async function addImagesToScreens(
 		.insert({
 			screenId: screenId,
 			url: url,
-			order: 4000 + id,
+			order: 4100 + id,
 		})
 		.select();
 
 	return data;
 }
 
-//get the range of dates wwithin a period
-export async function getRange() {
-	const { data, error } = await supabase
-		.from('screenImages')
-		.select()
-		.rangeLte('created_at', '[2023-01-01 14:00, 2023-03-01 16:00)');
-}
+
 
 export const addUserData = async (type, formdata) => {
 	const { error, data } = await supabase.from(type).insert(formdata).select();
