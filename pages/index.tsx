@@ -19,7 +19,6 @@ const Home = ({ screens }) => {
 	const user = useContext(UserContext);
 	const [result, setResult] = useState([]);
 
-
 	const searchFilter = (array, data) => {
 		if (data === '') return array;
 		return array.filter((el) => el.category.includes(data));
@@ -45,7 +44,6 @@ const Home = ({ screens }) => {
 			<Tab />
 			<ScreensTab screens={result} />
 			<Footer />
-			
 		</>
 	);
 };

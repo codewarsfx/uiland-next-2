@@ -35,7 +35,7 @@ import {
 	getRange,
 } from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { useEffect, useState,useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import NewsLetter from '../../../../components/NewsLetter';
 
 export default function SinglePage({ screens }) {
@@ -201,14 +201,14 @@ export default function SinglePage({ screens }) {
 		});
 	};
 	useEffect(() => {
-		window.addEventListener("scroll", () => {
-		  if (window.pageYOffset > 800) {
-			setShowButton(true);
-		  } else {
-			setShowButton(false);
-		  }
+		window.addEventListener('scroll', () => {
+			if (window.pageYOffset > 800) {
+				setShowButton(true);
+			} else {
+				setShowButton(false);
+			}
 		});
-	  }, []);
+	}, []);
 
 	useEffect(() => {
 		let monthNames = [
@@ -473,9 +473,11 @@ export default function SinglePage({ screens }) {
 			</CategoryTabContainer>
 
 			<ElementsInCategoryContainer>
-				{showButton&&<ScrollTop onClick={scrollToTop} title='scroll to top'>
-					<img src='/assets/img/scroll-arrow.svg' />
-				</ScrollTop>}
+				{showButton && (
+					<ScrollTop onClick={scrollToTop} title='scroll to top'>
+						<img src='/assets/img/scroll-arrow.svg' />
+					</ScrollTop>
+				)}
 				{/* todo:populate with filtered data */}
 
 				{filtered?.map((data) => (
