@@ -35,6 +35,7 @@ import {
 } from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useEffect, useState } from 'react';
+import { PopContext, PopContextProvider } from '../../../../context/PopContext';
 
 export default function SinglePage({ screens }) {
 	const {
@@ -265,6 +266,7 @@ export default function SinglePage({ screens }) {
 					content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
 				></meta>
 			</Head>
+			<PopContextProvider>
 			{modalSheet && (
 				<Modal toggleModal={toggleBottomSheet}>
 					<ModalBox>
@@ -502,7 +504,8 @@ export default function SinglePage({ screens }) {
 				Progress={Progress}
 				pendingText={toastPendingText}
 				successText={toastSuccessText}
-			/>
+				/>
+				</PopContextProvider>
 		</>
 	);
 }
