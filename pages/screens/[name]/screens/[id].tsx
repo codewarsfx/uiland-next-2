@@ -112,6 +112,7 @@ const SinglePage = ({ screens })=> {
 	// },[])
 	 // Triggers fetch for new page
 	 const handlePagination = (page) => {
+		console.log(page)
 		const path = router.pathname
 		const query = router.query
 		query.page = page.selected + 1
@@ -274,6 +275,13 @@ const SinglePage = ({ screens })=> {
 	}, [timeHost]);
 
 	
+// 	useEffect(()=>{
+// 	async	function yes(){
+// const ed= await getVersion(router.query.id)
+// 			console.log(ed)	}
+
+// 		yes()
+// 	},[router.query.id])
 const pageCount=Math.ceil(actualCount/perPage)
 	return (
 		<>
@@ -562,10 +570,11 @@ const pageCount=Math.ceil(actualCount/perPage)
         previousLabel={"< Previous"}
         nextLabel={"Next >"}
         breakLabel={"..."}
-        initialPage={(Number(router.query.page)  || 1)-1}
+        forcePage={(Number(router.query.page)  || 1)-1}
         pageCount={pageCount}
         onPageChange={handlePagination}
 		disableInitialCallback={true}
+		
 		containerClassName={"paginate-wrap"}
         pageClassName={"paginate-li"}
         pageLinkClassName={"paginate-a"}
@@ -954,7 +963,7 @@ const ElementsInCategoryContainer = styled.div`
 
 export const getServerSideProps: GetServerSideProps = async ({query,params}) => {
 	const page=query.page||1
-	const screens = await getScreensById(params.id,page);
+	const screens = await getScreensById(params.id,page,query);
 
 	
 
