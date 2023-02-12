@@ -89,7 +89,7 @@ console.log(limitMinRange, limitMaxRange)
 			.range(limitMinRange, limitMaxRange)
 			.eq('screenId', id)
 			.eq('version',query.version||2)
-			console.log('rested',data)
+		
 		return data;
 	} else {
 		const { data, error } = await supabase
@@ -101,7 +101,7 @@ console.log(limitMinRange, limitMaxRange)
 			.range(limitMinRange, limitMaxRange)
 			.eq('screenId', id)
 			.eq('version',query.version||2)
-			console.log('rest',data)
+
 		return data;
 	}
 }
@@ -153,11 +153,12 @@ export async function getOlderScreensById(id,page,version) {
 
 
 //get individual screen content count
-export async function getScreensByIdCount(id) {
+export async function getScreensByIdCount(id,version) {
 	const { count, error } = await supabase
 		.from('screenImages')
 		.select('*', { count: 'exact', head: true })
-		.eq('screenId', id);
+		.eq('screenId', id)
+		.eq('version', version||1)
 	return count;
 }
 

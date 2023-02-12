@@ -112,7 +112,7 @@ const SinglePage = ({ screens })=> {
 	// },[])
 	 // Triggers fetch for new page
 	 const handlePagination = (page) => {
-		console.log(page)
+		
 		const path = router.pathname
 		const query = router.query
 		query.page = page.selected + 1
@@ -144,11 +144,11 @@ const SinglePage = ({ screens })=> {
 	//get actual cunt of screens
 	useEffect(() => {
 		async function getCount() {
-			const count = await getScreensByIdCount(router.query.id);
+			const count = await getScreensByIdCount(router.query.id,router.query.version);
 			setActualCount(count);
 		}
 		getCount();
-	}, [router.query.id]);
+	}, [router.query.id,router.query.version]);
 
 	//function for the previous state
 	function prevPage() {
