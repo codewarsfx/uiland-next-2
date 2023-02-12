@@ -76,6 +76,36 @@ console.log(limitMinRange, limitMaxRange)
 
 
 //this is for the boomplay screens
+if(uniqueResult[0]===1){
+	if (
+		id === 'b274aac8-8a59-4034-8456-f8a2539ddc24' ||
+		id === '04b85c78-5dd6-4387-a785-a5edb72d0937'
+	) {
+		const { data, error } = await supabase
+			.from('screenImages')
+			.select('*')
+			.order('url', { ascending: true })
+			//   i will use this to limit the result later
+			//   .limit(1)
+			.range(limitMinRange, limitMaxRange)
+			.eq('screenId', id)
+			.eq('version',1)
+		
+		return data;
+	} else {
+		const { data, error } = await supabase
+			.from('screenImages')
+			.select('*')
+			.order('order', { ascending: true })
+			//   i will use this to limit the result later
+			//   .limit(1)
+			.range(limitMinRange, limitMaxRange)
+			.eq('screenId', id)
+			.eq('version',1)
+
+		return data;
+	}
+}else{
 	if (
 		id === 'b274aac8-8a59-4034-8456-f8a2539ddc24' ||
 		id === '04b85c78-5dd6-4387-a785-a5edb72d0937'
@@ -105,6 +135,8 @@ console.log(limitMinRange, limitMaxRange)
 		return data;
 	}
 }
+	
+}
 
 
 
@@ -133,7 +165,7 @@ export async function getOlderScreensById(id,page,version) {
 				//   .limit(1)
 				.range(limitMinRange, limitMaxRange)
 				.eq('screenId', id)
-				.eq('version',version)
+				.eq('version',version||1)
 				console.log(data)
 			return data;
 		} else {
@@ -145,7 +177,7 @@ export async function getOlderScreensById(id,page,version) {
 				//   .limit(1)
 				.range(limitMinRange, limitMaxRange)
 				.eq('screenId', id)
-				.eq('version',version)
+				.eq('version',version||1)
 				console.log(data)
 			return data;
 		}
