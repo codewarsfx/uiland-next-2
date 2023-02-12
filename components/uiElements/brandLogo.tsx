@@ -2,7 +2,7 @@ import styled from 'styled-components';
 const BrandLogo = ({ imageUrl }) => {
 	return (
 		<BrandLogoCotainer>
-			<img src={imageUrl} alt='brandlogo' />
+			<img src={imageUrl} alt='brandlogo' loading="lazy" width="48" height="48" />
 		</BrandLogoCotainer>
 	);
 };
