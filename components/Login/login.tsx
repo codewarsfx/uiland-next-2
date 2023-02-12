@@ -26,9 +26,9 @@ const Login = ({ toggleModal }) => {
 			/>
 			<h1>
 				<span>UL</span>
-				Welcome to UiLand
+				 Sign in for Free
 			</h1>
-			<p>Dont have an account?</p>
+			<p>Welcome to UiLand</p>
 			<div onClick={() => handleSignupWithGoogle()}>
 				<Button type={buttonTypes.google}>
 					<div className='flex-row'>

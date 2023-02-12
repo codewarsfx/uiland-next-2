@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 //Third party libraries
 import styled from 'styled-components';
-
+import ReactPaginate from "react-paginate"
 // Components
 import {
 	BottomSheet,
@@ -34,8 +34,9 @@ import {
 	getScreensByIdCount,
 	getRange,
 } from '../../../../supabase';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import { useEffect, useState, useContext } from 'react';
+import { GetStaticPaths, GetStaticProps ,GetServerSideProps} from 'next';
+
+import { useEffect, useState, useContext ,useRef} from 'react';
 import NewsLetter from '../../../../components/NewsLetter';
 import withPopContext from '../../../../HOC/withPopContext';
 
@@ -89,11 +90,37 @@ const SinglePage = ({ screens })=> {
 
 	const [visits, setVisits] = useState<number>();
 	const [active, setActive] = useState<number>(1);
+
+	const [perPage, setPerPage] = useState<number>(9);
+
 	const [actualCount, setActualCount] = useState<number>(0);
 	const [getPeriod, setGetPeriod] = useState([]);
 	// The back-to-top button is hidden at the beginning
 	const [showButton, setShowButton] = useState(false);
 	const { openNewsLetter, setOpenNewsLetter } = useContext(PopContext);
+	const userListRef = useRef(null) 
+
+	// useEffect(()=>{
+	// 	const path = router.pathname
+	// 	const one=1
+	// 	const query = router.query
+	// 	query.page = one.toString()
+	// 	router.push({
+	// 		pathname: path,
+	// 		query: query,
+	// 	  })
+	// },[])
+	 // Triggers fetch for new page
+	 const handlePagination = (page) => {
+		const path = router.pathname
+		const query = router.query
+		query.page = page.selected + 1
+		router.push({
+		  pathname: path,
+		  query: query,
+		})
+		userListRef.current.scrollIntoView({ behavior: "smooth" })
+	  }
 
 	//This is used to track the number of times a user has visited the screen. The guide modal
 	//is displayed if the user is a first-time user.
@@ -246,6 +273,8 @@ const SinglePage = ({ screens })=> {
 		//adding this dependency works for now
 	}, [timeHost]);
 
+	
+const pageCount=Math.ceil(actualCount/perPage)
 	return (
 		<>
 			{/* for SEO */}
@@ -382,7 +411,7 @@ const SinglePage = ({ screens })=> {
 				copyImage={copyImage}
 			/>
 
-			<SingleHeader>
+			<SingleHeader ref={userListRef}>
 				<ImageCardInfo
 					headerInfo={headerInfo}
 					count={filtered?.length}
@@ -526,6 +555,26 @@ const SinglePage = ({ screens })=> {
 				pendingText={toastPendingText}
 				successText={toastSuccessText}
 				/>
+				
+				<ReactPaginate
+       marginPagesDisplayed={0}
+	   pageRangeDisplayed={0}
+        previousLabel={"< Previous"}
+        nextLabel={"Next >"}
+        breakLabel={"..."}
+        initialPage={(Number(router.query.page)  || 1)-1}
+        pageCount={pageCount}
+        onPageChange={handlePagination}
+		disableInitialCallback={true}
+		containerClassName={"paginate-wrap"}
+        pageClassName={"paginate-li"}
+        pageLinkClassName={"paginate-a"}
+        activeClassName={"paginate-active"}
+        nextLinkClassName={"paginate-next-a"}
+        previousLinkClassName={"paginate-prev-a"}
+        breakLinkClassName={"paginate-break-a"}
+		disabledClassName={"paginate-disabled"}
+      />
 		</>
 	);
 }
@@ -899,38 +948,20 @@ const ElementsInCategoryContainer = styled.div`
 	}
 `;
 
-export const getStaticPaths: GetStaticPaths = async () => {
-	// When this is true (in preview environments) don't
-	// prerender any static pages
-	// (faster builds, but slower initial page load)
-	if (process.env.SKIP_BUILD_STATIC_GENERATION) {
-		return {
-			paths: [],
-			fallback: 'blocking',
-		};
-	}
 
-	// Call an external API endpoint to get posts
-	const screen = await getAllScreens();
-	// Get the paths we want to prerender based on posts
-	// In production environments, prerender all page
-	// (slower builds, but faster initial page load)
-	const paths = screen?.map((post) => ({
-		params: { id: post.id, name: post.name.toLowerCase() },
-	}));
 
-	// { fallback: false } means other routes should 404
-	return { paths, fallback: false };
-};
 
-export const getStaticProps: GetStaticProps = async (context) => {
-	const id = context.params.id;
 
-	const screens = await getScreensById(id);
+export const getServerSideProps: GetServerSideProps = async ({query,params}) => {
+	const page=query.page||1
+	const screens = await getScreensById(params.id,page);
+
+	
+
 	return {
-		props: { screens },
+		props: {
+			screens
+		},
 	};
 };
-
-
 export default withPopContext(SinglePage)

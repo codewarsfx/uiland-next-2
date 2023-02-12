@@ -48,7 +48,7 @@ const Home = ({ screens }) => {
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
 	const screens = await getAllScreens();
 
 	

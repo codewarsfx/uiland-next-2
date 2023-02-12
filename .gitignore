@@ -40,3 +40,8 @@ next-env.d.ts
 #files
 .admin.tsx
 /pages/admin.tsx
+# Sentry
+.sentryclirc
+
+# Sentry
+next.config.original.js

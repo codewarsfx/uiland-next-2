@@ -55,8 +55,12 @@ export async function getAllScreens() {
 
 //get individual screens content
 
-export async function getScreensById(id) {
+export async function getScreensById(id,page) {
 	//this is for the boomplay screens
+let limit=9
+let limitMaxRange=page*limit
+let limitMinRange=(page*limit)-limit
+console.log(limitMinRange, limitMaxRange)
 	if (
 		id === 'b274aac8-8a59-4034-8456-f8a2539ddc24' ||
 		id === '04b85c78-5dd6-4387-a785-a5edb72d0937'
@@ -67,7 +71,9 @@ export async function getScreensById(id) {
 			.order('url', { ascending: true })
 			//   i will use this to limit the result later
 			//   .limit(1)
+			.range(limitMinRange, limitMaxRange)
 			.eq('screenId', id);
+			console.log(data)
 		return data;
 	} else {
 		const { data, error } = await supabase
@@ -76,7 +82,9 @@ export async function getScreensById(id) {
 			.order('order', { ascending: true })
 			//   i will use this to limit the result later
 			//   .limit(1)
+			.range(limitMinRange, limitMaxRange)
 			.eq('screenId', id);
+			console.log(data)
 		return data;
 	}
 }
