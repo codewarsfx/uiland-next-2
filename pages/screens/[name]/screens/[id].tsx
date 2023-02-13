@@ -31,8 +31,7 @@ import useScreenshot from '../../../../hooks/useScreenshot';
 import {
 	getAllScreens,
 	getScreensById,
-	getScreensByIdCount,
-	getRange,
+	getScreensByIdCount
 } from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps, GetServerSideProps } from 'next';
 
