@@ -76,7 +76,7 @@ console.log(limitMinRange, limitMaxRange)
 
 
 //this is for the boomplay screens
-if(uniqueResult[0]===1){
+if(uniqueResult[0]===1 && uniqueResult.length===1){
 	if (
 		id === 'b274aac8-8a59-4034-8456-f8a2539ddc24' ||
 		id === '04b85c78-5dd6-4387-a785-a5edb72d0937'
