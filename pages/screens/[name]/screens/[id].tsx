@@ -31,8 +31,7 @@ import useScreenshot from '../../../../hooks/useScreenshot';
 import {
 	getAllScreens,
 	getScreensById,
-	getScreensByIdCount,
-	getRange,
+	getScreensByIdCount
 } from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps, GetServerSideProps } from 'next';
 
@@ -276,18 +275,12 @@ const SinglePage = ({ screens }) => {
 		//adding this dependency works for now
 	}, [timeHost]);
 
-	// 	useEffect(()=>{
-	// 	async	function yes(){
-	// const ed= await getVersion(router.query.id)
-	// 			console.log(ed)	}
-
-	// 		yes()
-	// 	},[router.query.id])
 	const pageCount = Math.ceil(actualCount / perPage);
 	return (
 		<>
 			{/* for SEO */}
 			<Head>
+				<link rel="canonical" href={`https://uiland.design/screens/${headerInfo.name}/screens/${headerInfo.id}`}    key="canonical" />
 				<title>{headerInfo.name} app screens</title>
 				<meta
 					name='description'
