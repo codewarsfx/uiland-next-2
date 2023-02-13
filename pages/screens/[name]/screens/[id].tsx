@@ -276,13 +276,6 @@ const SinglePage = ({ screens }) => {
 		//adding this dependency works for now
 	}, [timeHost]);
 
-	// 	useEffect(()=>{
-	// 	async	function yes(){
-	// const ed= await getVersion(router.query.id)
-	// 			console.log(ed)	}
-
-	// 		yes()
-	// 	},[router.query.id])
 	const pageCount = Math.ceil(actualCount / perPage);
 	return (
 		<>
