@@ -48,7 +48,7 @@ function ImageCardInfo({ headerInfo, count, actualCount }) {
 					<ImageCardInfoName>
 						<h3>{headerInfo.country || 'Nigeria'}</h3> &nbsp; &#x2022; &nbsp;
 						<h3>
-							{count} screen{count > 1 && 's'}
+							{actualCount} screen{count > 1 && 's'}
 						</h3>{' '}
 					</ImageCardInfoName>
 					{/* <h3>{actualCount} screens available</h3> */}

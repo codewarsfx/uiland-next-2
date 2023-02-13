@@ -1,3 +1,6 @@
+
+
+
 /** @type {import('next').NextConfig} */
 
 const runtimeCaching = require('next-pwa/cache');
@@ -21,3 +24,5 @@ const nextConfig = {
 };
 
 module.exports = withPWA(nextConfig);
+
+

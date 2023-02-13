@@ -12,7 +12,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Modal from '../components/modal';
 
-import { getPlaiceholder } from 'plaiceholder';
 
 const Home = ({ screens }) => {
 	const { filterTerm, filterName } = useContext(ScreensContext);
@@ -48,14 +47,12 @@ const Home = ({ screens }) => {
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
 	const screens = await getAllScreens();
-
-	
 
 	return {
 		props: {
-			screens
+			screens,
 		},
 	};
 };

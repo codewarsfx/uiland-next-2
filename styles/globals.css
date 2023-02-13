@@ -47,29 +47,42 @@ body {
 }
 @font-face {
 	font-family: 'Silka';
+	/* lets us decide how their web fonts will render (or fallback), depending on how long it takes for them to load. */
+	font-display: swap;
 
-	src: url('/assets/fonts/silka/silka-regular-webfont.ttf') format('truetype');
+	src: local('Silka'),
+		url('/assets/fonts/silka/silka-regular-webfont.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Silka';
-	src: url('/assets/fonts/silka/silka-medium-webfont.ttf') format('truetype');
+	/* Lets us decide how their web fonts will render (or fallback), depending on how long it takes for them to load. */
+	font-display: swap;
+	src: local('Silka'),
+		url('/assets/fonts/silka/silka-medium-webfont.ttf') format('truetype');
 	font-weight: 500;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Silka';
-	src: url('/assets/fonts/silka/silka-bold-webfont.ttf') format('truetype');
+	/* lets us decide how their web fonts will render (or fallback), depending on how long it takes for them to load. */
+	font-display: swap;
+	/* Local allows you to reference, load, and use locally installed fonts. If the user already has the font installed on their system, this bypasses the network entirely, and is the fastest. */
+	src: local('Silka'),
+		url('/assets/fonts/silka/silka-bold-webfont.ttf') format('truetype');
 	font-weight: bold;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Silka';
-	src: url('/assets/fonts/silka/silka-light-webfont.ttf') format('truetype');
+	/* lets us decide how their web fonts will render (or fallback), depending on how long it takes for them to load. */
+	font-display: swap;
+	src: local('Silka'),
+		url('/assets/fonts/silka/silka-light-webfont.ttf') format('truetype');
 	font-weight: lighter;
 	font-style: normal;
 }
@@ -297,3 +310,59 @@ label {
 *{
 	border: 1px solid red;
 } */
+
+.paginate-wrap {
+	display: flex;
+	align-items: center;
+	list-style: none;
+	margin: 1rem 0 0 0;
+	padding: 1.5rem 1rem;
+	justify-content: center;
+	max-width: 100%;
+	flex-wrap: wrap;
+}
+
+.paginate-a,
+.paginate-next-a,
+.paginate-prev-a,
+.paginate-break-a {
+	cursor: pointer;
+	padding: 0.2rem 0.4rem;
+}
+/* &:focus {
+		outline: 0;
+	  }
+  
+	  &:hover {
+		background: $purple-color;
+		background: $purple-color-lighter;
+	  } */
+
+.paginate-active {
+	border: 2px solid var(--primary-color);
+	background: var(--primary-color);
+}
+
+.paginate-disabled a {
+	color: rgb(198, 197, 202);
+	cursor: not-allowed;
+}
+
+.paginate-li {
+	margin: 0 0.2rem;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.paginate-next-a,
+.paginate-prev-a {
+	color: var(--primary-color);
+	margin: 0 0.3rem;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.paginate-active {
+	border: 2px solid var(--primary-color)-lighter;
+	background: var(--primary-color)-lighter;
+}
