@@ -12,7 +12,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Modal from '../components/modal';
 
-import { getPlaiceholder } from 'plaiceholder';
 
 const Home = ({ screens }) => {
 	const { filterTerm, filterName } = useContext(ScreensContext);
