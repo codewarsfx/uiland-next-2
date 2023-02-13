@@ -16,6 +16,7 @@ import {
 	getAllSingleBookmarkId,
 	viewSingleBookmark,
 	getElementCategoryFilter,
+	getScreensById,
 } from '../supabase';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
@@ -98,9 +99,7 @@ const useScreenshot = (screens) => {
 	const [disabled, setDisabled] = useState<boolean>(false);
 
 	//state to hold the limited screens
-	const [limitedscreens, setLimitedScreens] = useState<
-		[{ elementCategory: ''; id: ''; url: '' }]
-	>([{ elementCategory: '', id: '', url: '' }]);
+	const [limitedscreens, setLimitedScreens] = useState([]);
 
 	//state to display the  paying banner
 	const [payingbanner, setPayingBanner] = useState<string>('inactive');
@@ -147,44 +146,51 @@ const useScreenshot = (screens) => {
 		//This function displays all the screens that were created lesss than 5 days
 		//after the company table was created. This is to version this category as the first versions of screens
 
+		//condition to not target indi page,  I noticed it targeted it since that depended on it
+		console.log(screens);
 		if (router.route === '/collections/individual/[name]') {
 			setLimitedScreens(screens);
 		} else {
-			setLimitedScreens(
-				screens.filter((item) => {
-					return (
-						new Date(item.created_at).setDate(
-							new Date(item.created_at).getDate()
-						) >
-						new Date(headerInfo.timeTravel[0]).setDate(
-							new Date(headerInfo.timeTravel[0]).getDate() + 0
-						)
-					);
-				})
-			);
+			setLimitedScreens(screens);
 		}
-	}, [headerInfo, router, screens]);
-
+	}, [screens]);
+	console.log(limitedscreens);
 	async function onClickPill(id, arr) {
 		//stores id in pillstatus state
 		setPillStatus(id);
 
 		//function that runs if the first pill is selected
 		if (id === 0) {
+			// setLimitedScreens(
+			// 	screens.filter((item: { created_at: '' }) => {
+			// 		// make the timetravel value  less than the createddate to enable it be filtered
+			// 		//had to make sure that the first date on timeTravel array is lesser than the first version of the application to
+			// 		//ensure that only the first set of screens are displayed
+			// 		return (
+			// 			new Date(item.created_at).setDate(
+			// 				new Date(item.created_at).getDate()
+			// 			) >
+			// 			new Date(headerInfo.timeTravel[id]).setDate(
+			// 				new Date(headerInfo.timeTravel[id]).getDate() + 0
+			// 			)
+			// 		);
+			// 	})
+			// );
+			const page = router.query.page || 1;
+			const path = router.pathname;
+			const query = router.query;
+			const last = 2;
+			const one = 1;
+			query.version = last.toString();
+			query.page = one.toString();
+			router.push({
+				pathname: path,
+				query: query,
+			});
+			const data = await getScreensById(router.query.id, page, router.query);
+
 			setLimitedScreens(
-				screens.filter((item: { created_at: '' }) => {
-					// make the timetravel value  less than the createddate to enable it be filtered
-					//had to make sure that the first date on timeTravel array is lesser than the first version of the application to
-					//ensure that only the first set of screens are displayed
-					return (
-						new Date(item.created_at).setDate(
-							new Date(item.created_at).getDate()
-						) >
-						new Date(headerInfo.timeTravel[id]).setDate(
-							new Date(headerInfo.timeTravel[id]).getDate() + 0
-						)
-					);
-				})
+				JSON.stringify(data) === JSON.stringify([]) ? screens : data
 			);
 		}
 
@@ -194,38 +200,70 @@ const useScreenshot = (screens) => {
 			// console.log(screens[0].created_at)
 			// console.log(new Date(headerInfo.timeTravel[id]).setDate(new Date(headerInfo.timeTravel[id]).getDate() + 0))
 			// console.log(new Date(screens[0].created_at).setDate(new Date(screens[0].created_at).getDate() + 0))
+			// setLimitedScreens(
+			// 	screens.filter((item: { created_at: '' }) => {
+			// 		return (
+			// 			new Date(item.created_at).setDate(
+			// 				new Date(item.created_at).getDate() + 0
+			// 			) <
+			// 			new Date(headerInfo.timeTravel[arr.length - 1]).setDate(
+			// 				new Date(headerInfo.timeTravel[arr.length - 1]).getDate() + 0
+			// 			)
+			// 		);
+			// 	})
+			// );
+			const page = router.query.page || 1;
+			const path = router.pathname;
+			const query = router.query;
+			const last = arr.length - 1;
+			const one = 1;
+			query.version = last.toString();
+			query.page = one.toString();
+			router.push({
+				pathname: path,
+				query: query,
+			});
+			const data = await getScreensById(router.query.id, page, router.query);
+
 			setLimitedScreens(
-				screens.filter((item: { created_at: '' }) => {
-					return (
-						new Date(item.created_at).setDate(
-							new Date(item.created_at).getDate() + 0
-						) <
-						new Date(headerInfo.timeTravel[arr.length - 1]).setDate(
-							new Date(headerInfo.timeTravel[arr.length - 1]).getDate() + 0
-						)
-					);
-				})
+				JSON.stringify(data) === JSON.stringify([]) ? screens : data
 			);
 		} else {
 			// console.log(new Date(headerInfo.timeTravel[id+1]).setDate(new Date(headerInfo.timeTravel[id+1]).getDate() + 0))
 			// console.log(new Date(headerInfo.timeTravel[id+1]).setDate(new Date(headerInfo.timeTravel[id]).getDate() + 0))
+			// setLimitedScreens(
+			// 	screens.filter((item: { created_at: '' }) => {
+			// 		return (
+			// 			new Date(headerInfo.timeTravel[id + 1]).setDate(
+			// 				new Date(headerInfo.timeTravel[id + 1]).getDate() + 0
+			// 			) <
+			// 				new Date(headerInfo.timeTravel[id]).setDate(
+			// 					new Date(headerInfo.timeTravel[id]).getDate() + 0
+			// 				) &&
+			// 			new Date(headerInfo.timeTravel[id - 1]).setDate(
+			// 				new Date(headerInfo.timeTravel[id - 1]).getDate() + 0
+			// 			) >
+			// 				new Date(headerInfo.timeTravel[id]).setDate(
+			// 					new Date(headerInfo.timeTravel[id]).getDate() + 0
+			// 				)
+			// 		);
+			// 	})
+			// );
+			const page = router.query.page || 1;
+			const path = router.pathname;
+			const query = router.query;
+			const last = 1;
+			const one = 1;
+			query.version = last.toString();
+			query.page = one.toString();
+			router.push({
+				pathname: path,
+				query: query,
+			});
+			const data = await getScreensById(router.query.id, id, router.query);
+
 			setLimitedScreens(
-				screens.filter((item: { created_at: '' }) => {
-					return (
-						new Date(headerInfo.timeTravel[id + 1]).setDate(
-							new Date(headerInfo.timeTravel[id + 1]).getDate() + 0
-						) <
-							new Date(headerInfo.timeTravel[id]).setDate(
-								new Date(headerInfo.timeTravel[id]).getDate() + 0
-							) &&
-						new Date(headerInfo.timeTravel[id - 1]).setDate(
-							new Date(headerInfo.timeTravel[id - 1]).getDate() + 0
-						) >
-							new Date(headerInfo.timeTravel[id]).setDate(
-								new Date(headerInfo.timeTravel[id]).getDate() + 0
-							)
-					);
-				})
+				JSON.stringify(data) === JSON.stringify([]) ? screens : data
 			);
 		}
 	}
@@ -331,10 +369,7 @@ const useScreenshot = (screens) => {
 		Router.push('/pricing');
 	};
 	//filter
-	const searchFilter = (
-		array: [{ elementCategory: ''; url: ''; id: '' }],
-		data: string
-	) => {
+	const searchFilter = (array, data) => {
 		if (data === '') return array;
 		return array.filter((el) => el.elementCategory.toLowerCase() === data);
 	};
