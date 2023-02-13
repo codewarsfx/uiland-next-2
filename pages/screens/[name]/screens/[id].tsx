@@ -280,6 +280,7 @@ const SinglePage = ({ screens }) => {
 		<>
 			{/* for SEO */}
 			<Head>
+				<link rel="canonical" href={`https://uiland.design/screens/${headerInfo.name}/screens/${headerInfo.id}`}    key="canonical" />
 				<title>{headerInfo.name} app screens</title>
 				<meta
 					name='description'
