@@ -16,7 +16,7 @@ import {
 	getAllSingleBookmarkId,
 	viewSingleBookmark,
 	getElementCategoryFilter,
-	getScreensById
+	getScreensById,
 } from '../supabase';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
@@ -99,7 +99,7 @@ const useScreenshot = (screens) => {
 	const [disabled, setDisabled] = useState<boolean>(false);
 
 	//state to hold the limited screens
-	const [limitedscreens, setLimitedScreens] = useState([])
+	const [limitedscreens, setLimitedScreens] = useState([]);
 
 	//state to display the  paying banner
 	const [payingbanner, setPayingBanner] = useState<string>('inactive');
@@ -147,16 +147,14 @@ const useScreenshot = (screens) => {
 		//after the company table was created. This is to version this category as the first versions of screens
 
 		//condition to not target indi page,  I noticed it targeted it since that depended on it
-		console.log(screens)
+		console.log(screens);
 		if (router.route === '/collections/individual/[name]') {
 			setLimitedScreens(screens);
 		} else {
-			setLimitedScreens(
-				screens
-			);
+			setLimitedScreens(screens);
 		}
 	}, [screens]);
-console.log(limitedscreens)
+	console.log(limitedscreens);
 	async function onClickPill(id, arr) {
 		//stores id in pillstatus state
 		setPillStatus(id);
@@ -178,20 +176,22 @@ console.log(limitedscreens)
 			// 		);
 			// 	})
 			// );
-			const page=router.query.page||1
-			const path = router.pathname
-			const query = router.query
-			const last=  2
-			const one=  1
-			query.version = last.toString()
-			query.page =one.toString()
+			const page = router.query.page || 1;
+			const path = router.pathname;
+			const query = router.query;
+			const last = 2;
+			const one = 1;
+			query.version = last.toString();
+			query.page = one.toString();
 			router.push({
-			  pathname: path,
-			  query: query,
-			})
-			const data= await getScreensById(router.query.id,page,router.query)
-			
-			setLimitedScreens(JSON.stringify(data)===JSON.stringify([])?screens:data)
+				pathname: path,
+				query: query,
+			});
+			const data = await getScreensById(router.query.id, page, router.query);
+
+			setLimitedScreens(
+				JSON.stringify(data) === JSON.stringify([]) ? screens : data
+			);
 		}
 
 		//function that runs if the last pill is selected
@@ -212,20 +212,22 @@ console.log(limitedscreens)
 			// 		);
 			// 	})
 			// );
-			const page=router.query.page||1
-			const path = router.pathname
-			const query = router.query
-			const last= arr.length - 1
-			const one=  1
-			query.version = last.toString()
-			query.page =one.toString()
+			const page = router.query.page || 1;
+			const path = router.pathname;
+			const query = router.query;
+			const last = arr.length - 1;
+			const one = 1;
+			query.version = last.toString();
+			query.page = one.toString();
 			router.push({
-			  pathname: path,
-			  query: query,
-			})
-			const data= await getScreensById(router.query.id,page,router.query)
-			
-			setLimitedScreens(JSON.stringify(data)===JSON.stringify([])?screens:data)
+				pathname: path,
+				query: query,
+			});
+			const data = await getScreensById(router.query.id, page, router.query);
+
+			setLimitedScreens(
+				JSON.stringify(data) === JSON.stringify([]) ? screens : data
+			);
 		} else {
 			// console.log(new Date(headerInfo.timeTravel[id+1]).setDate(new Date(headerInfo.timeTravel[id+1]).getDate() + 0))
 			// console.log(new Date(headerInfo.timeTravel[id+1]).setDate(new Date(headerInfo.timeTravel[id]).getDate() + 0))
@@ -247,20 +249,22 @@ console.log(limitedscreens)
 			// 		);
 			// 	})
 			// );
-			const page=router.query.page||1
-			const path = router.pathname
-			const query = router.query
-			const last=  1
-			const one=  1
-			query.version = last.toString()
-			query.page =one.toString()
+			const page = router.query.page || 1;
+			const path = router.pathname;
+			const query = router.query;
+			const last = 1;
+			const one = 1;
+			query.version = last.toString();
+			query.page = one.toString();
 			router.push({
-			  pathname: path,
-			  query: query,
-			})
-			const data= await getScreensById(router.query.id,id,router.query)
-			
-			setLimitedScreens(JSON.stringify(data)===JSON.stringify([])?screens:data)
+				pathname: path,
+				query: query,
+			});
+			const data = await getScreensById(router.query.id, id, router.query);
+
+			setLimitedScreens(
+				JSON.stringify(data) === JSON.stringify([]) ? screens : data
+			);
 		}
 	}
 
@@ -365,10 +369,7 @@ console.log(limitedscreens)
 		Router.push('/pricing');
 	};
 	//filter
-	const searchFilter = (
-		array,
-		data
-	) => {
+	const searchFilter = (array, data) => {
 		if (data === '') return array;
 		return array.filter((el) => el.elementCategory.toLowerCase() === data);
 	};

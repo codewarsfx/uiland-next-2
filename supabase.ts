@@ -55,104 +55,24 @@ export async function getAllScreens() {
 
 //get individual screens of the newest version content
 
-export async function getScreensById(id,page,query) {
-	
-let limit=9
-let limitMaxRange=page*limit
-let limitMinRange=(page*limit)-limit
-console.log(limitMinRange, limitMaxRange)
-
-
+export async function getScreensById(id, page, query) {
+	let limit = 9;
+	let limitMaxRange = page * limit;
+	let limitMinRange = page * limit - limit;
+	console.log(limitMinRange, limitMaxRange);
 
 	const { data, error } = await supabase
 		.from('screenImages')
 		.select('version')
-	.eq('screenId', id)
-   
+		.eq('screenId', id);
+
 	//gets unique names in the db
 	const result = data?.map((object) => object.version);
 	const uniqueResult = Array.from(new Set(result));
-	console.log(uniqueResult)
+	console.log(uniqueResult);
 
-
-//this is for the boomplay screens
-if(uniqueResult[0]===1 && uniqueResult.length===1){
-	if (
-		id === 'b274aac8-8a59-4034-8456-f8a2539ddc24' ||
-		id === '04b85c78-5dd6-4387-a785-a5edb72d0937'
-	) {
-		const { data, error } = await supabase
-			.from('screenImages')
-			.select('*')
-			.order('url', { ascending: true })
-			//   i will use this to limit the result later
-			//   .limit(1)
-			.range(limitMinRange, limitMaxRange)
-			.eq('screenId', id)
-			.eq('version',1)
-		
-		return data;
-	} else {
-		const { data, error } = await supabase
-			.from('screenImages')
-			.select('*')
-			.order('order', { ascending: true })
-			//   i will use this to limit the result later
-			//   .limit(1)
-			.range(limitMinRange, limitMaxRange)
-			.eq('screenId', id)
-			.eq('version',1)
-
-		return data;
-	}
-}else{
-	if (
-		id === 'b274aac8-8a59-4034-8456-f8a2539ddc24' ||
-		id === '04b85c78-5dd6-4387-a785-a5edb72d0937'
-	) {
-		const { data, error } = await supabase
-			.from('screenImages')
-			.select('*')
-			.order('url', { ascending: true })
-			//   i will use this to limit the result later
-			//   .limit(1)
-			.range(limitMinRange, limitMaxRange)
-			.eq('screenId', id)
-			.eq('version',query.version||2)
-		
-		return data;
-	} else {
-		const { data, error } = await supabase
-			.from('screenImages')
-			.select('*')
-			.order('order', { ascending: true })
-			//   i will use this to limit the result later
-			//   .limit(1)
-			.range(limitMinRange, limitMaxRange)
-			.eq('screenId', id)
-			.eq('version',query.version||2)
-
-		return data;
-	}
-}
-	
-}
-
-
-
-
-//get individual screens of older versions 
-export async function getOlderScreensById(id,page,version) {
-	
-	let limit=9
-	let limitMaxRange=page*limit
-	let limitMinRange=(page*limit)-limit
-	console.log(limitMinRange, limitMaxRange)
-	
-	
-	
-	
 	//this is for the boomplay screens
+	if (uniqueResult[0] === 1 && uniqueResult.length === 1) {
 		if (
 			id === 'b274aac8-8a59-4034-8456-f8a2539ddc24' ||
 			id === '04b85c78-5dd6-4387-a785-a5edb72d0937'
@@ -165,8 +85,8 @@ export async function getOlderScreensById(id,page,version) {
 				//   .limit(1)
 				.range(limitMinRange, limitMaxRange)
 				.eq('screenId', id)
-				.eq('version',version||1)
-				console.log(data)
+				.eq('version', 1);
+
 			return data;
 		} else {
 			const { data, error } = await supabase
@@ -177,49 +97,108 @@ export async function getOlderScreensById(id,page,version) {
 				//   .limit(1)
 				.range(limitMinRange, limitMaxRange)
 				.eq('screenId', id)
-				.eq('version',version||1)
-				console.log(data)
+				.eq('version', 1);
+
+			return data;
+		}
+	} else {
+		if (
+			id === 'b274aac8-8a59-4034-8456-f8a2539ddc24' ||
+			id === '04b85c78-5dd6-4387-a785-a5edb72d0937'
+		) {
+			const { data, error } = await supabase
+				.from('screenImages')
+				.select('*')
+				.order('url', { ascending: true })
+				//   i will use this to limit the result later
+				//   .limit(1)
+				.range(limitMinRange, limitMaxRange)
+				.eq('screenId', id)
+				.eq('version', query.version || 2);
+
+			return data;
+		} else {
+			const { data, error } = await supabase
+				.from('screenImages')
+				.select('*')
+				.order('order', { ascending: true })
+				//   i will use this to limit the result later
+				//   .limit(1)
+				.range(limitMinRange, limitMaxRange)
+				.eq('screenId', id)
+				.eq('version', query.version || 2);
+
 			return data;
 		}
 	}
+}
 
+//get individual screens of older versions
+export async function getOlderScreensById(id, page, version) {
+	let limit = 9;
+	let limitMaxRange = page * limit;
+	let limitMinRange = page * limit - limit;
+	console.log(limitMinRange, limitMaxRange);
+
+	//this is for the boomplay screens
+	if (
+		id === 'b274aac8-8a59-4034-8456-f8a2539ddc24' ||
+		id === '04b85c78-5dd6-4387-a785-a5edb72d0937'
+	) {
+		const { data, error } = await supabase
+			.from('screenImages')
+			.select('*')
+			.order('url', { ascending: true })
+			//   i will use this to limit the result later
+			//   .limit(1)
+			.range(limitMinRange, limitMaxRange)
+			.eq('screenId', id)
+			.eq('version', version || 1);
+		console.log(data);
+		return data;
+	} else {
+		const { data, error } = await supabase
+			.from('screenImages')
+			.select('*')
+			.order('order', { ascending: true })
+			//   i will use this to limit the result later
+			//   .limit(1)
+			.range(limitMinRange, limitMaxRange)
+			.eq('screenId', id)
+			.eq('version', version || 1);
+		console.log(data);
+		return data;
+	}
+}
 
 //get individual screen content count
-export async function getScreensByIdCount(id,version) {
-
+export async function getScreensByIdCount(id, version) {
 	const { data, error } = await supabase
 		.from('screenImages')
 		.select('version')
-	.eq('screenId', id)
-   
+		.eq('screenId', id);
+
 	//gets unique names in the db
 	const result = data?.map((object) => object.version);
 	const uniqueResult = Array.from(new Set(result));
-	console.log(uniqueResult)
+	console.log(uniqueResult);
 
-
-//this is for the boomplay screens
-if(uniqueResult[0]===1 && uniqueResult.length===1){
-
-	const { count, error } = await supabase
-		.from('screenImages')
-		.select('*', { count: 'exact', head: true })
-		.eq('screenId', id)
-		.eq('version', 1)
-	return count;
-}
-else{
-	const { count, error } = await supabase
-	.from('screenImages')
-	.select('*', { count: 'exact', head: true })
-	.eq('screenId', id)
-	.eq('version', version||2)
-return count;
-}
-
-
-
-
+	//this is for the boomplay screens
+	if (uniqueResult[0] === 1 && uniqueResult.length === 1) {
+		const { count, error } = await supabase
+			.from('screenImages')
+			.select('*', { count: 'exact', head: true })
+			.eq('screenId', id)
+			.eq('version', 1);
+		return count;
+	} else {
+		const { count, error } = await supabase
+			.from('screenImages')
+			.select('*', { count: 'exact', head: true })
+			.eq('screenId', id)
+			.eq('version', version || 2);
+		return count;
+	}
 }
 
 //get individual screens content(limited)
@@ -494,5 +473,3 @@ export const addUserData = async (type, formdata) => {
 //   .eq('screenId', 'b76461af-34f9-4523-a892-b4991dfa364a')
 //   return error
 // }
-
-

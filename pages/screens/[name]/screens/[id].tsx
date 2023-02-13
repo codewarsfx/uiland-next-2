@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 //Third party libraries
 import styled from 'styled-components';
-import ReactPaginate from "react-paginate"
+import ReactPaginate from 'react-paginate';
 // Components
 import {
 	BottomSheet,
@@ -12,7 +12,7 @@ import {
 	Pill,
 } from '../../../../components/uiElements';
 
-import { PopContext} from '../../../../context/PopContext';
+import { PopContext } from '../../../../context/PopContext';
 import { pillsTypes } from '../../../../components/uiElements/pills';
 import ImageCardInfo from '../../../../components/ImageCardInfo';
 import Modal from '../../../../components/modal';
@@ -34,13 +34,13 @@ import {
 	getScreensByIdCount,
 	getRange,
 } from '../../../../supabase';
-import { GetStaticPaths, GetStaticProps ,GetServerSideProps} from 'next';
+import { GetStaticPaths, GetStaticProps, GetServerSideProps } from 'next';
 
-import { useEffect, useState, useContext ,useRef} from 'react';
+import { useEffect, useState, useContext, useRef } from 'react';
 import NewsLetter from '../../../../components/NewsLetter';
 import withPopContext from '../../../../HOC/withPopContext';
 
-const SinglePage = ({ screens })=> {
+const SinglePage = ({ screens }) => {
 	const {
 		headerInfo,
 		toggleBottomSheet,
@@ -98,7 +98,7 @@ const SinglePage = ({ screens })=> {
 	// The back-to-top button is hidden at the beginning
 	const [showButton, setShowButton] = useState(false);
 	const { openNewsLetter, setOpenNewsLetter } = useContext(PopContext);
-	const userListRef = useRef(null) 
+	const userListRef = useRef(null);
 
 	// useEffect(()=>{
 	// 	const path = router.pathname
@@ -110,18 +110,17 @@ const SinglePage = ({ screens })=> {
 	// 		query: query,
 	// 	  })
 	// },[])
-	 // Triggers fetch for new page
-	 const handlePagination = (page) => {
-		
-		const path = router.pathname
-		const query = router.query
-		query.page = page.selected + 1
+	// Triggers fetch for new page
+	const handlePagination = (page) => {
+		const path = router.pathname;
+		const query = router.query;
+		query.page = page.selected + 1;
 		router.push({
-		  pathname: path,
-		  query: query,
-		})
-		userListRef.current.scrollIntoView({ behavior: "smooth" })
-	  }
+			pathname: path,
+			query: query,
+		});
+		userListRef.current.scrollIntoView({ behavior: 'smooth' });
+	};
 
 	//This is used to track the number of times a user has visited the screen. The guide modal
 	//is displayed if the user is a first-time user.
@@ -144,11 +143,14 @@ const SinglePage = ({ screens })=> {
 	//get actual cunt of screens
 	useEffect(() => {
 		async function getCount() {
-			const count = await getScreensByIdCount(router.query.id,router.query.version);
+			const count = await getScreensByIdCount(
+				router.query.id,
+				router.query.version
+			);
 			setActualCount(count);
 		}
 		getCount();
-	}, [router.query.id,router.query.version]);
+	}, [router.query.id, router.query.version]);
 
 	//function for the previous state
 	function prevPage() {
@@ -274,15 +276,14 @@ const SinglePage = ({ screens })=> {
 		//adding this dependency works for now
 	}, [timeHost]);
 
-	
-// 	useEffect(()=>{
-// 	async	function yes(){
-// const ed= await getVersion(router.query.id)
-// 			console.log(ed)	}
+	// 	useEffect(()=>{
+	// 	async	function yes(){
+	// const ed= await getVersion(router.query.id)
+	// 			console.log(ed)	}
 
-// 		yes()
-// 	},[router.query.id])
-const pageCount=Math.ceil(actualCount/perPage)
+	// 		yes()
+	// 	},[router.query.id])
+	const pageCount = Math.ceil(actualCount / perPage);
 	return (
 		<>
 			{/* for SEO */}
@@ -317,7 +318,7 @@ const pageCount=Math.ceil(actualCount/perPage)
 					content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
 				></meta>
 			</Head>
-		
+
 			{modalSheet && (
 				<Modal toggleModal={toggleBottomSheet}>
 					<ModalBox>
@@ -562,31 +563,30 @@ const pageCount=Math.ceil(actualCount/perPage)
 				Progress={Progress}
 				pendingText={toastPendingText}
 				successText={toastSuccessText}
-				/>
-				
-				<ReactPaginate
-       marginPagesDisplayed={0}
-	   pageRangeDisplayed={0}
-        previousLabel={"< Previous"}
-        nextLabel={"Next >"}
-        breakLabel={"..."}
-        forcePage={(Number(router.query.page)  || 1)-1}
-        pageCount={pageCount}
-        onPageChange={handlePagination}
-		disableInitialCallback={true}
-		
-		containerClassName={"paginate-wrap"}
-        pageClassName={"paginate-li"}
-        pageLinkClassName={"paginate-a"}
-        activeClassName={"paginate-active"}
-        nextLinkClassName={"paginate-next-a"}
-        previousLinkClassName={"paginate-prev-a"}
-        breakLinkClassName={"paginate-break-a"}
-		disabledClassName={"paginate-disabled"}
-      />
+			/>
+
+			<ReactPaginate
+				marginPagesDisplayed={0}
+				pageRangeDisplayed={0}
+				previousLabel={'< Previous'}
+				nextLabel={'Next >'}
+				breakLabel={'...'}
+				forcePage={(Number(router.query.page) || 1) - 1}
+				pageCount={pageCount}
+				onPageChange={handlePagination}
+				disableInitialCallback={true}
+				containerClassName={'paginate-wrap'}
+				pageClassName={'paginate-li'}
+				pageLinkClassName={'paginate-a'}
+				activeClassName={'paginate-active'}
+				nextLinkClassName={'paginate-next-a'}
+				previousLinkClassName={'paginate-prev-a'}
+				breakLinkClassName={'paginate-break-a'}
+				disabledClassName={'paginate-disabled'}
+			/>
 		</>
 	);
-}
+};
 const CategoryTabContainer = styled.section`
 	margin: 1.5em 0;
 	padding: 1em 0;
@@ -957,20 +957,17 @@ const ElementsInCategoryContainer = styled.div`
 	}
 `;
 
-
-
-
-
-export const getServerSideProps: GetServerSideProps = async ({query,params}) => {
-	const page=query.page||1
-	const screens = await getScreensById(params.id,page,query);
-
-	
+export const getServerSideProps: GetServerSideProps = async ({
+	query,
+	params,
+}) => {
+	const page = query.page || 1;
+	const screens = await getScreensById(params.id, page, query);
 
 	return {
 		props: {
-			screens
+			screens,
 		},
 	};
 };
-export default withPopContext(SinglePage)
+export default withPopContext(SinglePage);

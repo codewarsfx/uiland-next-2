@@ -53,7 +53,12 @@ const Header = () => {
 				<HeaderContainer initial={initialState} animate={animateTo}>
 					<HeaderLogo>
 						<Link href='/'>
-							<img src='/assets/img/UL.png' alt='my next image' width="25" height="14" />
+							<img
+								src='/assets/img/UL.png'
+								alt='my next image'
+								width='25'
+								height='14'
+							/>
 						</Link>
 					</HeaderLogo>
 					<HeaderCTA>

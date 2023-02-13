@@ -148,9 +148,9 @@ export default function App({
 						/>
 					</Head>
 					<Header />
-		
-						<Component {...pageProps} />
-	
+
+					<Component {...pageProps} />
+
 					<Analytics />
 				</ScreensContextProvider>
 			</UserContextProvider>

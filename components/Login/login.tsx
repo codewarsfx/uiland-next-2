@@ -26,7 +26,7 @@ const Login = ({ toggleModal }) => {
 			/>
 			<h1>
 				<span>UL</span>
-				 Sign in for Free
+				Sign in for Free
 			</h1>
 			<p>Welcome to UiLand</p>
 			<div onClick={() => handleSignupWithGoogle()}>
