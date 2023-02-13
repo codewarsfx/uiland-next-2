@@ -2,16 +2,18 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-const Screenshot = ({ imgLink, Name }) => {
+import React from 'react';
+
+type screenshotProps = {
+	imgLink: '';
+	Name: '';
+};
+
+const Screenshot: React.FC<screenshotProps> = ({ imgLink, Name }) => {
 	return (
 		<>
 			<ScreenshotContainer initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-				<Image
-					width={320}
-					height={640}
-					src={imgLink}
-					alt={Name}
-				/>
+				<Image width={320} height={640} src={imgLink} alt={Name} />
 			</ScreenshotContainer>
 		</>
 	);
