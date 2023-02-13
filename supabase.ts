@@ -186,12 +186,40 @@ export async function getOlderScreensById(id,page,version) {
 
 //get individual screen content count
 export async function getScreensByIdCount(id,version) {
+
+	const { data, error } = await supabase
+		.from('screenImages')
+		.select('version')
+	.eq('screenId', id)
+   
+	//gets unique names in the db
+	const result = data?.map((object) => object.version);
+	const uniqueResult = Array.from(new Set(result));
+	console.log(uniqueResult)
+
+
+//this is for the boomplay screens
+if(uniqueResult[0]===1 && uniqueResult.length===1){
+
 	const { count, error } = await supabase
 		.from('screenImages')
 		.select('*', { count: 'exact', head: true })
 		.eq('screenId', id)
-		.eq('version', version||1)
+		.eq('version', 1)
 	return count;
+}
+else{
+	const { count, error } = await supabase
+	.from('screenImages')
+	.select('*', { count: 'exact', head: true })
+	.eq('screenId', id)
+	.eq('version', version||2)
+return count;
+}
+
+
+
+
 }
 
 //get individual screens content(limited)
