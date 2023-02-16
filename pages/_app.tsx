@@ -118,7 +118,7 @@ export default function App({
 						<meta property='twitter:site' content='@UiLandDesign' />{' '}
 						<meta
 							property='twitter:title'
-							content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
+							content='uiland.design'
 						/>
 						<meta
 							property='twitter:description'
