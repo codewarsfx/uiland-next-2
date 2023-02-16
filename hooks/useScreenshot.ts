@@ -17,6 +17,8 @@ import {
 	viewSingleBookmark,
 	getElementCategoryFilter,
 	getScreensById,
+	numberOfDownloads,
+	numberOfCopyImage
 } from '../supabase';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
@@ -535,6 +537,7 @@ const useScreenshot = (screens) => {
 			link.click();
 			document.body.removeChild(link);
 			setToastSuccessText('Downloaded 🎉');
+			await numberOfDownloads(user)
 			setProgress(3);
 			toastNotification(1);
 		} else {
@@ -560,6 +563,7 @@ const useScreenshot = (screens) => {
 				}),
 			]);
 			setToastSuccessText('Copied Image');
+			await numberOfCopyImage(user)
 			setProgress(3);
 			toastNotification(1);
 		} else {

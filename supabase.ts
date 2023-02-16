@@ -464,6 +464,20 @@ export const addUserData = async (type, formdata) => {
 	return data;
 };
 
+export const numberOfDownloads=async(user)=>{
+	const { data, error } = await supabase.rpc( 'download', {
+		user_id: user.id, increment_num: 1
+	  } )
+	  return data
+}
+
+export const numberOfCopyImage=async(user)=>{
+	const { data, error } = await supabase.rpc( 'copy', {
+		user_id: user.id, increment_num: 1
+	  } )
+	  return data
+}
+
 // added version to the table
 //it worked
 // export const addVersion=async()=>{
