@@ -99,11 +99,22 @@ export default function App({
 							property='og:image'
 							content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG'
 						/>
-						<meta property='og:url' content='cannot_get_url_for_ssr' />
+						<meta
+							property='og:image:secure_url'
+							content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG'
+						/>
+						<meta
+							property='og:image:alt'
+							content='Browse Mobile Apps designs | Uiland'
+						/>
+						<meta property='og:image:width' content='1200' />
+						<meta property='og:image:height' content='630' />
+						<meta property='og:image:type' content='image/png' />
+						<meta property='og:url' content='' />
 						<meta property='og:type' content='website' />
 						<meta property='og:site_name' content='Uiland' />
 						<meta property='twitter:card' content='summary_large_image' />
-						<meta property='twitter:url' content='https://uiland.design' />{' '}
+						<meta property='twitter:url' content='@UiLandDesign' />{' '}
 						<meta property='twitter:site' content='@UiLandDesign' />{' '}
 						<meta
 							property='twitter:title'
