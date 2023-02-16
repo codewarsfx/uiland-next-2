@@ -95,7 +95,7 @@ export default function App({
 							property='og:description'
 							content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
 						/>
-						<meta property='og:image' content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG' />
+						<meta name='image' property='og:image' content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG' />
 						<meta property='og:url' content='cannot_get_url_for_ssr' />
 						<meta property='og:type' content='website' />
 						<meta property='og:site_name' content='Uiland' />
