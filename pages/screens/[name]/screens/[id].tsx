@@ -315,9 +315,13 @@ const SinglePage = ({ screens }) => {
 					property='og:url'
 					content={`https://uiland.design/screens/${headerInfo.name}/screens/${headerInfo.id}`}
 				/>
-				<meta name='twitter:card' content='image' />
+				<meta property='twitter:card' content='image' />
 				<meta property='og:image' content={`${headerInfo.logo}`} />
-				<meta name='twitter:image:src' content={`${headerInfo.logo}`} />
+				<meta property='twitter:image' content={`${headerInfo.logo}`} />
+				<meta
+							property='twitter:description'
+							content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
+						/>
 				<meta
 					name='viewport'
 					content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
