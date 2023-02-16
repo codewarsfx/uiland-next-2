@@ -97,7 +97,7 @@ export default function App({
 						<meta
 							name='image'
 							property='og:image'
-							content='https://res.cloudinary.com/dspbvhlt6/image/upload/v1670880238/omoui-uploads/meta_image_ni0pdf.png'
+							content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG'
 						/>
 						<meta property='og:url' content='cannot_get_url_for_ssr' />
 						<meta property='og:type' content='website' />
@@ -115,7 +115,7 @@ export default function App({
 						/>
 						<meta
 							property='twitter:image'
-							content='https://res.cloudinary.com/dspbvhlt6/image/upload/v1670880238/omoui-uploads/meta_image_ni0pdf.png'
+							content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG'
 						/>
 						<link
 							rel='apple-touch-icon'
