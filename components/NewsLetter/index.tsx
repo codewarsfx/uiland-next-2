@@ -83,7 +83,6 @@ const NewsLetter = ({ toggleModal }) => {
 				<h2> Hi there, UiLander! </h2>
 			</ModalHeader>
 			<ModalBottomWrapper>
-				
 				<FormTitle>Leave a Feedback</FormTitle>
 				<Description>Need Something Improved? drop a feedback</Description>
 				<form onSubmit={(e) => handleSubmit(e, 'Feedback')}>
