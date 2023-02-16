@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 //Next library
 import Router, { useRouter } from 'next/router';
 import * as gtag from '../lib/gtag';
@@ -440,7 +440,7 @@ const useScreenshot = (screens) => {
 	// 	dialogFuncMap[`${name}`](false);
 	// };
 	//tracks changes in the input field
-	function handleChange(e) {
+	function handleChange(e:ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) {
 		setInput(e.target.value);
 	}
 	//shows the modal and populates the imageContent state

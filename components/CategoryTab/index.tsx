@@ -12,7 +12,7 @@ const CategoryTabBar = () => {
 		const nodes = document.querySelectorAll('.pills');
 		Array.from(nodes).forEach((node) => node.classList.remove('active'));
 	};
-	const onClickPill = (e, result) => {
+	const onClickPill = (e:, result) => {
 		removeAllActiveClasses();
 		e.target.classList.add('active');
 		setFilterItem(result.categoryStatus);

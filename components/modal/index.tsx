@@ -1,21 +1,26 @@
-import React, { useRef, useState } from 'react';
+import React, { PropsWithChildren, ReactNode, useRef, useState } from 'react';
 import reactDOM from 'react-dom';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { useEffect } from 'react';
 
-const Modal = ({ children, toggleModal }) => {
+type modalType = {
+	children: PropsWithChildren,
+    toggleModal: () => void
+}
+
+const Modal = ({ children, toggleModal }: modalType)  => {
 	const [isBrowser, setIsBrowser] = useState(false);
 	const ref = React.useRef();
 
 	useEffect(() => {
 		//get the portal
-		ref.current = document.querySelector('#portal');
+		ref.current  = document.querySelector('#portal');
 		setIsBrowser(true);
 	}, []);
 
 	useEffect(() => {
-		window.onclick = function (event) {
+		window.onclick = function (event:MouseEvent<HTMLDivElement>) {
 			// nasty bug caused by this className being triggered, I had to target it
 			if (event.target.className.baseVal === '') {
 			} else if (event.target.className.includes('ModalOverlay')) {
@@ -45,7 +50,7 @@ const Modal = ({ children, toggleModal }) => {
 				</ModalOverlay>
 			</ModalContainer>,
 			document.getElementById('portal')
-		);
+		)as	ReactNode
 	}
 };
 

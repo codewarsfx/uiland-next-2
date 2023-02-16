@@ -1,6 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-function DeleteIcon({ deleteIndividualBookmark, data }) {
+
+
+type deleteIconType={
+	toggle: () => void
+	deleteIndividualBookmark: (data:[{}]) => void,
+	data: [{}]
+  }
+
+const DeleteIcon : React.FC<deleteIconType> = ({ deleteIndividualBookmark, data })=>{
 	return (
 		<>
 			<DownloadWrapper onClick={() => deleteIndividualBookmark(data)}>

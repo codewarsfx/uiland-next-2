@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
+
+
 function ImageCardInfo({ headerInfo, count, actualCount }) {
 	return (
 		<>
