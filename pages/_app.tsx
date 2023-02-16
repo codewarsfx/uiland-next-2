@@ -125,7 +125,7 @@ export default function App({
 							content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
 						/>
 						<meta
-							property='twitter:image'
+							property='twitter:image:src'
 							content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG'
 						/>
 						<link
