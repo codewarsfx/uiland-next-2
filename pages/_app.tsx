@@ -111,7 +111,7 @@ export default function App({
 						/>
 						<meta
 							name='twitter:image'
-							content='/assets/img/homepage-snap.png'
+							content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG'
 						/>
 						<meta name='twitter:site' content='@UiLandDesign' />
 						<link
