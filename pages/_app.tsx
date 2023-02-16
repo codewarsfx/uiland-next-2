@@ -99,18 +99,18 @@ export default function App({
 						<meta property='og:url' content='cannot_get_url_for_ssr' />
 						<meta property='og:type' content='website' />
 						<meta property='og:site_name' content='Uiland' />
-						<meta name='twitter:card' content='summary_large_image' />
-						<meta name='twitter:url' content='https://uiland.design' />	<meta name='twitter:site' content='@UiLandDesign' />	<meta
-							name='twitter:title'
+						<meta property='twitter:card' content='summary_large_image' />
+						<meta property='twitter:url' content='https://uiland.design' />	<meta property='twitter:site' content='@UiLandDesign' />	<meta
+							property='twitter:title'
 							content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
 						/>
 					
 						<meta
-							name='twitter:description'
+							property='twitter:description'
 							content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
 						/>
 						<meta
-							name="twitter:image"
+							property="twitter:image"
 							
 							content="https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG"
 						/>
