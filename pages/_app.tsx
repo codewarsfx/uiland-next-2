@@ -95,16 +95,16 @@ export default function App({
 							property='og:description'
 							content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
 						/>
-						<meta property='og:image' content='/assets/img/homepage-snap.png' />
+						<meta property='og:image' content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG' />
 						<meta property='og:url' content='cannot_get_url_for_ssr' />
 						<meta property='og:type' content='website' />
 						<meta property='og:site_name' content='Uiland' />
 						<meta name='twitter:card' content='summary_large_image' />
-						<meta
+						<meta name='twitter:url' content='https://uiland.design' />	<meta name='twitter:site' content='@UiLandDesign' />	<meta
 							name='twitter:title'
 							content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
 						/>
-						<meta name='twitter:url' content='https://uiland.design' />
+					
 						<meta
 							name='twitter:description'
 							content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
@@ -113,7 +113,7 @@ export default function App({
 							name='twitter:image'
 							content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG'
 						/>
-						<meta name='twitter:site' content='@UiLandDesign' />
+					
 						<link
 							rel='apple-touch-icon'
 							sizes='180x180'

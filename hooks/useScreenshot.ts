@@ -537,7 +537,8 @@ const useScreenshot = (screens) => {
 			link.click();
 			document.body.removeChild(link);
 			setToastSuccessText('Downloaded 🎉');
-			await numberOfDownloads(user)
+			const download= await numberOfDownloads(user)
+			console.log(download);
 			setProgress(3);
 			toastNotification(1);
 		} else {
@@ -563,7 +564,8 @@ const useScreenshot = (screens) => {
 				}),
 			]);
 			setToastSuccessText('Copied Image');
-			await numberOfCopyImage(user)
+			const copy=await numberOfCopyImage(user)
+			console.log(copy);
 			setProgress(3);
 			toastNotification(1);
 		} else {
