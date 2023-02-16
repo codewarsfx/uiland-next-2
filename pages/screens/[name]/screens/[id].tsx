@@ -315,8 +315,9 @@ const SinglePage = ({ screens }) => {
 					property='og:url'
 					content={`https://uiland.design/screens/${headerInfo.name}/screens/${headerInfo.id}`}
 				/>
-				<meta property='twitter:card' content='image' />
-				<meta property='og:image' content={`${headerInfo.logo}`} />
+			<meta property='og:image' content={`${headerInfo.logo}`} />	
+			<meta property='twitter:card' content='summary_large_image' />
+			
 				<meta property='twitter:image' content={`${headerInfo.logo}`} />
 				<meta
 							property='twitter:description'

@@ -149,14 +149,14 @@ const useScreenshot = (screens) => {
 		//after the company table was created. This is to version this category as the first versions of screens
 
 		//condition to not target indi page,  I noticed it targeted it since that depended on it
-		console.log(screens);
+	
 		if (router.route === '/collections/individual/[name]') {
 			setLimitedScreens(screens);
 		} else {
 			setLimitedScreens(screens);
 		}
 	}, [screens]);
-	console.log(limitedscreens);
+	
 	async function onClickPill(id, arr) {
 		//stores id in pillstatus state
 		setPillStatus(id);
