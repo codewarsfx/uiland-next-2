@@ -74,7 +74,6 @@ export default function App({
 
 					<Head>
 						<link rel='shortcut icon' href='/favicon.ico' />
-
 						<meta charSet='utf-8' />
 						<title>Welcome to Uiland</title>
 						<meta
@@ -95,26 +94,29 @@ export default function App({
 							property='og:description'
 							content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
 						/>
-						<meta name='image' property='og:image' content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG' />
+						<meta
+							name='image'
+							property='og:image'
+							content='https://res.cloudinary.com/dspbvhlt6/image/upload/v1670880238/omoui-uploads/meta_image_ni0pdf.png'
+						/>
 						<meta property='og:url' content='cannot_get_url_for_ssr' />
 						<meta property='og:type' content='website' />
 						<meta property='og:site_name' content='Uiland' />
 						<meta property='twitter:card' content='summary_large_image' />
-						<meta property='twitter:url' content='https://uiland.design' />	<meta property='twitter:site' content='@UiLandDesign' />	<meta
+						<meta property='twitter:url' content='https://uiland.design' />{' '}
+						<meta property='twitter:site' content='@UiLandDesign' />{' '}
+						<meta
 							property='twitter:title'
 							content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
 						/>
-					
 						<meta
 							property='twitter:description'
 							content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
 						/>
 						<meta
-							property="twitter:image"
-							
-							content="https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG"
+							property='twitter:image'
+							content='https://res.cloudinary.com/dspbvhlt6/image/upload/v1670880238/omoui-uploads/meta_image_ni0pdf.png'
 						/>
-					
 						<link
 							rel='apple-touch-icon'
 							sizes='180x180'
