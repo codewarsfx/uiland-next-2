@@ -21,7 +21,7 @@ const CategoryTabBar = () => {
 	const data = [
 		{ category: 'All', categoryStatus: '', status: 'active', id: 1 },
 		{ category: 'Fintech', categoryStatus: 'Fintech', status: '', id: 2 },
-		{ category: 'Edtech', categoryStatus: 'Edtech', status: '', id: 3 },
+
 		{ category: 'Logistics', categoryStatus: 'Logistics', status: '', id: 4 },
 		{
 			category: 'Entertainment',
