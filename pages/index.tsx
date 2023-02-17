@@ -1,43 +1,64 @@
-import Hero from '../components/Hero';
+import { GetServerSideProps } from 'next';
+
 import { useContext, useEffect, useState } from 'react';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
+//components
 import Tab from '../components/TabSection';
 import ScreensTab from '../components/ScreensTab';
+import Footer from '../components/Footer';
+import Hero from '../components/Hero';
+
+//supabase
 import { getAllScreens } from '../supabase';
+
+//context
 import { ScreensContext } from '../context/screensContex';
 import { UserContext } from '../context/authContext';
-import { GetServerSideProps } from 'next';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import Modal from '../components/modal';
 
 const Home = ({ screens }) => {
 	const { filterTerm, filterName } = useContext(ScreensContext);
 	const user = useContext(UserContext);
 	const [result, setResult] = useState([]);
 
-	const searchFilter = (array, data) => {
-		if (data === '') return array;
-		return array.filter((el) => el.category.includes(data));
+	/**
+	 * 
+	 * @param screensResult 
+	 * @param tabInput 
+	 * @returns array of screens
+	 */
+	//High order component that returns the array of screens to the result state
+	const categoryFilter = (screensResult, tabInput) => {
+		//if empty, returns the initial array of screens
+		if (tabInput === '') return screensResult;
+		return screensResult.filter((el) => el.category.includes(tabInput));
 	};
 
-	const searchNameFilter = (array, data) => {
-		if (data === '') return array;
-		return array.filter((el) => el.name.includes(data));
+	/**
+	 * 
+	 * @param screensResult 
+	 * @param searchInput 
+	 * @returns array of screens
+	 */
+	//High order component that returns the array of screens to the result state
+	const nameFilter = (screensResult, searchInput) => {
+			//if empty, returns the initial array of screens
+		if (searchInput === '') return screensResult;
+		return screensResult.filter((el) => el.name.includes(searchInput));
 	};
 
+	//This triggers the state on every search input
 	useEffect(() => {
-		setResult(searchNameFilter(screens, filterName));
+		setResult(nameFilter(screens, filterName));
 	}, [filterName, screens]);
 
+	//This triggers the state on every tab change
 	useEffect(() => {
-		setResult(searchFilter(screens, filterTerm));
+		setResult(categoryFilter(screens, filterTerm));
 	}, [filterTerm, screens]);
 
 	return (
 		<>
-			<ToastContainer autoClose={2000} position='top-center' />
+		{/* This removes the hero section if signedIn */}
 			{!user && <Hero />}
 			<Tab />
 			<ScreensTab screens={result} />
