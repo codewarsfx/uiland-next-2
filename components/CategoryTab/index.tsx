@@ -22,24 +22,24 @@ const CategoryTabBar = () => {
 		{ category: 'All', categoryStatus: '', status: 'active', id: 1 },
 		{ category: 'Fintech', categoryStatus: 'Fintech', status: '', id: 2 },
 
-		{ category: 'Logistics', categoryStatus: 'Logistics', status: '', id: 4 },
+		{ category: 'Logistics', categoryStatus: 'Logistics', status: '', id: 3 },
 		{
 			category: 'Entertainment',
 			categoryStatus: 'Entertainment',
 			status: '',
-			id: 5,
+			id: 4,
 		},
 		{
 			category: 'Investment',
 			categoryStatus: 'Investment',
 			status: '',
-			id: 6,
+			id: 5,
 		},
 		{
 			category: 'Bank',
 			categoryStatus: 'Bank',
 			status: '',
-			id: 7,
+			id: 6,
 		},
 	];
 
