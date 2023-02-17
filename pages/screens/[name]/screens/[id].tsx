@@ -315,10 +315,13 @@ const SinglePage = ({ screens }) => {
 					property='og:url'
 					content={`https://uiland.design/screens/${headerInfo.name}/screens/${headerInfo.id}`}
 				/>
-				<meta property='og:image' content={`${headerInfo.logo}`} />
+				<meta name='image' property='og:image' content={`${headerInfo.logo}`} />
+
+				<meta property='twitter:title' content='uiland.design' />
+
 				<meta property='twitter:card' content='summary_large_image' />
 
-				<meta property='twitter:image' content={`${headerInfo.logo}`} />
+				<meta property='twitter:image:src' content={`${headerInfo.logo}`} />
 				<meta
 					property='twitter:description'
 					content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
