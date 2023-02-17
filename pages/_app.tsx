@@ -51,6 +51,9 @@ export default function App({
 		>
 			<UserContextProvider>
 				<ScreensContextProvider>
+					<Script  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5952673528545779" strategy='lazyOnload'/>
+			
+					
 					<Script
 						strategy='lazyOnload'
 						src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
