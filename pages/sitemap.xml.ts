@@ -20,6 +20,14 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 		.filter((staticPage) => {
 			return ![
 				'_app.js',
+				'_app.js.map',
+				'_document.js.map',
+				'_error.js.map',
+				'collections.js.map',
+				'index.js.map',
+				'profile.js.map',
+				'sitemap.xml.js.map',
+				'screens',
 				'_document.js',
 				'profile.js',
 				'_error.js',
