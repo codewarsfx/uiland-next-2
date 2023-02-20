@@ -18,14 +18,6 @@ const SearchTabBar = () => {
 		setInput(e.target.value);
 	}
 
-	// function submit(e) {
-	// 	e.preventDefault();
-	// 	const lowerCaseAll = input.toLowerCase();
-	// 	const firstInputCapitalized =
-	// 		lowerCaseAll.charAt(0).toUpperCase() + lowerCaseAll.slice(1);
-	// 	setFilterItemName(firstInputCapitalized);
-	// }
-
 	useEffect(() => {
 		const lowerCaseAll = input.toLowerCase();
 		const firstInputCapitalized =
@@ -37,33 +29,34 @@ const SearchTabBar = () => {
 		let keysPressed = {};
 		const keyDownEvent = document.addEventListener('keydown', (event) => {
 			keysPressed[event.key] = true;
-			if (keysPressed['Meta'] && event.key == 'k') {
+			if (
+				(keysPressed['Meta'] && event.key == 'k') ||
+				(keysPressed['Control'] && event.key == 'k')
+			) {
 				if (document.getElementById('focus-input') !== document.activeElement) {
 					event.preventDefault();
-					const inputElement = document.getElementById('focus-input')
-
+					const inputElement = document.getElementById('focus-input');
 					inputElement.focus();
-					inputElement.parentElement.style.border = '1.5px solid #999'
+					inputElement.parentElement.style.border = '1.5px solid #999';
 					inputElement?.addEventListener('blur', () => {
-						inputElement.parentElement.style.border ='1px solid #dddddd'
-					})
-					
-				  } else {
+						inputElement.parentElement.style.border = '1px solid #dddddd';
+					});
+				} else {
 					return true;
-				  }
+				}
 			}
 		});
 		return () => {
 			window.removeEventListener(keyDownEvent, () => {
-				console.log('event removed')
-			})
-		}
-	},[])
+				console.log('event removed');
+			});
+		};
+	}, []);
 
 	return (
 		<FormWrapper>
 			<FormBackground>
-			<input
+				<input
 					type='text'
 					value={input}
 					onChange={handleChange}
@@ -76,27 +69,24 @@ const SearchTabBar = () => {
 				<Icon>
 					<span>k</span>
 				</Icon>
-			
 			</FormBackground>
 		</FormWrapper>
 	);
 };
 
 const Icon = styled.div`
-	display:flex;
-	font-size:15px;
-	margin: 0 0 0 .3em ;
+	display: flex;
+	font-size: 15px;
+	margin: 0 0 0 0.3em;
 	color: #777;
 	border: 1px solid #ddd;
-	border-radius: .3em;
-	padding:.5em;
+	border-radius: 0.3em;
+	padding: 0.5em;
 
-	span{
+	span {
 		font-family: monospace;
-		
 	}
-
-`
+`;
 
 const FormWrapper = styled.div`
 	display: flex;
@@ -108,15 +98,15 @@ const FormBackground = styled.div`
 	padding: 12px;
 	background: #fff;
 	border: 1px solid #dddddd;
-	border-radius:.5em;
+	border-radius: 0.5em;
 	display: flex;
 	align-items: center;
-	input{
+	input {
 		overflow: hidden;
-		border:none;
+		border: none;
 		padding: 10px 12px;
 		text-overflow: ellipsis;
-	    width: 210px;
+		width: 210px;
 		border-radius: 8px;
 		font-weight: 500;
 		&:focus {

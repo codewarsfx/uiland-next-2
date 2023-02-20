@@ -1,17 +1,15 @@
-import Hero from '../components/Hero';
+import { GetServerSideProps } from 'next';
 import { useContext, useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Tab from '../components/TabSection';
-import ScreensTab from '../components/ScreensTab';
-import { getAllScreens } from '../supabase';
-import { ScreensContext } from '../context/screensContex';
-import { UserContext } from '../context/authContext';
-import { GetServerSideProps } from 'next';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Modal from '../components/modal';
-
+import Hero from '../components/Hero';
+import ScreensTab from '../components/ScreensTab';
+import Tab from '../components/TabSection';
+import { UserContext } from '../context/authContext';
+import { ScreensContext } from '../context/screensContex';
+import { getAllScreens } from '../supabase';
+import Redis from 'ioredis';
 
 const Home = ({ screens }) => {
 	const { filterTerm, filterName } = useContext(ScreensContext);
@@ -48,7 +46,26 @@ const Home = ({ screens }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-	const screens = await getAllScreens();
+	const client = new Redis(
+		process.env.UPSTASH_REDIS_REST_URL
+	);
+	let screens;
+
+	process.on('uncaughtException', function (err) {
+		console.log(err);
+	});
+
+	let cache = await client.get('screens');
+	cache = cache && JSON.parse(cache);
+
+	if (cache) {
+		screens = cache;
+		console.log('read from redis cache ')
+	} else {
+		screens = await getAllScreens();
+		client.set('screens', JSON.stringify(screens), 'EX', 3600);
+		console.log('read from supabase')
+	}
 
 	return {
 		props: {
