@@ -38,6 +38,9 @@ export default function App({
 		};
 	}, [router.events]);
 
+
+
+
 	useEffect(() => {
 		hotjar.initialize(3322744, 6, true);
 	}, []);

@@ -1,5 +1,10 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
-const Input = ({ input, handleChange, placeholder }) => {
+const Input = ({ input, handleChange, placeholder, focusClass }) => {
+	
+	
+
+
 	return (
 		<>
 			<Form>
@@ -8,6 +13,7 @@ const Input = ({ input, handleChange, placeholder }) => {
 					value={input}
 					onChange={handleChange}
 					placeholder={placeholder}
+					id={focusClass}
 				/>
 			</Form>
 		</>
@@ -36,6 +42,7 @@ const Button = styled.button`
 const Form = styled.form`
 	display: flex;
 	text-align: center;
+
 `;
 
 export default Input;
