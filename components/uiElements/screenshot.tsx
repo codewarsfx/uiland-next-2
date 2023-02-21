@@ -5,8 +5,8 @@ import Image from 'next/image';
 import React from 'react';
 
 type screenshotProps = {
-	imgLink:'';
-	Name: '';
+	imgLink:string;
+	Name: string;
 };
 
 const Screenshot = ({ imgLink, Name }:screenshotProps) => {
