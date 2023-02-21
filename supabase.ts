@@ -155,6 +155,7 @@ export async function getOlderScreensById(id, page, version) {
 			.eq('screenId', id)
 			.eq('version', version || 1);
 	
+
 		return data;
 	} else {
 		const { data, error } = await supabase
@@ -464,6 +465,22 @@ export const addUserData = async (type, formdata) => {
 	return data;
 };
 
+export const numberOfDownloads = async (user) => {
+	const { data, error } = await supabase.rpc('downloads', {
+		user_id: user.id,
+		increment_num: 1,
+	});
+	return data;
+};
+
+export const numberOfCopyImage = async (user) => {
+	const { data, error } = await supabase.rpc('copy', {
+		user_id: user.id,
+		increment_num: 1,
+	});
+	return data;
+};
+
 // added version to the table
 //it worked
 // export const addVersion=async()=>{
@@ -473,3 +490,4 @@ export const addUserData = async (type, formdata) => {
 //   .eq('screenId', 'b76461af-34f9-4523-a892-b4991dfa364a')
 //   return error
 // }
+

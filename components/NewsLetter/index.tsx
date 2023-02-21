@@ -83,39 +83,6 @@ const NewsLetter = ({ toggleModal }) => {
 				<h2> Hi there, UiLander! </h2>
 			</ModalHeader>
 			<ModalBottomWrapper>
-				<FormTitle>Join Our Newsletter</FormTitle>
-				<Description>Be the first to know about out latest updates</Description>
-				<form onSubmit={(e) => handleSubmit(e, 'EmailNewsLetter')}>
-					<div className='form-element-group'>
-						<input
-							type='email'
-							className='form-element'
-							placeholder='Email address'
-							name='email'
-							autoComplete='off'
-							value={inputState.email.value}
-							onChange={handleInputChange}
-							required={true}
-						/>
-					</div>
-					<button className='form__button'>
-						{' '}
-						{inputState.email.submitted ? (
-							<div className='wrap'>
-								{' '}
-								Subscribed{' '}
-								<Player
-									src='/assets/lottie/email.json'
-									className='lottie lottie--top'
-									autoplay
-								/>
-							</div>
-						) : (
-							'Subscribe'
-						)}
-					</button>
-				</form>
-				<hr className='rule' />
 				<FormTitle>Leave a Feedback</FormTitle>
 				<Description>Need Something Improved? drop a feedback</Description>
 				<form onSubmit={(e) => handleSubmit(e, 'Feedback')}>

@@ -13,6 +13,7 @@
 	"dependencies": {
 		"@lottiefiles/react-lottie-player": "^3.5.2",
 		"@mailchimp/mailchimp_marketing": "^3.0.80",
+		"@sentry/nextjs": "^7.37.2",
 		"@supabase/auth-helpers-nextjs": "^0.5.4",
 		"@supabase/auth-helpers-react": "^0.3.1",
 		"@supabase/supabase-js": "^2.2.3",
@@ -34,7 +35,6 @@
 		"react-icons": "^4.6.0",
 		"react-paginate": "^8.1.4",
 		"react-paystack": "^3.0.3",
-		"react-toastify": "^9.0.8",
 		"redis": "^4.6.4",
 		"redis-cli": "^2.1.2",
 		"sharp": "^0.31.3",

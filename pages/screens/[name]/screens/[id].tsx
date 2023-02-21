@@ -307,13 +307,26 @@ const SinglePage = ({ screens }) => {
 					property='og:description'
 					content={`screenshots of ${headerInfo.name} Andriod app`}
 				/>
+				<link
+					rel='canonical'
+					href={`https://uiland.design/screens/${headerInfo.name}/screens/${headerInfo.id}`}
+					key='canonical'
+				/>
 				<meta
 					property='og:url'
 					content={`https://uiland.design/screens/${headerInfo.name}/screens/${headerInfo.id}`}
 				/>
-				<meta name='twitter:card' content='image' />
-				<meta property='og:image' content={`${headerInfo.logo}`} />
-				<meta name='twitter:image:src' content={`${headerInfo.logo}`} />
+				<meta name='image' property='og:image' content={`${headerInfo.logo}`} />
+
+				<meta property='twitter:title' content='uiland.design' />
+
+				<meta property='twitter:card' content='summary_large_image' />
+
+				<meta property='twitter:image:src' content={`${headerInfo.logo}`} />
+				<meta
+					property='twitter:description'
+					content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
+				/>
 				<meta
 					name='viewport'
 					content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
