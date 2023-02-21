@@ -1,16 +1,21 @@
-import React, { useRef, useState } from 'react';
+import React, { PropsWithChildren, ReactNode, useRef, useState } from 'react';
 import reactDOM from 'react-dom';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { useEffect } from 'react';
 
-const Modal = ({ children, toggleModal }) => {
+type modalType = {
+	children: PropsWithChildren,
+    toggleModal: () => void
+}
+
+const Modal = ({ children, toggleModal })  => {
 	const [isBrowser, setIsBrowser] = useState(false);
 	const ref = React.useRef();
 
 	useEffect(() => {
 		//get the portal
-		ref.current = document.querySelector('#portal');
+		ref.current  = document.querySelector('#portal');
 		setIsBrowser(true);
 	}, []);
 
@@ -45,7 +50,7 @@ const Modal = ({ children, toggleModal }) => {
 				</ModalOverlay>
 			</ModalContainer>,
 			document.getElementById('portal')
-		);
+		)
 	}
 };
 

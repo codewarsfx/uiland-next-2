@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { ChangeEvent, ChangeEventHandler, FormEvent, useReducer } from 'react';
 import styled from 'styled-components';
 import { addUserData } from '../../supabase';
 import { ModalBottom, ModalHeader, Title, Wrapper } from '../AddToBookmark';
@@ -50,14 +50,14 @@ const NewsLetter = ({ toggleModal }) => {
 
 	const [inputState, dispatch] = useReducer(reducer, initialState);
 
-	const handleInputChange = (e) => {
+	const handleInputChange = (e:ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
 		dispatch({
 			type: e.target.name,
 			payload: e.target.value,
 		});
 	};
 
-	const handleSubmit = async (e, type) => {
+	const handleSubmit = async (e: FormEvent<HTMLFormElement>, type: 'EmailNewsLetter' | 'defaultemail'|'Feedback') => {
 		e.preventDefault();
 		let inputdata, defaultName;
 		if (type === 'EmailNewsLetter') {

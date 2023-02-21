@@ -39,6 +39,7 @@ import { GetStaticPaths, GetStaticProps, GetServerSideProps } from 'next';
 import { useEffect, useState, useContext, useRef } from 'react';
 import NewsLetter from '../../../../components/NewsLetter';
 import withPopContext from '../../../../HOC/withPopContext';
+import Redis from 'ioredis';
 
 const SinglePage = ({ screens }) => {
 	const {
@@ -974,8 +975,37 @@ export const getServerSideProps: GetServerSideProps = async ({
 	query,
 	params,
 }) => {
+	console.log('server side properties');
+	let screens;
 	const page = query.page || 1;
-	const screens = await getScreensById(params.id, page, query);
+
+	const completeID = params.id + page.toString();
+
+	const screensCacheObject = {};
+
+	const client = new Redis(process.env.UPSTASH_REDIS_REST_URL);
+
+	const CachedResults = JSON.parse(await client.get('screensCachedByID'));
+
+	if (!CachedResults) {
+		screens = await getScreensById(params.id, page, query);
+		screensCacheObject[completeID] = screens;
+		client.set(
+			'screensCachedByID',
+			JSON.stringify(screensCacheObject),
+			'EX',
+			3600
+		);
+		console.log('read from supabase');
+	} else if (completeID in CachedResults) {
+		screens = CachedResults[completeID];
+		console.log('read from Redis cache');
+	} else if (CachedResults && !(completeID in CachedResults)) {
+		screens = await getScreensById(params.id, page, query);
+		CachedResults[completeID] = screens;
+		client.set('screensCachedByID', JSON.stringify(CachedResults), 'EX', 3600);
+		console.log('read from supabase');
+	}
 
 	return {
 		props: {

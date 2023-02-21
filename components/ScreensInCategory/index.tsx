@@ -86,6 +86,7 @@ const ScreenshotContainerTop = styled.div`
 	display: flex;
 	align-items: center;
 	margin-bottom: 1em;
+	cursor: pointer;
 `;
 
 const ScreenshotContainerBottom = styled.div`

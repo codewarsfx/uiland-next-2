@@ -60,6 +60,7 @@ export async function getScreensById(id, page, query) {
 	let limitMaxRange = page * limit;
 	let limitMinRange = page * limit - limit;
 
+
 	const { data, error } = await supabase
 		.from('screenImages')
 		.select('version')
@@ -68,6 +69,7 @@ export async function getScreensById(id, page, query) {
 	//gets unique names in the db
 	const result = data?.map((object) => object.version);
 	const uniqueResult = Array.from(new Set(result));
+
 
 	//this is for the boomplay screens
 	if (uniqueResult[0] === 1 && uniqueResult.length === 1) {
@@ -137,6 +139,7 @@ export async function getOlderScreensById(id, page, version) {
 	let limitMaxRange = page * limit;
 	let limitMinRange = page * limit - limit;
 
+
 	//this is for the boomplay screens
 	if (
 		id === 'b274aac8-8a59-4034-8456-f8a2539ddc24' ||
@@ -151,6 +154,7 @@ export async function getOlderScreensById(id, page, version) {
 			.range(limitMinRange, limitMaxRange)
 			.eq('screenId', id)
 			.eq('version', version || 1);
+	
 
 		return data;
 	} else {
@@ -163,7 +167,7 @@ export async function getOlderScreensById(id, page, version) {
 			.range(limitMinRange, limitMaxRange)
 			.eq('screenId', id)
 			.eq('version', version || 1);
-
+	
 		return data;
 	}
 }
@@ -178,6 +182,7 @@ export async function getScreensByIdCount(id, version) {
 	//gets unique names in the db
 	const result = data?.map((object) => object.version);
 	const uniqueResult = Array.from(new Set(result));
+
 
 	//this is for the boomplay screens
 	if (uniqueResult[0] === 1 && uniqueResult.length === 1) {

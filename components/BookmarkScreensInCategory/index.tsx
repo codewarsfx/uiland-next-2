@@ -4,8 +4,21 @@ import { BrandDescription, BrandLogo, Pill, Screenshot } from '../uiElements';
 import { pillsTypes } from '../uiElements/pills';
 import EmptyState from '../EmptyState';
 import { Key } from 'react';
+import React from 'react';
 
-const BookmarkScreensInCategory = ({ screens }) => {
+type indexProps = {
+	screens: {
+		album_id: {
+			id: Key;
+			name: string ;
+			logo: string ;
+			category: string;
+			startScreens: string[];
+		};
+	}[]
+};
+
+const BookmarkScreensInCategory :React.FC<indexProps>= ({ screens }) => {
 	return (
 		<>
 			<CategorySectionContainer>
@@ -38,7 +51,7 @@ const BookmarkScreensInCategory = ({ screens }) => {
 											</ScreenshotContainerTop>
 											<ScreenshotContainerBottom>
 												{result.album_id.startScreens.map(
-													(screenshot: string) => (
+													(screenshot:string ) => (
 														<Screenshot
 															key={screenshot}
 															imgLink={screenshot}

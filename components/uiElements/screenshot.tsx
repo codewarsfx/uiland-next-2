@@ -2,7 +2,14 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-const Screenshot = ({ imgLink, Name }) => {
+import React from 'react';
+
+type screenshotProps = {
+	imgLink:'';
+	Name: '';
+};
+
+const Screenshot = ({ imgLink, Name }:screenshotProps) => {
 	return (
 		<>
 			<ScreenshotContainer initial={{ opacity: 0 }} animate={{ opacity: 1 }}>

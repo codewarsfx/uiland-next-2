@@ -366,3 +366,8 @@ label {
 	border: 2px solid var(--primary-color)-lighter;
 	background: var(--primary-color)-lighter;
 }
+
+
+/* *{
+	border: 1px solid red;
+} */

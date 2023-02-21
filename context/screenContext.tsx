@@ -4,6 +4,13 @@ import { UserContext } from './authContext';
 
 export const ScreenContext = createContext(null);
 
+
+const screenContext:React.FC<screenContextProps> = () => {
+	
+	return <div>Have a good coding</div>
+}
+export default screenContext;
+
 export const ScreenContextProvider = ({ children }) => {
 	const user = useContext(UserContext);
 	const [getId, setGetId] = useState([]);

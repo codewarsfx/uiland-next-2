@@ -2,7 +2,19 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import CloseIcon from '../CloseModalIcon';
 
-const AddToBookmark = ({
+import React, { ChangeEvent } from 'react';
+
+type addBookmarkType={
+	input:string,
+	disabled:boolean,
+	newtoggleModal:()=>void,
+	submit:(e: React.FormEvent<HTMLFormElement>)=>void,
+	handleChange:(e:ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>)=>void,
+	bookmarkk:string,
+	selectBookmark: string[],
+	}
+
+const AddToBookmark :React.FC<addBookmarkType>  =  ({
 	newtoggleModal,
 	submit,
 	handleChange,

@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 
-const BrandDescription = ({ name, category }) => {
+import React from 'react';
+
+type brandDescriptionProps = {
+	name: '',
+	category:''
+};
+
+
+const BrandDescription: React.FC<brandDescriptionProps>= ({ name, category }) => {
 	return (
 		<BrandDescriptionContainer>
 			<h3 className='brand-name'>{name}</h3>

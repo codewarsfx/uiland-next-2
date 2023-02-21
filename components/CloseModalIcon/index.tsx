@@ -1,6 +1,11 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 
-const CloseIcon = ({ toggle }) => {
+type closeModalType={
+	toggle:()=>void
+  }
+
+const CloseIcon: React.FC<closeModalType> = ({ toggle }) => {
 	return (
 		<Close onClick={toggle}>
 			<svg
