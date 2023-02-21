@@ -309,12 +309,16 @@ const SinglePage = ({ screens }) => {
 				/>
 				<link
 					rel='canonical'
-					href={`https://uiland.design/screens/${headerInfo.name.toLowerCase()}/screens/${headerInfo.id}`}
+					href={`https://uiland.design/screens/${headerInfo.name.toLowerCase()}/screens/${
+						headerInfo.id
+					}`}
 					key='canonical'
 				/>
 				<meta
 					property='og:url'
-					content={`https://uiland.design/screens/${headerInfo.name.toLowerCase()}/screens/${headerInfo.id}`}
+					content={`https://uiland.design/screens/${headerInfo.name.toLowerCase()}/screens/${
+						headerInfo.id
+					}`}
 				/>
 				<meta name='image' property='og:image' content={`${headerInfo.logo}`} />
 

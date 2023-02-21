@@ -16,6 +16,7 @@ import Header from '../components/Header';
 import Modal from '../components/modal';
 import Redis from 'ioredis';
 import Tab from '../components/TabSection';
+import Head from 'next/head';
 
 const Home = ({ screens }) => {
 	const { filterTerm, filterName } = useContext(ScreensContext);
@@ -60,6 +61,92 @@ const Home = ({ screens }) => {
 
 	return (
 		<>
+		<Head>
+						<link rel='shortcut icon' href='/favicon.ico' />
+						<meta charSet='utf-8' />
+						<title>Welcome to Uiland</title>
+						<meta
+							name='description'
+							content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
+						/>
+						{/* <meta name="description" content="Screenshots, interaction patterns, inspiration &amp; UI patterns from Airbnb."> */}
+						<link rel='shortcut icon' href='/favicon.ico'></link>
+						<meta
+							property='og:title'
+							content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
+						/>
+						<meta
+							name='keywords'
+							content='africa,nigeria,ui, design, inspiration, ux, mobile, apps, screenshots'
+						/>
+						<meta
+							property='og:description'
+							content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
+						/>
+						<meta
+							name='image'
+							property='og:image'
+							content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG'
+						/>
+						<meta
+							property='og:image:secure_url'
+							content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG'
+						/>
+						<meta
+							property='og:image:alt'
+							content='Browse Mobile Apps designs | Uiland'
+						/>
+						<meta property='og:image:width' content='1200' />
+						<meta property='og:image:height' content='630' />
+						<meta property='og:image:type' content='image/png' />
+						<meta property='og:url' content='' />
+						<meta property='og:type' content='website' />
+						<meta property='og:site_name' content='Uiland' />
+						<meta property='twitter:card' content='summary_large_image' />
+						<meta property='twitter:url' content='@UiLandDesign' />{' '}
+						<meta property='twitter:site' content='@UiLandDesign' />{' '}
+						<meta property='twitter:title' content='uiland.design' />
+						<meta
+							property='twitter:description'
+							content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
+						/>
+						<meta
+							property='twitter:image:src'
+							content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG'
+						/>
+						<link
+							rel='apple-touch-icon'
+							sizes='180x180'
+							href='/apple-touch-icon.png?v=2.1'
+						/>
+						<link rel='icon' type='image/svg+xml' href='/favicon.svg?v=2.1' />
+						<link
+							rel='icon'
+							type='image/png'
+							sizes='32x32'
+							// href="/favicon-32x32.png?v=2.1"
+							href=''
+						/>
+						<link rel='icon' type='image/png' sizes='16x16' href='' />
+						{/* <link rel="manifest" href="/site.webmanifest?v=2.1" /> */}
+						<link
+							rel='mask-icon'
+							// href="/safari-pinned-tab.svg?v=2.1"
+							href=''
+							color='#000000'
+						/>
+						<meta name='msapplication-TileColor' content='#000000' />
+						<meta name='theme-color' content='#ffffff' />
+						<meta
+							name='viewport'
+							content='width=device-width, initial-scale=1, maximum-scale=1'
+						/>
+						<meta name='next-head-count' content='23' />
+						<meta
+							name='google-site-verification'
+							content='ODqtX_v3ldmmo5AB7fzcCJtP6IXdY_RDDeCK29OG6qs'
+						/>
+					</Head>
 			{/* This removes the hero section if signedIn */}
 			{!user && <Hero />}
 			<Tab />
