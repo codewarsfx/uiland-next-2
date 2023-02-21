@@ -74,7 +74,7 @@ const Home = ({ screens }) => {
 export const getServerSideProps: GetServerSideProps = async () => {
 	let screens;
 	const client = new Redis(
-		process.env.UPSTASH_REDIS_REST_URL
+		process.env.REDIS_URL
 	);
 
 	process.on('uncaughtException', function (err) {
