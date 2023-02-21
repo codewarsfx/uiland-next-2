@@ -975,11 +975,10 @@ export const getServerSideProps: GetServerSideProps = async ({
 	query,
 	params,
 }) => {
-	console.log('server side properties');
 	let screens;
 	const page = query.page || 1;
 
-	const completeID = params.id + page.toString();
+	const completeID = params.id + page.toString() + query.version;
 
 	const screensCacheObject = {};
 
