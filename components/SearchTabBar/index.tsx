@@ -53,7 +53,7 @@ const SearchTabBar = () => {
 			}
 		});
 		return () => {
-			window.removeEventListener(keyDownEvent, () => {
+			window.removeEventListener('keydown', () => {
 				console.log('event removed');
 			});
 		};

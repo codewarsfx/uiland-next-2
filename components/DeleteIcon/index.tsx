@@ -8,7 +8,7 @@ type deleteIconType={
 	data: [{}]
   }
 
-const DeleteIcon : React.FC<deleteIconType> = ({ deleteIndividualBookmark, data })=>{
+const DeleteIcon = ({ deleteIndividualBookmark, data })=>{
 	return (
 		<>
 			<DownloadWrapper onClick={() => deleteIndividualBookmark(data)}>

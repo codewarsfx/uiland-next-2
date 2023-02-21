@@ -9,7 +9,7 @@ type modalType = {
     toggleModal: () => void
 }
 
-const Modal = ({ children, toggleModal }: modalType)  => {
+const Modal = ({ children, toggleModal })  => {
 	const [isBrowser, setIsBrowser] = useState(false);
 	const ref = React.useRef();
 
@@ -20,7 +20,7 @@ const Modal = ({ children, toggleModal }: modalType)  => {
 	}, []);
 
 	useEffect(() => {
-		window.onclick = function (event:MouseEvent<HTMLDivElement>) {
+		window.onclick = function (event) {
 			// nasty bug caused by this className being triggered, I had to target it
 			if (event.target.className.baseVal === '') {
 			} else if (event.target.className.includes('ModalOverlay')) {
@@ -50,7 +50,7 @@ const Modal = ({ children, toggleModal }: modalType)  => {
 				</ModalOverlay>
 			</ModalContainer>,
 			document.getElementById('portal')
-		)as	ReactNode
+		)
 	}
 };
 

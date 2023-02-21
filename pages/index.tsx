@@ -16,6 +16,7 @@ import { UserContext } from '../context/authContext';
 import Header from '../components/Header';
 import Modal from '../components/modal';
 import Redis from 'ioredis';
+import Tab from '../components/TabSection';
 
 
 const Home = ({ screens }) => {
