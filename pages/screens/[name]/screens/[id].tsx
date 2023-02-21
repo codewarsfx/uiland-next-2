@@ -982,7 +982,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 
 	const screensCacheObject = {};
 
-	const client = new Redis(process.env.UPSTASH_REDIS_REST_URL);
+	const client = new Redis(process.env.REDIS_URL);
 
 	const CachedResults = JSON.parse(await client.get('screensCachedByID'));
 
