@@ -1,14 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
+type deleteIconType = {
+	toggle: () => void;
+	deleteIndividualBookmark: (data: [{}]) => void;
+	data: [{}];
+};
 
-type deleteIconType={
-	toggle: () => void
-	deleteIndividualBookmark: (data:[{}]) => void,
-	data: [{}]
-  }
-
-const DeleteIcon = ({ deleteIndividualBookmark, data })=>{
+const DeleteIcon = ({ deleteIndividualBookmark, data }) => {
 	return (
 		<>
 			<DownloadWrapper onClick={() => deleteIndividualBookmark(data)}>
@@ -28,7 +27,7 @@ const DeleteIcon = ({ deleteIndividualBookmark, data })=>{
 			</DownloadWrapper>
 		</>
 	);
-}
+};
 const DownloadWrapper = styled.div`
 	display: flex;
 	flex-direction: column;

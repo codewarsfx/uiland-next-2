@@ -50,14 +50,19 @@ const NewsLetter = ({ toggleModal }) => {
 
 	const [inputState, dispatch] = useReducer(reducer, initialState);
 
-	const handleInputChange = (e:ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
+	const handleInputChange = (
+		e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
+	) => {
 		dispatch({
 			type: e.target.name,
 			payload: e.target.value,
 		});
 	};
 
-	const handleSubmit = async (e: FormEvent<HTMLFormElement>, type: 'EmailNewsLetter' | 'defaultemail'|'Feedback') => {
+	const handleSubmit = async (
+		e: FormEvent<HTMLFormElement>,
+		type: 'EmailNewsLetter' | 'defaultemail' | 'Feedback'
+	) => {
 		e.preventDefault();
 		let inputdata, defaultName;
 		if (type === 'EmailNewsLetter') {

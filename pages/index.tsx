@@ -6,7 +6,6 @@ import Footer from '../components/Footer';
 import Hero from '../components/Hero';
 import ScreensTab from '../components/ScreensTab';
 
-
 //supabase
 import { getAllScreens } from '../supabase';
 
@@ -18,16 +17,15 @@ import Modal from '../components/modal';
 import Redis from 'ioredis';
 import Tab from '../components/TabSection';
 
-
 const Home = ({ screens }) => {
 	const { filterTerm, filterName } = useContext(ScreensContext);
 	const user = useContext(UserContext);
 	const [result, setResult] = useState([]);
 
 	/**
-	 * 
-	 * @param screensResult 
-	 * @param tabInput 
+	 *
+	 * @param screensResult
+	 * @param tabInput
 	 * @returns array of screens
 	 */
 	//High order component that returns the array of screens to the result state
@@ -38,14 +36,14 @@ const Home = ({ screens }) => {
 	};
 
 	/**
-	 * 
-	 * @param screensResult 
-	 * @param searchInput 
+	 *
+	 * @param screensResult
+	 * @param searchInput
 	 * @returns array of screens
 	 */
 	//High order component that returns the array of screens to the result state
 	const nameFilter = (screensResult, searchInput) => {
-			//if empty, returns the initial array of screens
+		//if empty, returns the initial array of screens
 		if (searchInput === '') return screensResult;
 		return screensResult.filter((el) => el.name.includes(searchInput));
 	};
@@ -62,7 +60,7 @@ const Home = ({ screens }) => {
 
 	return (
 		<>
-		{/* This removes the hero section if signedIn */}
+			{/* This removes the hero section if signedIn */}
 			{!user && <Hero />}
 			<Tab />
 			<ScreensTab screens={result} />
@@ -73,9 +71,7 @@ const Home = ({ screens }) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
 	let screens;
-	const client = new Redis(
-		process.env.REDIS_URL
-	);
+	const client = new Redis(process.env.REDIS_URL);
 
 	process.on('uncaughtException', function (err) {
 		console.log(err);
@@ -86,11 +82,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 	if (cache) {
 		screens = cache;
-		console.log('read from redis cache ')
+		console.log('read from redis cache ');
 	} else {
 		screens = await getAllScreens();
 		client.set('screens', JSON.stringify(screens), 'EX', 3600);
-		console.log('read from supabase')
+		console.log('read from supabase');
 	}
 
 	return {
