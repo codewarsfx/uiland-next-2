@@ -292,7 +292,7 @@ const SinglePage = ({ screens }) => {
 				<title>{headerInfo.name} app screens</title>
 				<meta
 					name='description'
-					content={`screenshots of ${headerInfo.name} Andriod app`}
+					content={`screenshots of ${headerInfo.name} Android app`}
 				/>
 				<meta
 					name='keywords'
@@ -301,11 +301,11 @@ const SinglePage = ({ screens }) => {
 				<meta property='og:type' content='website' />
 				<meta
 					property='og:title'
-					content={`${headerInfo.name} Andriod app screenshots`}
+					content={`${headerInfo.name} Android app screenshots`}
 				/>
 				<meta
 					property='og:description'
-					content={`screenshots of ${headerInfo.name} Andriod app`}
+					content={`screenshots of ${headerInfo.name} Android app`}
 				/>
 				<link
 					rel='canonical'
