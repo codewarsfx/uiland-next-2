@@ -114,20 +114,9 @@ const Home = ({ screens }) => {
 							property='twitter:image:src'
 							content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG'
 						/>
-						<link
-							rel='apple-touch-icon'
-							sizes='180x180'
-							href='/apple-touch-icon.png?v=2.1'
-						/>
-						<link rel='icon' type='image/svg+xml' href='/favicon.svg?v=2.1' />
-						<link
-							rel='icon'
-							type='image/png'
-							sizes='32x32'
-							// href="/favicon-32x32.png?v=2.1"
-							href=''
-						/>
-						<link rel='icon' type='image/png' sizes='16x16' href='' />
+					
+						<link rel='icon'  href='/favicon.ico' />
+				
 						{/* <link rel="manifest" href="/site.webmanifest?v=2.1" /> */}
 						<link
 							rel='mask-icon'
