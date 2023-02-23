@@ -51,9 +51,11 @@ export default function App({
 		>
 			<UserContextProvider>
 				<ScreensContextProvider>
-				
-					<Script data-ad-client="ca-pub-5952673528545779" async
-     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></Script>
+					<Script
+						data-ad-client='ca-pub-5952673528545779'
+						async
+						src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
+					></Script>
 
 					<Script
 						strategy='lazyOnload'
@@ -76,7 +78,6 @@ export default function App({
 		}}();`}
 					</Script>
 
-					
 					<Header />
 
 					<Component {...pageProps} />

@@ -32,7 +32,7 @@ class MainDocument extends Document {
 					<link rel='shortcut icon' href='/favicon.ico' />
 					<link rel='manifest' href='/manifest.json' />
 					<link rel='apple-touch-icon' href='/icon.png'></link>
-					<link rel='icon'  href='/favicon.ico' />
+					<link rel='icon' href='/favicon.ico' />
 					<meta name='theme-color' content='#0066f5' />
 				</Head>
 				<body>
