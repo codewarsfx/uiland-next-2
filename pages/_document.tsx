@@ -29,7 +29,6 @@ class MainDocument extends Document {
 			<Html>
 				<Head>
 					<link rel='shortcut icon' href='/favicon.ico' />
-					<link rel='shortcut icon' href='/favicon.ico' />
 					<link rel='manifest' href='/manifest.json' />
 					<link rel='apple-touch-icon' href='/icon.png'></link>
 					<link rel='icon' href='/favicon.ico' />

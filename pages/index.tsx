@@ -121,6 +121,7 @@ const Home = ({ screens }) => {
 					// href="/safari-pinned-tab.svg?v=2.1"
 					href=''
 					color='#000000'
+					
 				/>
 				<meta name='msapplication-TileColor' content='#000000' />
 				<meta name='theme-color' content='#ffffff' />
