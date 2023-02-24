@@ -49,7 +49,7 @@ function Hero() {
 
 								<div className='landingpage__text-h2 marg-tb-xs'>
 									Save hours of research time with UiLand's curated collection
-									of the best in-production andriod interfaces and screenshots
+									of the best in-production android interfaces and screenshots
 									and become a better designer.
 								</div>
 								<div onClick={() => toggleModal()}>

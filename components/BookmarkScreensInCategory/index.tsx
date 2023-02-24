@@ -10,15 +10,15 @@ type indexProps = {
 	screens: {
 		album_id: {
 			id: Key;
-			name: string ;
-			logo: string ;
+			name: string;
+			logo: string;
 			category: string;
 			startScreens: string[];
 		};
-	}[]
+	}[];
 };
 
-const BookmarkScreensInCategory :React.FC<indexProps>= ({ screens }) => {
+const BookmarkScreensInCategory: React.FC<indexProps> = ({ screens }) => {
 	return (
 		<>
 			<CategorySectionContainer>
@@ -51,7 +51,7 @@ const BookmarkScreensInCategory :React.FC<indexProps>= ({ screens }) => {
 											</ScreenshotContainerTop>
 											<ScreenshotContainerBottom>
 												{result.album_id.startScreens.map(
-													(screenshot:string ) => (
+													(screenshot: string) => (
 														<Screenshot
 															key={screenshot}
 															imgLink={screenshot}

@@ -20,15 +20,15 @@ const SearchTabBar = () => {
 
 	useEffect(() => {
 		//debouncing the search input when typing
-		const getData=setTimeout(()=>{
+		const getData = setTimeout(() => {
 			const lowerCaseAll = input.toLowerCase();
 			//capitalize the first letter to match the database
-		const firstInputCapitalized =
-			lowerCaseAll.charAt(0).toUpperCase() + lowerCaseAll.slice(1);
-		setFilterItemName(firstInputCapitalized);
-		},300)
+			const firstInputCapitalized =
+				lowerCaseAll.charAt(0).toUpperCase() + lowerCaseAll.slice(1);
+			setFilterItemName(firstInputCapitalized);
+		}, 300);
 		//Destroy the instance of the useEffect hook using return, followed by clearTimeout, every time it finishes.
-		return ()=>clearTimeout(getData)
+		return () => clearTimeout(getData);
 	}, [input, setFilterItemName]);
 
 	useEffect(() => {

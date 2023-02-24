@@ -3,12 +3,14 @@ import styled from 'styled-components';
 import React from 'react';
 
 type brandDescriptionProps = {
-	name: string,
-	category:string
+	name: string;
+	category: string;
 };
 
-
-const BrandDescription: React.FC<brandDescriptionProps>= ({ name, category }) => {
+const BrandDescription: React.FC<brandDescriptionProps> = ({
+	name,
+	category,
+}) => {
 	return (
 		<BrandDescriptionContainer>
 			<h3 className='brand-name'>{name}</h3>

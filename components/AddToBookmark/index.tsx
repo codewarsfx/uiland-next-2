@@ -4,17 +4,19 @@ import CloseIcon from '../CloseModalIcon';
 
 import React, { ChangeEvent } from 'react';
 
-type addBookmarkType={
-	input:string,
-	disabled:boolean,
-	newtoggleModal:()=>void,
-	submit:(e: React.FormEvent<HTMLFormElement>)=>void,
-	handleChange:(e:ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>)=>void,
-	bookmarkk:string,
-	selectBookmark: string[],
-	}
+type addBookmarkType = {
+	input: string;
+	disabled: boolean;
+	newtoggleModal: () => void;
+	submit: (e: React.FormEvent<HTMLFormElement>) => void;
+	handleChange: (
+		e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>
+	) => void;
+	bookmarkk: string;
+	selectBookmark: string[];
+};
 
-const AddToBookmark :React.FC<addBookmarkType>  =  ({
+const AddToBookmark: React.FC<addBookmarkType> = ({
 	newtoggleModal,
 	submit,
 	handleChange,

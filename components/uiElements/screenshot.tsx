@@ -5,11 +5,11 @@ import Image from 'next/image';
 import React from 'react';
 
 type screenshotProps = {
-	imgLink:string;
+	imgLink: string;
 	Name: string;
 };
 
-const Screenshot = ({ imgLink, Name }:screenshotProps) => {
+const Screenshot = ({ imgLink, Name }: screenshotProps) => {
 	return (
 		<>
 			<ScreenshotContainer initial={{ opacity: 0 }} animate={{ opacity: 1 }}>

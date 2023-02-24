@@ -442,7 +442,9 @@ const useScreenshot = (screens) => {
 	// 	dialogFuncMap[`${name}`](false);
 	// };
 	//tracks changes in the input field
-	function handleChange(e:ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) {
+	function handleChange(
+		e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>
+	) {
 		setInput(e.target.value);
 	}
 	//shows the modal and populates the imageContent state

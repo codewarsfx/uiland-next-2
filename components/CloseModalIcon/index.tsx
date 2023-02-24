@@ -1,9 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-type closeModalType={
-	toggle:()=>void
-  }
+type closeModalType = {
+	toggle: () => void;
+};
 
 const CloseIcon: React.FC<closeModalType> = ({ toggle }) => {
 	return (
