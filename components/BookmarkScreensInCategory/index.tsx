@@ -56,7 +56,6 @@ const BookmarkScreensInCategory: React.FC<indexProps> = ({ screens }) => {
 															key={screenshot}
 															imgLink={screenshot}
 															Name={screenshot}
-															
 														/>
 													)
 												)}
