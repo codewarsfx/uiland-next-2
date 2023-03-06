@@ -584,8 +584,8 @@ const SinglePage = ({ screens }) => {
 			/>
 
 			<ReactPaginate
-				marginPagesDisplayed={0}
-				pageRangeDisplayed={0}
+				marginPagesDisplayed={5}
+				pageRangeDisplayed={5}
 				previousLabel={'< Previous'}
 				nextLabel={'Next >'}
 				breakLabel={'...'}
