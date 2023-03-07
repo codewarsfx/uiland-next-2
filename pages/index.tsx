@@ -122,10 +122,7 @@ const Home = ({ screens }) => {
 				/>
 				<meta name='msapplication-TileColor' content='#000000' />
 				<meta name='theme-color' content='#ffffff' />
-				<meta
-					name='viewport'
-					content='width=device-width, initial-scale=1, maximum-scale=1'
-				/>
+			
 				<meta name='next-head-count' content='23' />
 				<meta
 					name='google-site-verification'
