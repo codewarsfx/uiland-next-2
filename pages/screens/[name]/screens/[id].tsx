@@ -303,10 +303,7 @@ const SinglePage = ({ screens }) => {
 					property='og:title'
 					content={`${headerInfo.name} Android app screenshots`}
 				/>
-				<meta
-					property='og:description'
-					content={`screenshots of ${headerInfo.name} Android app`}
-				/>
+			
 				<link
 					rel='canonical'
 					href={`https://uiland.design/screens/${headerInfo.name.toLowerCase()}/screens/${

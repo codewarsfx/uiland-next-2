@@ -62,15 +62,15 @@ const Home = ({ screens }) => {
 	return (
 		<>
 			<Head>
-				<link rel='shortcut icon' href='/favicon.ico' />
-				<meta charSet='utf-8' />
+				
+			
 				<title>Uiland</title>
 				<meta
 					name='description'
 					content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
 				/>
 				{/* <meta name="description" content="Screenshots, interaction patterns, inspiration &amp; UI patterns from Airbnb."> */}
-				<link rel='shortcut icon' href='/favicon.ico'></link>
+			<link rel='shortcut icon' href='/favicon.ico' />	
 				<meta
 					property='og:title'
 					content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
@@ -79,10 +79,7 @@ const Home = ({ screens }) => {
 					name='keywords'
 					content='africa,nigeria,ui, design, inspiration, ux, mobile, apps, screenshots'
 				/>
-				<meta
-					property='og:description'
-					content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
-				/>
+			
 				<meta
 					name='image'
 					property='og:image'
