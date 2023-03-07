@@ -288,66 +288,66 @@ const SinglePage = ({ screens }) => {
 	return (
 		<>
 			{/* for SEO */}
-	
-
 
 			<Head>
-			<title>{headerInfo.name} app screens</title>
-        <meta
-          name="title"
-          property="og:title"
-		  content={`${headerInfo.name} Android app screenshots`}
-        />
-        <meta
-          name="description"
-          content="Find your favorite sites in one place, then learn from the greats."
-        />
-        <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="canonical"
-		  href={`https://uiland.design/screens/${headerInfo.name.toLowerCase()}/screens/${
-			headerInfo.id
-		}`}
-          key="canonical"
-        />
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta
-          property="og:url"
-          content={`https://uiland.design/screens/${headerInfo.name.toLowerCase()}/screens/${
-			headerInfo.id
-		}`}
-        />
-        <meta property="og:title"    content={`https://uiland.design/screens/${headerInfo.name.toLowerCase()}/screens/${
-			headerInfo.id
-		}`} />
-        <meta
-          name="description"
-          property="og:description"
-          content={`screenshots of ${headerInfo.name} Android app`}
-        />
-        <meta property="og:site_name" content="sitesnap.design" />
-        <meta name="image" property="og:image" content={`${headerInfo.logo}`}  />
-        {/* Twitter */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta
-          property="twitter:url"
-          content={`https://uiland.design/screens/${headerInfo.name.toLowerCase()}/screens/${
-			headerInfo.id
-		}`}
-        />
-        <meta property="twitter:site" content="@sitesnap" />
-        <meta
-          property="twitter:title"
-		  content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
-        />
-        <meta
-          property="twitter:description"
-          content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
-        />
-        <meta property="twitter:image" content={`${headerInfo.logo}`}  />
-      </Head>
-
+				<title>{headerInfo.name} app screens</title>
+				<meta
+					name='title'
+					property='og:title'
+					content={`${headerInfo.name} Android app screenshots`}
+				/>
+				<meta
+					name='description'
+					content='Find your favorite sites in one place, then learn from the greats.'
+				/>
+				<link rel='icon' href='/favicon.ico' />
+				<link
+					rel='canonical'
+					href={`https://uiland.design/screens/${headerInfo.name.toLowerCase()}/screens/${
+						headerInfo.id
+					}`}
+					key='canonical'
+				/>
+				{/* Open Graph / Facebook */}
+				<meta property='og:type' content='website' />
+				<meta
+					property='og:url'
+					content={`https://uiland.design/screens/${headerInfo.name.toLowerCase()}/screens/${
+						headerInfo.id
+					}`}
+				/>
+				<meta
+					property='og:title'
+					content={`https://uiland.design/screens/${headerInfo.name.toLowerCase()}/screens/${
+						headerInfo.id
+					}`}
+				/>
+				<meta
+					name='description'
+					property='og:description'
+					content={`screenshots of ${headerInfo.name} Android app`}
+				/>
+				<meta property='og:site_name' content='uiland.design' />
+				<meta name='image' property='og:image' content={`${headerInfo.logo}`} />
+				{/* Twitter */}
+				<meta property='twitter:card' content='summary_large_image' />
+				<meta
+					property='twitter:url'
+					content={`https://uiland.design/screens/${headerInfo.name.toLowerCase()}/screens/${
+						headerInfo.id
+					}`}
+				/>
+				<meta property='twitter:site' content='@Uiland' />
+				<meta
+					property='twitter:title'
+					content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
+				/>
+				<meta
+					property='twitter:description'
+					content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
+				/>
+				<meta property='twitter:image' content={`${headerInfo.logo}`} />
+			</Head>
 
 			{modalSheet && (
 				<Modal toggleModal={toggleBottomSheet}>
