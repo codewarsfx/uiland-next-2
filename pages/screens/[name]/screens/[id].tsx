@@ -285,6 +285,8 @@ const SinglePage = ({ screens }) => {
 	// 		yes()
 	// 	},[router.query.id])
 	const pageCount = Math.ceil(actualCount / perPage);
+	//add canonical tag
+	const canonicalUrl = (`https://uiland.design` + (router.asPath === "/" ? "": router.asPath)).split("?")[0];
 	return (
 		<>
 			{/* for SEO */}
@@ -303,9 +305,7 @@ const SinglePage = ({ screens }) => {
 				<link rel='icon' href='/favicon.ico' />
 				<link
 					rel='canonical'
-					href={`https://uiland.design/screens/${headerInfo.name.toLowerCase()}/screens/${
-						headerInfo.id
-					}`}
+					href={canonicalUrl}
 					key='canonical'
 				/>
 				{/* Open Graph / Facebook */}
