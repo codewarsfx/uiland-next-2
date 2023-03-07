@@ -342,7 +342,7 @@ label {
 	border: 2px solid var(--primary-color);
 	background: var(--primary-color);
 	border-radius: 40px;
-    color: white;
+	color: white;
 }
 
 .paginate-disabled a {
@@ -363,8 +363,6 @@ label {
 	font-size: 16px;
 	font-weight: 500;
 }
-
-
 
 /* *{
 	border: 1px solid red;

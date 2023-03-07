@@ -298,12 +298,12 @@ const SinglePage = ({ screens }) => {
 					name='keywords'
 					content='ui, design, inspiration, ux, mobile, apps, screenshots'
 				/>
-				
+
 				<meta
 					property='og:title'
 					content={`${headerInfo.name} Android app screenshots`}
 				/>
-			
+
 				<link
 					rel='canonical'
 					href={`https://uiland.design/screens/${headerInfo.name.toLowerCase()}/screens/${
@@ -328,7 +328,6 @@ const SinglePage = ({ screens }) => {
 					property='twitter:description'
 					content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
 				/>
-			
 			</Head>
 
 			{modalSheet && (

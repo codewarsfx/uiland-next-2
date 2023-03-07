@@ -62,15 +62,13 @@ const Home = ({ screens }) => {
 	return (
 		<>
 			<Head>
-				
-			
 				<title>Uiland</title>
 				<meta
 					name='description'
 					content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
 				/>
 				{/* <meta name="description" content="Screenshots, interaction patterns, inspiration &amp; UI patterns from Airbnb."> */}
-			<link rel='shortcut icon' href='/favicon.ico' />	
+				<link rel='shortcut icon' href='/favicon.ico' />
 				<meta
 					property='og:title'
 					content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
@@ -79,7 +77,6 @@ const Home = ({ screens }) => {
 					name='keywords'
 					content='africa,nigeria,ui, design, inspiration, ux, mobile, apps, screenshots'
 				/>
-			
 				<meta
 					name='image'
 					property='og:image'
@@ -118,11 +115,9 @@ const Home = ({ screens }) => {
 					// href="/safari-pinned-tab.svg?v=2.1"
 					href=''
 					color='#000000'
-					
 				/>
 				<meta name='msapplication-TileColor' content='#000000' />
 				<meta name='theme-color' content='#ffffff' />
-			
 				<meta name='next-head-count' content='23' />
 				<meta
 					name='google-site-verification'
