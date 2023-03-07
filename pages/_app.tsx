@@ -79,7 +79,6 @@ export default function App({
 					</Script>
 
 					<Header />
-
 					<Component {...pageProps} />
 
 					<Analytics />
