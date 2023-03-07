@@ -63,6 +63,7 @@ const Home = ({ screens }) => {
 		<>
 			<Head>
 				<title>Uiland</title>
+				<meta key="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover" />
 				<meta
 					name='description'
 					content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
