@@ -298,7 +298,7 @@ const SinglePage = ({ screens }) => {
 					name='keywords'
 					content='ui, design, inspiration, ux, mobile, apps, screenshots'
 				/>
-				<meta property='og:type' content='website' />
+				
 				<meta
 					property='og:title'
 					content={`${headerInfo.name} Android app screenshots`}
@@ -328,10 +328,7 @@ const SinglePage = ({ screens }) => {
 					property='twitter:description'
 					content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
 				/>
-				<meta
-					name='viewport'
-					content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
-				></meta>
+			
 			</Head>
 
 			{modalSheet && (
