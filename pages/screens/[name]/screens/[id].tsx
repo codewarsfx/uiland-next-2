@@ -298,7 +298,7 @@ const SinglePage = ({ screens }) => {
 				/>
 				<meta
 					name='description'
-					content='Find your favorite sites in one place, then learn from the greats.'
+					content={`${headerInfo.name} Android app screenshots`}
 				/>
 				<link rel='icon' href='/favicon.ico' />
 				<link
