@@ -92,7 +92,7 @@ const SinglePage = ({ screens }) => {
 	const [visits, setVisits] = useState<number>();
 	const [active, setActive] = useState<number>(1);
 
-	const [perPage, setPerPage] = useState<number>(9);
+	const [perPage, setPerPage] = useState<number>(10);
 
 	const [actualCount, setActualCount] = useState<number>(0);
 	const [getPeriod, setGetPeriod] = useState([]);
@@ -284,57 +284,70 @@ const SinglePage = ({ screens }) => {
 
 	// 		yes()
 	// 	},[router.query.id])
-	const pageCount = Math.ceil(actualCount / perPage);
+	const pageCount = Math.ceil(actualCount / perPage)
+
+	//add canonical tag
+	const canonicalUrl = (`https://uiland.design` + (router.asPath === "/" ? "": router.asPath)).split("?")[0];
 	return (
 		<>
 			{/* for SEO */}
+
 			<Head>
 				<title>{headerInfo.name} app screens</title>
 				<meta
-					name='description'
-					content={`screenshots of ${headerInfo.name} Android app`}
-				/>
-				<meta
-					name='keywords'
-					content='ui, design, inspiration, ux, mobile, apps, screenshots'
-				/>
-				<meta property='og:type' content='website' />
-				<meta
+					name='title'
 					property='og:title'
 					content={`${headerInfo.name} Android app screenshots`}
 				/>
 				<meta
-					property='og:description'
-					content={`screenshots of ${headerInfo.name} Android app`}
+					name='description'
+					content={`${headerInfo.name} Android app screenshots`}
 				/>
+				<link rel='icon' href='/favicon.ico' />
 				<link
 					rel='canonical'
-					href={`https://uiland.design/screens/${headerInfo.name.toLowerCase()}/screens/${
-						headerInfo.id
-					}`}
+					href={canonicalUrl}
 					key='canonical'
 				/>
+				{/* Open Graph / Facebook */}
+				<meta property='og:type' content='website' />
 				<meta
 					property='og:url'
 					content={`https://uiland.design/screens/${headerInfo.name.toLowerCase()}/screens/${
 						headerInfo.id
 					}`}
 				/>
+				<meta
+					property='og:title'
+					content={`https://uiland.design/screens/${headerInfo.name.toLowerCase()}/screens/${
+						headerInfo.id
+					}`}
+				/>
+				<meta
+					name='description'
+					property='og:description'
+					content={`screenshots of ${headerInfo.name} Android app`}
+				/>
+				<meta property='og:site_name' content='uiland.design' />
 				<meta name='image' property='og:image' content={`${headerInfo.logo}`} />
-
-				<meta property='twitter:title' content='uiland.design' />
-
+				{/* Twitter */}
 				<meta property='twitter:card' content='summary_large_image' />
-
-				<meta property='twitter:image:src' content={`${headerInfo.logo}`} />
+				<meta
+					property='twitter:url'
+					content={`https://uiland.design/screens/${headerInfo.name.toLowerCase()}/screens/${
+						headerInfo.id
+					}`}
+				/>
+				<meta property='twitter:site' content='@Uiland' />
+				<meta
+					property='twitter:title'
+					content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
+				/>
 				<meta
 					property='twitter:description'
 					content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
 				/>
-				<meta
-					name='viewport'
-					content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
-				></meta>
+				<meta property='twitter:image' content={`${headerInfo.logo}`} />
 			</Head>
 
 			{modalSheet && (
@@ -584,8 +597,8 @@ const SinglePage = ({ screens }) => {
 			/>
 
 			<ReactPaginate
-				marginPagesDisplayed={0}
-				pageRangeDisplayed={0}
+				marginPagesDisplayed={5}
+				pageRangeDisplayed={5}
 				previousLabel={'< Previous'}
 				nextLabel={'Next >'}
 				breakLabel={'...'}

@@ -39,7 +39,7 @@ export default function App({
 	}, [router.events]);
 
 	useEffect(() => {
-		hotjar.initialize(3322744, 6, true);
+		hotjar.initialize(3322744, 6, false);
 	}, []);
 
 	const [supabaseClient] = useState(() => createBrowserSupabaseClient());
@@ -79,7 +79,6 @@ export default function App({
 					</Script>
 
 					<Header />
-
 					<Component {...pageProps} />
 
 					<Analytics />

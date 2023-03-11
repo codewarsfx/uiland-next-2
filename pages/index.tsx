@@ -62,71 +62,45 @@ const Home = ({ screens }) => {
 	return (
 		<>
 			<Head>
-				<link rel='shortcut icon' href='/favicon.ico' />
-				<meta charSet='utf-8' />
 				<title>Uiland</title>
 				<meta
-					name='description'
-					content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
-				/>
-				{/* <meta name="description" content="Screenshots, interaction patterns, inspiration &amp; UI patterns from Airbnb."> */}
-				<link rel='shortcut icon' href='/favicon.ico'></link>
-				<meta
+					name='title'
 					property='og:title'
 					content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
 				/>
 				<meta
-					name='keywords'
-					content='africa,nigeria,ui, design, inspiration, ux, mobile, apps, screenshots'
+					name='description'
+					content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
 				/>
+				<link rel='icon' href='/favicon.ico' />
+				{/* Open Graph / Facebook */}
+				<meta property='og:type' content='website' />
+
+				<meta property='og:url' content='https://uiland.design' />
+				<meta property='og:title' content='uiland.design' />
 				<meta
+					name='description'
 					property='og:description'
-					content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
+					content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
 				/>
+				<meta property='og:site_name' content='uiland.design' />
 				<meta
 					name='image'
 					property='og:image'
 					content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG'
 				/>
-				<meta
-					property='og:image:secure_url'
-					content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG'
-				/>
-				<meta
-					property='og:image:alt'
-					content='Browse Mobile Apps designs | Uiland'
-				/>
-				<meta property='og:image:width' content='1200' />
-				<meta property='og:image:height' content='630' />
-				<meta property='og:image:type' content='image/png' />
-				<meta property='og:url' content='' />
-				<meta property='og:type' content='website' />
-				<meta property='og:site_name' content='Uiland' />
+				{/* Twitter */}
 				<meta property='twitter:card' content='summary_large_image' />
-				<meta property='twitter:url' content='@UiLandDesign' />{' '}
-				<meta property='twitter:site' content='@UiLandDesign' />{' '}
+				<meta property='twitter:url' content='https://uiland.design' />
+				<meta property='twitter:site' content='@uiland' />
 				<meta property='twitter:title' content='uiland.design' />
 				<meta
 					property='twitter:description'
-					content='Discover hundreds of Mobile apps designs for UI &amp; UX research.'
+					content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
 				/>
 				<meta
-					property='twitter:image:src'
+					property='twitter:image'
 					content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG'
-				/>
-				<link rel='icon' href='/favicon.ico' />
-				{/* <link rel="manifest" href="/site.webmanifest?v=2.1" /> */}
-				<link
-					rel='mask-icon'
-					// href="/safari-pinned-tab.svg?v=2.1"
-					href=''
-					color='#000000'
-				/>
-				<meta name='msapplication-TileColor' content='#000000' />
-				<meta name='theme-color' content='#ffffff' />
-				<meta
-					name='viewport'
-					content='width=device-width, initial-scale=1, maximum-scale=1'
 				/>
 				<meta name='next-head-count' content='23' />
 				<meta
@@ -134,6 +108,7 @@ const Home = ({ screens }) => {
 					content='ODqtX_v3ldmmo5AB7fzcCJtP6IXdY_RDDeCK29OG6qs'
 				/>
 			</Head>
+
 			{/* This removes the hero section if signedIn */}
 			{!user && <Hero />}
 			<Tab />

@@ -64,7 +64,7 @@ function Hero() {
 								{' '}
 								<h3>UL</h3>
 							</div>
-							{/* <div className='outer-ring outer-ring1'>
+							<div className='outer-ring outer-ring1'>
 								<div className='outer-ring outer-ring2'>
 									<div className='outer-ring outer-ring3'>
 										<div className='outer-ring outer-ring4'>
@@ -78,7 +78,7 @@ function Hero() {
 										</div>
 									</div>
 								</div>
-							</div> */}
+							</div>
 						</div>
 					</div>
 				</div>
