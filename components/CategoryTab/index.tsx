@@ -41,6 +41,12 @@ const CategoryTabBar = () => {
 			status: '',
 			id: 6,
 		},
+		{
+			category: 'Crypto',
+			categoryStatus: 'Crypto',
+			status: '',
+			id: 7,
+		},
 	];
 
 	return (
