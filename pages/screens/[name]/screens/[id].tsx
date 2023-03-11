@@ -92,7 +92,7 @@ const SinglePage = ({ screens }) => {
 	const [visits, setVisits] = useState<number>();
 	const [active, setActive] = useState<number>(1);
 
-	const [perPage, setPerPage] = useState<number>(9);
+	const [perPage, setPerPage] = useState<number>(10);
 
 	const [actualCount, setActualCount] = useState<number>(0);
 	const [getPeriod, setGetPeriod] = useState([]);
@@ -284,7 +284,8 @@ const SinglePage = ({ screens }) => {
 
 	// 		yes()
 	// 	},[router.query.id])
-	const pageCount = Math.ceil(actualCount / perPage);
+	const pageCount = Math.ceil(actualCount / perPage)
+
 	//add canonical tag
 	const canonicalUrl = (`https://uiland.design` + (router.asPath === "/" ? "": router.asPath)).split("?")[0];
 	return (

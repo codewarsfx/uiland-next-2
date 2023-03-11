@@ -2,6 +2,7 @@ import { FiFacebook } from 'react-icons/fi';
 import { AiOutlineYoutube, AiOutlineInstagram } from 'react-icons/ai';
 import { CiTwitter } from 'react-icons/ci';
 import styled, { keyframes } from 'styled-components';
+import Image from 'next/image';
 
 const Footer = () => {
 	return (
@@ -16,7 +17,14 @@ const Footer = () => {
 			<div className='wrapper footer-wrapper'>
 				<div className='logo'>
 					<div>
-						<img src='assets/img/UL.png' alt='' />
+						<Image
+							src='/assets/img/UL.png'
+							alt='brandlogo'
+							loading='lazy'
+							width='48'
+							height='48'
+						/>
+					
 					</div>
 					<section className='footer-icons'>
 						<FiFacebook className='footer-icon' />

@@ -70,9 +70,9 @@ function Hero() {
 										<div className='outer-ring outer-ring4'>
 											<div className='outer-ring outer-ring5'>
 												<div className='outer-ring outer-ring6'>
-													{/* <div className='outer-ring outer-ring7'>
+													<div className='outer-ring outer-ring7'>
 												
-												</div> */}
+												</div>
 												</div>
 											</div>
 										</div>
