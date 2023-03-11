@@ -7,6 +7,11 @@ const { withSentryConfig } = require('@sentry/nextjs');
 /** @type {import('next').NextConfig} */
 
 const runtimeCaching = require('next-pwa/cache');
+
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+	enabled: process.env.ANALYZE === 'true',
+  })
+  
 const withPWA = require('next-pwa')({
 	dest: 'public',
 	register: true,
@@ -26,7 +31,7 @@ const nextConfig = {
 	},
 };
 
-module.exports = withPWA(nextConfig);
+module.exports = withBundleAnalyzer(withPWA(nextConfig));
 
 module.exports = withSentryConfig(
 	module.exports,

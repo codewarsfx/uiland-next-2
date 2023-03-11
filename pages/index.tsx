@@ -137,7 +137,12 @@ const Home = ({ screens }) => {
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ res, req }) => {
+	res.setHeader(
+		'Cache-Control',
+		'public, s-maxage=10, stale-while-revalidate=59'
+	)
+	
 	let screens;
 	const client = new Redis(process.env.REDIS_URL);
 

@@ -1,21 +1,21 @@
+import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import { useContext, useState } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import { Button, Hamburger } from '../uiElements';
-import { buttonTypes } from '../uiElements/button';
+import useModal from '../../hooks/useModal';
 import {
 	BASE_DELAY_DURATION,
 	BASE_DURATION,
 } from '../../utils/transitionConstants';
-import useModal from '../../hooks/useModal';
+import { Button } from '../uiElements';
+import { buttonTypes } from '../uiElements/button';
 
-import Login from '../Login/login';
-import Modal from '../modal';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { UserContext } from '../../context/authContext';
 import { signout } from '../../supabase';
-import Link from 'next/link';
-import axios from 'axios';
-import { useRouter } from 'next/router';
+const Login = dynamic(() => import('../Login/login'));
+const Modal = dynamic(() => import('../modal'));
 
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
