@@ -1,6 +1,9 @@
 import { GetServerSideProps } from 'next';
 import { useContext, useEffect, useState } from 'react';
 
+
+
+
 //components
 import Footer from '../components/Footer';
 import Hero from '../components/Hero';
@@ -58,6 +61,22 @@ const Home = ({ screens }) => {
 	useEffect(() => {
 		setResult(categoryFilter(screens, filterTerm));
 	}, [filterTerm, screens]);
+
+
+	//   useEffect(()=>{
+	// 	async function result(){
+	// 	const data= await fetch('/api/cloudfare',{method:'GET',mode:'cors'})
+	// 	const res= data.json()
+	// 	console.log('res')
+	// 	console.log(res)
+	// 	}
+	// 	result()
+
+	//   },[])
+
+	 
+
+
 
 	return (
 		<>
