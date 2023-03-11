@@ -20,23 +20,20 @@ const Screenshot = ({ imgLink, Name }: screenshotProps) => {
 };
 
 const ScreenshotContainer = styled(motion.div)`
-	border-radius: 0.8em;
 	cursor: pointer;
-	border: 1px solid #dddddd;
-	overflow: hidden;
-
 	max-height: 634px;
-	img {
-		height: 100%;
-		width: 100%;
-		display: block;
+
+	& > span {
+		box-shadow: 0.1px 0.1px 1px 0 rgba(0, 0, 0, 0.2),
+			0 0.1px 2px 0 rgba(0, 0, 0, 0.19);
 		border-radius: 0.8em;
 	}
-
 	@media (min-width: 768px) {
-		border-radius: 2em;
 		height: auto;
-		img {
+
+		& > span {
+			box-shadow: 0.1px 0.1px 1px 0 rgba(0, 0, 0, 0.2),
+				0 0.1px 2px 0 rgba(0, 0, 0, 0.19);
 			border-radius: 2em;
 		}
 	}
