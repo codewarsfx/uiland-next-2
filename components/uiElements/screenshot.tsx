@@ -34,7 +34,7 @@ const ScreenshotContainer = styled(motion.div)`
 		& > span {
 			box-shadow: 0.1px 0.1px 1px 0 rgba(0, 0, 0, 0.2),
 				0 0.1px 2px 0 rgba(0, 0, 0, 0.19);
-			border-radius: 2em;
+			border-radius: 1.5em;
 		}
 	}
 `;
