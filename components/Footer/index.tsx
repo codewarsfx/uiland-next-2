@@ -1,10 +1,26 @@
 import { FiFacebook } from 'react-icons/fi';
 import { AiOutlineYoutube, AiOutlineInstagram } from 'react-icons/ai';
-import { CiTwitter } from 'react-icons/ci';
+import { CiLinkedin, CiMail, CiTwitter } from 'react-icons/ci';
 import styled, { keyframes } from 'styled-components';
 import Image from 'next/image';
+import { useState } from 'react';
+import { Player } from '@lottiefiles/react-lottie-player';
+import { addUserData } from '../../supabase';
 
 const Footer = () => {
+	const [input, setInput] = useState('');
+	const [buttoText, setButtonText]= useState('Subscribe');
+	const [submitted, setSubmitted] = useState(false);
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		setButtonText('Submitting')
+		await addUserData('EmailNewsLetter', {email:input});
+		setInput('');
+		setButtonText('Subscribed')
+		setSubmitted(true);
+	};
+
 	return (
 		<FooterWrapper>
 			<AbsoluteGrid>
@@ -21,16 +37,23 @@ const Footer = () => {
 							src='/assets/img/UL.png'
 							alt='brandlogo'
 							loading='lazy'
-							width='48'
-							height='48'
+							width='20'
+							height='15'
 						/>
-					
 					</div>
 					<section className='footer-icons'>
-						<FiFacebook className='footer-icon' />
-						<AiOutlineYoutube className='footer-icon' />
-						<CiTwitter className='footer-icon' />
-						<AiOutlineInstagram className='footer-icon' />
+						<a
+							target='_blank'
+							href='https://www.linkedin.com/company/uiland/about/'
+						>
+							<CiLinkedin className='footer-icon' />
+						</a>
+						<a target='_blank' href='https://twitter.com/UiLandDesign'>
+							<CiTwitter className='footer-icon' />
+						</a>
+						<a target='_blank' href='mailto:design@uiland.design'>
+							<CiMail className='footer-icon' />
+						</a>
 					</section>
 				</div>
 
@@ -72,14 +95,32 @@ const Footer = () => {
 				</section>
 
 				<section className='form'>
-					<form action='#'>
+					<form  onSubmit={handleSubmit}>
 						<div className='form-input'>
 							<input
 								type='text'
+								value={input}
 								className='form-input-control'
-								placeholder='Updates in your inbox...'
+								placeholder='Enter email address...'
+								onChange={(e) => {
+									setInput(e.target.value);
+								}}
+								required
 							/>
-							<button type='submit'>Go</button>
+							<button type='submit'>
+								{submitted ? (
+									<div className='wrap'>
+										Subscribed
+										<Player
+											src='/assets/lottie/sent.json'
+											className='lottie'
+											autoplay
+										/>
+									</div>
+								) : (
+										<>{buttoText}</>
+								)}
+							</button>
 						</div>
 					</form>
 				</section>
@@ -171,6 +212,14 @@ const FooterWrapper = styled.footer`
 		display: flex;
 		justify-content: center;
 	}
+	.lottie {
+		width: 25px;
+		height: 25px;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-55%);
+		right:3%;
+	}
 
 	.form-input input,
 	.form-input button {
@@ -184,6 +233,8 @@ const FooterWrapper = styled.footer`
 		background-color: var(--primary-color);
 		color: #fff;
 		font-weight: bold;
+		cursor: pointer;
+		position: relative;
 	}
 
 	.form-input input::placeholder {

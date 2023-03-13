@@ -453,7 +453,9 @@ export async function getRange() {
 }
 
 export const addUserData = async (type, formdata) => {
+
 	const { error, data } = await supabase.from(type).insert(formdata).select();
+
 	if (error) {
 		console.log(error);
 	}
