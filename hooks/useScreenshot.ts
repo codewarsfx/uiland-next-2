@@ -153,12 +153,8 @@ const useScreenshot = (screens) => {
 		if (router.route === '/collections/individual/[name]') {
 			setLimitedScreens(screens);
 		} else {
-
 			setLimitedScreens(screens);
 		}
-
-		
-		
 	}, [screens]);
 
 	async function onClickPill(id, arr) {
@@ -194,7 +190,7 @@ const useScreenshot = (screens) => {
 				query: query,
 			});
 			const data = await getScreensById(router.query.id, page, router.query);
-		
+
 			setLimitedScreens(
 				JSON.stringify(data) === JSON.stringify([]) ? screens : data
 			);
@@ -375,9 +371,7 @@ const useScreenshot = (screens) => {
 		Router.push('/pricing');
 	};
 	//filter
-	const searchFilter = (array, data) =>{
-
-	
+	const searchFilter = (array, data) => {
 		if (data === '') return array;
 		return array.filter((el) => el.elementCategory.toLowerCase() === data);
 	};
@@ -468,7 +462,7 @@ const useScreenshot = (screens) => {
 		async function getAlbums() {
 			if (user) {
 				const data = await viewSingleBookmark(router.query.name);
-			
+
 				setIndiScreens(data);
 			}
 		}
@@ -635,7 +629,7 @@ const useScreenshot = (screens) => {
 	}
 
 	const filtered = searchFilter(limitedscreens, inputFilter);
-    
+
 	//update the filter component from the backend
 	useEffect(() => {
 		function updateFilter() {

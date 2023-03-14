@@ -10,7 +10,6 @@ const BrandLogo = ({ imageUrl }) => {
 				width='48'
 				height='48'
 				// layout='fill'
-				
 			/>
 		</BrandLogoCotainer>
 	);

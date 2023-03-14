@@ -4,7 +4,6 @@ import { UserContext } from './authContext';
 
 export const ScreenContext = createContext(null);
 
-
 export const ScreenContextProvider = ({ children }) => {
 	const user = useContext(UserContext);
 	const [getId, setGetId] = useState([]);

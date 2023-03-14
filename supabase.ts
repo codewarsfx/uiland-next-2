@@ -437,7 +437,7 @@ export async function addImagesToScreens(
 			screenId: screenId,
 			url: url,
 			order: 4500 + id,
-			version:1
+			version: 1,
 		})
 		.select();
 
@@ -453,7 +453,6 @@ export async function getRange() {
 }
 
 export const addUserData = async (type, formdata) => {
-
 	const { error, data } = await supabase.from(type).insert(formdata).select();
 
 	if (error) {

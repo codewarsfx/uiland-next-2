@@ -123,7 +123,7 @@ const SinglePage = ({ screens }) => {
 		userListRef.current.scrollIntoView({ behavior: 'smooth' });
 	};
 
-	console.log(filtered.length)
+	console.log(filtered.length);
 
 	//This is used to track the number of times a user has visited the screen. The guide modal
 	//is displayed if the user is a first-time user.
@@ -286,10 +286,12 @@ const SinglePage = ({ screens }) => {
 
 	// 		yes()
 	// 	},[router.query.id])
-	const pageCount = Math.ceil(actualCount / perPage)
+	const pageCount = Math.ceil(actualCount / perPage);
 
 	//add canonical tag
-	const canonicalUrl = (`https://uiland.design` + (router.asPath === "/" ? "": router.asPath)).split("?")[0];
+	const canonicalUrl = (
+		`https://uiland.design` + (router.asPath === '/' ? '' : router.asPath)
+	).split('?')[0];
 	return (
 		<>
 			{/* for SEO */}
@@ -306,11 +308,7 @@ const SinglePage = ({ screens }) => {
 					content={`${headerInfo.name} Android app screenshots`}
 				/>
 				<link rel='icon' href='/favicon.ico' />
-				<link
-					rel='canonical'
-					href={canonicalUrl}
-					key='canonical'
-				/>
+				<link rel='canonical' href={canonicalUrl} key='canonical' />
 				{/* Open Graph / Facebook */}
 				<meta property='og:type' content='website' />
 				<meta
@@ -1002,7 +1000,6 @@ export const getServerSideProps: GetServerSideProps = async ({
 	const screensCacheObject = {};
 
 	const client = new Redis(process.env.REDIS_URL);
-	
 
 	const CachedResults = JSON.parse(await client.get('screensCachedByID'));
 
@@ -1025,7 +1022,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 		client.set('screensCachedByID', JSON.stringify(CachedResults), 'EX', 3600);
 		console.log('read from supabase');
 	}
-	
+
 	return {
 		props: {
 			screens,

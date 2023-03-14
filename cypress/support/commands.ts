@@ -36,5 +36,5 @@
 //   }
 // }
 
-  // Prevent TypeScript from reading file as legacy script
-  export {}
+// Prevent TypeScript from reading file as legacy script
+export {};

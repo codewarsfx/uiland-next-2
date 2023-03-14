@@ -9,15 +9,15 @@ import { addUserData } from '../../supabase';
 
 const Footer = () => {
 	const [input, setInput] = useState('');
-	const [buttoText, setButtonText]= useState('Subscribe');
+	const [buttoText, setButtonText] = useState('Subscribe');
 	const [submitted, setSubmitted] = useState(false);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		setButtonText('Submitting')
-		await addUserData('EmailNewsLetter', {email:input});
+		setButtonText('Submitting');
+		await addUserData('EmailNewsLetter', { email: input });
 		setInput('');
-		setButtonText('Subscribed')
+		setButtonText('Subscribed');
 		setSubmitted(true);
 	};
 
@@ -42,15 +42,25 @@ const Footer = () => {
 						/>
 					</div>
 					<section className='footer-icons'>
-						<a target='_blank'
-							href='https://www.linkedin.com/company/uiland/about/' rel="noreferrer"
+						<a
+							target='_blank'
+							href='https://www.linkedin.com/company/uiland/about/'
+							rel='noreferrer'
 						>
 							<CiLinkedin className='footer-icon' />
 						</a>
-						<a target='_blank' href='https://twitter.com/UiLandDesign' rel="noreferrer">
+						<a
+							target='_blank'
+							href='https://twitter.com/UiLandDesign'
+							rel='noreferrer'
+						>
 							<CiTwitter className='footer-icon' />
 						</a>
-						<a target='_blank' href='mailto:design@uiland.design' rel="noreferrer">
+						<a
+							target='_blank'
+							href='mailto:design@uiland.design'
+							rel='noreferrer'
+						>
 							<CiMail className='footer-icon' />
 						</a>
 					</section>
@@ -92,7 +102,7 @@ const Footer = () => {
 				</section>
 
 				<section className='form'>
-					<form  onSubmit={handleSubmit}>
+					<form onSubmit={handleSubmit}>
 						<div className='form-input'>
 							<input
 								type='text'
@@ -115,7 +125,7 @@ const Footer = () => {
 										/>
 									</div>
 								) : (
-										<>{buttoText}</>
+									<>{buttoText}</>
 								)}
 							</button>
 						</div>
@@ -130,6 +140,7 @@ const BlurEdges = styled.div`
 	height: 100%;
 	position: absolute;
 	z-index: 11;
+
 	background: radial-gradient(
 		ellipse at 50% 50%,
 		rgba(14, 20, 22, 0) 0,
@@ -215,7 +226,7 @@ const FooterWrapper = styled.footer`
 		position: absolute;
 		top: 50%;
 		transform: translateY(-55%);
-		right:3%;
+		right: 3%;
 	}
 
 	.form-input input,

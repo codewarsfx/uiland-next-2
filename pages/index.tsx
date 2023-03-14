@@ -1,9 +1,6 @@
 import { GetServerSideProps } from 'next';
 import { useContext, useEffect, useState } from 'react';
 
-
-
-
 //components
 import Footer from '../components/Footer';
 import Hero from '../components/Hero';
@@ -62,7 +59,6 @@ const Home = ({ screens }) => {
 		setResult(categoryFilter(screens, filterTerm));
 	}, [filterTerm, screens]);
 
-
 	//   useEffect(()=>{
 	// 	async function result(){
 	// 	const data= await fetch('/api/cloudfare',{method:'GET',mode:'cors'})
@@ -73,10 +69,6 @@ const Home = ({ screens }) => {
 	// 	result()
 
 	//   },[])
-
-	 
-
-
 
 	return (
 		<>
@@ -141,8 +133,8 @@ export const getServerSideProps: GetServerSideProps = async ({ res, req }) => {
 	res.setHeader(
 		'Cache-Control',
 		'public, s-maxage=10, stale-while-revalidate=59'
-	)
-	
+	);
+
 	let screens;
 	const client = new Redis(process.env.REDIS_URL);
 
