@@ -92,7 +92,7 @@ const SinglePage = ({ screens }) => {
 	const [visits, setVisits] = useState<number>();
 	const [active, setActive] = useState<number>(1);
 
-	const [perPage, setPerPage] = useState<number>(9);
+	const [perPage, setPerPage] = useState<number>(20);
 
 	const [actualCount, setActualCount] = useState<number>(0);
 	const [getPeriod, setGetPeriod] = useState([]);
@@ -122,6 +122,8 @@ const SinglePage = ({ screens }) => {
 		});
 		userListRef.current.scrollIntoView({ behavior: 'smooth' });
 	};
+
+	console.log(filtered.length)
 
 	//This is used to track the number of times a user has visited the screen. The guide modal
 	//is displayed if the user is a first-time user.
@@ -284,7 +286,8 @@ const SinglePage = ({ screens }) => {
 
 	// 		yes()
 	// 	},[router.query.id])
-	const pageCount = Math.ceil(actualCount / perPage);
+	const pageCount = Math.ceil(actualCount / perPage)
+
 	//add canonical tag
 	const canonicalUrl = (`https://uiland.design` + (router.asPath === "/" ? "": router.asPath)).split("?")[0];
 	return (
@@ -999,6 +1002,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 	const screensCacheObject = {};
 
 	const client = new Redis(process.env.REDIS_URL);
+	
 
 	const CachedResults = JSON.parse(await client.get('screensCachedByID'));
 
@@ -1021,7 +1025,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 		client.set('screensCachedByID', JSON.stringify(CachedResults), 'EX', 3600);
 		console.log('read from supabase');
 	}
-
+	
 	return {
 		props: {
 			screens,

@@ -56,7 +56,7 @@ export async function getAllScreens() {
 //get individual screens of the newest version content
 
 export async function getScreensById(id, page, query) {
-	let limit = 9;
+	let limit = 19;
 	let limitMaxRange = page * limit;
 	let limitMinRange = page * limit - limit;
 
@@ -133,7 +133,7 @@ export async function getScreensById(id, page, query) {
 
 //get individual screens of older versions
 export async function getOlderScreensById(id, page, version) {
-	let limit = 9;
+	let limit = 19;
 	let limitMaxRange = page * limit;
 	let limitMinRange = page * limit - limit;
 
@@ -453,7 +453,9 @@ export async function getRange() {
 }
 
 export const addUserData = async (type, formdata) => {
+
 	const { error, data } = await supabase.from(type).insert(formdata).select();
+
 	if (error) {
 		console.log(error);
 	}
