@@ -42,16 +42,15 @@ const Footer = () => {
 						/>
 					</div>
 					<section className='footer-icons'>
-						<a
-							target='_blank'
-							href='https://www.linkedin.com/company/uiland/about/'
+						<a target='_blank'
+							href='https://www.linkedin.com/company/uiland/about/' rel="noreferrer"
 						>
 							<CiLinkedin className='footer-icon' />
 						</a>
-						<a target='_blank' href='https://twitter.com/UiLandDesign'>
+						<a target='_blank' href='https://twitter.com/UiLandDesign' rel="noreferrer">
 							<CiTwitter className='footer-icon' />
 						</a>
-						<a target='_blank' href='mailto:design@uiland.design'>
+						<a target='_blank' href='mailto:design@uiland.design' rel="noreferrer">
 							<CiMail className='footer-icon' />
 						</a>
 					</section>
@@ -66,7 +65,7 @@ const Footer = () => {
 							<a href='/pricing'>Pricing</a>
 						</li>
 						<li>
-							<a href=''>Products</a>
+							<a href='#'>Products</a>
 						</li>
 						<li>
 							<a href='#'>About Us</a>
@@ -84,7 +83,7 @@ const Footer = () => {
 							</a>
 						</li>
 						<li>
-							<a href='#'>Privacy Policies</a>
+							<a href='#'>Privacy Policy</a>
 						</li>
 						<li>
 							<a href='mailto:design@uiland.design'>Contact Us</a>
