@@ -13,3 +13,6 @@ describe('Navigation', () => {
       cy.get('h1').contains('Get Inspired by UI designs')
     })
   })
+
+  // Prevent TypeScript from reading file as legacy script
+export {}
