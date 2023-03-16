@@ -63,6 +63,7 @@ const CategorySectionWrapper = styled.div`
 	margin: auto;
 	gap: 2em;
 	width: 90%;
+	max-width: 1300px;
 
 	:not(:first-child) {
 		margin-top: 4em;
