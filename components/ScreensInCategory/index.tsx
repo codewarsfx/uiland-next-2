@@ -71,7 +71,9 @@ const CategorySectionWrapper = styled.div`
 	@media (min-width: 768px) {
 		flex-direction: row;
 		width: 95%;
+		
 	}
+
 `;
 
 const ScreenShotContainer = styled.div`
