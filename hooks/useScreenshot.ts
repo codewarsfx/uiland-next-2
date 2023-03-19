@@ -64,6 +64,12 @@ const useScreenshot = (screens) => {
 
 	const [Progress, setProgress] = useState(1);
 	const [headerInfo, setHeaderInfo] = useState({
+		name: '',
+		logo: '',
+		id: '',
+		url: '',
+		timeTravel: [],
+		created_at: '',
 	});
 	const [payingUser, setPayingUser] = useState('');
 
@@ -286,7 +292,12 @@ const useScreenshot = (screens) => {
 	//omitting the [  ] here caused a massive render :(
 	useEffect(() => {
 		const getHeaderInfo = async () => {
-			const data = await getScreensProperties(router.query.id);
+			const data:{ name: string;
+				logo: string;
+				id: string;
+				url: string;
+				timeTravel: any[];
+				created_at: string;} = await getScreensProperties(router.query.id);
 			setHeaderInfo(data);
 		};
 		getHeaderInfo();
