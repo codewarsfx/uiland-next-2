@@ -7,6 +7,7 @@ function Admin() {
 	const [screenIds, setScreenIds] = useState('');
 	const [images, setImages] = useState([
 		//add images json to screen
+
 	]);
 	useEffect(() => {
 		async function getAllImages() {
