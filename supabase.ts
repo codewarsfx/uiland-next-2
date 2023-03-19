@@ -436,7 +436,7 @@ export async function addImagesToScreens(
 		.insert({
 			screenId: screenId,
 			url: url,
-			order: 4500 + id,
+			order: 5000 + id,
 			version: 1,
 		})
 		.select();
