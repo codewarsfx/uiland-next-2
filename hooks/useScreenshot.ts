@@ -70,7 +70,7 @@ const useScreenshot = (screens) => {
 		name: string;
 		logo: string;
 		id: string;
-	}>({
+	}|undefined|any>({
 		name: '',
 		logo: '',
 		id: '',
@@ -299,9 +299,9 @@ const useScreenshot = (screens) => {
 	//omitting the [  ] here caused a massive render :(
 	useEffect(() => {
 		const getHeaderInfo = async () => {
-	
+			const data = await getScreensProperties(router.query.id as string);
 		
-			setHeaderInfo(await getScreensProperties(router.query.id as string));
+			setHeaderInfo(data);
 		};
 		getHeaderInfo();
 	}, [router.query.id]);
