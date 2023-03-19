@@ -13,9 +13,10 @@ function Admin() {
 			images.map(async (image, id) => {
 				if (!available.includes(image)) {
 					if (input === 'yes') {
-						const data = getImage(company, image);
+						//This was for getting the image url from supabase server after the name of the image is passed in as a parameter
+						// const data = getImage(company, image);
 
-						const red = await addImagesToScreens(screenIds, id, data.publicUrl);
+						const red = await addImagesToScreens(screenIds, id, image);
 						// console.log(red);
 						// console.log(image);
 						setAvaliable((prev) => {

@@ -299,7 +299,7 @@ const useScreenshot = (screens) => {
 	//omitting the [  ] here caused a massive render :(
 	useEffect(() => {
 		const getHeaderInfo = async () => {
-			const data = await getScreensProperties(router.query.id);
+			const data = await getScreensProperties(router.query.id as string);
 			setHeaderInfo(data);
 		};
 		getHeaderInfo();
