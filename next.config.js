@@ -27,6 +27,7 @@ const nextConfig = {
 			'firebasestorage.googleapis.com',
 			'lh3.googleusercontent.com',
 			'epcjufipobybxdmcqjgb.supabase.co',
+			'pub-4271c874f759418fbdcd18b0e5cbe024.r2.dev',
 		],
 	},
 };
