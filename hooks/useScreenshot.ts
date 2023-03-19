@@ -64,12 +64,6 @@ const useScreenshot = (screens) => {
 
 	const [Progress, setProgress] = useState(1);
 	const [headerInfo, setHeaderInfo] = useState({
-		name: '',
-		logo: '',
-		id: '',
-		url: '',
-		timeTravel: [],
-		created_at: '',
 	});
 	const [payingUser, setPayingUser] = useState('');
 
