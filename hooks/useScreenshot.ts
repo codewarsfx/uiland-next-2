@@ -69,7 +69,14 @@ const useScreenshot = (screens) => {
 	const [inputFilter, setInputFilter] = useState('');
 
 	const [Progress, setProgress] = useState(1);
-	const [headerInfo, setHeaderInfo] = useState({
+	const [headerInfo, setHeaderInfo] = useState<{
+		created_at: string;
+		timeTravel: string[];
+		url: string;
+		name: string;
+		logo: string;
+		id: string;
+	}>({
 		name: '',
 		logo: '',
 		id: '',
