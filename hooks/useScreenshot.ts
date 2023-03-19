@@ -34,6 +34,12 @@ import { ScreenContext } from '../context/screenContext';
 import { buttonTypes } from '../components/uiElements/button';
 import { mobileCheck } from '../utils/isMobile';
 
+type Data={ name: string;
+	logo: string;
+	id: string;
+	url: string;
+	timeTravel: any[];
+	created_at: string;}
 const useScreenshot = (screens) => {
 	const user = useContext(UserContext);
 	const router = useRouter();
