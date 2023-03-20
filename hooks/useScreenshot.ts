@@ -70,7 +70,7 @@ const useScreenshot = (screens: any) => {
 		name: string;
 		logo: string;
 		id: string;
-	}|undefined>();
+	}|undefined | any>();
 	const [payingUser, setPayingUser] = useState('');
 
 	//state to manage the bookmark id of the album of images when clicked
