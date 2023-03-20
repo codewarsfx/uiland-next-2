@@ -352,7 +352,7 @@ const SinglePage = ({ screens }) => {
 				<meta property='twitter:image' content={`${headerInfo.logo}`} />
 			</Head>
 
-			{modalSheet && (
+			{/* {modalSheet && (
 				<Modal toggleModal={toggleBottomSheet}>
 					<ModalBox>
 						<CloseIcon toggle={toggleBottomSheet} />
@@ -362,7 +362,7 @@ const SinglePage = ({ screens }) => {
 						</BottomsheetModal>
 					</ModalBox>
 				</Modal>
-			)}
+			)} */}
 			{modalSaveImage && (
 				<Modal toggleModal={newtoggleModal}>
 					<AddToBookmark
@@ -561,7 +561,7 @@ const SinglePage = ({ screens }) => {
 								alt={`Screenshots of ${headerInfo.name} App`}
 								width={1080}
 								height={2240}
-								unoptimized
+								
 							/>
 						</ScreenshotContainer>
 
