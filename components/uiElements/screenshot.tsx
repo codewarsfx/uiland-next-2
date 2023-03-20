@@ -13,7 +13,12 @@ const Screenshot = ({ imgLink, Name }: screenshotProps) => {
 	return (
 		<>
 			<ScreenshotContainer initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-				<Image width={320} height={640} src={imgLink} alt={`${Name} screenshots`} />
+				<Image
+					width={320}
+					height={640}
+					src={imgLink}
+					alt={`${Name} screenshots`}
+				/>
 			</ScreenshotContainer>
 		</>
 	);
