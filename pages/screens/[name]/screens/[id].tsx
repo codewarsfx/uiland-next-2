@@ -292,6 +292,10 @@ const SinglePage = ({ screens }) => {
 	const canonicalUrl = (
 		`https://uiland.design` + (router.asPath === '/' ? '' : router.asPath)
 	).split('?')[0];
+
+	if (!headerInfo) {
+		return 
+	}
 	return (
 		<>
 			{/* for SEO */}
@@ -999,13 +1003,19 @@ export const getServerSideProps: GetServerSideProps = async ({
 
 	const screensCacheObject = {};
 
-	const client = new Redis(process.env.REDIS_URL);
+	const client = new Redis(process.env.REDIS_URL); //get redis instance
 
-	const CachedResults = JSON.parse(await client.get('screensCachedByID'));
+	const CachedResults = JSON.parse(await client.get('screensCachedByID')); //get  screens data
 
 	if (!CachedResults) {
-		screens = await getScreensById(params.id, page, query);
-		screensCacheObject[completeID] = screens;
+		screens = await getScreensById(params.id, page, query);  // if there are no cached results retrieve from supabase
+		screensCacheObject[completeID] = screens;  //store cached results to instance... the to differentiate different screens for the different pages a unique identifier using the 
+		// screensid, page number and screens version is used. the structure of the data in upstach would be as follows
+
+		// {
+		// 	screensCachedByID : screens[]
+		// }
+
 		client.set(
 			'screensCachedByID',
 			JSON.stringify(screensCacheObject),
@@ -1014,6 +1024,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 		);
 		console.log('read from supabase');
 	} else if (completeID in CachedResults) {
+		// if cache already exists fetch the screens for that unique identifier built from the screen identity, page number and screen version
 		screens = CachedResults[completeID];
 		console.log('read from Redis cache');
 	} else if (CachedResults && !(completeID in CachedResults)) {

@@ -130,30 +130,30 @@ const Home = ({ screens }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ res, req }) => {
-	// res.setHeader(
-	// 	'Cache-Control',
-	// 	'public, s-maxage=10, stale-while-revalidate=59'
-	// );
+	res.setHeader(
+		'Cache-Control',
+		'public, s-maxage=10, stale-while-revalidate=59'
+	);
 
-	// let screens;
-	// const client = new Redis(process.env.REDIS_URL);
+	let screens;
+	const client = new Redis(process.env.REDIS_URL); // new redis instance
 
-	// process.on('uncaughtException', function (err) {
-	// 	console.log(err);
-	// });
+	process.on('uncaughtException', function (err) {
+		console.log(err);
+	});
 
-	// let cache = await client.get('screens');
-	// cache = cache && JSON.parse(cache);
+	let cache = await client.get('screens'); // fetch cahed screen from instance 
+	cache = cache && JSON.parse(cache);
 
-	// if (cache) {
-	// 	screens = cache;
-	// 	console.log('read from redis cache ');
-	// } else {
-	// 	screens = await getAllScreens();
-	// 	client.set('screens', JSON.stringify(screens), 'EX', 3600);
-	// 	console.log('read from supabase');
-	// }
-	let screens = await getAllScreens();
+	if (cache) {  //if cache exists read from it else read data from supabase and cache the data retrieved to instance
+		screens = cache;
+		console.log('read from redis cache ');
+	} else {
+		screens = await getAllScreens();
+		client.set('screens', JSON.stringify(screens), 'EX', 3600);
+		console.log('read from supabase');
+	}
+	
 	return {
 		props: {
 			screens,
