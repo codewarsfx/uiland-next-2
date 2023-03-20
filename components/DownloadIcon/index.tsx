@@ -12,7 +12,7 @@ function DownloadIcon({ downloadImage }) {
 	);
 }
 const DownloadWrapper = styled.div`
-	display: flex;
+	display: inline-flex;
 	flex-direction: column;
 	padding: 7px;
 `;
