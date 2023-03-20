@@ -523,8 +523,17 @@ const useScreenshot = (screens: any) => {
 		}
 	}
 	//function to download the individual images
-	async function downloadImage() {
-		if (user) {
+	async function downloadImage(e) {
+		if(user){
+		setImageUrl(
+			e.target.parentElement.parentElement.parentElement.parentElement.children[0].children[0]
+			.children[1].currentSrc
+		)
+		// console.log(
+		// 	e.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[0]
+		// 		.children[1].currentSrc
+		// )
+		
 			gtag.event('click_download', 'general', 'download', 'imageUrl');
 			setProgress(2);
 			setToastPendingText('Downloading...');
@@ -548,13 +557,18 @@ const useScreenshot = (screens: any) => {
 			await numberOfDownloads(user);
 
 			setProgress(3);
-			toastNotification(1);
-		} else {
-			loginToggleModal();
-		}
+			toastNotification(1)}else {
+				loginToggleModal();
+			}
+	
 	}
-	async function copyImage() {
-		if (user) {
+	async function copyImage(e) {
+		
+		if (user){
+		setImageUrl(
+			e.target.parentElement.parentElement.parentElement.parentElement.children[0].children[0]
+			.children[1].currentSrc
+		)
 			gtag.event('click_copy', 'general', 'copy', 'copied');
 			//contains a url in this format
 			// "http://localhost:3000/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fuiland.appspot.com%2Fo%2FCowrywise%252FCowrywise-screens%252FScreenshot_2022-10-13-14-46-21-882_com.cowrywise.android-min.jpg%3Falt%3Dmedia%26token%3D3efdba80-8ec5-463a-9466-317f9247a6c3&w=1080&q=75"
@@ -575,10 +589,11 @@ const useScreenshot = (screens: any) => {
 			await numberOfCopyImage(user);
 
 			setProgress(3);
-			toastNotification(1);
-		} else {
-			loginToggleModal();
-		}
+			toastNotification(1);}
+			else {
+				loginToggleModal();
+			}
+	
 	}
 	//util for toast notification
 	const toastNotification = (state) => {
@@ -617,6 +632,8 @@ const useScreenshot = (screens: any) => {
 			toastNotification(1);
 		}
 	}
+
+	//modal that pops up when the user clicks on the three dots icon
 	function openBottomSheetModal(e) {
 		setImageUrl(
 			e.target.parentElement.parentElement.parentElement.children[0].children[0]
