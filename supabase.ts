@@ -38,7 +38,7 @@ export async function getAllScreens() {
 	let { data: Screens, error } = await supabase
 		.from('Screens')
 		.select('*')
-		.order('created_at', { ascending: true });
+		.order('created_at', { ascending: false });
 	// Screens.forEach((res)=>{
 	//   return res['user'] = "a4f0bf66-2a36-4b4f-bf8b-b082cf9aa5c4"
 	// })

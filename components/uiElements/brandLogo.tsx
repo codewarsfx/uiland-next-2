@@ -22,13 +22,16 @@ const BrandLogoCotainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	border-radius: 12px;
-
 	background: white;
 	overflow: hidden;
 	border: 1px solid #dddddd;
 	img {
 		height: 100%;
 		width: 100%;
+	}
+
+	& > span {
+		border-radius:12px;
 	}
 	/* @media (min-width: 768px) {
 		width: 50px;

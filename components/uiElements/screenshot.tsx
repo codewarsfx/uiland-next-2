@@ -23,10 +23,12 @@ const ScreenshotContainer = styled(motion.div)`
 	cursor: pointer;
 	max-height: 634px;
 
+
 	& > span {
-		box-shadow: 0.1px 0.1px 1px 0 rgba(0, 0, 0, 0.2),
-			0 0.1px 2px 0 rgba(0, 0, 0, 0.19);
+		box-shadow: 0 16px 32px -10px rgba(0,0,0,.1),0 0 0 1px rgba(0,0,0,.1);
 		border-radius: 0.8em;
+		border-top:2px;
+	
 	}
 	@media (min-width: 768px) {
 		height: auto;
@@ -34,7 +36,9 @@ const ScreenshotContainer = styled(motion.div)`
 		& > span {
 			box-shadow: 0.1px 0.1px 1px 0 rgba(0, 0, 0, 0.2),
 				0 0.1px 2px 0 rgba(0, 0, 0, 0.19);
-			border-radius: 1.5em;
+			border-radius: 1em;
+			display: block;
+			padding:22em;
 		}
 	}
 `;
