@@ -32,7 +32,7 @@ import { ScreenContext } from '../context/screenContext';
 
 // Components
 import { buttonTypes } from '../components/uiElements/button';
-// import { mobileCheck } from '../utils/isMobile';
+import { mobileCheck } from '../utils/isMobile';
 
 const useScreenshot = (screens: any) => {
 	const user = useContext(UserContext);
@@ -96,7 +96,7 @@ const useScreenshot = (screens: any) => {
 	const [input, setInput] = useState('');
 
 	//to track if user is on mobile
-	// const [mobile, setMobile] = useState<boolean>();
+	const [mobile, setMobile] = useState<boolean>();
 
 	//state to hold the names of bookmarks created
 	const [selectBookmark, setSelectBookmark] = useState(['']);
@@ -325,10 +325,10 @@ const useScreenshot = (screens: any) => {
 		}
 	}, [getId]);
 
-	// useEffect(() => {
-	// 	const isMobile = mobileCheck();
-	// 	setMobile(isMobile);
-	// }, []);
+	useEffect(() => {
+		const isMobile = mobileCheck();
+		setMobile(isMobile);
+	}, []);
 
 	//checker to disable the submit button if the user has not created a new bookmark name or selected a previous bookname
 	useEffect(() => {
@@ -365,12 +365,12 @@ const useScreenshot = (screens: any) => {
 
 	useEffect(() => {}, [input]);
 
-	// useEffect(() => {
-	// 	window.onresize = function () {
-	// 		const mobile = mobileCheck();
-	// 		setMobile(mobile);
-	// 	};
-	// }, []);
+	useEffect(() => {
+		window.onresize = function () {
+			const mobile = mobileCheck();
+			setMobile(mobile);
+		};
+	}, []);
 
 	const handleClickSubscribeButton = () => {
 		Router.push('/pricing');
@@ -630,21 +630,21 @@ const useScreenshot = (screens: any) => {
 	}
 
 	//modal that pops up when the user clicks on the three dots icon
-	// function openBottomSheetModal(e) {
-	// 	setImageUrl(
-	// 		e.target.parentElement.parentElement.parentElement.children[0].children[0]
-	// 			.children[1].currentSrc
-	// 	);
+	function openBottomSheetModal(e) {
+		setImageUrl(
+			e.target.parentElement.parentElement.parentElement.children[0].children[0]
+				.children[1].currentSrc
+		);
 
-	// 	if (mobile) {
-	// 		setOpenBottomSheet(true);
-	// 	} else {
-	// 		toggleBottomSheet();
-	// 	}
-	// }
-	// function closeBottomSheetModal() {
-	// 	setOpenBottomSheet(false);
-	// }
+		if (mobile) {
+			setOpenBottomSheet(true);
+		} else {
+			toggleBottomSheet();
+		}
+	}
+	function closeBottomSheetModal() {
+		setOpenBottomSheet(false);
+	}
 
 	const filtered = searchFilter(limitedscreens, inputFilter);
 
@@ -691,7 +691,7 @@ const useScreenshot = (screens: any) => {
 		isModalLogin,
 		loginToggleModal,
 		openBottomSheet,
-		// closeBottomSheetModal,
+		closeBottomSheetModal,
 		getAlbumId,
 		handleAddToBookMark,
 		handleDeleteFromBookMark,
@@ -702,7 +702,7 @@ const useScreenshot = (screens: any) => {
 		getId,
 		deleteIndividualBookmark,
 		bookmark,
-		// openBottomSheetModal,
+		openBottomSheetModal,
 		payingbanner,
 		handleClickSubscribeButton,
 		buttonTypes,
