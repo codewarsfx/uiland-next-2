@@ -22,8 +22,7 @@ function SaveIcon({ bookmark, data }) {
 	);
 }
 const DownloadWrapper = styled.div`
-		display: inline-flex;
-	flex-direction: column;
+	
 	padding: 7px;
 `;
 const Title = styled.div`

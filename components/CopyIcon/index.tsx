@@ -12,8 +12,6 @@ function CopyIcon({ copyImage }) {
 	);
 }
 const DownloadWrapper = styled.div`
-	display: inline-flex;
-	flex-direction: column;
 	padding: 7px 0px 7px 12px;
 `;
 const Title = styled.div`
