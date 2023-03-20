@@ -40,6 +40,8 @@ import { useEffect, useState, useContext, useRef } from 'react';
 import NewsLetter from '../../../../components/NewsLetter';
 import withPopContext from '../../../../HOC/withPopContext';
 import Redis from 'ioredis';
+import DownloadIcon from '../../../../components/DownloadIcon';
+import CopyIcon from '../../../../components/CopyIcon';
 
 const SinglePage = ({ screens }) => {
 	const {
@@ -207,16 +209,16 @@ const SinglePage = ({ screens }) => {
 		},
 		{
 			id: 5,
-			title1: 'COPY AND DOWNLOAD YOUR FAVOURITES',
+			title1: ' DOWNLOAD YOUR FAVOURITES',
 			title2:
-				'Look for the icon to copy your images to Figma and download your images instantly  in just few clicks',
+				'Look for the icon to  download your images instantly  in just a single click',
 			image: '/assets/img/guide-5.png',
 		},
 		{
 			id: 6,
-			title1: 'COPY AND DOWNLOAD YOUR FAVOURITES',
+			title1: 'COPY YOUR FAVOURITES',
 			title2:
-				'Look for the icon to copy your images to Figma and download your images instantly  in just few clicks',
+				'Look for the icon to copy your images to Figma and download your images instantly  in just a single click',
 			image: '/assets/img/guide-6.png',
 		},
 		{
@@ -572,7 +574,9 @@ const SinglePage = ({ screens }) => {
 							) : (
 								<SaveIcon bookmark={bookmark} data={data} />
 							)}
-							<ThreeDots openBottomSheet={openBottomSheetModal} />
+							<DownloadIcon downloadImage={downloadImage} />
+							<CopyIcon copyImage={copyImage} />
+							{/* <ThreeDots openBottomSheet={openBottomSheetModal} /> */}
 						</SecondRow>
 					</ScreenShotContent>
 				))}
@@ -826,7 +830,7 @@ const SecondRow = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: space-around;
 	background: rgb(0 0 0 / 9%);
 	border-radius: 28px;
 `;
