@@ -8,6 +8,8 @@ import SaveIcon from '../SaveIcon';
 import ThreeDots from '../ThreeDots';
 import { Input, Toast } from '../uiElements';
 import Link from 'next/link';
+import DownloadIcon from '../DownloadIcon';
+import CopyIcon from '../CopyIcon';
 
 const Screenshots = ({ screens }) => {
 	const {
@@ -34,7 +36,7 @@ const Screenshots = ({ screens }) => {
 
 	return (
 		<>
-			{modalSheet && (
+			{/* {modalSheet && (
 				<Modal toggleModal={toggleBottomSheet}>
 					<ModalBox>
 						<CloseIcon toggle={toggleBottomSheet} />
@@ -44,7 +46,7 @@ const Screenshots = ({ screens }) => {
 						</BottomsheetModal>
 					</ModalBox>
 				</Modal>
-			)}
+			)} */}
 			{modalSaveImage && (
 				<Modal toggleModal={newtoggleModal}>
 					<SelectModalBox>
@@ -103,7 +105,11 @@ const Screenshots = ({ screens }) => {
 							<DeletedText>Removed :(</DeletedText>
 						)}
 						{getId.includes(data.screen_id.id) && (
-							<ThreeDots openBottomSheet={openBottomSheetModal} />
+							<>
+							<DownloadIcon downloadImage={downloadImage} />
+							<CopyIcon copyImage={copyImage} />
+							</>
+							
 						)}
 					</SecondRow>
 				</ScreenShotContent>

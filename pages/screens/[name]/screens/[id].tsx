@@ -40,6 +40,8 @@ import { useEffect, useState, useContext, useRef } from 'react';
 import NewsLetter from '../../../../components/NewsLetter';
 import withPopContext from '../../../../HOC/withPopContext';
 import Redis from 'ioredis';
+import DownloadIcon from '../../../../components/DownloadIcon';
+import CopyIcon from '../../../../components/CopyIcon';
 
 const SinglePage = ({ screens }) => {
 	const {
@@ -207,16 +209,16 @@ const SinglePage = ({ screens }) => {
 		},
 		{
 			id: 5,
-			title1: 'COPY AND DOWNLOAD YOUR FAVOURITES',
+			title1: ' DOWNLOAD YOUR FAVOURITES',
 			title2:
-				'Look for the icon to copy your images to Figma and download your images instantly  in just few clicks',
+				'Look for the icon to  download your images instantly  in just a single click',
 			image: '/assets/img/guide-5.png',
 		},
 		{
 			id: 6,
-			title1: 'COPY AND DOWNLOAD YOUR FAVOURITES',
+			title1: 'COPY YOUR FAVOURITES',
 			title2:
-				'Look for the icon to copy your images to Figma and download your images instantly  in just few clicks',
+				'Look for the icon to copy your images to Figma and download your images instantly  in just a single click',
 			image: '/assets/img/guide-6.png',
 		},
 		{
@@ -354,7 +356,7 @@ const SinglePage = ({ screens }) => {
 				<meta property='twitter:image' content={`${headerInfo.logo}`} />
 			</Head>
 
-			{modalSheet && (
+			{/* {modalSheet && (
 				<Modal toggleModal={toggleBottomSheet}>
 					<ModalBox>
 						<CloseIcon toggle={toggleBottomSheet} />
@@ -364,7 +366,7 @@ const SinglePage = ({ screens }) => {
 						</BottomsheetModal>
 					</ModalBox>
 				</Modal>
-			)}
+			)} */}
 			{modalSaveImage && (
 				<Modal toggleModal={newtoggleModal}>
 					<AddToBookmark
@@ -563,7 +565,7 @@ const SinglePage = ({ screens }) => {
 								alt={`Screenshots of ${headerInfo.name} App`}
 								width={1080}
 								height={2240}
-								unoptimized
+								
 							/>
 						</ScreenshotContainer>
 
@@ -576,7 +578,9 @@ const SinglePage = ({ screens }) => {
 							) : (
 								<SaveIcon bookmark={bookmark} data={data} />
 							)}
-							<ThreeDots openBottomSheet={openBottomSheetModal} />
+							<DownloadIcon downloadImage={downloadImage} />
+							<CopyIcon copyImage={copyImage} />
+							{/* <ThreeDots openBottomSheet={openBottomSheetModal} /> */}
 						</SecondRow>
 					</ScreenShotContent>
 				))}
@@ -830,7 +834,7 @@ const SecondRow = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: space-evenly;
 	background: rgb(0 0 0 / 9%);
 	border-radius: 28px;
 `;
