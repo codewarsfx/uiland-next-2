@@ -29,9 +29,11 @@ const DeleteIcon = ({ deleteIndividualBookmark, data }) => {
 	);
 };
 const DownloadWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	padding: 7px 0px 7px 12px;
+	width: 50px;
+	height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 const Title = styled.div`
 	cursor: pointer;

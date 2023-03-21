@@ -832,9 +832,8 @@ const BottomsheetModal = styled.div`
 `;
 const SecondRow = styled.div`
 	display: flex;
-	flex-direction: row;
-	align-items: center;
 	justify-content: space-evenly;
+	align-items: center;
 	background: rgb(0 0 0 / 9%);
 	border-radius: 28px;
 `;
