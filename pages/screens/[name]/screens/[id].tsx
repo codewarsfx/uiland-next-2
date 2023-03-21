@@ -413,7 +413,7 @@ const SinglePage = ({ screens }) => {
 										<>
 											<GuideWrapper>
 												<div className='border-bottom'>
-													<img src={result?.image} />
+													<img src={result?.image} width="468" height="268" alt={`Uiland guide ${result.id}`} />
 												</div>
 
 												<GuideBoxContent>
