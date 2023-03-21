@@ -136,16 +136,16 @@ export const getServerSideProps: GetServerSideProps = async ({ res, req }) => {
 	);
 
 	let screens;
-	const client = new Redis(process.env.REDIS_URL);
+	const client = new Redis(process.env.REDIS_URL); // new redis instance
 
 	process.on('uncaughtException', function (err) {
 		console.log(err);
 	});
 
-	let cache = await client.get('screens');
+	let cache = await client.get('screens'); // fetch cahed screen from instance 
 	cache = cache && JSON.parse(cache);
 
-	if (cache) {
+	if (cache) {  //if cache exists read from it else read data from supabase and cache the data retrieved to instance
 		screens = cache;
 		console.log('read from redis cache ');
 	} else {
@@ -153,7 +153,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res, req }) => {
 		client.set('screens', JSON.stringify(screens), 'EX', 3600);
 		console.log('read from supabase');
 	}
-
+	
 	return {
 		props: {
 			screens,
