@@ -523,7 +523,9 @@ const useScreenshot = (screens: any) => {
 		}
 	}
 	//function to download the individual images
-	async function downloadImage(e) {
+	async function downloadImage(imageData) {
+	
+ 
 		if (user) {
 			// console.log(
 			// 	e.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[0]
@@ -535,10 +537,7 @@ const useScreenshot = (screens: any) => {
 			setToastPendingText('Downloading...');
 
 			//fetches the image
-			const image = await fetch(
-				e.target.parentElement.parentElement.parentElement.parentElement
-					.children[0].children[0].children[1].currentSrc
-			);
+			const image=await	fetch('/api/imagedownload',{method:'POST',mode:'cors',body:imageData})
 
 			//converts it to a blob
 			const imageBlog = await image.blob();
@@ -561,7 +560,7 @@ const useScreenshot = (screens: any) => {
 			loginToggleModal();
 		}
 	}
-	async function copyImage(e) {
+	async function copyImage(imageData) {
 		if (user) {
 			gtag.event('click_copy', 'general', 'copy', 'copied');
 			//contains a url in this format
@@ -570,11 +569,11 @@ const useScreenshot = (screens: any) => {
 			// This prevents cors error while getting the images
 			setProgress(2);
 			setToastPendingText('Copying');
-			const response = await fetch(
-				e.target.parentElement.parentElement.parentElement.parentElement
-					.children[0].children[0].children[1].currentSrc
-			);
-
+			// const response = await fetch(
+			// 	e.target.parentElement.parentElement.parentElement.parentElement
+			// 		.children[0].children[0].children[1].currentSrc
+			// );
+			const response=await	fetch('/api/imagedownload',{method:'POST',mode:'cors',body:imageData})
 			const blob = await response.blob();
 
 			navigator.clipboard.write([

@@ -108,8 +108,8 @@ const Screenshots = ({ screens }) => {
 						)}
 						{getId.includes(data.screen_id.id) && (
 							<>
-							<DownloadIcon downloadImage={downloadImage} />
-							<CopyIcon copyImage={copyImage} />
+							<DownloadIcon downloadImage={downloadImage} image={data.url} />
+							<CopyIcon copyImage={copyImage} image={data.url} />
 							</>
 							
 						)}
