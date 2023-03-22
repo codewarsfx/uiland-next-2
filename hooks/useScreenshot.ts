@@ -548,7 +548,7 @@ const useScreenshot = (screens: any) => {
 			//creates the a tag for download to happen <a download="image file name here" href="url"></a>
 			const link = document.createElement('a');
 			link.href = imageURL;
-			link.download = 'image file name here';
+			link.download = 'uiland';
 			document.body.appendChild(link);
 			link.click();
 			document.body.removeChild(link);
