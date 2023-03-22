@@ -524,8 +524,6 @@ const useScreenshot = (screens: any) => {
 	}
 	//function to download the individual images
 	async function downloadImage(imageData) {
-	
- 
 		if (user) {
 			// console.log(
 			// 	e.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[0]
@@ -535,9 +533,12 @@ const useScreenshot = (screens: any) => {
 			gtag.event('click_download', 'general', 'download', 'imageUrl');
 			setProgress(2);
 			setToastPendingText('Downloading...');
-
-			//fetches the image
-			const image=await	fetch('/api/imagedownload',{method:'POST',mode:'cors',body:imageData})
+			//posts the image to the server and allows cross-origin requests.
+			const image = await fetch('/api/imagedownload', {
+				method: 'POST',
+				mode: 'cors',
+				body: imageData,
+			});
 
 			//converts it to a blob
 			const imageBlog = await image.blob();
@@ -573,7 +574,14 @@ const useScreenshot = (screens: any) => {
 			// 	e.target.parentElement.parentElement.parentElement.parentElement
 			// 		.children[0].children[0].children[1].currentSrc
 			// );
-			const response=await	fetch('/api/imagedownload',{method:'POST',mode:'cors',body:imageData})
+
+			//posts the image to the server and allows cross-origin requests.
+			const response = await fetch('/api/imagedownload', {
+				method: 'POST',
+				mode: 'cors',
+				body: imageData,
+			});
+			//converts it to a blob
 			const blob = await response.blob();
 
 			navigator.clipboard.write([

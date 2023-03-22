@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-function DownloadIcon({ downloadImage,image }) {
+function DownloadIcon({ downloadImage, image }) {
 	return (
 		<>
 			<DownloadWrapper onClick={() => downloadImage(image)}>
 				<Title className='target' title='Download Image'>
-					<img src="/assets/img/download-icon2.svg" />
+					<img src='/assets/img/download-icon2.svg' />
 				</Title>
 			</DownloadWrapper>
 		</>
@@ -14,9 +14,9 @@ function DownloadIcon({ downloadImage,image }) {
 const DownloadWrapper = styled.div`
 	width: 50px;
 	height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `;
 const Title = styled.div`
 	cursor: pointer;
