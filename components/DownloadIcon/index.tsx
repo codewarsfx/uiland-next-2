@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-function DownloadIcon({ downloadImage }) {
+function DownloadIcon({ downloadImage,image }) {
 	return (
 		<>
-			<DownloadWrapper onClick={(e) => downloadImage(e)}>
+			<DownloadWrapper onClick={() => downloadImage(image)}>
 				<Title className='target' title='Download Image'>
 					<img src="/assets/img/download-icon2.svg" />
 				</Title>

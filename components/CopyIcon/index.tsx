@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-function CopyIcon({ copyImage }) {
+function CopyIcon({ copyImage,image }) {
 	return (
 		<>
-			<DownloadWrapper onClick={(e) => copyImage(e)}>
+			<DownloadWrapper onClick={() => copyImage(image)}>
 				<Title className='target' title='Copy Image'>
                 <img src="/assets/img/copy-icon2.svg" />
 				</Title>
