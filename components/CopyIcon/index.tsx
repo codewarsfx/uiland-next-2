@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-function CopyIcon({ copyImage,image }) {
+function CopyIcon({ copyImage, image }) {
 	return (
 		<>
 			<DownloadWrapper onClick={() => copyImage(image)}>
 				<Title className='target' title='Copy Image'>
-                <img src="/assets/img/copy-icon2.svg" />
+					<img src='/assets/img/copy-icon2.svg' />
 				</Title>
 			</DownloadWrapper>
 		</>
@@ -14,9 +14,9 @@ function CopyIcon({ copyImage,image }) {
 const DownloadWrapper = styled.div`
 	width: 50px;
 	height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `;
 const Title = styled.div`
 	cursor: pointer;

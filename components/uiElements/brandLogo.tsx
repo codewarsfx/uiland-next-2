@@ -31,7 +31,7 @@ const BrandLogoCotainer = styled.div`
 	}
 
 	& > span {
-		border-radius:12px;
+		border-radius: 12px;
 	}
 	/* @media (min-width: 768px) {
 		width: 50px;

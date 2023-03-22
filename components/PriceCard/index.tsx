@@ -25,17 +25,17 @@ function PriceCard({
 }) {
 	const user = useContext(UserContext);
 	const { loginToggleModal, isModalLogin } = useModal();
-	const router = useRouter()
+	const router = useRouter();
 
 	//function that redirects to the homepage when the user is logged in and login modal is opened
 	//when the user is not logged in
-	function pricingToggle(){
-		if(user){
+	function pricingToggle() {
+		if (user) {
 			//pushes logged in user to the homepage
-         router.push("/")
-		}else{
+			router.push('/');
+		} else {
 			//displays login modal
-			loginToggleModal()
+			loginToggleModal();
 		}
 	}
 	return (
@@ -91,7 +91,7 @@ function PriceCard({
 							{info6}
 						</p>
 					)}
-					{planId === ''  ? (
+					{planId === '' ? (
 						<PaymentCta onClick={pricingToggle}>Try Now</PaymentCta>
 					) : (
 						<PaystackPayment plan={planId} />
