@@ -21,6 +21,9 @@
     <a href="https://twitter.com/UiLandDesign/">
    <img alt="LinkedIn" src="https://img.shields.io/badge/-TWITTER-black.svg?&logo=twitter&colorB=blue" />
   </a>
+      <a href="https://github.com/kingebere/uiland-next">
+   <img alt="Github" src="https://img.shields.io/badge/-GITHUB-black.svg?&logo=github&colorB=black" />
+  </a>
 </p>
 
 <br />
@@ -90,6 +93,9 @@ Don't forget to give the project a star! Thanks again!
 <!-- GETTING STARTED -->
 ### Getting Started
 1. Fork the Project
+   ```sh
+    https://github.com/kingebere/uiland-next
+
 
 2. Clone your fork
    ```sh
@@ -126,7 +132,7 @@ Project Link: [https://github.com/kingebere/uiland-next](https://github.com/king
   <tbody>
     <tr>
     <tr>
-      <td align="center"><a href="https://github.com/kingebere"><img style = ' width:100px;height:100px;border-radius:50%;' src='https://avatars.githubusercontent.com/kingebere'/><br /><sub><b>Dike Goodluck Jonathan</b></sub></a><br />
+      <td align="center"><a href="https://github.com/kingebere"><img style = ' width:100px;height:100px;border-radius:50%;' src='https://avatars.githubusercontent.com/kingebere'/><br /><sub><b>Dike Goodluck EBERECHI</b></sub></a><br />
       </td>
         <td align="center"><a href="https://github.com/codewarsfx"><img style = ' width:100px;height:100px;border-radius:50%;' src='https://avatars.githubusercontent.com/codewarsfx'/><br /><sub><b>Innocent Chidera Shammah</b></sub></a><br />
       </td>
