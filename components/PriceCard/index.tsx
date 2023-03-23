@@ -8,6 +8,7 @@ import { UserContext } from '../../context/authContext';
 import Login from '../Login/login';
 import Modal from '../modal';
 import useModal from '../../hooks/useModal';
+import { useRouter } from 'next/router';
 
 function PriceCard({
 	type,
@@ -24,7 +25,19 @@ function PriceCard({
 }) {
 	const user = useContext(UserContext);
 	const { loginToggleModal, isModalLogin } = useModal();
+	const router = useRouter();
 
+	//function that redirects to the homepage when the user is logged in and login modal is opened
+	//when the user is not logged in
+	function pricingToggle() {
+		if (user) {
+			//pushes logged in user to the homepage
+			router.push('/');
+		} else {
+			//displays login modal
+			loginToggleModal();
+		}
+	}
 	return (
 		<>
 			{isModalLogin && (
@@ -78,8 +91,8 @@ function PriceCard({
 							{info6}
 						</p>
 					)}
-					{planId === '' || !user ? (
-						<PaymentCta onClick={loginToggleModal}>Try Now</PaymentCta>
+					{planId === '' ? (
+						<PaymentCta onClick={pricingToggle}>Try Now</PaymentCta>
 					) : (
 						<PaystackPayment plan={planId} />
 					)}
