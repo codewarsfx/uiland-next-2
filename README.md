@@ -21,6 +21,9 @@
     <a href="https://twitter.com/UiLandDesign/">
    <img alt="LinkedIn" src="https://img.shields.io/badge/-TWITTER-black.svg?&logo=twitter&colorB=blue" />
   </a>
+      <a href="https://github.com/kingebere/uiland-next">
+   <img alt="Github" src="https://img.shields.io/badge/-GITHUB-black.svg?&logo=github&colorB=black" />
+  </a>
 </p>
 
 <br />
@@ -90,6 +93,9 @@ Don't forget to give the project a star! Thanks again!
 <!-- GETTING STARTED -->
 ### Getting Started
 1. Fork the Project
+   ```sh
+    https://github.com/kingebere/uiland-next
+
 
 2. Clone your fork
    ```sh
