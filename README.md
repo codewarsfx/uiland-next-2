@@ -132,7 +132,7 @@ Project Link: [https://github.com/kingebere/uiland-next](https://github.com/king
   <tbody>
     <tr>
     <tr>
-      <td align="center"><a href="https://github.com/kingebere"><img style = ' width:100px;height:100px;border-radius:50%;' src='https://avatars.githubusercontent.com/kingebere'/><br /><sub><b>Dike Goodluck Jonathan</b></sub></a><br />
+      <td align="center"><a href="https://github.com/kingebere"><img style = ' width:100px;height:100px;border-radius:50%;' src='https://avatars.githubusercontent.com/kingebere'/><br /><sub><b>Dike Goodluck EBERECHI</b></sub></a><br />
       </td>
         <td align="center"><a href="https://github.com/codewarsfx"><img style = ' width:100px;height:100px;border-radius:50%;' src='https://avatars.githubusercontent.com/codewarsfx'/><br /><sub><b>Innocent Chidera Shammah</b></sub></a><br />
       </td>
