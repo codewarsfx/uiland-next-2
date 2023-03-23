@@ -28,8 +28,6 @@
 
 <br />
 
-
-
   <p align="center">
     <br />
     <a href="https://uiland.design">View Live Site</a>
@@ -43,6 +41,7 @@
 <p>Uiland represents a set of carefully curated in-app screenshots from several brands across africa, providing design inspiration to product designers and developers alike. </p>
 
 <!-- TABLE OF CONTENTS -->
+
 ## Table of contents
 
 - 📋 [Problem Statement](#ProblemStatement)
@@ -52,37 +51,41 @@
 - 💻 [Contact](#Contact)
 - ✨ [Contributors](#contributors)
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## Problem Statement
-The creation of Uiland stems from the need to provide design inspiration for development teams across Africa which truncates the time spent on taking a product from idea to working prototype. To this end, we have carefully curated a library of in app screenshots from different brands across Africa and beyond. 
+
+The creation of Uiland stems from the need to provide design inspiration for development teams across Africa which truncates the time spent on taking a product from idea to working prototype. To this end, we have carefully curated a library of in app screenshots from different brands across Africa and beyond.
 <br/>
 
 ## Features
+
 - View an ever growing list of in app screenshots of different brands
 - Copy screenshot image to your design tool for reference
-- Single and bulk download of screenshots to be used as reference 
-- Save your favourite screenshot to a Collection for easy access next time you visit. 
+- Single and bulk download of screenshots to be used as reference
+- Save your favourite screenshot to a Collection for easy access next time you visit.
 - Share screenshot to different social media platforms.
 - Filter screenshots by design elements and brand names.
-<br/>
+  <br/>
 
 ## Built With
+
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Typescript][typescript.js]][typescript-url]
-* [![Supabase][Supabase.com]][supabase-url]
-* [![Supabase][styled.com]][styled-url]
-* [![Hotjar][hotjar.com]][hotjar-url]
+- [![Next][Next.js]][Next-url]
+- [![React][React.js]][React-url]
+- [![Typescript][typescript.js]][typescript-url]
+- [![Supabase][Supabase.com]][supabase-url]
+- [![Supabase][styled.com]][styled-url]
+- [![Hotjar][hotjar.com]][hotjar-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <br/>
 
 <!-- CONTRIBUTING -->
+
 ## Contributing
+
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
@@ -91,15 +94,22 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
+
 ### Getting Started
+
 1. Fork the Project
+
    ```sh
     https://github.com/kingebere/uiland-next
 
+   ```
 
 2. Clone your fork
+
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
+
+   ```
 
 3. Install NPM packages
    ```sh
@@ -114,9 +124,10 @@ See the [open issues](https://github.com/kingebere/uiland-next/issues) for a ful
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <!-- CONTACT -->
+
 ## Contact
+
 Your Name - [
 @UiLandDesign](https://twitter.com/UiLandDesign) - design@uiland.design
 
@@ -124,8 +135,8 @@ Project Link: [https://github.com/kingebere/uiland-next](https://github.com/king
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <!-- ACKNOWLEDGMENTS -->
+
 ## Contributors
 
 <table>
@@ -142,23 +153,19 @@ Project Link: [https://github.com/kingebere/uiland-next](https://github.com/king
   </tbody>
 </table>
 
-
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]:https://img.shields.io/badge/CONTRIBUTORS-3-brightgreen?logoHeight=40?style=for-the-badge
+
+[contributors-shield]: https://img.shields.io/badge/CONTRIBUTORS-3-brightgreen?logoHeight=40?style=for-the-badge
 [contributors-url]: https://github.com/kingebere/uiland-next/graphs/contributors
 [forks-shield]: https://img.shields.io/badge/FORKS-2-blue?logoHeight=40?style=for-the-badge
 [forks-url]: https://github.com/kingebere/uiland-next/forks
 [issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
 [issues-url]: https://github.com/kingebere/uiland-next/issues
-
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]:https://www.linkedin.com/in/uiland-design-943a0b268/
+[linkedin-url]: https://www.linkedin.com/in/uiland-design-943a0b268/
 [product-screenshot]: images
 [Next.js]: https://img.shields.io/badge/Next-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/

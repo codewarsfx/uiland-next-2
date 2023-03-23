@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import {BASE_IMAGE} from "../../../../utils/base64Image"
+import { BASE_IMAGE } from '../../../../utils/base64Image';
 //Third party libraries
 import styled from 'styled-components';
 import ReactPaginate from 'react-paginate';
@@ -572,7 +572,7 @@ const SinglePage = ({ screens }) => {
 								height={2240}
 								placeholder='blur'
 								unoptimized
-								blurDataURL= {BASE_IMAGE}
+								blurDataURL={BASE_IMAGE}
 							/>
 						</ScreenshotContainer>
 

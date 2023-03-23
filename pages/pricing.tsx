@@ -5,12 +5,12 @@ import styled from 'styled-components';
 import PaystackPayment from '../components/PaystackPayment';
 import PriceCard from '../components/PriceCard';
 import { UserContext } from '../context/authContext';
-import timeZoneCityToCountry from "../utils/countries"
+import timeZoneCityToCountry from '../utils/countries';
 
 export default function Pricing() {
 	const user = useContext(UserContext);
 	const [isActive, setIsActive] = useState(1);
-	const [country,setCountry]=useState("")
+	const [country, setCountry] = useState('');
 
 	const Plan1 = [
 		{
@@ -104,33 +104,32 @@ export default function Pricing() {
 		getSubscriptionInfo();
 	}, []);
 
-//track users' location information
-useEffect(()=>{
-	let userCity: string;
-let userCountry: string;
-let userTimeZone:string;
+	//track users' location information
+	useEffect(() => {
+		let userCity: string;
+		let userCountry: string;
+		let userTimeZone: string;
 
-if (Intl) {
-	//gets the Continent information and city and returns a string
-	//"Africa/Nigeria"
-  userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
- 
-  //reomves the slash and converts the string to an array
-  let tzArr = userTimeZone.split("/");
+		if (Intl) {
+			//gets the Continent information and city and returns a string
+			//"Africa/Nigeria"
+			userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-  //gets the last element of the array which is the name of the city
-  userCity = tzArr[tzArr.length - 1];
+			//reomves the slash and converts the string to an array
+			let tzArr = userTimeZone.split('/');
 
-  //checks the dictionary and returns the country name
-  userCountry = timeZoneCityToCountry[userCity];
+			//gets the last element of the array which is the name of the city
+			userCity = tzArr[tzArr.length - 1];
 
-  //adds the country name to the useState
-  setCountry( timeZoneCityToCountry[userCity])
+			//checks the dictionary and returns the country name
+			userCountry = timeZoneCityToCountry[userCity];
 
-  console.log(country)
+			//adds the country name to the useState
+			setCountry(timeZoneCityToCountry[userCity]);
 
-}
-},[country])
+			console.log(country);
+		}
+	}, [country]);
 
 	const buttonDetails = [
 		{ id: 1, text: 'Annual' },

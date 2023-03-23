@@ -22,7 +22,7 @@ function PriceCard({
 	info5,
 	info6,
 	planId,
-	country
+	country,
 }) {
 	const user = useContext(UserContext);
 	const { loginToggleModal, isModalLogin } = useModal();
