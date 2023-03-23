@@ -45,10 +45,10 @@
 - 📋 [Problem Statement](#ProblemStatement)
 - 🚀 [Features](#Features)
 - 💻 [Built With](#BuiltWith)
-- 🙌 [Testimonials](#testimonials)
-- 🏆 [Awards and Mentions](#awards-and-mentions)
+- 💻 [Contributing](#Contributing)
+- 💻 [Contact](#Contact)
 - ✨ [Contributors](#contributors)
-- ⚖️ [License](#license)
+
 
 
 <!-- ABOUT THE PROJECT -->
@@ -88,7 +88,7 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
-## Getting Started
+### Getting Started
 1. Fork the Project
 
 2. Clone your fork
