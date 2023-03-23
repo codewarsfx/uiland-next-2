@@ -5,10 +5,12 @@ import styled from 'styled-components';
 import PaystackPayment from '../components/PaystackPayment';
 import PriceCard from '../components/PriceCard';
 import { UserContext } from '../context/authContext';
+import timeZoneCityToCountry from "../utils/countries"
 
 export default function Pricing() {
 	const user = useContext(UserContext);
 	const [isActive, setIsActive] = useState(1);
+	const [country,setCountry]=useState("")
 
 	const Plan1 = [
 		{
@@ -101,6 +103,35 @@ export default function Pricing() {
 
 		getSubscriptionInfo();
 	}, []);
+
+//track users' location information
+useEffect(()=>{
+	let userCity: string;
+let userCountry: string;
+let userTimeZone:string;
+
+if (Intl) {
+	//gets the Continent information and city and returns a string
+	//"Africa/Nigeria"
+  userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+ 
+  //reomves the slash and converts the string to an array
+  let tzArr = userTimeZone.split("/");
+
+  //gets the last element of the array which is the name of the city
+  userCity = tzArr[tzArr.length - 1];
+
+  //checks the dictionary and returns the country name
+  userCountry = timeZoneCityToCountry[userCity];
+
+  //adds the country name to the useState
+  setCountry( timeZoneCityToCountry[userCity])
+
+  console.log(country)
+
+}
+},[country])
+
 	const buttonDetails = [
 		{ id: 1, text: 'Annual' },
 		{ id: 2, text: 'Bi-Annual' },
@@ -166,6 +197,7 @@ export default function Pricing() {
 								info5={items.info5}
 								info6={items.info6}
 								planId={items.planId}
+								country={country}
 							/>
 						);
 					})}
@@ -190,6 +222,7 @@ export default function Pricing() {
 								info5={items.info5}
 								info6={items.info6}
 								planId={items.planId}
+								country={country}
 							/>
 						);
 					})}
@@ -214,6 +247,7 @@ export default function Pricing() {
 								info5={items.info5}
 								info6={items.info6}
 								planId={items.planId}
+								country={country}
 							/>
 						);
 					})}

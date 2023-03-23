@@ -13,7 +13,7 @@ type referenceObj = {
 	transaction: string;
 	trxref: string;
 };
-const PaystackPayment = ({ plan }) => {
+const PaystackPayment = ({ plan,country }) => {
 	const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_TEST_KEY;
 	const user = useContext(UserContext);
 	const router = useRouter();
@@ -80,9 +80,11 @@ const PaystackPayment = ({ plan }) => {
 			<div className='container'>
 				<div className='item'></div>
 				<div className='checkout-form'>
-					<div onClick={submit}>
+				{country==="Nigeria" ?	<div onClick={submit}>
 						<PaymentCta>Get started</PaymentCta>
-					</div>
+					</div>:<div >
+						<PaymentCta><a href='https://uiland.lemonsqueezy.com/checkout/buy/50e4cf79-4965-47e2-bfb3-d55c859f8706'>Get started</a></PaymentCta>
+					</div>}
 				</div>
 			</div>
 		</div>

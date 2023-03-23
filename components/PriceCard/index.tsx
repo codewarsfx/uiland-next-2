@@ -22,6 +22,7 @@ function PriceCard({
 	info5,
 	info6,
 	planId,
+	country
 }) {
 	const user = useContext(UserContext);
 	const { loginToggleModal, isModalLogin } = useModal();
@@ -94,7 +95,7 @@ function PriceCard({
 					{planId === '' ? (
 						<PaymentCta onClick={pricingToggle}>Try Now</PaymentCta>
 					) : (
-						<PaystackPayment plan={planId} />
+						<PaystackPayment plan={planId} country={country} />
 					)}
 				</div>
 			</PriceCards>
