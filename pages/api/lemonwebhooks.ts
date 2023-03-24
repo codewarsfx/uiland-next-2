@@ -10,7 +10,8 @@ async function handler(req, res) {
     const signature = Buffer.from(req.get('X-Signature') || '', 'utf8');
     console.log(digest,signature)
     console.log(req.body)
-    if (!crypto.timingSafeEqual(digest, signature)) {
+    try{
+         if (!crypto.timingSafeEqual(digest, signature)) {
         return res.status(403).json({
             message:"Error Invalid Credentials"
         })
@@ -42,7 +43,7 @@ console.log(req.body)
                 //This is the bridge between the response from paystack and our database (the email is the same in both)
                 .eq('email', req.body.data.attributes.user_email)
                 .select();
-            await  insertToProfile();
+         insertToProfile();
             return res.status(200).json({
                 status: true,
                 message: 'Order placed successfully!',
@@ -51,6 +52,11 @@ console.log(req.body)
 
     }  
     }
+    }catch (error) {
+		console.error(error);
+		return res.status(500).json({ message: 'Internal server error.' });
+	}
+   
 
 }
 
