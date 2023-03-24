@@ -18,7 +18,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 			return res.status(403).json({
 				message: 'Error Invalid Credentials',
 			});
-		} else if (hash === req.headers['X-Signature']) {
+		} else if (hash === req.headers['x-signature']) {
 			console.log(req.body);
 			if (req.body.meta['event_name'] === 'subscription_created') {
 				// update the profile table when a "subscription.create" is available
