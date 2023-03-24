@@ -11,6 +11,11 @@ async function handler(req, res) {
     console.log(digest,signature)
     console.log(req.body)
     try{
+        const hash = crypto
+        .createHmac('sha512', secret)
+        .update(JSON.stringify(req.body))
+        .digest('hex');
+        console.log(hash)
          if (!crypto.timingSafeEqual(digest, signature)) {
         return res.status(403).json({
             message:"Error Invalid Credentials"
