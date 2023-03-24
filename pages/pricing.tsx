@@ -126,7 +126,7 @@ export default function Pricing() {
 	useEffect(() => {
 		async function getSubscriptionInfo() {
 			const data = await fetch('/api/paystackwebhook');
-
+			const lemonData = await fetch('/api/lemonwebhooks');
 			const result = await data.json();
 		}
 
