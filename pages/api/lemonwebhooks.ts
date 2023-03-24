@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next/types";
 import { supabase } from "../../supabase";
-const crypto = require('crypto');
+// const crypto = require('crypto');
 
 
 async function handler(req, res) {
