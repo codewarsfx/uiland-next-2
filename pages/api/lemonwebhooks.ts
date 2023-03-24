@@ -8,12 +8,15 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
 	try {
 		const hash = crypto
-			.createHmac('sha512', secret)
+			.createHmac('sha256', secret)
 			.update(JSON.stringify(req.body))
 			.digest('hex');
             console.log(hash)
+            console.log("wow")
             console.log(req.headers['x-signature']);
        
+
+            
 		if (hash !== req.headers['x-signature']) {
 			return res.status(403).json({
 				message: 'Error Invalid Credentials',
@@ -90,3 +93,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 		return res.status(500).json({ message: 'Internal server error.' });
 	}
 }
+
+
+
+
+
+
+
