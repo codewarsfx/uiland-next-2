@@ -13,7 +13,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 			.digest('hex');
             console.log(hash)
             console.log(req.body);
-            console.log(req.headers['X-Signature'])
+            console.log(req.headers)
 		if (hash !== req.headers['X-Signature']) {
 			return res.status(403).json({
 				message: 'Error Invalid Credentials',
