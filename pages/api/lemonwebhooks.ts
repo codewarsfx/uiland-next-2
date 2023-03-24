@@ -7,7 +7,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const secret    = process.env.NEXT_PUBLIC_LEMON_SECRET;
     const hmac      = crypto.createHmac('sha256', secret);
     const digest    = Buffer.from(hmac.update(req.body).digest('hex'), 'utf8');
-    const signature = Buffer.from(req.headers['x-paystack-signature'] as string || '', 'utf8');
+    const signature = Buffer.from(req.headers['X-Signature'] as string || '', 'utf8');
     console.log(digest,signature)
     console.log(req.body)
     try{
