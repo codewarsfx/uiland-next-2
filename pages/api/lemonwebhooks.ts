@@ -3,25 +3,26 @@ import { supabase } from '../../supabase';
 import { CiLogin } from 'react-icons/ci';
 const crypto = require('crypto');
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(req, res) {
 	const secret = process.env.NEXT_PUBLIC_LEMON_SECRET;
 
 	try {
-		const hash = crypto
-			.createHmac('sha256', secret)
-			.update(JSON.stringify(req.body))
-			.digest('hex');
-            console.log(hash)
-            console.log("wow")
-            console.log(req.headers['x-signature']);
+		
+     
        
-
-            
-		if (hash !== req.headers['x-signature']) {
-			return res.status(403).json({
-				message: 'Error Invalid Credentials',
-			});
-		} else if (hash === req.headers['x-signature']) {
+            const secret    = process.env.NEXT_PUBLIC_LEMON_SECRET;;
+            const hmac      = crypto.createHmac('sha256', secret);
+            const digest    = Buffer.from(hmac.update(req.rawBody).digest('hex'), 'utf8');
+            const signature = Buffer.from(req.get('x-signature') || '', 'utf8');
+              console.log(req.rawBody)
+            console.log("wow")
+            console.log(digest);
+            console.log("wow")
+            console.log(signature)
+            if (!crypto.timingSafeEqual(digest, signature)) {
+                throw new Error('Invalid signature.');
+            }
+      else  {
 			console.log(req.body);
 			if (req.body.meta['event_name'] === 'subscription_created') {
 				// update the profile table when a "subscription.create" is available
