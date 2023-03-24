@@ -22,7 +22,7 @@ async function handler(req, res) {
                 .from('profile')
                 .update({
                     event: 'subscription.create',
-                    status: 'subscription.create',
+                    status: 'active',
                     amount: req.body.data.attributes.total,
                     currency: req.body.data.attributes.currency,
                     authorization_code:'',
