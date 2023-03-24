@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next/types';
 import { supabase } from '../../supabase';
+import { CiLogin } from 'react-icons/ci';
 const crypto = require('crypto');
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -10,6 +11,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 			.createHmac('sha512', secret)
 			.update(JSON.stringify(req.body))
 			.digest('hex');
+            console.log(hash)
+            console.log(req.body);
+            console.log(req.headers['X-Signature'])
 		if (hash !== req.headers['X-Signature']) {
 			return res.status(403).json({
 				message: 'Error Invalid Credentials',
