@@ -12,7 +12,7 @@ export default function handler(req, res) {
        
             const secret    = process.env.NEXT_PUBLIC_LEMON_SECRET;;
             const hmac      = crypto.createHmac('sha256', secret);
-            const digest    = Buffer.from(hmac.update(req.rawBody).digest('hex'), 'utf8');
+            const digest    = Buffer.from(hmac.update(req.body).digest('hex'), 'utf8');
             const signature = Buffer.from(req.get('x-signature') || '', 'utf8');
               console.log(req.rawBody)
             console.log("wow")
