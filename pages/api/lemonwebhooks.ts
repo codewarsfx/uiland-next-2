@@ -23,7 +23,7 @@ async function handler(req, res) {
     }else{
            console.log(digest,signature)
 console.log(req.body)
-    if (req.body.meta["event_name"] === 'subscription.created') {
+    if (req.body.meta["event_name"] === 'subscription_created'||req.body.meta["event_name"] === 'subscription_updated') {
         // update the profile table when a "subscription.create" is available
         const insertToProfile = async () => {
             const { data, error } = await supabase
@@ -48,13 +48,13 @@ console.log(req.body)
                 //This is the bridge between the response from paystack and our database (the email is the same in both)
                 .eq('email', req.body.data.attributes.user_email)
                 .select();
-         insertToProfile();
+      
             return res.status(200).json({
                 status: true,
                 message: 'Order placed successfully!',
             });
         };
-
+        insertToProfile();
     }  
     }
     }catch (error) {
