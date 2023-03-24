@@ -14,6 +14,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             console.log(hash)
             console.log(req.body);
             console.log(req.headers)
+            console.log(req)
 		if (hash !== req.headers['X-Signature']) {
 			return res.status(403).json({
 				message: 'Error Invalid Credentials',
