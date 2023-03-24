@@ -3,11 +3,11 @@ import { supabase } from "../../supabase";
 const crypto = require('crypto');
 
 
-async function handler(req, res) {
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const secret    = process.env.NEXT_PUBLIC_LEMON_SECRET;
     const hmac      = crypto.createHmac('sha256', secret);
-    const digest    = Buffer.from(hmac.update(req.rawBody).digest('hex'), 'utf8');
-    const signature = Buffer.from(req.get('X-Signature') || '', 'utf8');
+    const digest    = Buffer.from(hmac.update(req.body).digest('hex'), 'utf8');
+    const signature = Buffer.from(req.headers['x-paystack-signature'] as string || '', 'utf8');
     console.log(digest,signature)
     console.log(req.body)
     try{
@@ -36,4 +36,4 @@ console.log(req.body)
 
 }
 
-export default handler;
+
