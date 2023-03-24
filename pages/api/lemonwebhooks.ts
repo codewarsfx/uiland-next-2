@@ -3,7 +3,7 @@ import { supabase } from "../../supabase";
 const crypto = require('crypto');
 
 
-async function handler(req, res) {
+function handler(req, res) {
     const secret    = process.env.NEXT_PUBLIC_LEMON_SECRET;
     const hmac      = crypto.createHmac('sha256', secret);
     const digest    = Buffer.from(hmac.update(req.rawBody).digest('hex'), 'utf8');
