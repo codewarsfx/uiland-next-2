@@ -199,6 +199,8 @@ export default async function handler(req: ResBody, res: NextApiResponse) {
     const signature = Buffer.from(req.headers['x-signature'] as string, 'utf8')
 console.log(signature)
 console.log("wow")
+console.log(req.headers)
+console.log("wow")
 console.log(digest)
     if (!crypto.timingSafeEqual(digest, signature)) {
       return res.status(400).json({
