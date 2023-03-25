@@ -1,6 +1,7 @@
 import { supabase } from "../../supabase";
 const crypto = require('crypto');
 import { buffer } from 'micro'
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 
 export default async function handler(req, res) {
