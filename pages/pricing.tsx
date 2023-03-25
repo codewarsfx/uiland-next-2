@@ -134,15 +134,15 @@ export default function Pricing() {
 			planId: process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_QUATERLY,
 		},
 	];
-	useEffect(() => {
-		async function getSubscriptionInfo() {
-			const data = await fetch('/api/paystackwebhook');
-			const lemonData = await fetch('/api/lemonwebhooks');
-			const result = await data.json();
-		}
+	// useEffect(() => {
+	// 	async function getSubscriptionInfo() {
+	// 		const data = await fetch('/api/paystackwebhook');
+	// 		const lemonData = await fetch('/api/lemonwebhooks');
+	// 		const result = await data.json();
+	// 	}
 
-		getSubscriptionInfo();
-	}, []);
+	// 	getSubscriptionInfo();
+	// }, []);
 
 	//track users' location information
 	useEffect(() => {
