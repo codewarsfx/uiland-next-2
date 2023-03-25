@@ -1,94 +1,77 @@
-import { NextApiRequest, NextApiResponse } from 'next/types';
-import { supabase } from '../../supabase';
-import { CiLogin } from 'react-icons/ci';
+import { supabase } from "../../supabase";
 const crypto = require('crypto');
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-	const secret = process.env.NEXT_PUBLIC_LEMON_SECRET;
-
-	try {
-		const hash = crypto
-			.createHmac('sha256', secret)
-			.update(JSON.stringify(req.body))
-			.digest('hex');
-            console.log(hash)
-            console.log("wow")
-            console.log(req.headers['x-signature']);
+import { buffer } from 'micro'
 
 
+async function handler(req, res) {
+  try {
+    // check that the request really came from Lemon Squeezy and is about this order
+    const signingSecret = process.env.LEMON_SECRET 
+    const rawBody = (await buffer(req)).toString('utf-8')
+    const hmac = crypto.createHmac('sha256', signingSecret)
+    const digest = Buffer.from(hmac.update(rawBody).digest('hex'), 'utf8')
+    const signature = Buffer.from(req.headers['x-signature'] as string, 'utf8')
 
-		if (hash !== req.headers['x-signature']) {
-			return res.status(403).json({
-				message: 'Error Invalid Credentials',
-			});
-		} else if (hash === req.headers['x-signature']) {
-			console.log(req.body);
-			if (req.body.meta['event_name'] === 'subscription_created') {
-				// update the profile table when a "subscription.create" is available
-				const insertToProfile = async () => {
-					const { data, error } = await supabase
-						.from('profile')
-						.update({
-							event: 'subscription.create',
-							status: 'active',
-							amount: req.body.data.attributes.total,
-							currency: req.body.data.attributes.currency,
-							authorization_code: '',
-							next_payment_date: req.body.data.attributes.ends_at,
-							created_date_at: req.body.data.attributes.created_at,
-							exp_month: req.body.data.attributes.ends_at,
-							plan_name: req.body.data.attributes.product_name,
-							plan_interval: '',
-							signature: '',
-							bank: req.body.data.attributes.card_brand,
-							card_type: req.body.data.attributes.card_brand,
-							brand: req.body.data.attributes.card_brand,
-							subscription_code: '',
-						})
-						//This is the bridge between the response from paystack and our database (the email is the same in both)
-						.eq('email', req.body.data.attributes.user_email)
-						.select();
-					return res.status(200).json({
-						status: true,
-						message: 'Order placed successfully!',
-					});
-				};
-				insertToProfile();
-			} else if (req.body.meta['event_name'] === 'subscription_updated') {
-				const insertToProfile = async () => {
-					const { data, error } = await supabase
-						.from('profile')
-						.update({
-							event: 'subscription.create',
-							status: 'reactivated',
-							amount: req.body.data.attributes.total,
-							currency: req.body.data.attributes.currency,
-							authorization_code: '',
-							next_payment_date: req.body.data.attributes.ends_at,
-							created_date_at: req.body.data.attributes.created_at,
-							exp_month: req.body.data.attributes.ends_at,
-							plan_name: req.body.data.attributes.product_name,
-							plan_interval: '',
-							signature: '',
-							bank: req.body.data.attributes.card_brand,
-							card_type: req.body.data.attributes.card_brand,
-							brand: req.body.data.attributes.card_brand,
-							subscription_code: '',
-						})
-						//This is the bridge between the response from paystack and our database (the email is the same in both)
-						.eq('email', req.body.data.attributes.user_email)
-						.select();
-					return res.status(200).json({
-						status: true,
-						message: 'Order updated successfully!',
-					});
-				};
-				insertToProfile();
-			}
-		}
-	} catch (error) {
-		console.error(error);
-		return res.status(500).json({ message: 'Internal server error.' });
-	}
+    if (!crypto.timingSafeEqual(digest, signature)) {
+      return res.status(400).json({
+        message: 'Invalid signature.',
+      })
+    }
+
+    const payload = JSON.parse(rawBody)
+
+    const {
+      meta: {
+        event_name: eventName,
+      },
+    } = payload
+
+    if (eventName === 'subscription_created') {
+        const insertToProfile = async () => {
+            const { data, error } = await supabase
+                .from('profile')
+                .update({
+                    event: 'subscription.create',
+                    status: 'subscription.create',
+                    amount: payload.attributes.total,
+                    currency: payload.attributes.currency,
+                    authorization_code: '',
+                    next_payment_date: payload.attributes.ends_at,
+                    created_date_at: payload.attributes.created_at,
+                    exp_month: payload.attributes.ends_at,
+                    plan_name: payload.attributes.product_name,
+                    plan_interval: '',
+                    signature: '',
+                    bank: payload.attributes.card_brand,
+                    card_type: payload.attributes.card_brand,
+                    brand: payload.attributes.card_brand,
+                    subscription_code: '',
+                })
+                //This is the bridge between the response from paystack and our database (the email is the same in both)
+                .eq('email', payload.attributes.user_email)
+                .select();
+        }
+        await  insertToProfile();
+            return res.status(200).json({
+                status: true,
+                message: 'Subscription successfull!',
+            });
+        };
+    } catch (e: unknown) {
+    if (typeof e === 'string') {
+      return res.status(400).json({
+        message: `Webhook error: ${e}`,
+      })
+    }
+    if (e instanceof Error) {
+      return res.status(400).json({
+        message: `Webhook error: ${e.message}`,
+      })
+    }
+    throw e
+  }
+  // if no errors occur, respond with a 200 success
+  res.send({ received: true })
 }
 
 
