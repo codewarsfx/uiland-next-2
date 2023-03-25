@@ -30,9 +30,14 @@ export default function Pricing() {
 		// 	});
 
 		try {
-			const response = await axios('http://ip-api.com/json/');
+			const response = await axios('https://ipinfo.io/json?token=92d047f347bbcf');
 			const { country } = response.data;
-			setCountry(country);
+			if (country == "NG") {
+				setCountry('Nigeria');
+			} else {
+				setCountry(country);
+			}
+		
 		} catch (error) {
 			console.log('an error occurred while trying to retrieve country');
 			setCountry('Nigeria');
