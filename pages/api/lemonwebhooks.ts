@@ -1,18 +1,20 @@
 import { supabase } from "../../supabase";
 const crypto = require('crypto');
 import { buffer } from 'micro'
+import type { NextApiRequest, NextApiResponse } from 'next';
 
-
-export default async function handler(req, res) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   try {
     // check that the request really came from Lemon Squeezy and is about this order
-    const signingSecret = process.env.LEMON_SECRET 
+    const signingSecret = process.env.NEXT_PUBLIC_LEMON_SECRET 
     const rawBody = (await buffer(req)).toString('utf-8')
     const hmac = crypto.createHmac('sha256', signingSecret)
     const digest = Buffer.from(hmac.update(rawBody).digest('hex'), 'utf8')
     const signature = Buffer.from(req.headers['x-signature'] as string, 'utf8')
-
+console.log(digest)
+console.log("wow")
+console.log(signature)
     if (!crypto.timingSafeEqual(digest, signature)) {
       return res.status(400).json({
         message: 'Invalid signature.',
