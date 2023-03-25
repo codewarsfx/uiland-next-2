@@ -8,7 +8,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 	try {
 		const hash = crypto
 			.createHmac('sha256', secret)
-			.update(JSON.stringify(req.body))
+			.update(JSON.stringify(req))
 			.digest('hex');
 		console.log(hash);
 		console.log('wow');
