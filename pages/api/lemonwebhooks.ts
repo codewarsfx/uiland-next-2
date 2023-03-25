@@ -2,23 +2,31 @@ import { NextApiRequest, NextApiResponse } from 'next/types';
 import { supabase } from '../../supabase';
 import { CiLogin } from 'react-icons/ci';
 const crypto = require('crypto');
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(req, res) {
 	const secret = process.env.NEXT_PUBLIC_LEMON_SECRET;
 
 	try {
 		const hash = crypto
 			.createHmac('sha256', secret)
-			.update(JSON.stringify(req))
+			.update(JSON.stringify(req.rawBody))
 			.digest('hex');
+
+			
+			const hmac      = crypto.createHmac('sha256', secret);
+			const digest    = Buffer.from(hmac.update(req.rawBody).digest('hex'), 'utf8');
+			
+
+		console.log(digest);
+		console.log("wow");
 		console.log(hash);
 		console.log('wow');
 		console.log(req.headers['x-signature']);
 
-		if (hash !== req.headers['x-signature']) {
+		if (digest !== req.headers['x-signature']) {
 			return res.status(403).json({
 				message: 'Error Invalid Credentials',
 			});
-		} else if (hash === req.headers['x-signature']) {
+		} else if (digest === req.headers['x-signature']) {
 			console.log(req.body);
 			if (req.body.meta['event_name'] === 'subscription_created') {
 				// update the profile table when a "subscription.create" is available
