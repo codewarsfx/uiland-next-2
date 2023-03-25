@@ -17,8 +17,8 @@ async function buffer(readable: Readable) {
 	}
 	return Buffer.concat(chunks);
   }
-  
-export default async function handler(req, res) {
+ 
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	const secret = process.env.NEXT_PUBLIC_LEMON_SECRET;
 
 	try {
@@ -36,7 +36,7 @@ export default async function handler(req, res) {
 			
 			const hmac      = crypto.createHmac('sha256', secret);
 			const digest    = Buffer.from(hmac.update(rawBody).digest('hex'), 'utf8');
-			
+			const signature = Buffer.from(req.headers['x-signature'] as string, 'utf8')
 
 		console.log(digest);
 		console.log("wow");
@@ -44,11 +44,11 @@ export default async function handler(req, res) {
 		console.log('wow');
 		console.log(req.headers['x-signature']);
 
-		if (digest !== req.headers['x-signature']) {
+		if (digest !== signature) {
 			return res.status(403).json({
 				message: 'Error Invalid Credentials',
 			});
-		} else if (digest === req.headers['x-signature']) {
+		} else if (digest === signature) {
 			console.log(req.body);
 			if (req.body.meta['event_name'] === 'subscription_created') {
 				// update the profile table when a "subscription.create" is available
