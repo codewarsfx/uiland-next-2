@@ -4,10 +4,10 @@ import { buffer } from 'micro'
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-
+    const signingSecret = process.env.NEXT_PUBLIC_LEMON_SECRET 
   try {
     // check that the request really came from Lemon Squeezy and is about this order
-    const signingSecret = process.env.NEXT_PUBLIC_LEMON_SECRET 
+
     const rawBody = (await buffer(req)).toString('utf-8')
     const hmac = crypto.createHmac('sha256', signingSecret)
     const digest = Buffer.from(hmac.update(rawBody).digest('hex'), 'utf8')
