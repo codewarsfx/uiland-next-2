@@ -161,11 +161,7 @@ export interface ResBody extends NextApiRequest {
   body: {
     meta: {
       event_name: 'order_created' | 'order_refunded'
-      custom_data: {
-        // this is where any custom checkout parameters will be accessible
-        // details: https://docs.lemonsqueezy.com/api/checkouts#create-a-checkout
-        userId: string
-      }
+    
     }
     data: {
       id: string
@@ -214,7 +210,7 @@ export default async function handler(req: ResBody, res: NextApiResponse) {
       meta: {
         event_name: eventName,
         // userId is a custom checkout variable I am using
-        custom_data: { userId },
+      
       },
       data: {
         id: orderId,
@@ -223,10 +219,12 @@ export default async function handler(req: ResBody, res: NextApiResponse) {
     } = payload
 
     if (eventName === 'order_created') {
+		console.log("yes")
       // do something when a new purchase comes in
     } else if (eventName === 'order_refunded') {
       // do something when the purchase is refunded
-    } else if (eventName === '') {
+    } else if (eventName === 'subscription_created') {
+		console.log("yes")
       // do somthing with any of the following events:
       // - subscription_created
       // - subscription_cancelled
