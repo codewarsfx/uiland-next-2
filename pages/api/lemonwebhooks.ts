@@ -20,9 +20,16 @@ async function buffer(readable: Readable) {
  
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	const secret = process.env.NEXT_PUBLIC_LEMON_SECRET;
-
+	if (req.method !== 'POST') {
+		// you can see whether a webhook delivers successfully in your Lemon Squeezy account
+		// -> Settings -> Webhooks -> Recent deliveries
+		return res.status(405).json({
+		  message: 'Method not allowed',
+		})
+	  }
+	  
 	try {
-		if (req.method === 'POST') {
+	
 
 		const hash = crypto
 			.createHmac('sha256', secret)
@@ -113,7 +120,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 				};
 				insertToProfile();
 			}
-		}}
+		}
 	} catch (error) {
 		console.error(error);
 		return res.status(500).json({ message: 'Internal server error.' });
