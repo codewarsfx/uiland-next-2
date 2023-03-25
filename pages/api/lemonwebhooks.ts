@@ -5,7 +5,11 @@ import type { Readable } from 'node:stream';
 
 const crypto = require('crypto');
 
-
+export const config = {
+	api: {
+	  bodyParser: false,
+	},
+  }
 async function buffer(readable: Readable) {
 	const chunks = [];
 	for await (const chunk of readable) {
@@ -18,6 +22,8 @@ export default async function handler(req, res) {
 	const secret = process.env.NEXT_PUBLIC_LEMON_SECRET;
 
 	try {
+		if (req.method === 'POST') {
+
 		const hash = crypto
 			.createHmac('sha256', secret)
 			.update(JSON.stringify(req.body))
@@ -106,14 +112,9 @@ export default async function handler(req, res) {
 				};
 				insertToProfile();
 			}
-		}
+		}}
 	} catch (error) {
 		console.error(error);
 		return res.status(500).json({ message: 'Internal server error.' });
 	}
-}
-export const config = {
-	api: {
-	  bodyParser: false,
-	},
-  }
+	}
