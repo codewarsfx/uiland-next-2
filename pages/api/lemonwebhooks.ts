@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next/types';
 import { supabase } from '../../supabase';
 import { CiLogin } from 'react-icons/ci';
 import type { Readable } from 'node:stream';
-import getRawBody from 'raw-body';
 
 const crypto = require('crypto');
 
@@ -28,7 +27,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		  message: 'Method not allowed',
 		})
 	  }
-	  
 	try {
 	
 
@@ -38,9 +36,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 			.digest('hex');
 
 
-			// const buf = await buffer(req);
-			// const rawBody = buf.toString('utf8');
-			const rawBody = await getRawBody(req);
+			const buf = await buffer(req);
+			const rawBody = buf.toString('utf8');
+		
 			
 			const hmac      = crypto.createHmac('sha256', secret);
 			const digest    = Buffer.from(hmac.update(rawBody).digest('hex'), 'utf8');
