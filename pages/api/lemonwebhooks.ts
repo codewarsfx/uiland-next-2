@@ -1,8 +1,20 @@
 import { NextApiRequest, NextApiResponse } from 'next/types';
 import { supabase } from '../../supabase';
 import { CiLogin } from 'react-icons/ci';
+import type { Readable } from 'node:stream';
+
 const crypto = require('crypto');
-export default function handler(req, res) {
+
+
+async function buffer(readable: Readable) {
+	const chunks = [];
+	for await (const chunk of readable) {
+	  chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
+	}
+	return Buffer.concat(chunks);
+  }
+  
+export default async function handler(req, res) {
 	const secret = process.env.NEXT_PUBLIC_LEMON_SECRET;
 
 	try {
@@ -11,9 +23,13 @@ export default function handler(req, res) {
 			.update(JSON.stringify(req.body))
 			.digest('hex');
 
+
+			const buf = await buffer(req);
+			const rawBody = buf.toString('utf8');
+		
 			
 			const hmac      = crypto.createHmac('sha256', secret);
-			const digest    = Buffer.from(hmac.update(req.body).digest('hex'), 'utf8');
+			const digest    = Buffer.from(hmac.update(rawBody).digest('hex'), 'utf8');
 			
 
 		console.log(digest);
