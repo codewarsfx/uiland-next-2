@@ -1,53 +1,77 @@
-import { NextApiRequest, NextApiResponse } from "next/types";
 import { supabase } from "../../supabase";
-// const crypto = require('crypto');
+const crypto = require('crypto');
+import { buffer } from 'micro'
 
 
 async function handler(req, res) {
-    const secret    = process.env.NEXT_PUBLIC_LEMON_SECRET;
-    const hmac      = crypto.createHmac('sha256', secret);
-    const digest    = Buffer.from(hmac.update(req.rawBody).digest('hex'), 'utf8');
-    const signature = Buffer.from(req.get('X-Signature') || '', 'utf8');
-    
+  try {
+    // check that the request really came from Lemon Squeezy and is about this order
+    const signingSecret = process.env.LEMON_SECRET 
+    const rawBody = (await buffer(req)).toString('utf-8')
+    const hmac = crypto.createHmac('sha256', signingSecret)
+    const digest = Buffer.from(hmac.update(rawBody).digest('hex'), 'utf8')
+    const signature = Buffer.from(req.headers['x-signature'] as string, 'utf8')
+
     if (!crypto.timingSafeEqual(digest, signature)) {
-        return res.status(403).json({
-            message:"Error Invalid Credentials"
-        })
+      return res.status(400).json({
+        message: 'Invalid signature.',
+      })
     }
 
-    if (req.body.meta["event_name"] === 'subscription.created') {
-        // update the profile table when a "subscription.create" is available
+    const payload = JSON.parse(rawBody)
+
+    const {
+      meta: {
+        event_name: eventName,
+      },
+    } = payload
+
+    if (eventName === 'subscription_created') {
         const insertToProfile = async () => {
             const { data, error } = await supabase
                 .from('profile')
                 .update({
                     event: 'subscription.create',
                     status: 'subscription.create',
-                    amount: req.body.data.attributes.total,
-                    currency: req.body.data.attributes.currency,
-                    authorization_code:'',
-                    next_payment_date: req.body.data.attributes.ends_at,
-                    created_date_at:req.body.data.attributes.created_at,
-                    exp_month: req.body.data.attributes.ends_at,
-                    plan_name:req.body.data.attributes.product_name,
-                    plan_interval:'',
-                    signature:'',
-                    bank: req.body.data.attributes.card_brand,
-                    card_type:  req.body.data.attributes.card_brand,
-                    brand: req.body.data.attributes.card_brand,
-                    subscription_code:'',
+                    amount: payload.attributes.total,
+                    currency: payload.attributes.currency,
+                    authorization_code: '',
+                    next_payment_date: payload.attributes.ends_at,
+                    created_date_at: payload.attributes.created_at,
+                    exp_month: payload.attributes.ends_at,
+                    plan_name: payload.attributes.product_name,
+                    plan_interval: '',
+                    signature: '',
+                    bank: payload.attributes.card_brand,
+                    card_type: payload.attributes.card_brand,
+                    brand: payload.attributes.card_brand,
+                    subscription_code: '',
                 })
                 //This is the bridge between the response from paystack and our database (the email is the same in both)
-                .eq('email', req.body.data.attributes.user_email)
+                .eq('email', payload.attributes.user_email)
                 .select();
-            await  insertToProfile();
+        }
+        await  insertToProfile();
             return res.status(200).json({
                 status: true,
-                message: 'Order placed successfully!',
+                message: 'Subscription successfull!',
             });
         };
-
-    } 
+    } catch (e: unknown) {
+    if (typeof e === 'string') {
+      return res.status(400).json({
+        message: `Webhook error: ${e}`,
+      })
+    }
+    if (e instanceof Error) {
+      return res.status(400).json({
+        message: `Webhook error: ${e.message}`,
+      })
+    }
+    throw e
+  }
+  // if no errors occur, respond with a 200 success
+  res.send({ received: true })
 }
 
 export default handler;
