@@ -3,7 +3,8 @@ const crypto = require('crypto');
 import { buffer } from 'micro'
 
 
-async function handler(req, res) {
+export default async function handler(req, res) {
+
   try {
     // check that the request really came from Lemon Squeezy and is about this order
     const signingSecret = process.env.LEMON_SECRET 
@@ -25,8 +26,9 @@ async function handler(req, res) {
         event_name: eventName,
       },
     } = payload
-
-    if (eventName === 'subscription_created') {
+    console.log(eventName)
+      if (eventName === 'subscription_created') {
+        console.log('got here',eventName)
         const insertToProfile = async () => {
             const { data, error } = await supabase
                 .from('profile')

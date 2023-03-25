@@ -8,45 +8,53 @@ import { UserContext } from '../context/authContext';
 export default function Pricing() {
 	const user = useContext(UserContext);
 	const [isActive, setIsActive] = useState(1);
-	const [country, setCountry] = useState('London');
+	const [country, setCountry] = useState('');
+	const [priceLoading,setPriceLoading] = useState(true)
 
 	const setUserCountry = async () => {
-		if (navigator) {
-			let latitude, longitude;
-			navigator.geolocation.getCurrentPosition(async function (position) {
-				latitude = position.coords.latitude;
-				longitude = position.coords.longitude;
-				try {
-					const response = await axios(
-						`http://api.geonames.org/countryCodeJSON?lat=${latitude}&lng=${longitude}&username=codewarsfx`
-					);
-	
-					if (response) {
-						// setCountry(response.data.countryName);
-					}
-				} catch (error) {
-					console.log('an error occurred while trying to retrieve country');
-				}
-			});
-		
-		} 
+		// if (navigator) {
+		// 	let latitude, longitude;
+		// 	navigator.geolocation.getCurrentPosition(async function (position) {
+		// 		latitude = position.coords.latitude;
+		// 		longitude = position.coords.longitude;
+		// 		try {
+		// 			const response = await axios(
+		// 				`http://api.geonames.org/countryCodeJSON?lat=${latitude}&lng=${longitude}&username=codewarsfx`
+		// 			);
+
+		// 			if (response) {
+		// 				// setCountry(response.data.countryName);
+		// 			}
+		// 		} catch (error) {
+		// 			console.log('an error occurred while trying to retrieve country');
+		// 		}
+		// 	});
+
+		try {
+			const response = await axios('http://ip-api.com/json/');
+			const { country } = response.data;
+			setCountry(country);
+			setPriceLoading(false)
+		} catch (error) {
+			console.log('an error occurred while trying to retrieve country');
+			setCountry('Nigeria');
+		}
 	};
 
 	const priceForCountry = (country, period) => {
-		console.log("price for",country)
 		const pricePerPeriod = {
 			Annual: country === 'Nigeria' ? 9000 : 48,
 			BiAnnual: country === 'Nigeria' ? 5000 : 22,
-			Quaterly: country === 'Nigeria' ? 2000 : 15
-		}
+			Quaterly: country === 'Nigeria' ? 2000 : 15,
+		};
 
-		return pricePerPeriod[period]
-	}
+		return pricePerPeriod[period];
+	};
 
 	const Plan1 = [
 		{
 			type: 'Free',
-			price: '0' ,
+			price: '0',
 			description: 'per user/month billed annually',
 			title: 'For small teams',
 			info1: 'Browse 	All Screens Per Company',
@@ -57,7 +65,7 @@ export default function Pricing() {
 		},
 		{
 			type: 'Annual',
-			price: priceForCountry(country,'Annual'),
+			price: priceForCountry(country, 'Annual'),
 			description: 'per user/month billed annually',
 			title: 'For small teams',
 			info1: 'Browse All Screens Per Company',
@@ -85,7 +93,7 @@ export default function Pricing() {
 		},
 		{
 			type: 'BiAnnual',
-			price: priceForCountry(country,'BiAnnual'),
+			price: priceForCountry(country, 'BiAnnual'),
 			description: 'per user/month billed bi-annually',
 			title: 'For small teams',
 			info1: 'Browse All Screens Per Company',
@@ -111,7 +119,7 @@ export default function Pricing() {
 		},
 		{
 			type: 'Quaterly',
-			price: priceForCountry(country,'Quaterly'),
+			price: priceForCountry(country, 'Quaterly'),
 			description: 'per user/month billed quaterly',
 			title: 'For small teams',
 			info1: 'Browse All Screens Per Company',
@@ -153,7 +161,7 @@ export default function Pricing() {
 		// 	console.log(country);
 		// }
 		//get user Location
-		setUserCountry()
+		setUserCountry();
 	}, []);
 
 	const buttonDetails = [
@@ -161,6 +169,7 @@ export default function Pricing() {
 		{ id: 2, text: 'Bi-Annual' },
 		{ id: 3, text: 'Quaterly' },
 	];
+	if(priceLoading) return null
 
 	return (
 		<PricingWrapper>
