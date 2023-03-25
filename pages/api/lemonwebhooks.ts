@@ -8,7 +8,7 @@ export default function handler(req, res) {
 	try {
 		const hash = crypto
 			.createHmac('sha256', secret)
-			.update(JSON.stringify(req.rawBody))
+			.update(JSON.stringify(req.body))
 			.digest('hex');
 
 			
