@@ -195,7 +195,7 @@ export default async function handler(req: ResBody, res: NextApiResponse) {
 
 		const {
 			meta: { event_name: eventName },
-			data: { id: orderId, attributes: object },
+			data: { id: orderId, attributes: data },
 		} = payload;
 
 		if (eventName === 'order_created') {
@@ -211,22 +211,22 @@ export default async function handler(req: ResBody, res: NextApiResponse) {
 					.update({
 						event: 'subscription.create',
 						status: 'reactivated',
-						amount: req.body.data.attributes.total,
-						currency: req.body.data.attributes.currency,
+						amount: data.total,
+						currency: data.currency,
 						authorization_code: '',
-						next_payment_date: req.body.data.attributes.ends_at,
-						created_date_at: req.body.data.attributes.created_at,
-						exp_month: req.body.data.attributes.ends_at,
-						plan_name: req.body.data.attributes.product_name,
+						next_payment_date: data.ends_at,
+						created_date_at: data.created_at,
+						exp_month: data.ends_at,
+						plan_name: data.product_name,
 						plan_interval: '',
 						signature: '',
-						bank: req.body.data.attributes.card_brand,
-						card_type: req.body.data.attributes.card_brand,
-						brand: req.body.data.attributes.card_brand,
+						bank: data.card_brand,
+						card_type: data.card_brand,
+						brand: data.card_brand,
 						subscription_code: '',
 					})
 					//This is the bridge between the response from paystack and our database (the email is the same in both)
-					.eq('email', req.body.data.attributes.user_email)
+					.eq('email', data.user_email)
 					.select();
 				return res.status(200).json({
 					status: true,
@@ -243,22 +243,22 @@ export default async function handler(req: ResBody, res: NextApiResponse) {
 					.update({
 						event: 'subscription.create',
 						status: 'active',
-						amount: req.body.data.attributes.total,
-						currency: req.body.data.attributes.currency,
+						amount: data.total,
+						currency: data.currency,
 						authorization_code: '',
-						next_payment_date: req.body.data.attributes.ends_at,
-						created_date_at: req.body.data.attributes.created_at,
-						exp_month: req.body.data.attributes.ends_at,
-						plan_name: req.body.data.attributes.product_name,
+						next_payment_date: data.ends_at,
+						created_date_at: data.created_at,
+						exp_month: data.ends_at,
+						plan_name: data.product_name,
 						plan_interval: '',
 						signature: '',
-						bank: req.body.data.attributes.card_brand,
-						card_type: req.body.data.attributes.card_brand,
-						brand: req.body.data.attributes.card_brand,
+						bank: data.card_brand,
+						card_type: data.card_brand,
+						brand: data.card_brand,
 						subscription_code: '',
 					})
 					//This is the bridge between the response from paystack and our database (the email is the same in both)
-					.eq('email', req.body.data.attributes.user_email)
+					.eq('email', data.user_email)
 					.select();
 				return res.status(200).json({
 					status: true,
