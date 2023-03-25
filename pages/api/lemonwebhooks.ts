@@ -197,7 +197,9 @@ export default async function handler(req: ResBody, res: NextApiResponse) {
     const hmac = crypto.createHmac('sha256', signingSecret)
     const digest = Buffer.from(hmac.update(rawBody).digest('hex'), 'utf8')
     const signature = Buffer.from(req.headers['x-signature'] as string, 'utf8')
-
+console.log(signature)
+console.log("wow")
+console.log(digest)
     if (!crypto.timingSafeEqual(digest, signature)) {
       return res.status(400).json({
         message: 'Invalid signature.',
