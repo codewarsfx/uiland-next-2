@@ -17,7 +17,7 @@
 // 	}
 // 	return Buffer.concat(chunks);
 //   }
- 
+
 // export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 // 	const secret = process.env.NEXT_PUBLIC_LEMON_SECRET;
 // 	if (req.method !== 'POST') {
@@ -28,18 +28,15 @@
 // 		})
 // 	  }
 // 	try {
-	
 
 // 		const hash = crypto
 // 			.createHmac('sha256', secret)
 // 			.update(JSON.stringify(req.body))
 // 			.digest('hex');
 
-
 // 			const buf = await buffer(req);
 // 			const rawBody = buf.toString('utf8');
-		
-			
+
 // 			const hmac      = crypto.createHmac('sha256', secret);
 // 			const digest    = Buffer.from(hmac.update(rawBody).digest('hex'), 'utf8');
 // 			const signature = Buffer.from(req.headers['x-signature'] as string, 'utf8')
@@ -126,139 +123,179 @@
 // 	}
 // 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	import type { NextApiResponse, NextApiRequest } from 'next'
-import { buffer } from 'micro'
-import crypto from 'crypto'
+import type { NextApiResponse, NextApiRequest } from 'next';
+import { buffer } from 'micro';
+import crypto from 'crypto';
+import { supabase } from '../../supabase';
 
 // you might need to extend this if you need additional properties from the request body
 // details: https://docs.lemonsqueezy.com/api/webhooks
 export interface ResBody extends NextApiRequest {
-  body: {
-    meta: {
-      event_name: 'order_created' | 'order_refunded' |'subscription_created'
-    
-    }
-    data: {
-      id: string
-      attributes: {
-        identifier: string
-      }
-    }
-  }
+	body: {
+		meta: {
+			event_name:
+				| 'order_created'
+				| 'order_refunded'
+				| 'subscription_created'
+				| 'subscription_updated';
+		};
+		data: {
+			id: string;
+			attributes: {
+				total: string;
+				currency: string;
+				next_payment_date: string;
+				ends_at: string;
+				created_at: string;
+				product_name: string;
+				card_brand: string;
+				user_email: string;
+			};
+		};
+	};
 }
 
 export const config = {
-  api: {
-    bodyParser: false,
-  },
-}
+	api: {
+		bodyParser: false,
+	},
+};
 
 export default async function handler(req: ResBody, res: NextApiResponse) {
-  // you need to set this webhook secret inside your Lemon Squeezy account
-  // Settings -> Webhooks -> create or click on a webhook URL, set the secret
-  const signingSecret = process.env.NEXT_PUBLIC_LEMON_SECRET || ''
+	// you need to set this webhook secret inside your Lemon Squeezy account
+	// Settings -> Webhooks -> create or click on a webhook URL, set the secret
+	const signingSecret = process.env.NEXT_PUBLIC_LEMON_SECRET || '';
 
-  if (req.method !== 'POST') {
-    // you can see whether a webhook delivers successfully in your Lemon Squeezy account
-    // -> Settings -> Webhooks -> Recent deliveries
-    return res.status(405).json({
-      message: 'Method not allowed',
-    })
-  }
+	if (req.method !== 'POST') {
+		// you can see whether a webhook delivers successfully in your Lemon Squeezy account
+		// -> Settings -> Webhooks -> Recent deliveries
+		return res.status(405).json({
+			message: 'Method not allowed',
+		});
+	}
 
-  try {
-    // check that the request really came from Lemon Squeezy and is about this order
-    const rawBody = (await buffer(req)).toString('utf-8')
-    const hmac = crypto.createHmac('sha256', signingSecret)
-    const digest = Buffer.from(hmac.update(rawBody).digest('hex'), 'utf8')
-    const signature = Buffer.from(req.headers['x-signature'] as string, 'utf8')
-console.log(signature)
-console.log("wow")
-console.log(req.headers)
-console.log("wow")
-console.log(digest)
-    if (!crypto.timingSafeEqual(digest, signature)) {
-      return res.status(400).json({
-        message: 'Invalid signature.',
-      })
-    }
+	try {
+		// check that the request really came from Lemon Squeezy and is about this order
+		const rawBody = (await buffer(req)).toString('utf-8');
+		const hmac = crypto.createHmac('sha256', signingSecret);
+		const digest = Buffer.from(hmac.update(rawBody).digest('hex'), 'utf8');
+		const signature = Buffer.from(req.headers['x-signature'] as string, 'utf8');
+		console.log(signature);
+		console.log('wow');
+		console.log(req.headers);
+		console.log('wow');
+		console.log(digest);
+		if (!crypto.timingSafeEqual(digest, signature)) {
+			return res.status(400).json({
+				message: 'Invalid signature.',
+			});
+		}
 
-    const payload: ResBody['body'] = JSON.parse(rawBody)
+		const payload: ResBody['body'] = JSON.parse(rawBody);
 
-    const {
-      meta: {
-        event_name: eventName,
-       
-      
-      },
-      data: {
-        id: orderId,
-        attributes: { identifier },
-      },
-    } = payload
+		const {
+			meta: { event_name: eventName },
+			data: { id: orderId, attributes: object },
+		} = payload;
 
-    if (eventName === 'order_created') {
-		console.log("yes")
-      // do something when a new purchase comes in
-    } else if (eventName === 'order_refunded') {
-      // do something when the purchase is refunded
-    } else if (eventName === 'subscription_created') {
-		console.log("yes")
-      // do somthing with any of the following events:
-      // - subscription_created
-      // - subscription_cancelled
-      // - subscription_resumed
-      // - subscription_expired
-      // - subscription_paused
-      // - subscription_unpaused
-      // - subscription_payment_failed
-      // - subscription_payment_success
-      // - subscription_payment_recovered
-      // - license_key_created
-    } else {
-      return res.status(400).json({
-        message: `Unknown event name: ${eventName} for order: ${identifier} (${orderId})`,
-      })
-    }
-  } catch (e: unknown) {
-    if (typeof e === 'string') {
-      return res.status(400).json({
-        message: `Webhook error: ${e}`,
-      })
-    }
-    if (e instanceof Error) {
-      return res.status(400).json({
-        message: `Webhook error: ${e.message}`,
-      })
-    }
-    throw e
-  }
+		if (eventName === 'order_created') {
+			console.log('yes');
+			// do something when a new purchase comes in
+		} else if (eventName === 'order_refunded') {
+			// do something when the purchase is refunded
+		} else if (eventName === 'subscription_updated') {
+			// do something when the purchase is refunded
+			const insertToProfile = async () => {
+				await supabase
+					.from('profile')
+					.update({
+						event: 'subscription.create',
+						status: 'reactivated',
+						amount: req.body.data.attributes.total,
+						currency: req.body.data.attributes.currency,
+						authorization_code: '',
+						next_payment_date: req.body.data.attributes.ends_at,
+						created_date_at: req.body.data.attributes.created_at,
+						exp_month: req.body.data.attributes.ends_at,
+						plan_name: req.body.data.attributes.product_name,
+						plan_interval: '',
+						signature: '',
+						bank: req.body.data.attributes.card_brand,
+						card_type: req.body.data.attributes.card_brand,
+						brand: req.body.data.attributes.card_brand,
+						subscription_code: '',
+					})
+					//This is the bridge between the response from paystack and our database (the email is the same in both)
+					.eq('email', req.body.data.attributes.user_email)
+					.select();
+				return res.status(200).json({
+					status: true,
+					message: 'Order updated successfully!',
+				});
+			};
+			insertToProfile();
+		} else if (eventName === 'subscription_created') {
+			console.log('yes');
+			// update the profile table when a "subscription.create" is available
+			const insertToProfile = async () => {
+				await supabase
+					.from('profile')
+					.update({
+						event: 'subscription.create',
+						status: 'active',
+						amount: req.body.data.attributes.total,
+						currency: req.body.data.attributes.currency,
+						authorization_code: '',
+						next_payment_date: req.body.data.attributes.ends_at,
+						created_date_at: req.body.data.attributes.created_at,
+						exp_month: req.body.data.attributes.ends_at,
+						plan_name: req.body.data.attributes.product_name,
+						plan_interval: '',
+						signature: '',
+						bank: req.body.data.attributes.card_brand,
+						card_type: req.body.data.attributes.card_brand,
+						brand: req.body.data.attributes.card_brand,
+						subscription_code: '',
+					})
+					//This is the bridge between the response from paystack and our database (the email is the same in both)
+					.eq('email', req.body.data.attributes.user_email)
+					.select();
+				return res.status(200).json({
+					status: true,
+					message: 'Order placed successfully!',
+				});
+			};
+			insertToProfile();
+			// do somthing with any of the following events:
+			// - subscription_created
+			// - subscription_cancelled
+			// - subscription_resumed
+			// - subscription_expired
+			// - subscription_paused
+			// - subscription_unpaused
+			// - subscription_payment_failed
+			// - subscription_payment_success
+			// - subscription_payment_recovered
+			// - license_key_created
+		} else {
+			return res.status(400).json({
+				message: `Unknown event name: ${eventName} for order:  (${orderId})`,
+			});
+		}
+	} catch (e: unknown) {
+		if (typeof e === 'string') {
+			return res.status(400).json({
+				message: `Webhook error: ${e}`,
+			});
+		}
+		if (e instanceof Error) {
+			return res.status(400).json({
+				message: `Webhook error: ${e.message}`,
+			});
+		}
+		throw e;
+	}
 
-  // if no errors occur, respond with a 200 success
-  res.send({ received: true })
+	// if no errors occur, respond with a 200 success
+	res.send({ received: true });
 }
