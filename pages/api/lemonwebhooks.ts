@@ -160,7 +160,7 @@ import crypto from 'crypto'
 export interface ResBody extends NextApiRequest {
   body: {
     meta: {
-      event_name: 'order_created' | 'order_refunded'
+      event_name: 'order_created' | 'order_refunded' |'subscription_created'
     
     }
     data: {
@@ -209,7 +209,7 @@ export default async function handler(req: ResBody, res: NextApiResponse) {
     const {
       meta: {
         event_name: eventName,
-        // userId is a custom checkout variable I am using
+       
       
       },
       data: {
