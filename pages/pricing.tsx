@@ -8,8 +8,7 @@ import { UserContext } from '../context/authContext';
 export default function Pricing() {
 	const user = useContext(UserContext);
 	const [isActive, setIsActive] = useState(1);
-	const [country, setCountry] = useState('');
-	const [priceLoading,setPriceLoading] = useState(true)
+	const [country, setCountry] = useState('Nigeria')
 
 	const setUserCountry = async () => {
 		// if (navigator) {
@@ -34,7 +33,6 @@ export default function Pricing() {
 			const response = await axios('http://ip-api.com/json/');
 			const { country } = response.data;
 			setCountry(country);
-			setPriceLoading(false)
 		} catch (error) {
 			console.log('an error occurred while trying to retrieve country');
 			setCountry('Nigeria');
@@ -169,8 +167,6 @@ export default function Pricing() {
 		{ id: 2, text: 'Bi-Annual' },
 		{ id: 3, text: 'Quaterly' },
 	];
-	if(priceLoading) return null
-
 	return (
 		<PricingWrapper>
 			<section className='pricing-text'>

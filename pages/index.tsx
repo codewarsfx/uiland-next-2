@@ -79,6 +79,7 @@ const Home = ({ screens }) => {
 					property='og:title'
 					content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
 				/>
+				<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
 				<meta
 					name='description'
 					content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
