@@ -13,7 +13,7 @@ export default function handler(req, res) {
 
 			
 			const hmac      = crypto.createHmac('sha256', secret);
-			const digest    = Buffer.from(hmac.update(req.rawBody).digest('hex'), 'utf8');
+			const digest    = Buffer.from(hmac.update(req.body).digest('hex'), 'utf8');
 			
 
 		console.log(digest);
