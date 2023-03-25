@@ -30,6 +30,7 @@ export interface ResBody extends NextApiRequest {
 	};
 }
 
+//custom config to disable body-parser
 export const config = {
 	api: {
 		bodyParser: false,
