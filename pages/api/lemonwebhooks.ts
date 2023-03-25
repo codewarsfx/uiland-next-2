@@ -43,7 +43,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		console.log(hash);
 		console.log('wow');
 		console.log(req.headers['x-signature']);
-
+		console.log('wow');
+		console.log(signature);
 		if (digest !== signature) {
 			return res.status(403).json({
 				message: 'Error Invalid Credentials',
