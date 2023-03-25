@@ -27,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		  message: 'Method not allowed',
 		})
 	  }
-	  
+
 	try {
 	
 
@@ -38,7 +38,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 
 			const buf = await buffer(req);
-			const rawBody = buf.toString('utf8');
+			const rawBody = JSON.parse(buf.toString());
 		
 			
 			const hmac      = crypto.createHmac('sha256', secret);
