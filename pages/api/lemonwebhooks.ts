@@ -25,6 +25,10 @@ export interface ResBody extends NextApiRequest {
 				product_name: string;
 				card_brand: string;
 				user_email: string;
+				renews_at:string;
+				urls:{
+					update_payment_method:string
+				}
 			};
 		};
 	};
@@ -92,8 +96,8 @@ export default async function handler(req: ResBody, res: NextApiResponse) {
 						created_date_at: data.created_at,
 						exp_month: data.ends_at,
 						plan_name: data.product_name,
-						plan_interval: '',
-						signature: '',
+						plan_interval: data.renews_at,
+						signature: data.urls.update_payment_method,
 						bank: data.card_brand,
 						card_type: data.card_brand,
 						brand: data.card_brand,
@@ -124,8 +128,8 @@ export default async function handler(req: ResBody, res: NextApiResponse) {
 						created_date_at: data.created_at,
 						exp_month: data.ends_at,
 						plan_name: data.product_name,
-						plan_interval: '',
-						signature: '',
+						plan_interval: data.renews_at,
+						signature: data.urls.update_payment_method,
 						bank: data.card_brand,
 						card_type: data.card_brand,
 						brand: data.card_brand,
