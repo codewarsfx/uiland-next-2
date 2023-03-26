@@ -188,7 +188,7 @@ const LandingPage = styled.div`
 		height: 50px;
 		width: 50px;
 		content: '';
-		background: white url(/assets/img/paystack.png);
+		background: white url(/assets/img/buycoins-logo.png);
 		background-repeat: no-repeat;
 		background-size: 60%;
 		border-radius: 50%;
@@ -202,7 +202,7 @@ const LandingPage = styled.div`
 		content: '';
 		position: absolute;
 		left: -31px;
-		background: white url(/assets/img/flutterwave.png);
+		background: white url(/assets/img/sendstack-logo.png);
 		background-repeat: no-repeat;
 		background-size: 77%;
 		border-radius: 50%;
@@ -215,7 +215,7 @@ const LandingPage = styled.div`
 		content: '';
 		position: absolute;
 		right: -31px;
-		background: white url(/assets/img/firstbank.png);
+		background: white url(/assets/img/roqqu-logo.png);
 		background-repeat: no-repeat;
 		background-size: 58%;
 		border-radius: 50%;
@@ -229,7 +229,7 @@ const LandingPage = styled.div`
 		content: '';
 		position: absolute;
 		bottom: -31px;
-		background: white url(/assets/img/airtel.png);
+		background: white url(/assets/img/jumia-logo.png);
 		background-repeat: no-repeat;
 		background-size: 58%;
 		border-radius: 50%;
@@ -242,7 +242,7 @@ const LandingPage = styled.div`
 		content: '';
 		position: absolute;
 		top: -31px;
-		background: white url(/assets/img/kuda.svg);
+		background: white url(/assets/img/chippercash-logo.png);
 		background-repeat: no-repeat;
 		background-size: 58%;
 		border-radius: 50%;
@@ -255,7 +255,7 @@ const LandingPage = styled.div`
 		content: '';
 		position: absolute;
 		left: -31px;
-		background: white url(/assets/img/okra.png);
+		background: white url(/assets/img/flutterwave-logo.png);
 		background-repeat: no-repeat;
 		background-size: 58%;
 		border-radius: 50%;

@@ -103,9 +103,9 @@ const PaystackPayment = ({ plan, country, toggle,period }) => {
 						</div>
 					) : (
 						<div>
-							<PaymentCta>
-							<a href={getLink(period)} className="lemonsqueezy-button" >Get Started</a><Script src="https://assets.lemonsqueezy.com/lemon.js" defer></Script>
-							</PaymentCta>
+							<a href={getLink(period)} className="lemonsqueezy-button" >	<PaymentCta>
+						Get Started<Script src="https://assets.lemonsqueezy.com/lemon.js" defer></Script>
+							</PaymentCta></a>
 						</div>
 					)}
 				</div>
