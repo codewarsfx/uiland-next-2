@@ -13,6 +13,7 @@ import { useRouter } from 'next/router';
 function PriceCard({
 	type,
 	price,
+	detail,
 	description,
 	title,
 	info1,
@@ -48,9 +49,11 @@ function PriceCard({
 			)}
 			<PriceCards>
 				<h3 className='price-card-type'>{type}</h3>
-				<h1 className='price-card-price'>{`${
+			<div className='price-card-price-header'>
+			<h1 className='price-card-price'>{`${
 					country === 'Nigeria' ? '₦' : '$'
 				}${price}`}</h1>
+				<p className='price-card-detail'>{detail}</p>	</div>	
 				<p className='price-card-description'>{description}</p>
 				<div className='price-card-points'>
 					<p className='price-point-title'>{title}</p>
@@ -148,6 +151,9 @@ const PriceCards = styled.div`
 		.price-card-description {
 			color: #fff;
 		}
+		.price-card-detail{
+			color: #fff;
+		}
 
 		${PaymentCta} {
 			color: black;
@@ -173,6 +179,18 @@ const PriceCards = styled.div`
 		color: #777;
 		margin: 0;
 		font-weight: 600;
+	}
+	.price-card-price-header{
+		display:flex;
+		flex-direction:row;
+		align-items:center;
+		gap:4px;
+	}
+	.price-card-detail {
+		font-size: 12px;
+		color: #121212;
+		margin: 0;
+		font-weight: 800;
 	}
 	.price-card-points {
 		margin: 1em 0;

@@ -47,37 +47,50 @@ export default function Pricing() {
 
 	const priceForCountry = (country, period) => {
 		const pricePerPeriod = {
-			Annual: country === 'Nigeria' ? 9000 : 48,
-			BiAnnual: country === 'Nigeria' ? 5000 : 22,
-			Quaterly: country === 'Nigeria' ? 2000 : 15,
+			Annual: country === 'Nigeria' ? '₦18000' : '$48',
+			BiAnnual: country === 'Nigeria' ? '₦12000' : '$36',
+			Quaterly: country === 'Nigeria' ? '₦9000' : '$24',
 		};
 
 		return pricePerPeriod[period];
+	};
+	country === 'Nigeria' ? '₦' : '$'
+	const monthlyPriceForCountry = (country, period) => {
+		const monthlyPricePerPeriod = {
+			Annual: country === 'Nigeria' ? 1500 : 4,
+			BiAnnual: country === 'Nigeria' ? 2000 : 6,
+			Quaterly: country === 'Nigeria' ? 3000 : 8,
+		};
+
+		return monthlyPricePerPeriod[period];
 	};
 
 	const Plan1 = [
 		{
 			type: 'Free',
 			price: '0',
-			description: 'per user/month billed annually',
-			title: 'For small teams',
-			info1: 'Browse 	All Screens Per Company',
+			description: 'Enjoy the freebies in this plan',
+			title: 'For Individuals',
+			info1: 'Browse 	30 Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
 			info4: 'Unlimited Single Downloads',
+			info5: 'Unlimited Copy Image to Figma',
 			planId: '',
 		},
 		{
 			type: 'Annual',
-			price: priceForCountry(country, 'Annual'),
-			description: 'per user/month billed annually',
-			title: 'For small teams',
+			price: monthlyPriceForCountry(country, 'Annual'),
+	
+	detail:"per month",		description: ` billed ${priceForCountry(country, 'Annual')} annually`,
+			title: 'For Individuals',
 			info1: 'Browse All Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
 			info4: 'Unlimited Single Downloads',
-			info5: 'Batch Downloads',
-			info6: 'Version Travel',
+			info5: 'Unlimited Copy Image to Figma',
+			info6: 'Batch Downloads',
+			info7: 'Version Travel',
 			planId: process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_ANNUALY,
 		},
 	];
@@ -86,26 +99,30 @@ export default function Pricing() {
 		{
 			type: 'Free',
 			price: '0',
-			description: 'per user/month billed bi-annually',
-			title: 'For small teams',
-			info1: 'Browse 	All	 Screens Per Company',
+			description: 'Enjoy the freebies in this plan',
+			title: 'For Individuals',
+			info1: 'Browse 	30	 Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
 			info4: 'Unlimited Single Downloads',
+			info5: 'Unlimited Copy Image to Figma',
 
 			planId: '',
 		},
 		{
 			type: 'BiAnnual',
-			price: priceForCountry(country, 'BiAnnual'),
-			description: 'per user/month billed bi-annually',
-			title: 'For small teams',
+			
+			price: monthlyPriceForCountry(country, 'BiAnnual'),
+			detail:"per month",
+			description: ` billed ${priceForCountry(country, 'BiAnnual')} bi-annually`,
+			title: 'For Individuals',
 			info1: 'Browse All Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
 			info4: 'Unlimited Single Downloads',
-			info5: 'Batch Downloads',
-			info6: 'Version Travel',
+			info5: 'Unlimited Copy Image to Figma',
+			info6: 'Batch Downloads',
+			info7: 'Version Travel',
 			planId: process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_BINUALLY,
 		},
 	];
@@ -113,25 +130,29 @@ export default function Pricing() {
 		{
 			type: 'Free',
 			price: '0',
-			description: 'per user/month billed quaterly',
-			title: 'For small teams',
+			description: 'Enjoy the freebies in this plan',
+			title: 'For Individuals',
 			info1: 'Browse 	All	 Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
 			info4: 'Unlimited Single Downloads',
+			info5: 'Unlimited Copy Image to Figma',
 			planId: '',
 		},
 		{
 			type: 'Quaterly',
-			price: priceForCountry(country, 'Quaterly'),
-			description: 'per user/month billed quaterly',
-			title: 'For small teams',
+			
+			price: monthlyPriceForCountry(country, 'Quaterly'),
+			detail:"per month",
+			description: ` billed ${priceForCountry(country, 'Quaterly')} quaterly`,
+			title: 'For Individuals',
 			info1: 'Browse All Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
 			info4: 'Unlimited Single Downloads',
-			info5: 'Batch Downloads',
-			info6: 'Version Travel',
+			info5: 'Unlimited Copy Image to Figma',
+			info6: 'Batch Downloads',
+			info7: 'Version Travel',
 			planId: process.env.NEXT_PUBLIC_PAYSTACK_PLAN_ID_QUATERLY,
 		},
 	];
@@ -224,6 +245,7 @@ export default function Pricing() {
 								key={id}
 								type={items.type}
 								price={items.price}
+								detail={items.detail}
 								description={items.description}
 								title={items.title}
 								info1={items.info1}
@@ -249,6 +271,7 @@ export default function Pricing() {
 								key={id}
 								type={items.type}
 								price={items.price}
+								detail={items.detail}
 								description={items.description}
 								title={items.title}
 								info1={items.info1}
@@ -274,6 +297,7 @@ export default function Pricing() {
 								key={id}
 								type={items.type}
 								price={items.price}
+								detail={items.detail}
 								description={items.description}
 								title={items.title}
 								info1={items.info1}
