@@ -136,7 +136,7 @@ export default function Pricing() {
 			price: '0',
 			description: 'Enjoy the freebies in this plan',
 			title: 'For Individuals',
-			info1: 'Browse 	All	 Screens Per Company',
+			info1: 'Browse 	30	 Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
 			info3: 'Unlimited Collections',
 			info4: 'Unlimited Single Downloads',
