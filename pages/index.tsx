@@ -17,11 +17,13 @@ import Modal from '../components/modal';
 import Redis from 'ioredis';
 import Tab from '../components/TabSection';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 const Home = ({ screens }) => {
 	const { filterTerm, filterName } = useContext(ScreensContext);
 	const user = useContext(UserContext);
 	const [result, setResult] = useState([]);
+	const router = useRouter();
 
 	/**
 	 *
@@ -70,6 +72,12 @@ const Home = ({ screens }) => {
 
 	//   },[])
 
+		//add canonical tag
+		const canonicalUrl = (
+			`https://uiland.design` + (router.asPath === '/' ? '' : router.asPath)
+		).split('?')[0];
+	
+
 	return (
 		<>
 			<Head>
@@ -85,6 +93,8 @@ const Home = ({ screens }) => {
 					content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
 				/>
 				<link rel='icon' href='/favicon.ico' />
+			
+	<link rel='canonical' href={canonicalUrl} key='canonical' />
 				{/* Open Graph / Facebook */}
 				<meta property='og:type' content='website' />
 
