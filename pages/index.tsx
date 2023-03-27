@@ -72,11 +72,10 @@ const Home = ({ screens }) => {
 
 	//   },[])
 
-		//add canonical tag
-		const canonicalUrl = (
-			`https://uiland.design` + (router.asPath === '/' ? '' : router.asPath)
-		).split('?')[0];
-	
+	//add canonical tag
+	const canonicalUrl = (
+		`https://uiland.design` + (router.asPath === '/' ? '' : router.asPath)
+	).split('?')[0];
 
 	return (
 		<>
@@ -87,14 +86,17 @@ const Home = ({ screens }) => {
 					property='og:title'
 					content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
 				/>
-				<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
+				<meta
+					http-equiv='Content-Security-Policy'
+					content='upgrade-insecure-requests'
+				/>
 				<meta
 					name='description'
 					content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
 				/>
 				<link rel='icon' href='/favicon.ico' />
-			
-	<link rel='canonical' href={canonicalUrl} key='canonical' />
+
+				<link rel='canonical' href={canonicalUrl} key='canonical' />
 				{/* Open Graph / Facebook */}
 				<meta property='og:type' content='website' />
 

@@ -14,22 +14,21 @@ type referenceObj = {
 	transaction: string;
 	trxref: string;
 };
-const PaystackPayment = ({ plan, country, toggle,period }) => {
+const PaystackPayment = ({ plan, country, toggle, period }) => {
 	const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_TEST_KEY;
 	const user = useContext(UserContext);
 	const router = useRouter();
 
 	const getLink = (period) => {
-		switch (period) { 
+		switch (period) {
 			case 'Annual':
-				return 'https://uiland.lemonsqueezy.com/checkout/buy/f0629080-64bc-4b7e-8a0a-4571eed6eb6b'
+				return 'https://uiland.lemonsqueezy.com/checkout/buy/f0629080-64bc-4b7e-8a0a-4571eed6eb6b';
 			case 'BiAnnual':
-				return 'https://uiland.lemonsqueezy.com/checkout/buy/2ec9e879-5b26-4b67-b3ce-15dadf9cc304'
+				return 'https://uiland.lemonsqueezy.com/checkout/buy/2ec9e879-5b26-4b67-b3ce-15dadf9cc304';
 			case 'Quaterly':
-				return 'https://uiland.lemonsqueezy.com/checkout/buy/b2412321-6b91-4081-a6e7-836d677d5c3e'
-
+				return 'https://uiland.lemonsqueezy.com/checkout/buy/b2412321-6b91-4081-a6e7-836d677d5c3e';
 		}
-	}
+	};
 
 	/**
  * @description returns the data to input state
@@ -84,8 +83,8 @@ const PaystackPayment = ({ plan, country, toggle,period }) => {
 	const submit = (e: { preventDefault: () => void }) => {
 		e.preventDefault();
 		if (!user) {
-			toggle()
-			return
+			toggle();
+			return;
 		}
 		initializePayment(onSuccess, onClose);
 	};
@@ -103,9 +102,16 @@ const PaystackPayment = ({ plan, country, toggle,period }) => {
 						</div>
 					) : (
 						<div>
-							<a href={getLink(period)} className="lemonsqueezy-button" >	<PaymentCta>
-						Get Started<Script src="https://assets.lemonsqueezy.com/lemon.js" defer></Script>
-							</PaymentCta></a>
+							<a href={getLink(period)} className='lemonsqueezy-button'>
+								{' '}
+								<PaymentCta>
+									Get Started
+									<Script
+										src='https://assets.lemonsqueezy.com/lemon.js'
+										defer
+									></Script>
+								</PaymentCta>
+							</a>
 						</div>
 					)}
 				</div>

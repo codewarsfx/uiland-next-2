@@ -25,10 +25,10 @@ export interface ResBody extends NextApiRequest {
 				product_name: string;
 				card_brand: string;
 				user_email: string;
-				renews_at:string;
-				urls:{
-					update_payment_method:string
-				}
+				renews_at: string;
+				urls: {
+					update_payment_method: string;
+				};
 			};
 		};
 	};

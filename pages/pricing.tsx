@@ -8,7 +8,7 @@ import { UserContext } from '../context/authContext';
 export default function Pricing() {
 	const user = useContext(UserContext);
 	const [isActive, setIsActive] = useState(1);
-	const [country, setCountry] = useState('Nigeria')
+	const [country, setCountry] = useState('Nigeria');
 
 	const setUserCountry = async () => {
 		// if (navigator) {
@@ -30,14 +30,15 @@ export default function Pricing() {
 		// 	});
 
 		try {
-			const response = await axios('https://ipinfo.io/json?token=92d047f347bbcf');
+			const response = await axios(
+				'https://ipinfo.io/json?token=92d047f347bbcf'
+			);
 			const { country } = response.data;
-			if (country == "NG") {
+			if (country == 'NG') {
 				setCountry('Nigeria');
 			} else {
 				setCountry(country);
 			}
-		
 		} catch (error) {
 			console.log('an error occurred while trying to retrieve country');
 			setCountry('Nigeria');
