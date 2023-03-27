@@ -49,11 +49,12 @@ function PriceCard({
 			)}
 			<PriceCards>
 				<h3 className='price-card-type'>{type}</h3>
-			<div className='price-card-price-header'>
-			<h1 className='price-card-price'>{`${
-					country === 'Nigeria' ? '₦' : '$'
-				}${price}`}</h1>
-				<p className='price-card-detail'>{detail}</p>	</div>	
+				<div className='price-card-price-header'>
+					<h1 className='price-card-price'>{`${
+						country === 'Nigeria' ? '₦' : '$'
+					}${price}`}</h1>
+					<p className='price-card-detail'>{detail}</p>{' '}
+				</div>
 				<p className='price-card-description'>{description}</p>
 				<div className='price-card-points'>
 					<p className='price-point-title'>{title}</p>
@@ -151,7 +152,7 @@ const PriceCards = styled.div`
 		.price-card-description {
 			color: #fff;
 		}
-		.price-card-detail{
+		.price-card-detail {
 			color: #fff;
 		}
 
@@ -180,11 +181,11 @@ const PriceCards = styled.div`
 		margin: 0;
 		font-weight: 600;
 	}
-	.price-card-price-header{
-		display:flex;
-		flex-direction:row;
-		align-items:center;
-		gap:4px;
+	.price-card-price-header {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 4px;
 	}
 	.price-card-detail {
 		font-size: 12px;

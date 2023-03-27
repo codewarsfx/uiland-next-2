@@ -54,7 +54,7 @@ export default function Pricing() {
 
 		return pricePerPeriod[period];
 	};
-	country === 'Nigeria' ? '₦' : '$'
+	country === 'Nigeria' ? '₦' : '$';
 	const monthlyPriceForCountry = (country, period) => {
 		const monthlyPricePerPeriod = {
 			Annual: country === 'Nigeria' ? 1500 : 4,
@@ -81,8 +81,9 @@ export default function Pricing() {
 		{
 			type: 'Annual',
 			price: monthlyPriceForCountry(country, 'Annual'),
-	
-	detail:"per month",		description: ` billed ${priceForCountry(country, 'Annual')} annually`,
+
+			detail: 'per month',
+			description: ` billed ${priceForCountry(country, 'Annual')} annually`,
 			title: 'For Individuals',
 			info1: 'Browse All Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
@@ -111,10 +112,13 @@ export default function Pricing() {
 		},
 		{
 			type: 'BiAnnual',
-			
+
 			price: monthlyPriceForCountry(country, 'BiAnnual'),
-			detail:"per month",
-			description: ` billed ${priceForCountry(country, 'BiAnnual')} bi-annually`,
+			detail: 'per month',
+			description: ` billed ${priceForCountry(
+				country,
+				'BiAnnual'
+			)} bi-annually`,
 			title: 'For Individuals',
 			info1: 'Browse All Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
@@ -141,9 +145,9 @@ export default function Pricing() {
 		},
 		{
 			type: 'Quaterly',
-			
+
 			price: monthlyPriceForCountry(country, 'Quaterly'),
-			detail:"per month",
+			detail: 'per month',
 			description: ` billed ${priceForCountry(country, 'Quaterly')} quaterly`,
 			title: 'For Individuals',
 			info1: 'Browse All Screens Per Company',
