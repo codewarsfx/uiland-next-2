@@ -7,7 +7,7 @@ function ImageCardInfo({ headerInfo, count, actualCount }) {
 		<>
 			<CardWrapper>
 				<ImageCardLogo>
-					<img src={headerInfo.logo} />
+					<img src={headerInfo.logo} alt={`${headerInfo.name} ui screens` }/>
 				</ImageCardLogo>
 				<Link href='/' passHref legacyBehavior>
 					<BackIcon>

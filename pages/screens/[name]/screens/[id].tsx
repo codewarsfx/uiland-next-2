@@ -303,15 +303,15 @@ const SinglePage = ({ screens }) => {
 			{/* for SEO */}
 
 			<Head>
-				<title>{headerInfo.name} app screens</title>
+				<title>{headerInfo.name} screenshots</title>
 				<meta
 					name='title'
 					property='og:title'
-					content={`${headerInfo.name} Android app screenshots`}
+					content={`${headerInfo.name} ui screenshots`}
 				/>
 				<meta
 					name='description'
-					content={`${headerInfo.name} Android app screenshots`}
+					content={`Discover latest mobile app ui inspirations and designs from comapnies and startups all over the world `}
 				/>
 				<link rel='icon' href='/favicon.ico' />
 				<link rel='canonical' href={canonicalUrl} key='canonical' />
@@ -332,7 +332,7 @@ const SinglePage = ({ screens }) => {
 				<meta
 					name='description'
 					property='og:description'
-					content={`screenshots of ${headerInfo.name} Android app`}
+					content={`${headerInfo.name} ui screenshots`}
 				/>
 				<meta property='og:site_name' content='uiland.design' />
 				<meta name='image' property='og:image' content={`${headerInfo.logo}`} />

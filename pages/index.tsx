@@ -84,15 +84,16 @@ const Home = ({ screens }) => {
 				<meta
 					name='title'
 					property='og:title'
-					content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
+					content='Discover Mobile Apps designs | Uiland - Library of Mobile UI design inspirations'
 				/>
-				<meta
+				{/* <meta
 					http-equiv='Content-Security-Policy'
 					content='upgrade-insecure-requests'
-				/>
+				/> */}
+				<meta name='keywords' content='ui design , web design, mobile design , inspiration, design inspiration, ui , ux ,behance, dribbble,design, digital design, inspiration, '/>
 				<meta
 					name='description'
-					content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
+					content='Browse Mobile Apps designs | Uiland - Library of Mobile UI design inspirations'
 				/>
 				<link rel='icon' href='/favicon.ico' />
 
@@ -105,7 +106,7 @@ const Home = ({ screens }) => {
 				<meta
 					name='description'
 					property='og:description'
-					content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
+					content='Browse Mobile Apps designs | Uiland - Library of Mobile UI design inspirations'
 				/>
 				<meta property='og:site_name' content='uiland.design' />
 				<meta
@@ -120,7 +121,7 @@ const Home = ({ screens }) => {
 				<meta property='twitter:title' content='uiland.design' />
 				<meta
 					property='twitter:description'
-					content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
+					content='Browse Mobile Apps designs | Uiland - Library of Mobile UI design inspirations'
 				/>
 				<meta
 					property='twitter:image'
