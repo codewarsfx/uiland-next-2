@@ -125,8 +125,6 @@ const SinglePage = ({ screens }) => {
 		userListRef.current.scrollIntoView({ behavior: 'smooth' });
 	};
 
-	console.log(filtered.length);
-
 	//This is used to track the number of times a user has visited the screen. The guide modal
 	//is displayed if the user is a first-time user.
 	useEffect(() => {

@@ -77,7 +77,6 @@ export default async function handler(req: ResBody, res: NextApiResponse) {
 		} = payload;
 
 		if (eventName === 'order_created') {
-			console.log('yes');
 			// do something when a new purchase comes in
 		} else if (eventName === 'order_refunded') {
 			// do something when the purchase is refunded
@@ -113,7 +112,6 @@ export default async function handler(req: ResBody, res: NextApiResponse) {
 			};
 			insertToProfile();
 		} else if (eventName === 'subscription_created') {
-			console.log('yes');
 			// update the profile table when a "subscription.create" is available
 			const insertToProfile = async () => {
 				await supabase

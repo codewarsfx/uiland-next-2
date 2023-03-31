@@ -3,20 +3,20 @@ import React from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 function Refund() {
-const router =useRouter()
+	const router = useRouter();
 
-		//add canonical tag
-		const canonicalUrl = (
-			`https://uiland.design` + (router.asPath === '/' ? '' : router.asPath)
-		).split('?')[0];
+	//add canonical tag
+	const canonicalUrl = (
+		`https://uiland.design` + (router.asPath === '/' ? '' : router.asPath)
+	).split('?')[0];
 	return (
 		<>
-		<Head>
+			<Head>
 				<title>Uiland Refund</title>
 				<meta
 					name='title'
 					property='og:title'
-					content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
+					content='Browse Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
 				/>
 				<meta
 					http-equiv='Content-Security-Policy'
@@ -24,7 +24,7 @@ const router =useRouter()
 				/>
 				<meta
 					name='description'
-					content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
+					content='Browse Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
 				/>
 				<link rel='icon' href='/favicon.ico' />
 
@@ -37,7 +37,7 @@ const router =useRouter()
 				<meta
 					name='description'
 					property='og:description'
-					content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
+					content='Browse Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
 				/>
 				<meta property='og:site_name' content='uiland.design' />
 				<meta
@@ -52,7 +52,7 @@ const router =useRouter()
 				<meta property='twitter:title' content='uiland.design' />
 				<meta
 					property='twitter:description'
-					content='Browse Mobile Apps designs | Uiland - The Africa’s largest mobile design reference library'
+					content='Browse Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
 				/>
 				<meta
 					property='twitter:image'

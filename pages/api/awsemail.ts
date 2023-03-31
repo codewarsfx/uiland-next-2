@@ -45,9 +45,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 	};
 
 	// Create the promise and SES service object
-	var sendPromise = new AWS.SES({ apiVersion: '2010-12-01',  accessKeyId: process.env.NEXT_PUBLIC_SES_ACCESS_SECRET,
-    secretAccessKey: process.env.NEXT_PUBLIC_SES_SECRET_ACCESS_SECRET,
-    region: 'us-west-2', })
+	var sendPromise = new AWS.SES({
+		apiVersion: '2010-12-01',
+		accessKeyId: process.env.NEXT_PUBLIC_SES_ACCESS_SECRET,
+		secretAccessKey: process.env.NEXT_PUBLIC_SES_SECRET_ACCESS_SECRET,
+		region: 'us-west-2',
+	})
 		.sendEmail(params)
 		.promise();
 

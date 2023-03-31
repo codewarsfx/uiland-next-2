@@ -90,7 +90,10 @@ const Home = ({ screens }) => {
 					http-equiv='Content-Security-Policy'
 					content='upgrade-insecure-requests'
 				/> */}
-				<meta name='keywords' content='ui design , web design, mobile design , inspiration, design inspiration, ui , ux ,behance, dribbble,design, digital design, inspiration, '/>
+				<meta
+					name='keywords'
+					content='ui design , web design, mobile design , inspiration, design inspiration, ui , ux ,behance, dribbble,design, digital design, inspiration, '
+				/>
 				<meta
 					name='description'
 					content='Browse Mobile Apps designs | Uiland - Library of Mobile UI design inspirations'
@@ -118,7 +121,10 @@ const Home = ({ screens }) => {
 				<meta property='twitter:card' content='summary_large_image' />
 				<meta property='twitter:url' content='https://uiland.design' />
 				<meta property='twitter:site' content='@uiland' />
-				<meta property='twitter:title' content='uiland.design' />
+				<meta
+					property='twitter:title'
+					content='Browse Mobile Apps designs | Uiland - Library of Mobile UI design inspirations'
+				/>
 				<meta
 					property='twitter:description'
 					content='Browse Mobile Apps designs | Uiland - Library of Mobile UI design inspirations'
