@@ -5,7 +5,7 @@ function CopyIcon({ copyImage, image }) {
 		<>
 			<DownloadWrapper onClick={() => copyImage(image)}>
 				<Title className='target' title='Copy Image'>
-					<img src='/assets/img/copy-icon2.svg' />
+					<img src='/assets/img/copy-icon2.svg' alt='copy icon' />
 				</Title>
 			</DownloadWrapper>
 		</>
