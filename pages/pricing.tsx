@@ -51,7 +51,7 @@ export default function Pricing() {
 		const pricePerPeriod = {
 			Annual: country === 'Nigeria' ? '₦18000' : '$48',
 			BiAnnual: country === 'Nigeria' ? '₦12000' : '$36',
-			Quaterly: country === 'Nigeria' ? '₦9000' : '$24',
+			Quarterly: country === 'Nigeria' ? '₦9000' : '$24',
 		};
 
 		return pricePerPeriod[period];
@@ -61,7 +61,7 @@ export default function Pricing() {
 		const monthlyPricePerPeriod = {
 			Annual: country === 'Nigeria' ? 1500 : 4,
 			BiAnnual: country === 'Nigeria' ? 2000 : 6,
-			Quaterly: country === 'Nigeria' ? 3000 : 8,
+			Quarterly: country === 'Nigeria' ? 3000 : 8,
 		};
 
 		return monthlyPricePerPeriod[period];
@@ -146,11 +146,11 @@ export default function Pricing() {
 			planId: '',
 		},
 		{
-			type: 'Quaterly',
+			type: 'Quarterly',
 
-			price: monthlyPriceForCountry(country, 'Quaterly'),
+			price: monthlyPriceForCountry(country, 'Quarterly'),
 			detail: 'per month',
-			description: ` billed ${priceForCountry(country, 'Quaterly')} quaterly`,
+			description: ` billed ${priceForCountry(country, 'Quarterly')} Quarterly`,
 			title: 'For Individuals',
 			info1: 'Browse All Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
@@ -198,7 +198,7 @@ export default function Pricing() {
 	const buttonDetails = [
 		{ id: 1, text: 'Annual' },
 		{ id: 2, text: 'Bi-Annual' },
-		{ id: 3, text: 'Quaterly' },
+		{ id: 3, text: 'Quarterly' },
 	];
 	//add canonical tag
 	const canonicalUrl = (
