@@ -15,7 +15,7 @@ function Terms() {
 				<meta
 					name='title'
 					property='og:title'
-					content='Browse Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
+					content='Discover African and International Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
 				/>
 				{/* <meta
 					http-equiv='Content-Security-Policy'
@@ -23,7 +23,7 @@ function Terms() {
 				/> */}
 				<meta
 					name='description'
-					content='Browse Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
+					content='Discover African and International Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
 				/>
 				<link rel='icon' href='/favicon.ico' />
 
@@ -36,7 +36,7 @@ function Terms() {
 				<meta
 					name='description'
 					property='og:description'
-					content='Browse Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
+					content='Discover African and International Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
 				/>
 				<meta property='og:site_name' content='uiland.design' />
 				<meta
@@ -51,7 +51,7 @@ function Terms() {
 				<meta property='twitter:title' content='uiland.design' />
 				<meta
 					property='twitter:description'
-					content='Browse Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
+					content='Discover African and International Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
 				/>
 				<meta
 					property='twitter:image'

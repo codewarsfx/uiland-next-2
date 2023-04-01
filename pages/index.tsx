@@ -84,7 +84,7 @@ const Home = ({ screens }) => {
 				<meta
 					name='title'
 					property='og:title'
-					content='Discover Mobile Apps designs | Uiland - Library of Mobile UI design inspirations'
+					content='Discover African and International Mobile Apps designs | Uiland - Library of Mobile UI design inspirations'
 				/>
 				{/* <meta
 					http-equiv='Content-Security-Policy'
@@ -92,11 +92,11 @@ const Home = ({ screens }) => {
 				/> */}
 				<meta
 					name='keywords'
-					content='ui design , web design, mobile design , inspiration, design inspiration, ui , ux ,behance, dribbble,design, digital design, inspiration, '
+					content='ui design , web design, mobile design ,nigeria, africa, inspiration, design inspiration, ui , ux ,behance, dribbble,design, digital design, inspiration, '
 				/>
 				<meta
 					name='description'
-					content='Browse Mobile Apps designs | Uiland - Library of Mobile UI design inspirations'
+					content='Discover African and International Mobile Apps designs | Uiland - Library of Mobile UI design inspirations'
 				/>
 				<link rel='icon' href='/favicon.ico' />
 
@@ -109,7 +109,7 @@ const Home = ({ screens }) => {
 				<meta
 					name='description'
 					property='og:description'
-					content='Browse Mobile Apps designs | Uiland - Library of Mobile UI design inspirations'
+					content='Discover African and International Mobile Apps designs | Uiland - Library of Mobile UI design inspirations'
 				/>
 				<meta property='og:site_name' content='uiland.design' />
 				<meta
@@ -123,11 +123,11 @@ const Home = ({ screens }) => {
 				<meta property='twitter:site' content='@uiland' />
 				<meta
 					property='twitter:title'
-					content='Browse Mobile Apps designs | Uiland - Library of Mobile UI design inspirations'
+					content='Discover African and International Mobile Apps designs | Uiland - Library of Mobile UI design inspirations'
 				/>
 				<meta
 					property='twitter:description'
-					content='Browse Mobile Apps designs | Uiland - Library of Mobile UI design inspirations'
+					content='Discover African and International Mobile Apps designs | Uiland - Library of Mobile UI design inspirations'
 				/>
 				<meta
 					property='twitter:image'
