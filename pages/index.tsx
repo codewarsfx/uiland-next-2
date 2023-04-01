@@ -92,7 +92,7 @@ const Home = ({ screens }) => {
 				/> */}
 				<meta
 					name='keywords'
-					content='ui design , web design, mobile design ,nigeria, africa, inspiration, design inspiration, ui , ux ,behance, dribbble,design, digital design, inspiration, '
+					content='ui design , web design, mobile design ,nigeria, africa,international, inspiration, design inspiration, ui , ux ,behance, dribbble,design, digital design, inspiration, '
 				/>
 				<meta
 					name='description'
