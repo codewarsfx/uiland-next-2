@@ -301,7 +301,7 @@ const SinglePage = ({ screens }) => {
 			{/* for SEO */}
 
 			<Head>
-				<title>{headerInfo.name} screenshots</title>
+				<title>{headerInfo.name} app screens</title>
 				<meta
 					name='title'
 					property='og:title'
