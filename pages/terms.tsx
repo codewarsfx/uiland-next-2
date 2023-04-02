@@ -4,10 +4,10 @@ import React from 'react';
 import styled from 'styled-components';
 function Terms() {
 	const router = useRouter();
-		//add canonical tag
-		const canonicalUrl = (
-			`https://uiland.design` + (router.asPath === '/' ? '' : router.asPath)
-		).split('?')[0];
+	//add canonical tag
+	const canonicalUrl = (
+		`https://uiland.design` + (router.asPath === '/' ? '' : router.asPath)
+	).split('?')[0];
 	return (
 		<>
 			<Head>

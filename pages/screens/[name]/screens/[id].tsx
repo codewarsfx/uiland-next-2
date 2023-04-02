@@ -42,6 +42,7 @@ import withPopContext from '../../../../HOC/withPopContext';
 import Redis from 'ioredis';
 import DownloadIcon from '../../../../components/DownloadIcon';
 import CopyIcon from '../../../../components/CopyIcon';
+import Tooltip from '../../../../components/Tooltip';
 
 const SinglePage = ({ screens }) => {
 	const {
@@ -100,6 +101,7 @@ const SinglePage = ({ screens }) => {
 	const [getPeriod, setGetPeriod] = useState([]);
 	// The back-to-top button is hidden at the beginning
 	const [showButton, setShowButton] = useState(false);
+	const [revealTooltip, setRevealTooltip] = useState<number>(0);
 	const { openNewsLetter, setOpenNewsLetter } = useContext(PopContext);
 	const userListRef = useRef(null);
 
@@ -295,6 +297,16 @@ const SinglePage = ({ screens }) => {
 
 	if (!headerInfo) {
 		return;
+	}
+
+	//show tooltip when mouse is on the component
+	function showTooltip(id) {
+		setRevealTooltip(id);
+	}
+
+	//hide tooltip when mouse is removed from it
+	function hideTooltip() {
+		setRevealTooltip(0);
 	}
 	return (
 		<>
@@ -562,7 +574,10 @@ const SinglePage = ({ screens }) => {
 
 				{filtered?.map((data) => (
 					<ScreenShotContent key={data.id}>
-						<ScreenshotContainer>
+						<ScreenshotContainer
+							onMouseEnter={() => showTooltip(data.id)}
+							onMouseLeave={hideTooltip}
+						>
 							<Image
 								src={data.url}
 								alt={`Screenshots of ${headerInfo.name} App`}
@@ -575,6 +590,7 @@ const SinglePage = ({ screens }) => {
 						</ScreenshotContainer>
 
 						<SecondRow>
+							{revealTooltip === data.id && <Tooltip />}
 							{getId.includes(data.id) ? (
 								<DeleteIcon
 									deleteIndividualBookmark={deleteIndividualBookmark}
@@ -841,6 +857,7 @@ const SecondRow = styled.div`
 	align-items: center;
 	background: rgb(0 0 0 / 9%);
 	border-radius: 28px;
+	position: relative;
 `;
 const Input = styled.input.attrs((props) => ({}))`
 	color: black;
