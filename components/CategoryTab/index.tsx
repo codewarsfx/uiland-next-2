@@ -53,6 +53,30 @@ const CategoryTabBar = () => {
 			status: '',
 			id: 8,
 		},
+		{
+			category: 'Utilities',
+			categoryStatus: 'Utilities',
+			status: '',
+			id: 9,
+		},
+		{
+			category: 'Education',
+			categoryStatus: 'Education',
+			status: '',
+			id: 10,
+		},
+		{
+			category: 'Lifestyle',
+			categoryStatus: 'Lifestyle',
+			status: '',
+			id: 11,
+		},
+		{
+			category: 'Communication',
+			categoryStatus: 'Communication',
+			status: '',
+			id: 12,
+		},
 	];
 
 	return (
