@@ -49,9 +49,9 @@ export default function Pricing() {
 
 	const priceForCountry = (country, period) => {
 		const pricePerPeriod = {
-			Annual: country === 'Nigeria' ? '₦18000' : '$48',
-			BiAnnual: country === 'Nigeria' ? '₦12000' : '$36',
-			Quarterly: country === 'Nigeria' ? '₦9000' : '$24',
+			Annual: country === 'Nigeria' ? '₦12000' : '$48',
+			BiAnnual: country === 'Nigeria' ? '₦9000' : '$30',
+			Quarterly: country === 'Nigeria' ? '₦6000' : '$21',
 		};
 
 		return pricePerPeriod[period];
@@ -59,9 +59,9 @@ export default function Pricing() {
 	country === 'Nigeria' ? '₦' : '$';
 	const monthlyPriceForCountry = (country, period) => {
 		const monthlyPricePerPeriod = {
-			Annual: country === 'Nigeria' ? 1500 : 4,
-			BiAnnual: country === 'Nigeria' ? 2000 : 6,
-			Quarterly: country === 'Nigeria' ? 3000 : 8,
+			Annual: country === 'Nigeria' ? 1000 : 4,
+			BiAnnual: country === 'Nigeria' ? 1500 : 5,
+			Quarterly: country === 'Nigeria' ? 2000 : 7,
 		};
 
 		return monthlyPricePerPeriod[period];

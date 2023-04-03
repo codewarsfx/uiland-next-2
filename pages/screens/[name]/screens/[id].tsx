@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useEffect, useState, useContext, useRef } from 'react';
 import Image from 'next/image';
 import { BASE_IMAGE } from '../../../../utils/base64Image';
 //Third party libraries
@@ -32,11 +33,11 @@ import {
 	getAllScreens,
 	getScreensById,
 	getScreensByIdCount,
-	getRange,
+	getRange,getAllScreensCount
 } from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps, GetServerSideProps } from 'next';
 
-import { useEffect, useState, useContext, useRef } from 'react';
+
 import NewsLetter from '../../../../components/NewsLetter';
 import withPopContext from '../../../../HOC/withPopContext';
 import Redis from 'ioredis';
@@ -96,6 +97,8 @@ const SinglePage = ({ screens }) => {
 	const [active, setActive] = useState<number>(1);
 
 	const [perPage, setPerPage] = useState<number>(20);
+
+	const[viewMoreData,setViewMoreData]=useState([])
 
 	const [actualCount, setActualCount] = useState<number>(0);
 	const [getPeriod, setGetPeriod] = useState([]);
@@ -281,6 +284,32 @@ const SinglePage = ({ screens }) => {
 		//adding this dependency works for now
 	}, [timeHost]);
 
+
+//get view more screens 
+useEffect(()=>{
+
+	async function viewMore(){
+		const data =await getAllScreens()
+		const count= await getAllScreensCount()
+		console.log("dope",data)
+		setViewMoreData(data)
+		const randomNumber=Math.floor(Math.random()*count)
+		const randomNumber2=Math.floor(Math.random()*count)
+		
+		// console.log("dopse",viewMoreData)
+         viewMoreData[0]=viewMoreData[randomNumber]
+	
+         viewMoreData[1]=viewMoreData[randomNumber2]
+	
+
+// [ viewMoreData[0], viewMoreData[Math.floor(Math.random()*count)]]=[ viewMoreData[Math.floor(Math.random()*count)], viewMoreData[0]]
+// [ viewMoreData[1], viewMoreData[Math.floor(Math.random()*count)]]=[ viewMoreData[Math.floor(Math.random()*count)], viewMoreData[1]]
+		//  console.log("yes",viewMoreData)
+	}
+  viewMore()
+},[])
+
+
 	// 	useEffect(()=>{
 	// 	async	function yes(){
 	// const ed= await getVersion(router.query.id)
@@ -308,6 +337,9 @@ const SinglePage = ({ screens }) => {
 	function hideTooltip() {
 		setRevealTooltip(0);
 	}
+
+
+
 	return (
 		<>
 			{/* for SEO */}
