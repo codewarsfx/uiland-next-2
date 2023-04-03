@@ -8,7 +8,7 @@ export const PopContextProvider = ({ children }) => {
 	useEffect(() => {
 		setTimeout(() => {
 			setOpenNewsLetter(true);
-		}, 15000);
+		}, 150000);
 	}, []);
 
 	return (
