@@ -77,8 +77,8 @@ return count;
 
 //get individual screens of the newest version content
 
-export async function getScreensById(id, page, query) {
-	let limit = 19;
+export async function getScreensById(id, page, query,country) {
+	let limit = country==='NG'? 19: 29;
 	let limitMaxRange = page * limit;
 	let limitMinRange = page * limit - limit;
 

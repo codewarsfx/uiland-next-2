@@ -3,49 +3,50 @@ import { useContext, useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 import PriceCard from '../components/PriceCard';
-import { UserContext } from '../context/authContext';
+import { UserContext, UserCountryContext } from '../context/authContext';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 export default function Pricing() {
 	const user = useContext(UserContext);
+	const country = useContext(UserCountryContext);
 	const [isActive, setIsActive] = useState(1);
-	const [country, setCountry] = useState('Nigeria');
+
 	const router = useRouter();
-	const setUserCountry = async () => {
-		// if (navigator) {
-		// 	let latitude, longitude;
-		// 	navigator.geolocation.getCurrentPosition(async function (position) {
-		// 		latitude = position.coords.latitude;
-		// 		longitude = position.coords.longitude;
-		// 		try {
-		// 			const response = await axios(
-		// 				`http://api.geonames.org/countryCodeJSON?lat=${latitude}&lng=${longitude}&username=codewarsfx`
-		// 			);
+	// const setUserCountry = async () => {
+	// 	// if (navigator) {
+	// 	// 	let latitude, longitude;
+	// 	// 	navigator.geolocation.getCurrentPosition(async function (position) {
+	// 	// 		latitude = position.coords.latitude;
+	// 	// 		longitude = position.coords.longitude;
+	// 	// 		try {
+	// 	// 			const response = await axios(
+	// 	// 				`http://api.geonames.org/countryCodeJSON?lat=${latitude}&lng=${longitude}&username=codewarsfx`
+	// 	// 			);
 
-		// 			if (response) {
-		// 				// setCountry(response.data.countryName);
-		// 			}
-		// 		} catch (error) {
-		// 			console.log('an error occurred while trying to retrieve country');
-		// 		}
-		// 	});
+	// 	// 			if (response) {
+	// 	// 				// setCountry(response.data.countryName);
+	// 	// 			}
+	// 	// 		} catch (error) {
+	// 	// 			console.log('an error occurred while trying to retrieve country');
+	// 	// 		}
+	// 	// 	});
 
-		try {
-			const response = await axios(
-				'https://ipinfo.io/json?token=92d047f347bbcf'
-			);
-			const { country } = response.data;
-			if (country == 'NG') {
-				setCountry('Nigeria');
-			} else {
-				setCountry(country);
-			}
-		} catch (error) {
-			console.log('an error occurred while trying to retrieve country');
-			setCountry('Nigeria');
-		}
-	};
+	// 	try {
+	// 		const response = await axios(
+	// 			'https://ipinfo.io/json?token=92d047f347bbcf'
+	// 		);
+	// 		const { country } = response.data;
+	// 		if (country == 'NG') {
+	// 			setCountry('Nigeria');
+	// 		} else {
+	// 			setCountry(country);
+	// 		}
+	// 	} catch (error) {
+	// 		console.log('an error occurred while trying to retrieve country');
+	// 		setCountry('Nigeria');
+	// 	}
+	// };
 
 	const priceForCountry = (country, period) => {
 		const pricePerPeriod = {
@@ -192,7 +193,7 @@ export default function Pricing() {
 		// 	console.log(country);
 		// }
 		//get user Location
-		setUserCountry();
+		// setUserCountry();
 	}, []);
 
 	const buttonDetails = [

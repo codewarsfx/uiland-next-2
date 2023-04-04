@@ -44,6 +44,7 @@ import Redis from 'ioredis';
 import DownloadIcon from '../../../../components/DownloadIcon';
 import CopyIcon from '../../../../components/CopyIcon';
 import Tooltip from '../../../../components/Tooltip';
+import axios from 'axios';
 
 const SinglePage = ({ screens }) => {
 	const {
@@ -638,25 +639,11 @@ useEffect(()=>{
 					</ScreenShotContent>
 				))}
 			</ElementsInCategoryContainer>
-			{!payingbanner && (
-				<SubscribeBanner>
-					<ButtonWrapper onClick={handleClickSubscribeButton}>
-						<Button type={buttonTypes.modal}>
-							Subscribe to View All Screens
-						</Button>
-					</ButtonWrapper>
-					<GridBackground>
-						<img src='/assets/img/grid.svg' alt='grid' />
-					</GridBackground>
-					<Cloud></Cloud>
-				</SubscribeBanner>
-			)}
 			<Toast
 				Progress={Progress}
 				pendingText={toastPendingText}
 				successText={toastSuccessText}
 			/>
-
 			<ReactPaginate
 				marginPagesDisplayed={5}
 				pageRangeDisplayed={5}
@@ -1053,43 +1040,51 @@ export const getServerSideProps: GetServerSideProps = async ({
 	query,
 	params,
 }) => {
+	const response = await axios(
+		'https://ipinfo.io/json?token=92d047f347bbcf'
+	);
+	const { country } = response.data;
 	let screens;
 	const page = query.page || 1;
 
+
+
 	const completeID = params.id + page.toString() + query.version;
 
-	const screensCacheObject = {};
+	// const screensCacheObject = {};
 
-	const client = new Redis(process.env.REDIS_URL); //get redis instance
+	// const client = new Redis(process.env.REDIS_URL); //get redis instance
 
-	const CachedResults = JSON.parse(await client.get('screensCachedByID')); //get  screens data
+	// const CachedResults = JSON.parse(await client.get('screensCachedByID')); //get  screens data
+	screens = await getScreensById(params.id, page, query,'jj')
+	// if (!CachedResults) {
+	// 	screens = await getScreensById(params.id, page, query); // if there are no cached results retrieve from supabase
+	// 	screensCacheObject[completeID] = screens; //store cached results to instance... the to differentiate different screens for the different pages a unique identifier using the
+	// 	// screensid, page number and screens version is used. the structure of the data in upstach would be as follows
 
-	if (!CachedResults) {
-		screens = await getScreensById(params.id, page, query); // if there are no cached results retrieve from supabase
-		screensCacheObject[completeID] = screens; //store cached results to instance... the to differentiate different screens for the different pages a unique identifier using the
-		// screensid, page number and screens version is used. the structure of the data in upstach would be as follows
+	// 	// {
+	// 	// 	screensCachedByID : screens[]
+	// 	// }
 
-		// {
-		// 	screensCachedByID : screens[]
-		// }
+	// 	client.set(
+	// 		'screensCachedByID',
+	// 		JSON.stringify(screensCacheObject),
+	// 		'EX',
+	// 		3600
+	// 	);
+	// 	console.log('read from supabase');
+	// } else if (completeID in CachedResults) {
+	// 	// if cache already exists fetch the screens for that unique identifier built from the screen identity, page number and screen version
+	// 	screens = CachedResults[completeID];
+	// 	console.log('read from Redis cache');
+	// } else if (CachedResults && !(completeID in CachedResults)) {
+	// 	screens = await getScreensById(params.id, page, query);
+	// 	CachedResults[completeID] = screens;
+	// 	client.set('screensCachedByID', JSON.stringify(CachedResults), 'EX', 3600);
+	// 	console.log('read from supabase');
+	// }
 
-		client.set(
-			'screensCachedByID',
-			JSON.stringify(screensCacheObject),
-			'EX',
-			3600
-		);
-		console.log('read from supabase');
-	} else if (completeID in CachedResults) {
-		// if cache already exists fetch the screens for that unique identifier built from the screen identity, page number and screen version
-		screens = CachedResults[completeID];
-		console.log('read from Redis cache');
-	} else if (CachedResults && !(completeID in CachedResults)) {
-		screens = await getScreensById(params.id, page, query);
-		CachedResults[completeID] = screens;
-		client.set('screensCachedByID', JSON.stringify(CachedResults), 'EX', 3600);
-		console.log('read from supabase');
-	}
+
 
 	return {
 		props: {
