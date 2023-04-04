@@ -1,8 +1,70 @@
+import Head from 'next/head';
 import React from 'react';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 function Refund() {
+	const router = useRouter();
+
+	//add canonical tag
+	const canonicalUrl = (
+		`https://uiland.design` + (router.asPath === '/' ? '' : router.asPath)
+	).split('?')[0];
 	return (
 		<>
+			<Head>
+				<title>Uiland Refund</title>
+				<meta
+					name='title'
+					property='og:title'
+					content='Discover African and International Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
+				/>
+				<meta
+					http-equiv='Content-Security-Policy'
+					content='upgrade-insecure-requests'
+				/>
+				<meta
+					name='description'
+					content='Discover African and International Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
+				/>
+				<link rel='icon' href='/favicon.ico' />
+
+				<link rel='canonical' href={canonicalUrl} key='canonical' />
+				{/* Open Graph / Facebook */}
+				<meta property='og:type' content='website' />
+
+				<meta property='og:url' content='https://uiland.design' />
+				<meta property='og:title' content='uiland.design' />
+				<meta
+					name='description'
+					property='og:description'
+					content='Discover African and International Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
+				/>
+				<meta property='og:site_name' content='uiland.design' />
+				<meta
+					name='image'
+					property='og:image'
+					content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG'
+				/>
+				{/* Twitter */}
+				<meta property='twitter:card' content='summary_large_image' />
+				<meta property='twitter:url' content='https://uiland.design' />
+				<meta property='twitter:site' content='@uiland' />
+				<meta property='twitter:title' content='uiland.design' />
+				<meta
+					property='twitter:description'
+					content='Discover African and International Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
+				/>
+				<meta
+					property='twitter:image'
+					content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG'
+				/>
+				<meta name='next-head-count' content='23' />
+				<meta
+					name='google-site-verification'
+					content='ODqtX_v3ldmmo5AB7fzcCJtP6IXdY_RDDeCK29OG6qs'
+				/>
+			</Head>
+
 			<RefundComponent>
 				<RefundWrapper>
 					<div>

@@ -4,12 +4,14 @@ import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PriceCard from '../components/PriceCard';
 import { UserContext } from '../context/authContext';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 export default function Pricing() {
 	const user = useContext(UserContext);
 	const [isActive, setIsActive] = useState(1);
 	const [country, setCountry] = useState('Nigeria');
-
+	const router = useRouter();
 	const setUserCountry = async () => {
 		// if (navigator) {
 		// 	let latitude, longitude;
@@ -47,9 +49,9 @@ export default function Pricing() {
 
 	const priceForCountry = (country, period) => {
 		const pricePerPeriod = {
-			Annual: country === 'Nigeria' ? '₦18000' : '$48',
-			BiAnnual: country === 'Nigeria' ? '₦12000' : '$36',
-			Quaterly: country === 'Nigeria' ? '₦9000' : '$24',
+			Annual: country === 'Nigeria' ? '₦12000' : '$48',
+			BiAnnual: country === 'Nigeria' ? '₦9000' : '$30',
+			Quarterly: country === 'Nigeria' ? '₦6000' : '$21',
 		};
 
 		return pricePerPeriod[period];
@@ -57,9 +59,9 @@ export default function Pricing() {
 	country === 'Nigeria' ? '₦' : '$';
 	const monthlyPriceForCountry = (country, period) => {
 		const monthlyPricePerPeriod = {
-			Annual: country === 'Nigeria' ? 1500 : 4,
-			BiAnnual: country === 'Nigeria' ? 2000 : 6,
-			Quaterly: country === 'Nigeria' ? 3000 : 8,
+			Annual: country === 'Nigeria' ? 1000 : 4,
+			BiAnnual: country === 'Nigeria' ? 1500 : 5,
+			Quarterly: country === 'Nigeria' ? 2000 : 7,
 		};
 
 		return monthlyPricePerPeriod[period];
@@ -144,11 +146,11 @@ export default function Pricing() {
 			planId: '',
 		},
 		{
-			type: 'Quaterly',
+			type: 'Quarterly',
 
-			price: monthlyPriceForCountry(country, 'Quaterly'),
+			price: monthlyPriceForCountry(country, 'Quarterly'),
 			detail: 'per month',
-			description: ` billed ${priceForCountry(country, 'Quaterly')} quaterly`,
+			description: ` billed ${priceForCountry(country, 'Quarterly')} Quarterly`,
 			title: 'For Individuals',
 			info1: 'Browse All Screens Per Company',
 			info2: 'Unlimited Filter and Search results',
@@ -196,35 +198,94 @@ export default function Pricing() {
 	const buttonDetails = [
 		{ id: 1, text: 'Annual' },
 		{ id: 2, text: 'Bi-Annual' },
-		{ id: 3, text: 'Quaterly' },
+		{ id: 3, text: 'Quarterly' },
 	];
+	//add canonical tag
+	const canonicalUrl = (
+		`https://uiland.design` + (router.asPath === '/' ? '' : router.asPath)
+	).split('?')[0];
 	return (
-		<PricingWrapper>
-			<section className='pricing-text'>
-				<h1 className='pricing-text-primary'>Get Inspired by UI designs</h1>
-				<p className='pricing-text-sec'>
-					Designed to make your design journey easier <br />
-					Start today
-				</p>
-			</section>
-			<section className='price-tabs'>
-				{buttonDetails.map((details) => {
-					return (
-						<button
-							onClick={() => setIsActive(details.id)}
-							key={details.id}
-							className={`price-btn price-btn--${
-								isActive === details.id ? 'active' : ''
-							}`}
-						>
-							{details.text}
-						</button>
-					);
-				})}
-			</section>
-			<section className='pricing-text pricing-text--description'>
-				<h3>
-					{/* For subscribers outside Nigeria , please check the{' '}
+		<>
+			<Head>
+				<title>Uiland Pricing</title>
+				<meta
+					name='title'
+					property='og:title'
+					content='Discover African and International Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
+				/>
+				{/* <meta
+					http-equiv='Content-Security-Policy'
+					content='upgrade-insecure-requests'
+				/> */}
+				<meta
+					name='description'
+					content='Discover African and International Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
+				/>
+				<link rel='icon' href='/favicon.ico' />
+
+				<link rel='canonical' href={canonicalUrl} key='canonical' />
+				{/* Open Graph / Facebook */}
+				<meta property='og:type' content='website' />
+
+				<meta property='og:url' content='https://uiland.design' />
+				<meta property='og:title' content='uiland.design' />
+				<meta
+					name='description'
+					property='og:description'
+					content='Discover African and International Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
+				/>
+				<meta property='og:site_name' content='uiland.design' />
+				<meta
+					name='image'
+					property='og:image'
+					content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG'
+				/>
+				{/* Twitter */}
+				<meta property='twitter:card' content='summary_large_image' />
+				<meta property='twitter:url' content='https://uiland.design' />
+				<meta property='twitter:site' content='@uiland' />
+				<meta property='twitter:title' content='uiland.design' />
+				<meta
+					property='twitter:description'
+					content='Discover African and International Mobile Apps designs | Uiland - Africa’s largest mobile design reference library'
+				/>
+				<meta
+					property='twitter:image'
+					content='https://epcjufipobybxdmcqjgb.supabase.co/storage/v1/object/public/uiland-store/uiland-capture2.PNG'
+				/>
+				<meta name='next-head-count' content='23' />
+				<meta
+					name='google-site-verification'
+					content='ODqtX_v3ldmmo5AB7fzcCJtP6IXdY_RDDeCK29OG6qs'
+				/>
+			</Head>
+
+			<PricingWrapper>
+				<section className='pricing-text'>
+					<h1 className='pricing-text-primary'>Get Inspired by UI designs</h1>
+					<p className='pricing-text-sec'>
+						Designed to make your design journey easier <br />
+						Start today
+					</p>
+				</section>
+				<section className='price-tabs'>
+					{buttonDetails.map((details) => {
+						return (
+							<button
+								onClick={() => setIsActive(details.id)}
+								key={details.id}
+								className={`price-btn price-btn--${
+									isActive === details.id ? 'active' : ''
+								}`}
+							>
+								{details.text}
+							</button>
+						);
+					})}
+				</section>
+				<section className='pricing-text pricing-text--description'>
+					<h3>
+						{/* For subscribers outside Nigeria , please check the{' '}
 					<a
 						href='https://www.cbn.gov.ng/rates/ExchRateByCurrency.asp'
 						style={{ textDecoration: 'underline', textAlign: 'center' }}
@@ -233,91 +294,92 @@ export default function Pricing() {
 					>
 						Official Central Bank of Nigeria Exchange Rates
 					</a> */}
-					{/* If Uiland doesn&lsquo;t help you in your design process, just tell us
+						{/* If Uiland doesn&lsquo;t help you in your design process, just tell us
 					and we&lsquo;ll refund your money in full&#128157; */}
-				</h3>
-			</section>
-			<section className='price-cards'>
-				<section
-					className={`price-cards-annual price-card-annual--${
-						isActive === 1 ? 'active' : ''
-					}`}
-				>
-					{Plan1.map((items, id) => {
-						return (
-							<PriceCard
-								key={id}
-								type={items.type}
-								price={items.price}
-								detail={items.detail}
-								description={items.description}
-								title={items.title}
-								info1={items.info1}
-								info2={items.info2}
-								info3={items.info3}
-								info4={items.info4}
-								info5={items.info5}
-								info6={items.info6}
-								planId={items.planId}
-								country={country}
-							/>
-						);
-					})}
+					</h3>
 				</section>
-				<section
-					className={`price-cards-annual price-card-annual--${
-						isActive === 2 ? 'active' : ''
-					}`}
-				>
-					{Plan2.map((items, id) => {
-						return (
-							<PriceCard
-								key={id}
-								type={items.type}
-								price={items.price}
-								detail={items.detail}
-								description={items.description}
-								title={items.title}
-								info1={items.info1}
-								info2={items.info2}
-								info3={items.info3}
-								info4={items.info4}
-								info5={items.info5}
-								info6={items.info6}
-								planId={items.planId}
-								country={country}
-							/>
-						);
-					})}
+				<section className='price-cards'>
+					<section
+						className={`price-cards-annual price-card-annual--${
+							isActive === 1 ? 'active' : ''
+						}`}
+					>
+						{Plan1.map((items, id) => {
+							return (
+								<PriceCard
+									key={id}
+									type={items.type}
+									price={items.price}
+									detail={items.detail}
+									description={items.description}
+									title={items.title}
+									info1={items.info1}
+									info2={items.info2}
+									info3={items.info3}
+									info4={items.info4}
+									info5={items.info5}
+									info6={items.info6}
+									planId={items.planId}
+									country={country}
+								/>
+							);
+						})}
+					</section>
+					<section
+						className={`price-cards-annual price-card-annual--${
+							isActive === 2 ? 'active' : ''
+						}`}
+					>
+						{Plan2.map((items, id) => {
+							return (
+								<PriceCard
+									key={id}
+									type={items.type}
+									price={items.price}
+									detail={items.detail}
+									description={items.description}
+									title={items.title}
+									info1={items.info1}
+									info2={items.info2}
+									info3={items.info3}
+									info4={items.info4}
+									info5={items.info5}
+									info6={items.info6}
+									planId={items.planId}
+									country={country}
+								/>
+							);
+						})}
+					</section>
+					<section
+						className={`price-cards-annual price-card-annual--${
+							isActive === 3 ? 'active' : ''
+						}`}
+					>
+						{Plan3.map((items, id) => {
+							return (
+								<PriceCard
+									key={id}
+									type={items.type}
+									price={items.price}
+									detail={items.detail}
+									description={items.description}
+									title={items.title}
+									info1={items.info1}
+									info2={items.info2}
+									info3={items.info3}
+									info4={items.info4}
+									info5={items.info5}
+									info6={items.info6}
+									planId={items.planId}
+									country={country}
+								/>
+							);
+						})}
+					</section>
 				</section>
-				<section
-					className={`price-cards-annual price-card-annual--${
-						isActive === 3 ? 'active' : ''
-					}`}
-				>
-					{Plan3.map((items, id) => {
-						return (
-							<PriceCard
-								key={id}
-								type={items.type}
-								price={items.price}
-								detail={items.detail}
-								description={items.description}
-								title={items.title}
-								info1={items.info1}
-								info2={items.info2}
-								info3={items.info3}
-								info4={items.info4}
-								info5={items.info5}
-								info6={items.info6}
-								planId={items.planId}
-								country={country}
-							/>
-						);
-					})}
-				</section>
-			</section>
-		</PricingWrapper>
+			</PricingWrapper>
+		</>
 	);
 }
 

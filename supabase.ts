@@ -46,6 +46,28 @@ export async function getAllScreens() {
 	return Screens;
 }
 
+//    get all screens total number
+export async function getAllScreensCount() {
+const { count, error } = await supabase
+.from('Screens')
+.select('*', { count: 'exact', head: true })
+return count;
+}
+
+   //get  limited screens for view more
+//    export async function getViewMoreScreens(id) {
+ 
+  
+// 	const { data, error } = await supabase
+// 	.from('Screens')
+// 	.select()
+// 	.not('screenId', 'is', id)
+// 	console.log("dope",data)
+	
+// 	  return data;
+// 	}
+
+
 //    get all limited screens
 // export async function getLimitedScreens() {
 //   let { data: Screens, error } = await supabase.from("Screens").select("*").limit(1);
@@ -436,7 +458,7 @@ export async function addImagesToScreens(
 		.insert({
 			screenId: screenId,
 			url: url,
-			order: 6300 + id,
+			order: 10200 + id,
 			version: 1,
 		})
 		.select();

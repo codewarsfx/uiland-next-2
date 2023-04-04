@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 import React from 'react';
+import { BASE_IMAGE } from '../../utils/base64Image';
 
 type screenshotProps = {
 	imgLink: string;
@@ -17,7 +18,11 @@ const Screenshot = ({ imgLink, Name }: screenshotProps) => {
 					width={320}
 					height={640}
 					src={imgLink}
-					alt={`${Name} screenshots`}
+					alt={`${Name} App Screenshots`}
+				
+					placeholder='blur'
+					unoptimized
+					blurDataURL={BASE_IMAGE}
 				/>
 			</ScreenshotContainer>
 		</>

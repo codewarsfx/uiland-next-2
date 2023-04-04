@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useEffect, useState, useContext, useRef } from 'react';
 import Image from 'next/image';
 import { BASE_IMAGE } from '../../../../utils/base64Image';
 //Third party libraries
@@ -32,16 +33,17 @@ import {
 	getAllScreens,
 	getScreensById,
 	getScreensByIdCount,
-	getRange,
+	getRange,getAllScreensCount
 } from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps, GetServerSideProps } from 'next';
 
-import { useEffect, useState, useContext, useRef } from 'react';
+
 import NewsLetter from '../../../../components/NewsLetter';
 import withPopContext from '../../../../HOC/withPopContext';
 import Redis from 'ioredis';
 import DownloadIcon from '../../../../components/DownloadIcon';
 import CopyIcon from '../../../../components/CopyIcon';
+import Tooltip from '../../../../components/Tooltip';
 
 const SinglePage = ({ screens }) => {
 	const {
@@ -96,10 +98,13 @@ const SinglePage = ({ screens }) => {
 
 	const [perPage, setPerPage] = useState<number>(20);
 
+	const[viewMoreData,setViewMoreData]=useState([])
+
 	const [actualCount, setActualCount] = useState<number>(0);
 	const [getPeriod, setGetPeriod] = useState([]);
 	// The back-to-top button is hidden at the beginning
 	const [showButton, setShowButton] = useState(false);
+	const [revealTooltip, setRevealTooltip] = useState<number>(0);
 	const { openNewsLetter, setOpenNewsLetter } = useContext(PopContext);
 	const userListRef = useRef(null);
 
@@ -124,8 +129,6 @@ const SinglePage = ({ screens }) => {
 		});
 		userListRef.current.scrollIntoView({ behavior: 'smooth' });
 	};
-
-	console.log(filtered.length);
 
 	//This is used to track the number of times a user has visited the screen. The guide modal
 	//is displayed if the user is a first-time user.
@@ -281,6 +284,32 @@ const SinglePage = ({ screens }) => {
 		//adding this dependency works for now
 	}, [timeHost]);
 
+
+//get view more screens 
+useEffect(()=>{
+
+	async function viewMore(){
+		const data =await getAllScreens()
+		const count= await getAllScreensCount()
+		console.log("dope",data)
+		setViewMoreData(data)
+		const randomNumber=Math.floor(Math.random()*count)
+		const randomNumber2=Math.floor(Math.random()*count)
+		
+		// console.log("dopse",viewMoreData)
+         viewMoreData[0]=viewMoreData[randomNumber]
+	
+         viewMoreData[1]=viewMoreData[randomNumber2]
+	
+
+// [ viewMoreData[0], viewMoreData[Math.floor(Math.random()*count)]]=[ viewMoreData[Math.floor(Math.random()*count)], viewMoreData[0]]
+// [ viewMoreData[1], viewMoreData[Math.floor(Math.random()*count)]]=[ viewMoreData[Math.floor(Math.random()*count)], viewMoreData[1]]
+		//  console.log("yes",viewMoreData)
+	}
+  viewMore()
+},[])
+
+
 	// 	useEffect(()=>{
 	// 	async	function yes(){
 	// const ed= await getVersion(router.query.id)
@@ -298,6 +327,19 @@ const SinglePage = ({ screens }) => {
 	if (!headerInfo) {
 		return;
 	}
+
+	//show tooltip when mouse is on the component
+	function showTooltip(id) {
+		setRevealTooltip(id);
+	}
+
+	//hide tooltip when mouse is removed from it
+	function hideTooltip() {
+		setRevealTooltip(0);
+	}
+
+
+
 	return (
 		<>
 			{/* for SEO */}
@@ -307,11 +349,11 @@ const SinglePage = ({ screens }) => {
 				<meta
 					name='title'
 					property='og:title'
-					content={`${headerInfo.name} Android app screenshots`}
+					content={`${headerInfo.name} ui screenshots`}
 				/>
 				<meta
 					name='description'
-					content={`${headerInfo.name} Android app screenshots`}
+					content={`Discover latest mobile app ui inspirations and designs from comapnies and startups all over the world `}
 				/>
 				<link rel='icon' href='/favicon.ico' />
 				<link rel='canonical' href={canonicalUrl} key='canonical' />
@@ -332,7 +374,7 @@ const SinglePage = ({ screens }) => {
 				<meta
 					name='description'
 					property='og:description'
-					content={`screenshots of ${headerInfo.name} Android app`}
+					content={`${headerInfo.name} ui screenshots`}
 				/>
 				<meta property='og:site_name' content='uiland.design' />
 				<meta name='image' property='og:image' content={`${headerInfo.logo}`} />
@@ -564,7 +606,10 @@ const SinglePage = ({ screens }) => {
 
 				{filtered?.map((data) => (
 					<ScreenShotContent key={data.id}>
-						<ScreenshotContainer>
+						<ScreenshotContainer
+							onMouseEnter={() => showTooltip(data.id)}
+							onMouseLeave={hideTooltip}
+						>
 							<Image
 								src={data.url}
 								alt={`Screenshots of ${headerInfo.name} App`}
@@ -577,6 +622,7 @@ const SinglePage = ({ screens }) => {
 						</ScreenshotContainer>
 
 						<SecondRow>
+							{revealTooltip === data.id && <Tooltip />}
 							{getId.includes(data.id) ? (
 								<DeleteIcon
 									deleteIndividualBookmark={deleteIndividualBookmark}
@@ -843,6 +889,7 @@ const SecondRow = styled.div`
 	align-items: center;
 	background: rgb(0 0 0 / 9%);
 	border-radius: 28px;
+	position: relative;
 `;
 const Input = styled.input.attrs((props) => ({}))`
 	color: black;
