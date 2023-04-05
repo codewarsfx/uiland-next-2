@@ -33,10 +33,12 @@ import {
 	getAllScreens,
 	getScreensById,
 	getScreensByIdCount,
-	getRange,getAllScreensCount
+	getRange,
+	getAllScreensCount,
+	checkSubscribedUSer,
+	getCountry,
 } from '../../../../supabase';
 import { GetStaticPaths, GetStaticProps, GetServerSideProps } from 'next';
-
 
 import NewsLetter from '../../../../components/NewsLetter';
 import withPopContext from '../../../../HOC/withPopContext';
@@ -45,8 +47,33 @@ import DownloadIcon from '../../../../components/DownloadIcon';
 import CopyIcon from '../../../../components/CopyIcon';
 import Tooltip from '../../../../components/Tooltip';
 import axios from 'axios';
+import PaymentBanner from '../../../../components/PaymentBanner';
+import {
+	UserContext,
+	UserCountryContext,
+} from '../../../../context/authContext';
 
-const SinglePage = ({ screens }) => {
+const SinglePage = ({ screens,brandcountry }) => {
+	const [showPaymentBanner, setShowPaymentBanner] = useState(false);
+
+	const user = useContext(UserContext);
+	const country = useContext(UserCountryContext);
+
+
+	
+	useEffect(() => {
+		checkSubscribedUSer(user).then((data) => {
+			console.log(brandcountry === 'Nigeria', brandcountry)
+			console.log(brandcountry === 'Nigeria', data)
+			if (!data) setShowPaymentBanner(true);
+			else if (
+				data.event !== 'subscription.create' &&
+				brandcountry === 'Nigeria'
+			)
+				setShowPaymentBanner(true);
+		});
+	}, [user, country]);
+
 	const {
 		headerInfo,
 		toggleBottomSheet,
@@ -99,7 +126,7 @@ const SinglePage = ({ screens }) => {
 
 	const [perPage, setPerPage] = useState<number>(20);
 
-	const[viewMoreData,setViewMoreData]=useState([])
+	const [viewMoreData, setViewMoreData] = useState([]);
 
 	const [actualCount, setActualCount] = useState<number>(0);
 	const [getPeriod, setGetPeriod] = useState([]);
@@ -285,31 +312,27 @@ const SinglePage = ({ screens }) => {
 		//adding this dependency works for now
 	}, [timeHost]);
 
-
-//get view more screens 
-useEffect(()=>{
-
-	async function viewMore(){
-		const data =await getAllScreens()
-		const count= await getAllScreensCount()
-		console.log("dope",data)
-		setViewMoreData(data)
-		const randomNumber=Math.floor(Math.random()*count)
-		const randomNumber2=Math.floor(Math.random()*count)
-		
-		// console.log("dopse",viewMoreData)
-         viewMoreData[0]=viewMoreData[randomNumber]
+	//get view more screens
+	useEffect(() => {
+		async function viewMore() {
+			const data = await getAllScreens();
+			const count = await getAllScreensCount();
 	
-         viewMoreData[1]=viewMoreData[randomNumber2]
-	
+			setViewMoreData(data);
+			const randomNumber = Math.floor(Math.random() * count);
+			const randomNumber2 = Math.floor(Math.random() * count);
 
-// [ viewMoreData[0], viewMoreData[Math.floor(Math.random()*count)]]=[ viewMoreData[Math.floor(Math.random()*count)], viewMoreData[0]]
-// [ viewMoreData[1], viewMoreData[Math.floor(Math.random()*count)]]=[ viewMoreData[Math.floor(Math.random()*count)], viewMoreData[1]]
-		//  console.log("yes",viewMoreData)
-	}
-  viewMore()
-},[])
+			// console.log("dopse",viewMoreData)
+			viewMoreData[0] = viewMoreData[randomNumber];
 
+			viewMoreData[1] = viewMoreData[randomNumber2];
+
+			// [ viewMoreData[0], viewMoreData[Math.floor(Math.random()*count)]]=[ viewMoreData[Math.floor(Math.random()*count)], viewMoreData[0]]
+			// [ viewMoreData[1], viewMoreData[Math.floor(Math.random()*count)]]=[ viewMoreData[Math.floor(Math.random()*count)], viewMoreData[1]]
+			//  console.log("yes",viewMoreData)
+		}
+		viewMore();
+	}, []);
 
 	// 	useEffect(()=>{
 	// 	async	function yes(){
@@ -338,8 +361,6 @@ useEffect(()=>{
 	function hideTooltip() {
 		setRevealTooltip(0);
 	}
-
-
 
 	return (
 		<>
@@ -573,7 +594,6 @@ useEffect(()=>{
 					handleInputFilter={handleInputFilter}
 				/>{' '}
 			</SecondHeader>
-
 			<CategoryTabContainer>
 				<CategoryTabWrapper>
 					{
@@ -596,7 +616,6 @@ useEffect(()=>{
 					}
 				</CategoryTabWrapper>
 			</CategoryTabContainer>
-
 			<ElementsInCategoryContainer>
 				{showButton && (
 					<ScrollTop onClick={scrollToTop} title='scroll to top'>
@@ -604,7 +623,6 @@ useEffect(()=>{
 					</ScrollTop>
 				)}
 				{/* todo:populate with filtered data */}
-
 				{filtered?.map((data) => (
 					<ScreenShotContent key={data.id}>
 						<ScreenshotContainer
@@ -644,28 +662,33 @@ useEffect(()=>{
 				pendingText={toastPendingText}
 				successText={toastSuccessText}
 			/>
-			<ReactPaginate
-				marginPagesDisplayed={5}
-				pageRangeDisplayed={5}
-				previousLabel={'< Previous'}
-				nextLabel={'Next >'}
-				breakLabel={'...'}
-				forcePage={(Number(router.query.page) || 1) - 1}
-				pageCount={pageCount}
-				onPageChange={handlePagination}
-				disableInitialCallback={true}
-				containerClassName={'paginate-wrap'}
-				pageClassName={'paginate-li'}
-				pageLinkClassName={'paginate-a'}
-				activeClassName={'paginate-active'}
-				nextLinkClassName={'paginate-next-a'}
-				previousLinkClassName={'paginate-prev-a'}
-				breakLinkClassName={'paginate-break-a'}
-				disabledClassName={'paginate-disabled'}
-			/>
+			{!showPaymentBanner && (
+				<ReactPaginate
+					marginPagesDisplayed={5}
+					pageRangeDisplayed={5}
+					previousLabel={'< Previous'}
+					nextLabel={'Next >'}
+					breakLabel={'...'}
+					forcePage={(Number(router.query.page) || 1) - 1}
+					pageCount={pageCount}
+					onPageChange={handlePagination}
+					disableInitialCallback={true}
+					containerClassName={'paginate-wrap'}
+					pageClassName={'paginate-li'}
+					pageLinkClassName={'paginate-a'}
+					activeClassName={'paginate-active'}
+					nextLinkClassName={'paginate-next-a'}
+					previousLinkClassName={'paginate-prev-a'}
+					breakLinkClassName={'paginate-break-a'}
+					disabledClassName={'paginate-disabled'}
+				/>
+			)}
+
+			{showPaymentBanner && <PaymentBanner country={country} />}
 		</>
 	);
 };
+
 const CategoryTabContainer = styled.section`
 	margin: 1.5em 0;
 	padding: 1em 0;
@@ -1040,23 +1063,19 @@ export const getServerSideProps: GetServerSideProps = async ({
 	query,
 	params,
 }) => {
-	const response = await axios(
-		'https://ipinfo.io/json?token=92d047f347bbcf'
-	);
-	const { country } = response.data;
+	const { name } = query;
 	let screens;
 	const page = query.page || 1;
 
-
-
 	const completeID = params.id + page.toString() + query.version;
+	const {country:brandcountry} = await getCountry(name);
 
 	// const screensCacheObject = {};
 
 	// const client = new Redis(process.env.REDIS_URL); //get redis instance
 
 	// const CachedResults = JSON.parse(await client.get('screensCachedByID')); //get  screens data
-	screens = await getScreensById(params.id, page, query,'jj')
+	screens = await getScreensById(params.id, page, query);
 	// if (!CachedResults) {
 	// 	screens = await getScreensById(params.id, page, query); // if there are no cached results retrieve from supabase
 	// 	screensCacheObject[completeID] = screens; //store cached results to instance... the to differentiate different screens for the different pages a unique identifier using the
@@ -1084,11 +1103,10 @@ export const getServerSideProps: GetServerSideProps = async ({
 	// 	console.log('read from supabase');
 	// }
 
-
-
 	return {
 		props: {
 			screens,
+			brandcountry,
 		},
 	};
 };

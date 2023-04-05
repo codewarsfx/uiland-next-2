@@ -22,7 +22,8 @@ const PaystackPayment = ({ plan, country, toggle, period }) => {
 	const getLink = (period) => {
 		switch (period) {
 			case 'Annual':
-				return 'https://uiland.lemonsqueezy.com/checkout/buy/50e4cf79-4965-47e2-bfb3-d55c859f8706';
+				// return 'https://uiland.lemonsqueezy.com/checkout/buy/50e4cf79-4965-47e2-bfb3-d55c859f8706';
+				return 'https://uiland.lemonsqueezy.com/checkout/buy/2ec9e879-5b26-4b67-b3ce-15dadf9cc304'
 			case 'BiAnnual':
 				return 'https://uiland.lemonsqueezy.com/checkout/buy/dcce3203-7ccc-4077-a50b-71dd5d4d138e';
 			case 'Quarterly':

@@ -18,6 +18,7 @@ import Redis from 'ioredis';
 import Tab from '../components/TabSection';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import PaymentBanner from '../components/PaymentBanner';
 
 const Home = ({ screens }) => {
 	const { filterTerm, filterName } = useContext(ScreensContext);
@@ -145,6 +146,7 @@ const Home = ({ screens }) => {
 			<Tab />
 			<ScreensTab screens={result} />
 			<Footer />
+		
 		</>
 	);
 };

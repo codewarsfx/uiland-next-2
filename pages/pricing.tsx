@@ -174,27 +174,7 @@ export default function Pricing() {
 	// }, []);
 
 	//track users' location information
-	useEffect(() => {
-		// let userCity: string;
-		// let userCountry: string;
-		// let userTimeZone: string;
-		// if (Intl) {
-		// 	//gets the Continent information and city and returns a string
-		// 	//"Africa/Nigeria"
-		// 	userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-		// 	//reomves the slash and converts the string to an array
-		// 	let tzArr = userTimeZone.split('/');
-		// 	//gets the last element of the array which is the name of the city
-		// 	userCity = tzArr[tzArr.length - 1];
-		// 	//checks the dictionary and returns the country name
-		// 	userCountry = timeZoneCityToCountry[userCity];
-		// 	//adds the country name to the useState
-		// 	setCountry(timeZoneCityToCountry[userCity]);
-		// 	console.log(country);
-		// }
-		//get user Location
-		// setUserCountry();
-	}, []);
+
 
 	const buttonDetails = [
 		{ id: 1, text: 'Annual' },
